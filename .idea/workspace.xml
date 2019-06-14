@@ -2,7 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f482f008-ec87-4c7c-9c56-8c2c00a67fd2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pfsspec/instmod/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pfsspec/ccd.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pfsspec/constants.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pfsspec/filter.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pfsspec/instmod/gaussccd.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pfsspec/instmod/hscfilter.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pfsspec/instmod/subaruoptics.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pfsspec/obsmod/skyspectrum.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pfsspec/pfsobject.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/instmod/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/instmod/test_gaussccd.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/instmod/test_subaruoptics.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/test_filter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pfsspec/spectrum.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/spectrum.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/test_spectrum.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_spectrum.py" afterDir="false" />
@@ -18,11 +29,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pfsspec/spectrum.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="218">
-                  <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
+                <state relative-caret-position="512">
+                  <caret line="55" column="43" lean-forward="true" selection-start-line="55" selection-start-column="43" selection-end-line="55" selection-end-column="43" />
                   <folding>
                     <element signature="e#0#18#0" expanded="true" />
                   </folding>
@@ -33,23 +44,68 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/test/testbase.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="408">
-                  <caret line="24" column="19" lean-forward="true" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
+                <state relative-caret-position="238">
+                  <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
                   <folding>
-                    <element signature="e#1#10#0" expanded="true" />
+                    <element signature="e#0#9#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/test/stellarmod/test_kuruczgrid.py">
+            <entry file="file://$PROJECT_DIR$/pfsspec/filter.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="289">
-                  <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="19" selection-end-column="23" />
+                <state relative-caret-position="410">
+                  <caret line="27" column="30" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
                   <folding>
-                    <element signature="e#0#34#0" expanded="true" />
+                    <element signature="e#0#18#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pfsspec/instmod/gaussccd.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="170">
+                  <caret line="10" column="53" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="53" />
+                  <folding>
+                    <element signature="e#0#18#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pfsspec/instmod/hscfilter.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="102">
+                  <caret line="6" column="8" lean-forward="true" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
+                  <folding>
+                    <element signature="e#0#18#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pfsspec/instmod/subaruoptics.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="153">
+                  <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+                  <folding>
+                    <element signature="e#0#18#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/kuruczspectrum.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="221">
+                  <caret line="13" column="31" lean-forward="true" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
                 </state>
               </provider>
             </entry>
@@ -58,11 +114,35 @@
       </split-first>
       <split-second>
         <leaf>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/test/test_spectrum.py">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pfsspec/pfsobject.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="436">
-                  <caret line="42" column="22" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
+                <state relative-caret-position="255">
+                  <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
+                  <folding>
+                    <element signature="e#0#18#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pfsspec/ccd.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="391">
+                  <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
+                  <folding>
+                    <element signature="e#0#18#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test/instmod/test_gaussccd.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="238">
+                  <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
                   <folding>
                     <element signature="e#0#34#0" expanded="true" />
                   </folding>
@@ -71,17 +151,69 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://C:/ProgramData/Anaconda3/envs/pfs_spec_dnn/Lib/site-packages/pysynphot/reddening.py">
+            <entry file="file://$PROJECT_DIR$/test/instmod/test_subaruoptics.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="249">
-                  <caret line="245" selection-start-line="245" selection-end-line="245" />
+                <state relative-caret-position="306">
+                  <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+                  <folding>
+                    <element signature="e#0#34#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/pfsspec/instmod/__init__.py">
-              <provider selected="true" editor-type-id="text-editor" />
+            <entry file="file://$PROJECT_DIR$/test/test_filter.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="51">
+                  <caret line="3" column="9" lean-forward="true" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test/test_spectrum.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="529">
+                  <caret line="61" column="27" selection-start-line="61" selection-start-column="27" selection-end-line="61" selection-end-column="27" />
+                  <folding>
+                    <element signature="e#0#34#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/pfsspec/obsmod/skyspectrum.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="102">
+                  <caret line="6" selection-start-line="6" selection-end-line="6" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/kuruczgrid.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="345">
+                  <caret line="33" column="47" lean-forward="true" selection-start-line="33" selection-start-column="47" selection-end-line="33" selection-end-column="47" />
+                  <folding>
+                    <element signature="e#0#18#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/io/kuruczspectrumreader.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-352">
+                  <caret line="87" column="25" lean-forward="true" selection-start-line="87" selection-start-column="25" selection-end-line="87" selection-end-column="25" />
+                  <folding>
+                    <element signature="e#0#9#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
             </entry>
           </file>
         </leaf>
@@ -129,9 +261,22 @@
         <option value="$PROJECT_DIR$/pfsspec/stellarmod/modelgrid.py" />
         <option value="$PROJECT_DIR$/test/stellarmod/test_kuruczgrid.py" />
         <option value="$PROJECT_DIR$/pfsspec/instmod/__init__.py" />
+        <option value="$PROJECT_DIR$/pfsspec/contants.py" />
+        <option value="$PROJECT_DIR$/pfsspec/pfsobject.py" />
+        <option value="$PROJECT_DIR$/pfsspec/ccd.py" />
+        <option value="$PROJECT_DIR$/test/obsmod/test_gaussccd.py" />
+        <option value="$PROJECT_DIR$/pfsspec/obsmod/gaussccd.py" />
+        <option value="$PROJECT_DIR$/pfsspec/instmod/optics.py" />
+        <option value="$PROJECT_DIR$/test/instmod/test_subaruoptics.py" />
+        <option value="$PROJECT_DIR$/pfsspec/instmod/subaruoptics.py" />
+        <option value="$PROJECT_DIR$/pfsspec/filter.py" />
+        <option value="$PROJECT_DIR$/test/test_filter.py" />
+        <option value="$PROJECT_DIR$/pfsspec/spectrum.py" />
+        <option value="$PROJECT_DIR$/pfsspec/instmod/hscfilter.py" />
         <option value="$PROJECT_DIR$/test/testbase.py" />
         <option value="$PROJECT_DIR$/test/test_spectrum.py" />
-        <option value="$PROJECT_DIR$/pfsspec/spectrum.py" />
+        <option value="$PROJECT_DIR$/pfsspec/obsmod/sky.py" />
+        <option value="$PROJECT_DIR$/pfsspec/obsmod/skyspectrum.py" />
       </list>
     </option>
   </component>
@@ -169,6 +314,12 @@
               <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
               <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
               <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
+              <item name="instmod" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
+              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
               <item name="stellarmod" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -182,19 +333,6 @@
               <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
               <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="stellarmod" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="stellarmod" type="462c0819:PsiDirectoryNode" />
-              <item name="io" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
@@ -216,6 +354,8 @@
       <recent name="C:\Data\dobos\project\pfs_spec_dnn\test\stellarmod" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Data\dobos\project\pfs_spec_dnn\test\instmod" />
+      <recent name="C:\Data\dobos\project\pfs_spec_dnn\pfsspec\instmod" />
       <recent name="C:\Data\dobos\project\pfs_spec_dnn\pfsspec\io" />
       <recent name="C:\Data\dobos\project\pfs_spec_dnn\pfsspec\stallarmod" />
       <recent name="C:\Data\dobos\project\pfs_spec_dnn\pfsspec\stallarmod\io" />
@@ -233,7 +373,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.pytest in test">
+  <component name="RunManager" selected="Python tests.pytest for test_spectrum.TestSpectrum.test_synthflux">
     <configuration default="true" type="tests" factoryName="py.test">
       <module name="pfs_spec_dnn" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -254,7 +394,7 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test_spectrum.TestSpectrum.test_redden" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_filter.TestFilter.test_extend" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pfs_spec_dnn" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -270,11 +410,11 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_spectrum.TestSpectrum.test_redden&quot;" />
+      <option name="_new_target" value="&quot;test_filter.TestFilter.test_extend&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest in test" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_filter.TestFilter.test_read" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pfs_spec_dnn" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -290,14 +430,77 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/test&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="_new_target" value="&quot;test_filter.TestFilter.test_read&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_spectrum.TestSpectrum.test_synthflux" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="pfs_spec_dnn" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYSYN_CDBS" value="C:\Data\dobos\data\pysyn" />
+        <env name="PFSSPEC_DATA_PATH" value="C:\Data\dobos\data" />
+        <env name="PFSSPEC_TEST_PATH" value="C:\Data\dobos\temp\pfsspec_test" />
+      </envs>
+      <option name="SDK_HOME" value="C:\ProgramData\Anaconda3\envs\pfs_spec_dnn\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_spectrum.TestSpectrum.test_synthflux&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_spectrum.TestSpectrum.test_synthmag" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="pfs_spec_dnn" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYSYN_CDBS" value="C:\Data\dobos\data\pysyn" />
+        <env name="PFSSPEC_DATA_PATH" value="C:\Data\dobos\data" />
+        <env name="PFSSPEC_TEST_PATH" value="C:\Data\dobos\temp\pfsspec_test" />
+      </envs>
+      <option name="SDK_HOME" value="C:\ProgramData\Anaconda3\envs\pfs_spec_dnn\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_spectrum.TestSpectrum.test_synthmag&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_subaruoptics.TestFilter.test_read" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="pfs_spec_dnn" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYSYN_CDBS" value="C:\Data\dobos\data\pysyn" />
+        <env name="PFSSPEC_DATA_PATH" value="C:\Data\dobos\data" />
+        <env name="PFSSPEC_TEST_PATH" value="C:\Data\dobos\temp\pfsspec_test" />
+      </envs>
+      <option name="SDK_HOME" value="C:\ProgramData\Anaconda3\envs\pfs_spec_dnn\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_subaruoptics.TestFilter.test_read&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest in test" />
-        <item itemvalue="Python tests.pytest for test_spectrum.TestSpectrum.test_redden" />
+        <item itemvalue="Python tests.pytest for test_spectrum.TestSpectrum.test_synthflux" />
+        <item itemvalue="Python tests.pytest for test_spectrum.TestSpectrum.test_synthmag" />
+        <item itemvalue="Python tests.pytest for test_filter.TestFilter.test_extend" />
+        <item itemvalue="Python tests.pytest for test_filter.TestFilter.test_read" />
+        <item itemvalue="Python tests.pytest for test_subaruoptics.TestFilter.test_read" />
       </list>
     </recent_temporary>
   </component>
@@ -315,35 +518,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="pytest_for_test_spectrum_TestSpectrum_test_redshift - 2019.06.13 at 19h 00m 19s.xml">
-      <configuration name="pytest for test_spectrum.TestSpectrum.test_redshift" configurationId="tests" />
+    <history-entry file="pytest_for_test_filter_TestFilter_test_extend - 2019.06.14 at 14h 54m 49s.xml">
+      <configuration name="pytest for test_filter.TestFilter.test_extend" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_spectrum_TestSpectrum_test_redshift - 2019.06.13 at 19h 00m 48s.xml">
-      <configuration name="pytest for test_spectrum.TestSpectrum.test_redshift" configurationId="tests" />
+    <history-entry file="pytest_for_test_filter_TestFilter_test_extend - 2019.06.14 at 14h 55m 14s.xml">
+      <configuration name="pytest for test_filter.TestFilter.test_extend" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_spectrum_TestSpectrum_test_rebin - 2019.06.13 at 19h 01m 01s.xml">
-      <configuration name="pytest for test_spectrum.TestSpectrum.test_rebin" configurationId="tests" />
+    <history-entry file="pytest_for_test_filter_TestFilter_test_extend - 2019.06.14 at 14h 55m 36s.xml">
+      <configuration name="pytest for test_filter.TestFilter.test_extend" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_spectrum_TestSpectrum_test_redden - 2019.06.13 at 19h 04m 21s.xml">
-      <configuration name="pytest for test_spectrum.TestSpectrum.test_redden" configurationId="tests" />
+    <history-entry file="pytest_for_test_filter_TestFilter_test_extend - 2019.06.14 at 14h 56m 29s.xml">
+      <configuration name="pytest for test_filter.TestFilter.test_extend" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_spectrum_TestSpectrum_test_redden - 2019.06.13 at 19h 04m 43s.xml">
-      <configuration name="pytest for test_spectrum.TestSpectrum.test_redden" configurationId="tests" />
+    <history-entry file="pytest_for_test_filter_TestFilter_test_extend - 2019.06.14 at 14h 56m 57s.xml">
+      <configuration name="pytest for test_filter.TestFilter.test_extend" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_spectrum_TestSpectrum_test_redden - 2019.06.13 at 19h 05m 37s.xml">
-      <configuration name="pytest for test_spectrum.TestSpectrum.test_redden" configurationId="tests" />
+    <history-entry file="pytest_for_test_spectrum_TestSpectrum_test_synthflux - 2019.06.14 at 15h 28m 32s.xml">
+      <configuration name="pytest for test_spectrum.TestSpectrum.test_synthflux" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_spectrum_TestSpectrum_test_redden - 2019.06.13 at 19h 06m 41s.xml">
-      <configuration name="pytest for test_spectrum.TestSpectrum.test_redden" configurationId="tests" />
+    <history-entry file="pytest_for_test_spectrum_TestSpectrum_test_synthflux - 2019.06.14 at 15h 29m 14s.xml">
+      <configuration name="pytest for test_spectrum.TestSpectrum.test_synthflux" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_spectrum_TestSpectrum_test_redden - 2019.06.13 at 19h 08m 46s.xml">
-      <configuration name="pytest for test_spectrum.TestSpectrum.test_redden" configurationId="tests" />
+    <history-entry file="pytest_for_test_spectrum_TestSpectrum_test_synthmag - 2019.06.14 at 15h 31m 34s.xml">
+      <configuration name="pytest for test_spectrum.TestSpectrum.test_synthmag" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_spectrum_TestSpectrum_test_redden - 2019.06.13 at 19h 09m 10s.xml">
-      <configuration name="pytest for test_spectrum.TestSpectrum.test_redden" configurationId="tests" />
+    <history-entry file="pytest_for_test_spectrum_TestSpectrum_test_synthmag - 2019.06.14 at 15h 32m 04s.xml">
+      <configuration name="pytest for test_spectrum.TestSpectrum.test_synthmag" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_spectrum_TestSpectrum_test_redden - 2019.06.13 at 19h 12m 05s.xml">
-      <configuration name="pytest for test_spectrum.TestSpectrum.test_redden" configurationId="tests" />
+    <history-entry file="pytest_for_test_spectrum_TestSpectrum_test_synthflux - 2019.06.14 at 15h 32m 10s.xml">
+      <configuration name="pytest for test_spectrum.TestSpectrum.test_synthflux" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -351,7 +554,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15331928" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15331928" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Python Console" weight="0.16874401" />
@@ -359,8 +562,8 @@
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32981783" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.38638544" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32981783" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.38638544" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -368,13 +571,32 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Favorites" order="0" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.15331928" />
+      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="0" weight="0.3096836" />
+      <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="2" />
+      <window_info anchor="bottom" id="Python Console" order="3" weight="0.16874401" />
+      <window_info anchor="bottom" id="Message" order="4" />
+      <window_info anchor="bottom" id="Find" order="5" />
+      <window_info anchor="bottom" id="Run" order="6" visible="true" weight="0.32981783" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.38638544" />
+      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="10" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout-to-restore>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/pfsspec/spectrum.py</url>
-          <line>38</line>
+          <line>42</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
@@ -401,13 +623,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/modelspectrum.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="30" lean-forward="true" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -498,37 +713,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/kuruczspectrum.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/modelgrid.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="427">
           <caret line="80" column="37" lean-forward="true" selection-start-line="80" selection-start-column="37" selection-end-line="80" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/io/kuruczspectrumreader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="135" column="20" lean-forward="true" selection-start-line="135" selection-start-column="20" selection-end-line="135" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/kuruczgrid.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="47" lean-forward="true" selection-start-line="33" selection-start-column="47" selection-end-line="33" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -569,16 +757,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/testbase.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="19" lean-forward="true" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
-          <folding>
-            <element signature="e#1#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/ProgramData/Anaconda3/envs/pfs_spec_dnn/Lib/site-packages/pysynphot/reddening.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249">
@@ -586,23 +764,171 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_spectrum.py">
+    <entry file="file://$PROJECT_DIR$/pfsspec/constants.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="42" column="22" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
+        <state relative-caret-position="17">
+          <caret line="1" column="43" selection-start-line="1" selection-start-column="43" selection-end-line="1" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/ccd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/pfsobject.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/modelspectrum.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="30" lean-forward="true" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/instmod/gaussccd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="53" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/instmod/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/instmod/test_gaussccd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/spectrum.py">
+    <entry file="file://$PROJECT_DIR$/pfsspec/instmod/subaruoptics.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
+        <state relative-caret-position="153">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_filter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="9" lean-forward="true" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/filter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="27" column="30" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/kuruczgrid.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="33" column="47" lean-forward="true" selection-start-line="33" selection-start-column="47" selection-end-line="33" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/io/kuruczspectrumreader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-352">
+          <caret line="87" column="25" lean-forward="true" selection-start-line="87" selection-start-column="25" selection-end-line="87" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/instmod/hscfilter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="8" lean-forward="true" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/spectrum.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="512">
+          <caret line="55" column="43" lean-forward="true" selection-start-line="55" selection-start-column="43" selection-end-line="55" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/testbase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_spectrum.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="61" column="27" selection-start-line="61" selection-start-column="27" selection-end-line="61" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/instmod/test_subaruoptics.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/obsmod/skyspectrum.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/kuruczspectrum.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="31" lean-forward="true" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
         </state>
       </provider>
     </entry>
