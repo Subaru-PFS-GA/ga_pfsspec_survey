@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f482f008-ec87-4c7c-9c56-8c2c00a67fd2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pfsspec/ccd.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pfsspec/constants.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pfsspec/filter.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pfsspec/instmod/gaussccd.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pfsspec/instmod/hscfilter.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pfsspec/instmod/subaruoptics.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pfsspec/obsmod/skyspectrum.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pfsspec/pfsobject.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/instmod/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/instmod/test_gaussccd.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/instmod/test_subaruoptics.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test_filter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/spectrum.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/spectrum.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_spectrum.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_spectrum.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/testbase.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/testbase.py" afterDir="false" />
-    </list>
+    <list default="true" id="f482f008-ec87-4c7c-9c56-8c2c00a67fd2" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -280,7 +263,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="260" />
     <option name="y" value="80" />
     <option name="width" value="1400" />
