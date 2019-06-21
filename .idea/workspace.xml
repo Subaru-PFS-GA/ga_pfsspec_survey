@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f482f008-ec87-4c7c-9c56-8c2c00a67fd2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/pfsspec/train/dnn/keras/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/train/dnn/keras/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pfsspec/train/dnn/keras/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/train/dnn/keras/train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/train/trainingset.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/train/trainingset.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/train_dnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/train_dnn.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -68,11 +68,26 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pfsspec/train/dnn/keras/train.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="462">
-                  <caret line="23" column="43" lean-forward="true" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
+                <state relative-caret-position="210">
+                  <caret line="10" column="59" lean-forward="true" selection-start-line="10" selection-start-column="59" selection-end-line="10" selection-end-column="59" />
+                  <folding>
+                    <element signature="e#0#81#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/scripts/train_dnn.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="651">
+                  <caret line="31" column="82" lean-forward="true" selection-start-line="31" selection-start-column="82" selection-end-line="31" selection-end-column="82" />
+                  <folding>
+                    <element signature="e#10#19#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -120,8 +135,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/scripts/buildts_sdss.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="609">
-                  <caret line="29" column="26" lean-forward="true" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
+                <state relative-caret-position="483">
+                  <caret line="23" column="29" lean-forward="true" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
                   <folding>
                     <element signature="e#10#19#0" expanded="true" />
                   </folding>
@@ -165,22 +180,10 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/pfsspec/train/dnn/keras/models.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="593">
-                  <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+                <state relative-caret-position="479">
+                  <caret line="24" column="45" lean-forward="true" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
                   <folding>
                     <element signature="e#0#25#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/scripts/train_dnn.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="651">
-                  <caret line="31" column="98" lean-forward="true" selection-start-line="31" selection-start-column="98" selection-end-line="31" selection-end-column="98" />
-                  <folding>
-                    <element signature="e#10#19#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -250,10 +253,10 @@
         <option value="$PROJECT_DIR$/scripts/export_sdss.py" />
         <option value="$PROJECT_DIR$/scripts/buildts_sdss.py" />
         <option value="$PROJECT_DIR$/pfsspec/pipelines/sdssbasicpipeline.py" />
-        <option value="$PROJECT_DIR$/pfsspec/train/dnn/keras/models.py" />
         <option value="$PROJECT_DIR$/pfsspec/train/trainingset.py" />
-        <option value="$PROJECT_DIR$/scripts/train_dnn.py" />
         <option value="$PROJECT_DIR$/pfsspec/train/dnn/keras/train.py" />
+        <option value="$PROJECT_DIR$/pfsspec/train/dnn/keras/models.py" />
+        <option value="$PROJECT_DIR$/scripts/train_dnn.py" />
       </list>
     </option>
   </component>
@@ -937,16 +940,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/buildts_sdss.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="29" column="26" lean-forward="true" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
-          <folding>
-            <element signature="e#10#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/train/trainingset.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
@@ -957,10 +950,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/train_dnn.py">
+    <entry file="file://$PROJECT_DIR$/scripts/buildts_sdss.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="651">
-          <caret line="31" column="98" lean-forward="true" selection-start-line="31" selection-start-column="98" selection-end-line="31" selection-end-column="98" />
+        <state relative-caret-position="483">
+          <caret line="23" column="29" lean-forward="true" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
           <folding>
             <element signature="e#10#19#0" expanded="true" />
           </folding>
@@ -969,17 +962,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/train/dnn/keras/train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="23" column="43" lean-forward="true" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
+        <state relative-caret-position="210">
+          <caret line="10" column="59" lean-forward="true" selection-start-line="10" selection-start-column="59" selection-end-line="10" selection-end-column="59" />
+          <folding>
+            <element signature="e#0#81#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/train/dnn/keras/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="593">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+        <state relative-caret-position="479">
+          <caret line="24" column="45" lean-forward="true" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/train_dnn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="31" column="82" lean-forward="true" selection-start-line="31" selection-start-column="82" selection-end-line="31" selection-end-column="82" />
+          <folding>
+            <element signature="e#10#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
