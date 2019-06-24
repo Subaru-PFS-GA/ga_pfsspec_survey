@@ -5,8 +5,8 @@ from astropy.io import fits
 from SciServer import Authentication, CasJobs
 
 from pfsspec.io.spectrumreader import SpectrumReader
-from pfsspec.survey.dataset import DataSet
-from pfsspec.survey.sdssspectrum import SdssSpectrum
+from pfsspec.surveys.survey import Survey
+from pfsspec.surveys.sdssspectrum import SdssSpectrum
 
 class SdssSpectrumReader(SpectrumReader):
 
@@ -35,7 +35,6 @@ class SdssSpectrumReader(SpectrumReader):
         return CasJobs.executeQuery(sql=sql, context=context, format="pandas")
 
     def find_stars(self, top=None, mjd=None, plate=None, Fe_H=None, T_eff=None, log_g=None):
-
         where = ''
         if mjd is not None:
             where += "AND s.mjd = {:d} \n".format(mjd)
@@ -63,7 +62,7 @@ class SdssSpectrumReader(SpectrumReader):
         return self.execute_query(sql)
 
     def load_dataset(self, path, params):
-        dataset = DataSet()
+        dataset = Survey()
         dataset.params = params
         dataset.spectra = []
 
