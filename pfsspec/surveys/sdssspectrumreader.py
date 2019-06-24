@@ -62,16 +62,16 @@ class SdssSpectrumReader(SpectrumReader):
         return self.execute_query(sql)
 
     def load_dataset(self, path, params):
-        dataset = Survey()
-        dataset.params = params
-        dataset.spectra = []
+        survey = Survey()
+        survey.params = params
+        survey.spectra = []
 
         for index, row in params.iterrows():
             filename = SdssSpectrumReader.get_filename(row['mjd'], row['plate'], row['fiberID'])
             filename = os.path.join(path, filename)
             with fits.open(filename, memmap=False) as hdus:
                 spec = self.read(hdus)
-                dataset.spectra.append(spec)
+                survey.spectra.append(spec)
 
-        return dataset
+        return survey
 

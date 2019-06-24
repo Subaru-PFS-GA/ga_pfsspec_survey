@@ -1,4 +1,4 @@
-from pfsspec.ml.datasetbuilder import DatasetBuilder
+from pfsspec.io.datasetbuilder import DatasetBuilder
 
 class SdssDatasetBuilder(DatasetBuilder):
     def __init__(self, orig=None):
@@ -15,12 +15,12 @@ class SdssDatasetBuilder(DatasetBuilder):
         return self.pipeline.rebin.shape[0]
 
     def build(self):
-        ts = super(SdssDatasetBuilder, self).build()
-        ts.wave[:] = self.pipeline.rebin
+        dataset = super(SdssDatasetBuilder, self).build()
+        dataset.wave[:] = self.pipeline.rebin
 
         for i in range(0, len(self.dataset.spectra)):
             spec = self.dataset.spectra[i]
             spec = self.pipeline.run(spec)
-            ts.flux[i, :] = spec.flux
+            dataset.flux[i, :] = spec.flux
 
-        return ts
+        return dataset
