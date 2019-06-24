@@ -2,44 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f482f008-ec87-4c7c-9c56-8c2c00a67fd2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pfsspec/ml/mlmodel.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/ml/dnn/keras/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/obsmod/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/surveys/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/surveys/test_sdssspectrum.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/cnnpyramid.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/ml/dnn/keras/test_cnnpyramid.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/ml/dnn/keras/test_densepyramid.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SciServer/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/SciServer/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/stellarmod/io/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/stellarmod/io/kuruczspectrumreader.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/stellarmod/kuruczspectrumreader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/survey/dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/surveys/survey.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/survey/io/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/survey/io/sdssspectrumreader.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/surveys/sdssspectrumreader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/survey/sdssspectrum.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/surveys/sdssspectrum.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/train/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/dnnmodel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/train/dnn/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/train/dnn/keras/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/densepyramid.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/train/dnn/keras/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/train/dnn/keras/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/train/model.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/train/sdsstrainingsetbuilder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/surveys/sdssdatasetbuilder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/train/trainingrun.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/trainingrun.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/train/trainingset.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dataset.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/train/trainingsetbuilder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/datasetbuilder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/buildts_sdss.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/buildts_sdss.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/export_kurucz.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/export_kurucz.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/export_sdss.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/export_sdss.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nb/train.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/nb/train.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/ml/dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/io/dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/ml/datasetbuilder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/io/datasetbuilder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/densepyramid.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/densepyramid.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasdnnmodel.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasdnnmodel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/train.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/ml/mlmodel.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/mlmodel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/surveys/sdssdatasetbuilder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/surveys/sdssdatasetbuilder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/surveys/sdssspectrumreader.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/surveys/sdssspectrumreader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/buildts_sdss.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/convert_sdss.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/train_dnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/train_dnn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/dnn/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasdnnmodel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/dnn/keras/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/surveys/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/dnn/keras/test_keras.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/ml/dnn/keras/test_keras.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/stellarmod/io/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/ml/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/stellarmod/io/test_kuruczspectrumreader.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/stellarmod/test_kuruczspectrumreader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/stellarmod/test_kuruczgrid.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/stellarmod/test_kuruczgrid.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/stellarmod/test_modelgrid.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/stellarmod/test_modelgrid.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/survey/io/test_sdssspectrumreader.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/surveys/test_sdssspectrumreader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/survey/test_sdssspectrum.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/ml/dnn/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_filter.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/obsmod/test_filter.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,7 +26,160 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test/testbase.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="483">
+                  <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
+                  <folding>
+                    <element signature="e#0#9#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/densepyramid.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="231">
+                  <caret line="11" column="43" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+                  <folding>
+                    <element signature="e#0#25#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/cnnpyramid.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1029">
+                  <caret line="49" column="45" lean-forward="true" selection-start-line="49" selection-start-column="45" selection-end-line="49" selection-end-column="45" />
+                  <folding>
+                    <element signature="e#0#25#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasdnnmodel.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="726">
+                  <caret line="102" column="68" selection-start-line="102" selection-start-column="68" selection-end-line="102" selection-end-column="68" />
+                  <folding>
+                    <element signature="e#0#6#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pfsspec/ml/mlmodel.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="42">
+                  <caret line="2" column="46" selection-start-line="2" selection-start-column="46" selection-end-line="2" selection-end-column="46" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/dnnmodel.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="84">
+                  <caret line="4" column="40" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pfsspec/surveys/sdssdatasetbuilder.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="189">
+                  <caret line="9" selection-start-line="9" selection-end-line="9" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pfsspec/surveys/sdssspectrumreader.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="315">
+                  <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
+                  <folding>
+                    <element signature="e#0#9#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pfsspec/io/spectrumreader.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="42">
+                  <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pfsspec/io/dataset.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="378">
+                  <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+                  <folding>
+                    <element signature="e#0#18#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/test/ml/dnn/keras/test_densepyramid.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="336">
+                  <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+                  <folding>
+                    <element signature="e#0#9#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test/ml/dnn/keras/test_cnnpyramid.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="315">
+                  <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+                  <folding>
+                    <element signature="e#0#9#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/scripts/train_dnn.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="399">
+                  <caret line="19" column="42" lean-forward="true" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
+                  <folding>
+                    <element signature="e#10#25#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -63,10 +194,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/pfsspec/obsmod/skyspectrum.py" />
-        <option value="$PROJECT_DIR$/pfsspec/sdss/sdssspectrum.py" />
-        <option value="$PROJECT_DIR$/test/survey/test_sdssspectrum.py" />
-        <option value="$PROJECT_DIR$/test/testbase.py" />
         <option value="$PROJECT_DIR$/test/stellarmod/io/test_kuruczspectrumreader.py" />
         <option value="$PROJECT_DIR$/test/survey/io/test_sdssspectrumreader.py" />
         <option value="$PROJECT_DIR$/convert/kurucz.py" />
@@ -106,14 +233,18 @@
         <option value="$PROJECT_DIR$/scripts/train_dnn.py" />
         <option value="$PROJECT_DIR$/pfsspec/surveys/survey.py" />
         <option value="$PROJECT_DIR$/pfsspec/ml/dataset.py" />
-        <option value="$PROJECT_DIR$/pfsspec/ml/datasetbuilder.py" />
         <option value="$PROJECT_DIR$/pfsspec/ml/model.py" />
         <option value="$PROJECT_DIR$/pfsspec/surveys/sdsstrainingsetbuilder.py" />
-        <option value="$PROJECT_DIR$/pfsspec/surveys/sdssdatasetbuilder.py" />
         <option value="$PROJECT_DIR$/pfsspec/ml/dnn/dnnmodel.py" />
-        <option value="$PROJECT_DIR$/pfsspec/ml/dnn/keras/densepyramid.py" />
+        <option value="$PROJECT_DIR$/pfsspec/surveys/sdssspectrumreader.py" />
+        <option value="$PROJECT_DIR$/pfsspec/ml/datasetbuilder.py" />
+        <option value="$PROJECT_DIR$/pfsspec/surveys/sdssdatasetbuilder.py" />
         <option value="$PROJECT_DIR$/pfsspec/ml/mlmodel.py" />
+        <option value="$PROJECT_DIR$/pfsspec/ml/dnn/keras/densepyramid.py" />
+        <option value="$PROJECT_DIR$/test/ml/dnn/keras/test_densepyramid.py" />
+        <option value="$PROJECT_DIR$/test/ml/dnn/keras/test_cnnpyramid.py" />
         <option value="$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasdnnmodel.py" />
+        <option value="$PROJECT_DIR$/pfsspec/ml/dnn/keras/cnnpyramid.py" />
       </list>
     </option>
   </component>
@@ -149,12 +280,66 @@
             <path>
               <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
               <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
+              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
+              <item name="io" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
+              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
+              <item name="ml" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
+              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
+              <item name="ml" type="462c0819:PsiDirectoryNode" />
+              <item name="dnn" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
+              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
+              <item name="ml" type="462c0819:PsiDirectoryNode" />
+              <item name="dnn" type="462c0819:PsiDirectoryNode" />
+              <item name="keras" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
+              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
+              <item name="surveys" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
               <item name="scripts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
               <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="ml" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="ml" type="462c0819:PsiDirectoryNode" />
+              <item name="dnn" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="ml" type="462c0819:PsiDirectoryNode" />
+              <item name="dnn" type="462c0819:PsiDirectoryNode" />
+              <item name="keras" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -169,15 +354,15 @@
     <property name="settings.editor.selected.configurable" value="configurable.group.project" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Data\dobos\project\pfs_spec_dnn\test\stellarmod" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="H:\project\pfs_spec_dnn\pfsspec\io" />
       <recent name="H:\project\pfs_spec_dnn\test\obsmod" />
       <recent name="H:\project\pfs_spec_dnn\test\surveys" />
       <recent name="H:\project\pfs_spec_dnn\test\stellarmod" />
       <recent name="H:\project\pfs_spec_dnn\test\ml" />
-      <recent name="H:\project\pfs_spec_dnn\pfsspec\surveys" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Data\dobos\project\pfs_spec_dnn\test\stellarmod" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -192,7 +377,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.pytest for test.ml.dnn.keras.test_keras.TestKeras.test_keras">
+  <component name="RunManager" selected="Python tests.pytest for test_densepyramid.TestDensePyramid.test_train">
     <configuration default="true" type="tests" factoryName="py.test">
       <module name="pfs_spec_dnn" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -214,6 +399,69 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="pytest for test_cnnpyramid.TestCnnPyramid.test_train" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="pfs_spec_dnn" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYSYN_CDBS" value="C:\Data\dobos\data\pysyn" />
+        <env name="PFSSPEC_DATA_PATH" value="C:\Data\dobos\data" />
+        <env name="PFSSPEC_TEST_PATH" value="C:\Data\dobos\temp\pfsspec_test" />
+        <env name="PFSSPEC_SDSS_DATA_PATH" value="C:\Data\dobos\data\sdss" />
+      </envs>
+      <option name="SDK_HOME" value="C:\ProgramData\Anaconda3\envs\pfs_spec_dnn\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_cnnpyramid.TestCnnPyramid.test_train&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_cnnpyramid.TestDensePyramid.test_train" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="pfs_spec_dnn" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYSYN_CDBS" value="C:\Data\dobos\data\pysyn" />
+        <env name="PFSSPEC_DATA_PATH" value="C:\Data\dobos\data" />
+        <env name="PFSSPEC_TEST_PATH" value="C:\Data\dobos\temp\pfsspec_test" />
+        <env name="PFSSPEC_SDSS_DATA_PATH" value="C:\Data\dobos\data\sdss" />
+      </envs>
+      <option name="SDK_HOME" value="C:\ProgramData\Anaconda3\envs\pfs_spec_dnn\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_cnnpyramid.TestDensePyramid.test_train&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_densepyramid.TestDensePyramid.test_train" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="pfs_spec_dnn" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYSYN_CDBS" value="C:\Data\dobos\data\pysyn" />
+        <env name="PFSSPEC_DATA_PATH" value="C:\Data\dobos\data" />
+        <env name="PFSSPEC_TEST_PATH" value="C:\Data\dobos\temp\pfsspec_test" />
+        <env name="PFSSPEC_SDSS_DATA_PATH" value="C:\Data\dobos\data\sdss" />
+      </envs>
+      <option name="SDK_HOME" value="C:\ProgramData\Anaconda3\envs\pfs_spec_dnn\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_densepyramid.TestDensePyramid.test_train&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <configuration name="pytest for test.ml.dnn.keras.test_keras.TestKeras.test_keras" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pfs_spec_dnn" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -232,67 +480,6 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;test.ml.dnn.keras.test_keras.TestKeras.test_keras&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest for test_spectrum.TestSpectrum.test_synthflux" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="pfs_spec_dnn" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYSYN_CDBS" value="C:\Data\dobos\data\pysyn" />
-        <env name="PFSSPEC_DATA_PATH" value="C:\Data\dobos\data" />
-        <env name="PFSSPEC_TEST_PATH" value="C:\Data\dobos\temp\pfsspec_test" />
-      </envs>
-      <option name="SDK_HOME" value="C:\ProgramData\Anaconda3\envs\pfs_spec_dnn\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_spectrum.TestSpectrum.test_synthflux&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest for test_spectrum.TestSpectrum.test_synthmag" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="pfs_spec_dnn" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYSYN_CDBS" value="C:\Data\dobos\data\pysyn" />
-        <env name="PFSSPEC_DATA_PATH" value="C:\Data\dobos\data" />
-        <env name="PFSSPEC_TEST_PATH" value="C:\Data\dobos\temp\pfsspec_test" />
-      </envs>
-      <option name="SDK_HOME" value="C:\ProgramData\Anaconda3\envs\pfs_spec_dnn\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_spectrum.TestSpectrum.test_synthmag&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest for test.surveys.test_sdssspectrumreader.TestSdssSpectrumReader.test_get_filename" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="pfs_spec_dnn" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYSYN_CDBS" value="C:\Data\dobos\data\pysyn" />
-        <env name="PFSSPEC_DATA_PATH" value="C:\Data\dobos\data" />
-        <env name="PFSSPEC_TEST_PATH" value="C:\Data\dobos\temp\pfsspec_test" />
-        <env name="PFSSPEC_SDSS_DATA_PATH" value="C:\Data\dobos\data\sdss" />
-      </envs>
-      <option name="SDK_HOME" value="C:\ProgramData\Anaconda3\envs\pfs_spec_dnn\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test.surveys.test_sdssspectrumreader.TestSdssSpectrumReader.test_get_filename&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -319,18 +506,18 @@
     </configuration>
     <list>
       <item itemvalue="Python tests.pytest for test.ml.dnn.keras.test_keras.TestKeras.test_keras" />
-      <item itemvalue="Python tests.pytest for test.surveys.test_sdssspectrumreader.TestSdssSpectrumReader.test_get_filename" />
       <item itemvalue="Python tests.pytest for test.surveys.test_sdssspectrumreader.TestSdssSpectrumReader.test_read" />
-      <item itemvalue="Python tests.pytest for test_spectrum.TestSpectrum.test_synthflux" />
-      <item itemvalue="Python tests.pytest for test_spectrum.TestSpectrum.test_synthmag" />
+      <item itemvalue="Python tests.pytest for test_densepyramid.TestDensePyramid.test_train" />
+      <item itemvalue="Python tests.pytest for test_cnnpyramid.TestDensePyramid.test_train" />
+      <item itemvalue="Python tests.pytest for test_cnnpyramid.TestCnnPyramid.test_train" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.pytest for test_densepyramid.TestDensePyramid.test_train" />
+        <item itemvalue="Python tests.pytest for test_cnnpyramid.TestCnnPyramid.test_train" />
+        <item itemvalue="Python tests.pytest for test_cnnpyramid.TestDensePyramid.test_train" />
         <item itemvalue="Python tests.pytest for test.ml.dnn.keras.test_keras.TestKeras.test_keras" />
         <item itemvalue="Python tests.pytest for test.surveys.test_sdssspectrumreader.TestSdssSpectrumReader.test_read" />
-        <item itemvalue="Python tests.pytest for test.surveys.test_sdssspectrumreader.TestSdssSpectrumReader.test_get_filename" />
-        <item itemvalue="Python tests.pytest for test_spectrum.TestSpectrum.test_synthflux" />
-        <item itemvalue="Python tests.pytest for test_spectrum.TestSpectrum.test_synthmag" />
       </list>
     </recent_temporary>
   </component>
@@ -348,54 +535,55 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="pytest_for_test_spectrum_TestSpectrum_test_synthflux - 2019.06.14 at 15h 32m 10s.xml">
-      <configuration name="pytest for test_spectrum.TestSpectrum.test_synthflux" configurationId="tests" />
+    <history-entry file="pytest_for_test_cnnpyramid_TestCnnPyramid_test_train - 2019.06.24 at 18h 11m 28s.xml">
+      <configuration name="pytest for test_cnnpyramid.TestCnnPyramid.test_train" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_sdssspectrumreader_TestSdssSpectrumReader_test_get_filename - 2019.06.18 at 15h 20m 49s.xml">
-      <configuration name="pytest for test_sdssspectrumreader.TestSdssSpectrumReader.test_get_filename" configurationId="tests" />
+    <history-entry file="pytest_for_test_cnnpyramid_TestCnnPyramid_test_train - 2019.06.24 at 18h 12m 50s.xml">
+      <configuration name="pytest for test_cnnpyramid.TestCnnPyramid.test_train" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_sdssspectrumreader_TestSdssSpectrumReader_test_get_filename - 2019.06.18 at 15h 22m 29s.xml">
-      <configuration name="pytest for test_sdssspectrumreader.TestSdssSpectrumReader.test_get_filename" configurationId="tests" />
+    <history-entry file="pytest_for_test_densepyramid_TestDensePyramid_test_train - 2019.06.24 at 18h 14m 14s.xml">
+      <configuration name="pytest for test_densepyramid.TestDensePyramid.test_train" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_sdssspectrumreader_TestSdssSpectrumReader_test_read - 2019.06.18 at 15h 28m 26s.xml">
-      <configuration name="pytest for test_sdssspectrumreader.TestSdssSpectrumReader.test_read" configurationId="tests" />
+    <history-entry file="pytest_for_test_cnnpyramid_TestCnnPyramid_test_train - 2019.06.24 at 18h 16m 57s.xml">
+      <configuration name="pytest for test_cnnpyramid.TestCnnPyramid.test_train" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_sdssspectrumreader_TestSdssSpectrumReader_test_read - 2019.06.18 at 15h 30m 07s.xml">
-      <configuration name="pytest for test_sdssspectrumreader.TestSdssSpectrumReader.test_read" configurationId="tests" />
+    <history-entry file="pytest_for_test_cnnpyramid_TestCnnPyramid_test_train - 2019.06.24 at 18h 17m 22s.xml">
+      <configuration name="pytest for test_cnnpyramid.TestCnnPyramid.test_train" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_sdssspectrumreader_TestSdssSpectrumReader_test_read - 2019.06.18 at 15h 30m 21s.xml">
-      <configuration name="pytest for test_sdssspectrumreader.TestSdssSpectrumReader.test_read" configurationId="tests" />
+    <history-entry file="pytest_for_test_cnnpyramid_TestCnnPyramid_test_train - 2019.06.24 at 18h 22m 08s.xml">
+      <configuration name="pytest for test_cnnpyramid.TestCnnPyramid.test_train" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_sdssspectrumreader_TestSdssSpectrumReader_test_read - 2019.06.18 at 15h 30m 43s.xml">
-      <configuration name="pytest for test_sdssspectrumreader.TestSdssSpectrumReader.test_read" configurationId="tests" />
+    <history-entry file="pytest_for_test_cnnpyramid_TestCnnPyramid_test_train - 2019.06.24 at 18h 22m 23s.xml">
+      <configuration name="pytest for test_cnnpyramid.TestCnnPyramid.test_train" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_sdssspectrumreader_TestSdssSpectrumReader_test_read - 2019.06.18 at 15h 31m 14s.xml">
-      <configuration name="pytest for test_sdssspectrumreader.TestSdssSpectrumReader.test_read" configurationId="tests" />
+    <history-entry file="pytest_for_test_cnnpyramid_TestCnnPyramid_test_train - 2019.06.24 at 18h 26m 26s.xml">
+      <configuration name="pytest for test_cnnpyramid.TestCnnPyramid.test_train" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_keras_TestKeras_test_keras - 2019.06.20 at 16h 09m 56s.xml">
-      <configuration name="pytest for test_keras.TestKeras.test_keras" configurationId="tests" />
+    <history-entry file="pytest_for_test_cnnpyramid_TestCnnPyramid_test_train - 2019.06.24 at 18h 27m 38s.xml">
+      <configuration name="pytest for test_cnnpyramid.TestCnnPyramid.test_train" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_keras_TestKeras_test_keras - 2019.06.20 at 16h 11m 02s.xml">
-      <configuration name="pytest for test_keras.TestKeras.test_keras" configurationId="tests" />
+    <history-entry file="pytest_for_test_densepyramid_TestDensePyramid_test_train - 2019.06.24 at 18h 28m 12s.xml">
+      <configuration name="pytest for test_densepyramid.TestDensePyramid.test_train" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="2575" height="1415" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15320992" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4986215" weight="0.23364486" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32943925" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.38638544" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49822766" visible="true" weight="0.23364486" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4978338" weight="0.32943925" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49901536" weight="0.38629285" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.30919003" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5013785" side_tool="true" visible="true" weight="0.23364486" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.1978193" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50177234" side_tool="true" visible="true" weight="0.23364486" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49980307" weight="0.1970405" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -421,36 +609,6 @@
     </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pfsspec/instmod/subaruoptics.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/instmod/hscfilter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="8" lean-forward="true" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_spectrum.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="61" column="27" selection-start-line="61" selection-start-column="27" selection-end-line="61" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/instmod/test_subaruoptics.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -475,13 +633,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="30" lean-forward="true" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/io/spectrumreader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="12" lean-forward="true" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -518,16 +669,6 @@
           <caret line="25" column="19" lean-forward="true" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/testbase.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="31" lean-forward="true" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -580,9 +721,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/surveys/io/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/surveys/io/__init__.py" />
     <entry file="file://$PROJECT_DIR$/pfsspec/ml/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -633,32 +772,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/surveys/sdssspectrum.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/spectrum.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="567">
           <caret line="35" column="88" selection-start-line="35" selection-start-column="88" selection-end-line="35" selection-end-column="88" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/surveys/sdssspectrumreader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="642">
-          <caret line="48" selection-start-line="48" selection-end-line="48" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -673,20 +792,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/buildts_sdss.py">
+    <entry file="file://$PROJECT_DIR$/scripts/convert_sdss.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="483">
           <caret line="23" column="29" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
-          <folding>
-            <element signature="e#10#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/train_dnn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="723">
-          <caret line="39" column="15" selection-start-line="39" selection-start-column="15" selection-end-line="39" selection-end-column="15" />
           <folding>
             <element signature="e#10#19#0" expanded="true" />
           </folding>
@@ -703,54 +812,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/surveys/sdssdatasetbuilder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="31" lean-forward="true" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/ml/dataset.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/ml/datasetbuilder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="35" lean-forward="true" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="21" selection-start-line="21" selection-end-line="34" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/dnnmodel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/ml/mlmodel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" column="8" lean-forward="true" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/ml/trainingrun.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
@@ -758,40 +819,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/densepyramid.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="29" column="55" lean-forward="true" selection-start-line="29" selection-start-column="55" selection-end-line="29" selection-end-column="55" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/nb/train.ipynb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-44886">
           <caret line="11" column="48" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="28" column="44" lean-forward="true" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#81#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/ml/dnn/keras/test_keras.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="28" column="26" lean-forward="true" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -805,12 +836,167 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasdnnmodel.py">
+    <entry file="file://$PROJECT_DIR$/pfsspec/surveys/sdssspectrum.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+        <state relative-caret-position="105">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/ml/dnn/keras/test_keras.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="28" column="20" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/surveys/sdssdatasetbuilder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/surveys/sdssspectrumreader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/io/spectrumreader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/io/dataset.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/dnnmodel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="40" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/io/datasetbuilder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/testbase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/ml/mlmodel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="46" selection-start-line="2" selection-start-column="46" selection-end-line="2" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="26" column="38" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="38" />
           <folding>
             <element signature="e#0#81#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/densepyramid.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="43" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="62" column="33" selection-start-line="47" selection-start-column="4" selection-end-line="62" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasdnnmodel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="726">
+          <caret line="102" column="68" selection-start-line="102" selection-start-column="68" selection-end-line="102" selection-end-column="68" />
+          <folding>
+            <element signature="e#0#6#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/cnnpyramid.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1029">
+          <caret line="49" column="45" lean-forward="true" selection-start-line="49" selection-start-column="45" selection-end-line="49" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/train_dnn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="19" column="42" lean-forward="true" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
+          <folding>
+            <element signature="e#10#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/ml/dnn/keras/test_cnnpyramid.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/ml/dnn/keras/test_densepyramid.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
