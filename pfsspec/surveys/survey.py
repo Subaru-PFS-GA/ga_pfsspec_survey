@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import pickle
 
-class DataSet():
+class Survey():
     def __init__(self):
         self.params = None
         self.spectra = None

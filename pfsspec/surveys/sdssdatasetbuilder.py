@@ -1,8 +1,8 @@
-from pfsspec.train.trainingsetbuilder import TrainingSetBuilder
+from pfsspec.ml.datasetbuilder import DatasetBuilder
 
-class SdssTrainingSetBuilder(TrainingSetBuilder):
+class SdssDatasetBuilder(DatasetBuilder):
     def __init__(self, orig=None):
-        super(SdssTrainingSetBuilder, self).__init__(orig)
+        super(SdssDatasetBuilder, self).__init__(orig)
         if orig is not None:
             self.dataset = orig.dataset
         else:
@@ -15,7 +15,7 @@ class SdssTrainingSetBuilder(TrainingSetBuilder):
         return self.pipeline.rebin.shape[0]
 
     def build(self):
-        ts = super(SdssTrainingSetBuilder, self).build()
+        ts = super(SdssDatasetBuilder, self).build()
         ts.wave[:] = self.pipeline.rebin
 
         for i in range(0, len(self.dataset.spectra)):
