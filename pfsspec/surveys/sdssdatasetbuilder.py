@@ -4,23 +4,21 @@ class SdssDatasetBuilder(DatasetBuilder):
     def __init__(self, orig=None):
         super(SdssDatasetBuilder, self).__init__(orig)
         if orig is not None:
-            self.dataset = orig.dataset
+            self.survey = orig.survey
         else:
-            self.dataset = None
+            self.survey = None
 
     def get_spectrum_count(self):
-        return len(self.dataset.spectra)
+        return len(self.survey.spectra)
 
     def get_wave_count(self):
         return self.pipeline.rebin.shape[0]
 
-    def build(self):
-        dataset = super(SdssDatasetBuilder, self).build()
+    def create_dataset(self):
+        dataset = super(SdssDatasetBuilder, self).create_dataset()
         dataset.wave[:] = self.pipeline.rebin
 
-        for i in range(0, len(self.dataset.spectra)):
-            spec = self.dataset.spectra[i]
-            spec = self.pipeline.run(spec)
-            dataset.flux[i, :] = spec.flux
-
-        return dataset
+    def process_item(self, dataset, i):
+        spec = self.survey.spectra[i]
+        spec = self.pipeline.run(spec)
+        dataset.flux[i, :] = spec.flux
