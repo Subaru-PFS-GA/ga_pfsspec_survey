@@ -1,14 +1,12 @@
-import sys
-import click
-
 from pfsspec.io.spectrumreader import SpectrumReader
 from pfsspec.surveys.survey import Survey
+from pfsspec.parallel import prll_map
 
 class SurveySpectrumReader(SpectrumReader):
     def __init__(self):
         super(SurveySpectrumReader, self).__init__()
 
-    def load_spectrum(self, survey, index, row):
+    def load_spectrum(self, row):
         raise NotImplementedError()
 
     def load_survey(self, params):
@@ -16,9 +14,7 @@ class SurveySpectrumReader(SpectrumReader):
         survey.params = params
         survey.spectra = []
 
-        with click.progressbar(params.iterrows(), file=sys.stderr, length=len(params)) as bar:
-            for index, row in bar:
-                spec = self.load_spectrum(index, row)
-                survey.spectra.append(spec)
+        rows = [rows for index, rows in params.iterrows()]
+        survey.spectra = prll_map(self.load_spectrum, rows, verbose=True)
 
         return survey
