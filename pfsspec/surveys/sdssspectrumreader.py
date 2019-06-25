@@ -4,14 +4,14 @@ import pandas as pd
 from astropy.io import fits
 from SciServer import Authentication, CasJobs
 
-from pfsspec.io.spectrumreader import SpectrumReader
 from pfsspec.surveys.survey import Survey
+from pfsspec.surveys.surveyspectrumreader import SurveySpectrumReader
 from pfsspec.surveys.sdssspectrum import SdssSpectrum
 
-class SdssSpectrumReader(SpectrumReader):
-
+class SdssSpectrumReader(SurveySpectrumReader):
     def __init__(self):
         super(SdssSpectrumReader, self).__init__()
+        self.path = None
 
     def read(self, file):
         loglambda0 = file[0].header['COEFF0  ']
@@ -61,17 +61,9 @@ class SdssSpectrumReader(SpectrumReader):
 
         return self.execute_query(sql)
 
-    def load_dataset(self, path, params):
-        survey = Survey()
-        survey.params = params
-        survey.spectra = []
-
-        for index, row in params.iterrows():
-            filename = SdssSpectrumReader.get_filename(row['mjd'], row['plate'], row['fiberID'])
-            filename = os.path.join(path, filename)
-            with fits.open(filename, memmap=False) as hdus:
-                spec = self.read(hdus)
-                survey.spectra.append(spec)
-
-        return survey
-
+    def load_spectrum(self, index, row):
+        filename = SdssSpectrumReader.get_filename(row['mjd'], row['plate'], row['fiberID'])
+        filename = os.path.join(self.path, filename)
+        with fits.open(filename, memmap=False) as hdus:
+            spec = self.read(hdus)
+            return spec
