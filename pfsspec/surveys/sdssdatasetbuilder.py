@@ -15,10 +15,10 @@ class SdssDatasetBuilder(DatasetBuilder):
         return self.pipeline.rebin.shape[0]
 
     def create_dataset(self):
-        dataset = super(SdssDatasetBuilder, self).create_dataset()
-        dataset.wave[:] = self.pipeline.rebin
+        super(SdssDatasetBuilder, self).create_dataset()
+        self.dataset.wave[:] = self.pipeline.rebin
 
-    def process_item(self, dataset, i):
+    def process_item(self, i):
         spec = self.survey.spectra[i]
         spec = self.pipeline.run(spec)
-        dataset.flux[i, :] = spec.flux
+        self.dataset.flux[i, :] = spec.flux

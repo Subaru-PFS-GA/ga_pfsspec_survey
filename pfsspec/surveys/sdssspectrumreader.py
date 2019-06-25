@@ -1,6 +1,6 @@
 import os
+import aiofiles
 import numpy as np
-import pandas as pd
 from astropy.io import fits
 from SciServer import Authentication, CasJobs
 
@@ -61,7 +61,7 @@ class SdssSpectrumReader(SurveySpectrumReader):
 
         return self.execute_query(sql)
 
-    def load_spectrum(self, index, row):
+    def load_spectrum(self, row):
         filename = SdssSpectrumReader.get_filename(row['mjd'], row['plate'], row['fiberID'])
         filename = os.path.join(self.path, filename)
         with fits.open(filename, memmap=False) as hdus:
