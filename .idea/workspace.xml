@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f482f008-ec87-4c7c-9c56-8c2c00a67fd2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/nb/sdss.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/nb/sdss.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nb/train.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/nb/train.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/io/datasetbuilder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/io/datasetbuilder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/cnnpyramid.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/cnnpyramid.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/densepyramid.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/densepyramid.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasdnnmodel.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasdnnmodel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/surveys/sdssdatasetbuilder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/surveys/sdssdatasetbuilder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/surveys/sdssspectrumreader.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/surveys/sdssspectrumreader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/train_dnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/train_dnn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/instmod/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/instmod/gaussccd.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/obsmod/gaussccd.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/instmod/hscfilter.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/obsmod/hscfilter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/instmod/subaruoptics.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/obsmod/subaruoptics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/obsmod/filter.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/obsmod/filter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/instmod/test_gaussccd.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/instmod/test_gaussccd.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/instmod/test_subaruoptics.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/instmod/test_subaruoptics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/testbase.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/testbase.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -76,13 +75,30 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasdnnmodel.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="735">
-                  <caret line="38" selection-start-line="38" selection-end-line="38" />
+                <state relative-caret-position="371">
+                  <caret line="86" column="20" selection-start-line="86" selection-start-column="20" selection-end-line="86" selection-end-column="20" />
                   <folding>
                     <element signature="e#0#9#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pfsspec/obsmod/hscfilter.py">
+              <provider selected="true" editor-type-id="text-editor" />
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/pfsspec/obsmod/filter.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="588">
+                  <caret line="28" selection-start-line="28" selection-end-line="28" />
+                  <folding>
+                    <element signature="e#0#18#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -190,7 +206,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/pfsspec/survey/io/__init__.py" />
         <option value="$PROJECT_DIR$/pfsspec/survey/dataset.py" />
         <option value="$PROJECT_DIR$/convert/sdss.py" />
         <option value="$PROJECT_DIR$/pfsspec/pfsobject.py" />
@@ -241,6 +256,7 @@
         <option value="$PROJECT_DIR$/pfsspec/surveys/sdssspectrumreader.py" />
         <option value="$PROJECT_DIR$/scripts/train_dnn.py" />
         <option value="$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasdnnmodel.py" />
+        <option value="$PROJECT_DIR$/pfsspec/obsmod/filter.py" />
       </list>
     </option>
   </component>
@@ -305,6 +321,12 @@
               <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
               <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
               <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
+              <item name="obsmod" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
+              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
               <item name="surveys" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -350,15 +372,15 @@
     <property name="settings.editor.selected.configurable" value="configurable.group.project" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Data\dobos\project\pfs_spec_dnn\test\stellarmod" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="H:\project\pfs_spec_dnn\pfsspec\obsmod" />
       <recent name="H:\project\pfs_spec_dnn\pfsspec\io" />
       <recent name="H:\project\pfs_spec_dnn\test\obsmod" />
       <recent name="H:\project\pfs_spec_dnn\test\surveys" />
       <recent name="H:\project\pfs_spec_dnn\test\stellarmod" />
-      <recent name="H:\project\pfs_spec_dnn\test\ml" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Data\dobos\project\pfs_spec_dnn\test\stellarmod" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -605,9 +627,6 @@
     </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test/surveys/test_sdssspectrum.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/modelspectrum.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -619,16 +638,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/obsmod/filter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="27" column="30" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -977,10 +986,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasdnnmodel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
+        <state relative-caret-position="371">
+          <caret line="86" column="20" selection-start-line="86" selection-start-column="20" selection-end-line="86" selection-end-column="20" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/obsmod/hscfilter.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/obsmod/filter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -1,9 +1,7 @@
 from test.testbase import TestBase
-from unittest import TestCase
-import numpy as np
 import os
 
-from pfsspec.instmod.subaruoptics import SubaruOptics
+from pfsspec.obsmod.subaruoptics import SubaruOptics
 
 class TestFilter(TestBase):
     def test_read(self):
