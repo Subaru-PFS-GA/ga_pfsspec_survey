@@ -1,7 +1,7 @@
 from test.testbase import TestBase
 import numpy as np
 
-from pfsspec.instmod.gaussccd import GaussCcd
+from pfsspec.obsmod.gaussccd import GaussCcd
 
 class TestGaussCcd(TestBase):
     def test_create(self):
