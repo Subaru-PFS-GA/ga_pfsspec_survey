@@ -1,4 +1,5 @@
 import os
+import sys
 import aiofiles
 import numpy as np
 from astropy.io import fits
@@ -34,7 +35,7 @@ class SdssSpectrumReader(SurveySpectrumReader):
     def execute_query(self, sql, context='DR7'):
         return CasJobs.executeQuery(sql=sql, context=context, format="pandas")
 
-    def find_stars(self, top=None, mjd=None, plate=None, Fe_H=None, T_eff=None, log_g=None):
+    def find_stars(self, top=None, mjd=None, plate=None, Fe_H=None, T_eff=None, log_g=None, a_fe=None):
         where = ''
         if mjd is not None:
             where += "AND s.mjd = {:d} \n".format(mjd)
@@ -46,6 +47,8 @@ class SdssSpectrumReader(SurveySpectrumReader):
             where += "AND spp.teffa BETWEEN {:f} AND {:f} \n".format(T_eff[0], T_eff[1])
         if log_g is not None:
             where += "AND spp.logga BETWEEN {:f} AND {:f} \n".format(log_g[0], log_g[1])
+        if a_fe is not None:
+            where += "AND spp.alphafe BETWEEN {:f} AND {:f} \n".format(a_fe[0], a_fe[1])
 
         sql = \
         """
@@ -53,7 +56,8 @@ class SdssSpectrumReader(SurveySpectrumReader):
             s.specObjID, s.mjd, s.plate, s.fiberID, s.ra, s.dec, s.z,
             spp.feha AS fe_h, spp.fehaerr AS fe_h_err, 
             spp.teffa AS t_eff, spp.teffaerr AS t_eff_err,
-            spp.logga AS log_g, app.loggaerr AS log_g_err,
+            spp.logga AS log_g, spp.loggaerr AS log_g_err,
+            spp.alphafe AS a_fe, spp.alphafeerr AS a_fe_err,
             p.psfMag_u AS mag_u, p.psfMagErr_u AS mag_u_err,
             p.psfMag_g AS mag_g, p.psfMagErr_g AS mag_g_err,
             p.psfMag_r AS mag_r, p.psfMagErr_r AS mag_r_err,
