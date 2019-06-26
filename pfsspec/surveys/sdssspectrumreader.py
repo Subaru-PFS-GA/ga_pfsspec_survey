@@ -51,9 +51,17 @@ class SdssSpectrumReader(SurveySpectrumReader):
         """
         SELECT {} 
             s.specObjID, s.mjd, s.plate, s.fiberID, s.ra, s.dec, s.z,
-            spp.feha AS fe_h, spp.teffa AS t_eff, spp.logga AS log_g
-        FROM SpecObjAll s
+            spp.feha AS fe_h, spp.fehaerr AS fe_h_err, 
+            spp.teffa AS t_eff, spp.teffaerr AS t_eff_err,
+            spp.logga AS log_g, app.loggaerr AS log_g_err,
+            p.psfMag_u AS mag_u, p.psfMagErr_u AS mag_u_err,
+            p.psfMag_g AS mag_g, p.psfMagErr_g AS mag_g_err,
+            p.psfMag_r AS mag_r, p.psfMagErr_r AS mag_r_err,
+            p.psfMag_i AS mag_i, p.psfMagErr_i AS mag_i_err,
+            p.psfMag_z AS mag_z, p.psfMagErr_z AS mag_z_err
+        FROM SpecObj s
             INNER JOIN sppParams spp ON spp.specobjID = s.specObjID
+            INNER JOIN PhotoObj p ON p.objID = s.bestObjID
         WHERE specClass = 1 AND zConf > 0.98 {}
         ORDER BY s.mjd, s.plate, s.fiberID
         """.format('' if top is None else 'TOP {:d}'.format(top),
