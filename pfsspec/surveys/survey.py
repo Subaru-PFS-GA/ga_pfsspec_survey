@@ -1,3 +1,4 @@
+import logging
 import numpy as np
 import pandas as pd
 import pickle
@@ -16,3 +17,8 @@ class Survey():
         with open(filename, 'rb') as f:
             self.params = pickle.load(f)
             self.spectra = pickle.load(f)
+
+        logging.info("Loaded survey with shapes:")
+        logging.info("  spectra:", len(self.spectra))
+        logging.info("  params: ", self.params.shape)
+        logging.info("  columns:", self.params.columns)
