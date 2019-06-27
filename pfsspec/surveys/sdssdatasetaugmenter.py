@@ -7,9 +7,9 @@ class SdssDatasetAugmenter(KerasDataGenerator):
         self.dataset = dataset
         self.labels = labels
 
-        input_size = self.dataset.flux.shape
-        labels_size = (len(self.labels),)
-        super(SdssDatasetAugmenter, self).__init__(input_size, labels_size,
+        input_shape = self.dataset.flux.shape
+        labels_shape = (len(self.labels),)
+        super(SdssDatasetAugmenter, self).__init__(input_shape, labels_shape,
                                                    batch_size=batch_size, shuffle=shuffle, seed=seed)
 
         self.additive_bias = 0
