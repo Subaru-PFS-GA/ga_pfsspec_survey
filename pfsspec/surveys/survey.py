@@ -19,6 +19,6 @@ class Survey():
             self.spectra = pickle.load(f)
 
         logging.info("Loaded survey with shapes:")
-        logging.info("  spectra:", len(self.spectra))
-        logging.info("  params: ", self.params.shape)
-        logging.info("  columns:", self.params.columns)
+        logging.info("  spectra: {}".format(len(self.spectra)))
+        logging.info("  params:  {}".format(self.params.shape))
+        logging.info("  columns: {}".format(self.params.columns))

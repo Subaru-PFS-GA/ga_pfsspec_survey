@@ -12,8 +12,8 @@ class SdssDatasetAugmenter(KerasDataGenerator):
         super(SdssDatasetAugmenter, self).__init__(input_shape, labels_shape,
                                                    batch_size=batch_size, shuffle=shuffle, seed=seed)
 
-        self.additive_bias = 0
-        self.multiplicative_bias = 1
+        self.multiplicative_bias = False
+        self.additive_bias = False
 
     def next_batch(self, batch_index):
         if self.batch_size * (batch_index + 1) > self.input_shape[0]:
@@ -27,4 +27,13 @@ class SdssDatasetAugmenter(KerasDataGenerator):
         return self.augment_batch(self.dataset.wave, flux, params)
 
     def augment_batch(self, wave, flux, params):
+
+        if self.multiplicative_bias:
+            bias = np.random.uniform(0.8, 1.2, (flux.shape[0], 1))
+            flux = flux * bias
+
+        if self.additive_bias:
+            bias = np.random.normal(0, 1.0, (flux.shape[0], 1))
+            flux = flux + bias
+
         return flux, params
