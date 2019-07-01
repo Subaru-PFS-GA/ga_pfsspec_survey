@@ -2,7 +2,7 @@ from keras import backend as K
 import tensorflow as tf
 from tensorflow.python.client import device_lib
 
-from test.testbase import TestBase
+from test.test_base import TestBase
 
 class TestKeras(TestBase):
     def test_keras(self):

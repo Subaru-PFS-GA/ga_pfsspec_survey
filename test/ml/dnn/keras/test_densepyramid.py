@@ -1,6 +1,6 @@
 import os
 import numpy as np
-from test.testbase import TestBase
+from test.test_base import TestBase
 
 from pfsspec.io.dataset import Dataset
 from pfsspec.ml.dnn.keras.densepyramid import DensePyramid
