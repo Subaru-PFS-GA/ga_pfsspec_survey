@@ -3,9 +3,10 @@ import numpy as np
 from pfsspec.ml.dnn.keras.kerasdatagenerator import KerasDataGenerator
 
 class SdssDatasetAugmenter(KerasDataGenerator):
-    def __init__(self, dataset, labels, batch_size=1, shuffle=True, seed=0):
+    def __init__(self, dataset, labels, coeffs, batch_size=1, shuffle=True, seed=0):
         self.dataset = dataset
         self.labels = labels
+        self.coeffs = coeffs
 
         input_shape = self.dataset.flux.shape
         labels_shape = (len(self.labels),)
@@ -22,20 +23,21 @@ class SdssDatasetAugmenter(KerasDataGenerator):
         else:
             bs = self.batch_size
 
-        flux = np.array(self.dataset.flux[self.index[batch_index * self.batch_size:batch_index * self.batch_size + bs]], copy=True)
-        params = np.array(self.dataset.params[self.labels].iloc[self.index[batch_index * self.batch_size:batch_index * self.batch_size + bs]], copy=True)
+        flux = np.array(self.dataset.flux[self.index[batch_index * self.batch_size:batch_index * self.batch_size + bs]], copy=True, dtype=np.float)
+        labels = np.array(self.dataset.params[self.labels].iloc[self.index[batch_index * self.batch_size:batch_index * self.batch_size + bs]], copy=True, dtype=np.float)
 
-        flux, params = self.augment_batch(self.dataset.wave, flux, params)
+        flux, labels = self.augment_batch(self.dataset.wave, flux, labels)
+        labels /= self.coeffs
 
         if self.include_wave:
             nflux = np.zeros((bs, self.dataset.flux.shape[1], 2))
             nflux[:, :, 0] = flux
-            # TODO
+            nflux[:, :, 1] = self.dataset.wave
             flux = nflux
 
-        return flux, params
+        return flux, labels
 
-    def augment_batch(self, wave, flux, params):
+    def augment_batch(self, wave, flux, labels):
 
         if self.multiplicative_bias:
             bias = np.random.uniform(0.8, 1.2, (flux.shape[0], 1))
@@ -45,4 +47,4 @@ class SdssDatasetAugmenter(KerasDataGenerator):
             bias = np.random.normal(0, 1.0, (flux.shape[0], 1))
             flux = flux + bias
 
-        return flux, params
+        return flux, labels
