@@ -72,10 +72,11 @@ class SdssSpectrumReader(SurveySpectrumReader):
         FROM SpecObj s
             INNER JOIN sppParams spp ON spp.specobjID = s.specObjID
             INNER JOIN PhotoObj p ON p.objID = s.bestObjID
-        WHERE specClass = 1 AND zConf > 0.98 {}
+        WHERE specClass = 1 AND zConf > 0.98 
+              AND p.psfMag_r > 10               -- exclude unmeasured psf mag 
+              {}
         ORDER BY s.mjd, s.plate, s.fiberID
-        """.format('' if top is None else 'TOP {:d}'.format(top),
-                   where)
+        """.format('' if top is None else 'TOP {:d}'.format(top), where)
 
         return self.execute_query(sql)
 
