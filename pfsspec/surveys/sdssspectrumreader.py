@@ -15,6 +15,8 @@ class SdssSpectrumReader(SurveySpectrumReader):
         self.path = None
 
     def read(self, file):
+        self.redshift = 0.0
+
         loglambda0 = file[0].header['COEFF0  ']
         loglambda1 = file[0].header['COEFF1  ']
         numbins = file[0].data.shape[1]
@@ -23,6 +25,9 @@ class SdssSpectrumReader(SurveySpectrumReader):
         spec = SdssSpectrum()
         spec.wave = wave = 10 ** logwave
         spec.flux = file[0].data[0, :]
+        spec.flux_err = file[0].data[2, :]
+        spec.flux_sky = file[0].data[4, :]
+        spec.mask = np.int32(file[0].data[3, :])
         return spec
 
     def get_filename(mjd, plate, fiber, das='das2', ver='1d_26'):
@@ -53,7 +58,8 @@ class SdssSpectrumReader(SurveySpectrumReader):
         sql = \
         """
         SELECT {} 
-            s.specObjID, s.mjd, s.plate, s.fiberID, s.ra, s.dec, s.z,
+            s.specObjID, s.mjd, s.plate, s.fiberID, s.ra, s.dec, 
+            s.z, s.zErr AS z_err, s.sn_1 AS snr,
             spp.feha AS fe_h, spp.fehaerr AS fe_h_err, 
             spp.teffa AS t_eff, spp.teffaerr AS t_eff_err,
             spp.logga AS log_g, spp.loggaerr AS log_g_err,
