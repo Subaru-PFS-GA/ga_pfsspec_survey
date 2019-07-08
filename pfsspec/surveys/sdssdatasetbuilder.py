@@ -14,11 +14,11 @@ class SdssDatasetBuilder(DatasetBuilder):
     def get_wave_count(self):
         return self.pipeline.rebin.shape[0]
 
-    def create_dataset(self):
-        super(SdssDatasetBuilder, self).create_dataset()
-        self.dataset.wave[:] = self.pipeline.rebin
-
     def process_item(self, i):
         spec = self.survey.spectra[i]
         self.pipeline.run(spec)
         return spec.flux
+
+    def build(self):
+        super(SdssDatasetBuilder, self).build()
+        self.dataset.wave[:] = self.pipeline.rebin
