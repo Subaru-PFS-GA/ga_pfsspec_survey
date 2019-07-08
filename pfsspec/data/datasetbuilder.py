@@ -38,5 +38,3 @@ class DatasetBuilder():
 
         for i in range(len(fluxes)):
             self.dataset.flux[i, :] = fluxes[i]
-
-        return self.dataset

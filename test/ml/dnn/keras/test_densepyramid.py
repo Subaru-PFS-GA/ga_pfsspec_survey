@@ -4,7 +4,7 @@ from test.test_base import TestBase
 
 from pfsspec.data.dataset import Dataset
 from pfsspec.ml.dnn.keras.denseregression import DenseRegression
-from pfsspec.surveys.sdssdatasetaugmenter import SdssDatasetAugmenter
+from pfsspec.surveys.sdssaugmenter import SdssAugmenter
 
 class TestDensePyramid(TestBase):
     def test_train(self):
@@ -17,12 +17,12 @@ class TestDensePyramid(TestBase):
         labels = ['log_g', ]
         coeffs = [1, ]
 
-        training_generator = SdssDatasetAugmenter(ts, labels, coeffs, batch_size=200)
-        validation_generator = SdssDatasetAugmenter(vs, labels, coeffs, batch_size=200)
+        training_generator = SdssAugmenter(ts, labels, coeffs, batch_size=200)
+        validation_generator = SdssAugmenter(vs, labels, coeffs, batch_size=200)
 
         model = DenseRegression(levels=1, units=32)
         model.epochs = 1
-        model.ensure_model_created(training_generator.input_shape, training_generator.labels_shape)
+        model.ensure_model_created(training_generator.input_shape, training_generator.output_shape)
         model.train(training_generator, validation_generator)
         model.load_weights(model.checkpoint_path)
         model.predict(validation_generator)
