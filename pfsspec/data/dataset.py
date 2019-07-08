@@ -4,10 +4,15 @@ import pandas as pd
 import pickle
 
 class Dataset():
-    def __init__(self):
-        self.params = None
-        self.wave = None
-        self.flux = None
+    def __init__(self, orig=None):
+        if orig is None:
+            self.params = None
+            self.wave = None
+            self.flux = None
+        else:
+            self.params = orig.params
+            self.wave = orig.wave
+            self.flux = orig.flux
 
     def init_storage(self, wcount, scount):
         self.wave = np.empty(wcount)
