@@ -1,7 +1,7 @@
 import sys
 from pfsspec.parallel import srl_map, prll_map
 
-from pfsspec.io.dataset import Dataset
+from pfsspec.data.dataset import Dataset
 
 class DatasetBuilder():
     def __init__(self, orig=None):
