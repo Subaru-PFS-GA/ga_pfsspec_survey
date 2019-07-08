@@ -40,13 +40,10 @@ class SdssAugmenter(KerasDataGenerator):
         return output * self.coeffs
 
     def augment_batch(self, wave, flux, labels):
-
         if self.multiplicative_bias:
             bias = np.random.uniform(0.8, 1.2, (flux.shape[0], 1))
             flux = flux * bias
-
         if self.additive_bias:
             bias = np.random.normal(0, 1.0, (flux.shape[0], 1))
             flux = flux + bias
-
         return flux, labels

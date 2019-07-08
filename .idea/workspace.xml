@@ -2,23 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f482f008-ec87-4c7c-9c56-8c2c00a67fd2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pfsspec/surveys/sdssaugmenter.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/train_kurucz_gen.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/data/datasetbuilder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/data/datasetbuilder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/cnnregression.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/cnnregression.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/densegenerative.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/densegenerative.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/denseregression.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/denseregression.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasdatagenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasdatagenerator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasdnnmodel.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasdnnmodel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/stellarmod/modelgriddatasetbuilder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/stellarmod/modelgriddatasetbuilder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/surveys/sdssdatasetaugmenter.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/stellarmod/kuruczgenerativeaugmenter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/surveys/sdssdatasetbuilder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/surveys/sdssdatasetbuilder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/convert_kurucz.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/convert_kurucz.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/convert_sdss.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/convert_sdss.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/scripts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/scripts.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/surveys/sdssaugmenter.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/surveys/sdssaugmenter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/train_sdss.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/train_sdss.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/ml/dnn/keras/test_cnnregression.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/ml/dnn/keras/test_cnnregression.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/ml/dnn/keras/test_densepyramid.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/ml/dnn/keras/test_densepyramid.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -100,11 +86,11 @@
         <option value="$PROJECT_DIR$/pfsspec/ml/dnn/keras/denseregression.py" />
         <option value="$PROJECT_DIR$/pfsspec/ml/dnn/keras/densegenerative.py" />
         <option value="$PROJECT_DIR$/scripts/train_kurucz_gen.py" />
-        <option value="$PROJECT_DIR$/scripts/train_sdss.py" />
         <option value="$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasdatagenerator.py" />
-        <option value="$PROJECT_DIR$/pfsspec/surveys/sdssaugmenter.py" />
         <option value="$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasdnnmodel.py" />
         <option value="$PROJECT_DIR$/pfsspec/stellarmod/kuruczgenerativeaugmenter.py" />
+        <option value="$PROJECT_DIR$/pfsspec/surveys/sdssaugmenter.py" />
+        <option value="$PROJECT_DIR$/scripts/train_sdss.py" />
       </list>
     </option>
   </component>
@@ -841,16 +827,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/train_sdss.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="618">
-          <caret line="91" column="23" lean-forward="true" selection-start-line="91" selection-start-column="23" selection-end-line="91" selection-end-column="23" />
-          <folding>
-            <element signature="e#23#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/convert_sdss.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="882">
@@ -881,20 +857,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasdatagenerator.py">
+    <entry file="file://$PROJECT_DIR$/scripts/train_kurucz_gen.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="651">
-          <caret line="52" column="20" lean-forward="true" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="20" />
+        <state relative-caret-position="324">
+          <caret line="69" column="93" lean-forward="true" selection-start-line="69" selection-start-column="93" selection-end-line="69" selection-end-column="93" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#23#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/kuruczgenerativeaugmenter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="27" column="34" lean-forward="true" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
+        <state relative-caret-position="357">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasdatagenerator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="82" lean-forward="true" selection-start-line="10" selection-start-column="82" selection-end-line="10" selection-end-column="82" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -903,18 +889,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/surveys/sdssaugmenter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="667">
-          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+        <state relative-caret-position="273">
+          <caret line="13" column="94" lean-forward="true" selection-start-line="13" selection-start-column="94" selection-end-line="13" selection-end-column="94" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/train_kurucz_gen.py">
+    <entry file="file://$PROJECT_DIR$/scripts/train_sdss.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="681">
-          <caret line="86" column="45" lean-forward="true" selection-start-line="86" selection-start-column="45" selection-end-line="86" selection-end-column="45" />
+        <state relative-caret-position="-243">
+          <caret line="47" column="30" lean-forward="true" selection-start-line="47" selection-start-column="30" selection-end-line="47" selection-end-column="30" />
           <folding>
             <element signature="e#23#32#0" expanded="true" />
           </folding>
