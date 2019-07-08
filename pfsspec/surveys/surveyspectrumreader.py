@@ -1,6 +1,6 @@
 import sys
 
-from pfsspec.io.spectrumreader import SpectrumReader
+from pfsspec.data.spectrumreader import SpectrumReader
 from pfsspec.surveys.survey import Survey
 from pfsspec.parallel import prll_map
 

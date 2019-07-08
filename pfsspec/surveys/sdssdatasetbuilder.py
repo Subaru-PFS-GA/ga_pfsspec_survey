@@ -1,4 +1,4 @@
-from pfsspec.io.datasetbuilder import DatasetBuilder
+from pfsspec.data.datasetbuilder import DatasetBuilder
 
 class SdssDatasetBuilder(DatasetBuilder):
     def __init__(self, orig=None):

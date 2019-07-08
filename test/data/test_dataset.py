@@ -1,7 +1,7 @@
 from test.test_base import TestBase
 import os
 
-from pfsspec.io.dataset import Dataset
+from pfsspec.data.dataset import Dataset
 
 class TestDataset(TestBase):
     def test_split(self):
