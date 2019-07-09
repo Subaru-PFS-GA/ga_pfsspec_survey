@@ -3,7 +3,7 @@ import numpy as np
 from test.test_base import TestBase
 
 from pfsspec.data.dataset import Dataset
-from pfsspec.ml.dnn.keras.denseregression import DenseRegression
+from pfsspec.ml.dnn.keras.denseregressional import DenseRegressional
 from pfsspec.surveys.sdssaugmenter import SdssAugmenter
 
 class TestDensePyramid(TestBase):
@@ -20,7 +20,7 @@ class TestDensePyramid(TestBase):
         training_generator = SdssAugmenter(ts, labels, coeffs, batch_size=200)
         validation_generator = SdssAugmenter(vs, labels, coeffs, batch_size=200)
 
-        model = DenseRegression(levels=1, units=32)
+        model = DenseRegressional(levels=1, units=32)
         model.epochs = 1
         model.ensure_model_created(training_generator.input_shape, training_generator.output_shape)
         model.train(training_generator, validation_generator)

@@ -3,10 +3,10 @@ import numpy as np
 from test.test_base import TestBase
 
 from pfsspec.data.dataset import Dataset
-from pfsspec.ml.dnn.keras.cnnregression import CnnRegression
+from pfsspec.ml.dnn.keras.cnnregressional import CnnRegressional
 from pfsspec.surveys.sdssaugmenter import SdssAugmenter
 
-class TestCnnRegression(TestBase):
+class TestCnnRegressional(TestBase):
     def test_train(self):
         dataset = Dataset()
         dataset.load(os.path.join(self.PFSSPEC_DATA_PATH, 'pfs_spec_test', 'sdss_test', 'dataset.dat'))
@@ -20,7 +20,7 @@ class TestCnnRegression(TestBase):
         training_generator = SdssAugmenter(ts, labels, coeffs, batch_size=200)
         validation_generator = SdssAugmenter(vs, labels, coeffs, batch_size=200)
 
-        model = CnnRegression(levels=1, units=8)
+        model = CnnRegressional(levels=1, units=8)
         model.epochs = 1
         model.ensure_model_created(training_generator.input_shape, training_generator.output_shape)
         model.train(training_generator, validation_generator)
