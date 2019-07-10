@@ -27,4 +27,3 @@ class TestDenseRegressional(TestBase):
         model.load_weights(model.checkpoint_path)
         model.predict(validation_generator)
 
-
