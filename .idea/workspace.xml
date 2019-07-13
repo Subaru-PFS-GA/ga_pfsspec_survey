@@ -2,34 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f482f008-ec87-4c7c-9c56-8c2c00a67fd2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pfsspec/data/datasetaugmenter.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pfsspec/scripts/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pfsspec/scripts/script.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pfsspec/scripts/train.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pfsspec/stellarmod/kuruczregressionalaugmenter.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/train_kurucz.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pfsspec/scripts/import_.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/scripts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/scripts.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nb/explore.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/nb/explore.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/densegenerative.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/densegenerative.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasdatagenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasdatagenerator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasdnnmodel.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasdnnmodel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/pipelines/kuruczbasicpipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/pipelines/kuruczbasicpipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/pipelines/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/pipelines/pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/spectrum.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/spectrum.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/stellarmod/kuruczgenerativeaugmenter.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/stellarmod/kuruczgenerativeaugmenter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/stellarmod/modelgrid.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/stellarmod/modelgrid.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/surveys/sdssaugmenter.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/surveys/sdssaugmenter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/util.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/convert_kurucz.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/convert_kurucz.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/convert_sdss.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/convert_sdss.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/export_kurucz.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/export_kurucz.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/export_sdss.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/export_sdss.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/train_kurucz_gen.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/train_kurucz_gen.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/train_sdss.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/train_sdss.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/ml/dnn/keras/test_densegenerative.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/ml/dnn/keras/test_densegenerative.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/stellarmod/test_kuruczgrid.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/stellarmod/test_kuruczgrid.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_spectrum.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_spectrum.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/stellarmod/kuruczspectrumreader.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/stellarmod/kuruczspectrumreader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/export_kurucz.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/import_kurucz.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/export_sdss.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/import_sdss.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,20 +16,100 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/scripts/export_sdss.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="34" column="13" lean-forward="true" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
-              <folding>
-                <element signature="e#23#37#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/scripts/import_kurucz.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="483">
+                  <caret line="23" selection-start-line="23" selection-end-line="27" selection-end-column="10" />
+                  <folding>
+                    <element signature="e#10#19#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/kuruczspectrumreader.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="630">
+                  <caret line="132" column="83" lean-forward="true" selection-start-line="132" selection-start-column="83" selection-end-line="132" selection-end-column="83" />
+                  <folding>
+                    <element signature="e#0#9#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/scripts/train_kurucz.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="420">
+                  <caret line="20" selection-start-line="20" selection-end-line="24" selection-end-column="10" />
+                  <folding>
+                    <element signature="e#23#62#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pfsspec/scripts/script.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1680">
+                  <caret line="80" column="18" lean-forward="true" selection-start-line="80" selection-start-column="18" selection-end-line="80" selection-end-column="18" />
+                  <folding>
+                    <element signature="e#0#9#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pfsspec/scripts/train.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="324">
+                  <caret line="98" column="43" lean-forward="true" selection-start-line="98" selection-start-column="43" selection-end-line="98" selection-end-column="43" />
+                  <folding>
+                    <element signature="e#0#9#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pfsspec/scripts/import_.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="210">
+                  <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+                  <folding>
+                    <element signature="e#0#9#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/scripts/import_sdss.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="660">
+                  <caret line="59" selection-start-line="59" selection-end-line="59" />
+                  <folding>
+                    <element signature="e#23#29#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -78,11 +136,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/pfsspec/io/datasetbuilder.py" />
-        <option value="$PROJECT_DIR$/pfsspec/ml/dnn/keras/cnn_generative.py" />
-        <option value="$PROJECT_DIR$/pfsspec/ml/dnn/keras/DenseGenerative.py" />
-        <option value="$PROJECT_DIR$/test/ml/dnn/keras/test_cnnpyramid.py" />
-        <option value="$PROJECT_DIR$/test/ml/dnn/keras/test_densepyramid.py" />
         <option value="$PROJECT_DIR$/test/ml/dnn/keras/test_cnnregression.py" />
         <option value="$PROJECT_DIR$/pfsspec/stellarmod/kuruczdatasetaugmenter.py" />
         <option value="$PROJECT_DIR$/pfsspec/surveys/sdssdatasetaugmenter.py" />
@@ -129,6 +182,11 @@
         <option value="$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasdnnmodel.py" />
         <option value="$PROJECT_DIR$/pfsspec/stellarmod/kuruczregressionalaugmenter.py" />
         <option value="$PROJECT_DIR$/scripts/export_sdss.py" />
+        <option value="$PROJECT_DIR$/pfsspec/scripts/import.py" />
+        <option value="$PROJECT_DIR$/pfsspec/stellarmod/kuruczspectrumreader.py" />
+        <option value="$PROJECT_DIR$/pfsspec/scripts/import_.py" />
+        <option value="$PROJECT_DIR$/scripts/import_kurucz.py" />
+        <option value="$PROJECT_DIR$/scripts/import_sdss.py" />
       </list>
     </option>
   </component>
@@ -496,16 +554,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test/surveys/test_sdssspectrumreader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="16" selection-end-column="90" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/data/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -520,16 +568,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
           <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/kuruczspectrumreader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="127" column="34" lean-forward="true" selection-start-line="127" selection-start-column="34" selection-end-line="127" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -806,32 +844,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/script.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="786">
-          <caret line="81" column="26" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/data/datasetaugmenter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="5" column="87" selection-start-line="5" selection-start-column="87" selection-end-line="5" selection-end-column="87" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="27" column="84" selection-start-line="27" selection-start-column="84" selection-end-line="27" selection-end-column="84" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -863,23 +881,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/export_kurucz.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/train_kurucz.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="15" column="69" lean-forward="true" selection-start-line="15" selection-start-column="69" selection-end-line="15" selection-end-column="69" />
-          <folding>
-            <element signature="e#23#62#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/train_kurucz_gen.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="472">
@@ -907,6 +908,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1680">
+          <caret line="80" column="18" lean-forward="true" selection-start-line="80" selection-start-column="18" selection-end-line="80" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/convert_kurucz.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="137">
@@ -917,12 +928,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/export_sdss.py">
+    <entry file="file://$PROJECT_DIR$/scripts/train_kurucz.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="34" column="13" lean-forward="true" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+        <state relative-caret-position="420">
+          <caret line="20" selection-start-line="20" selection-end-line="24" selection-end-column="10" />
           <folding>
-            <element signature="e#23#37#0" expanded="true" />
+            <element signature="e#23#62#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="98" column="43" lean-forward="true" selection-start-line="98" selection-start-column="43" selection-end-line="98" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/kuruczspectrumreader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="132" column="83" lean-forward="true" selection-start-line="132" selection-start-column="83" selection-end-line="132" selection-end-column="83" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/import_.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/import_kurucz.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="23" selection-start-line="23" selection-end-line="27" selection-end-column="10" />
+          <folding>
+            <element signature="e#10#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/import_sdss.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
+          <folding>
+            <element signature="e#23#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
