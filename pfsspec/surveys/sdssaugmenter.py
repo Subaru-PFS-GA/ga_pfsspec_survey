@@ -1,37 +1,18 @@
 import numpy as np
 
-from pfsspec.ml.dnn.keras.kerasdatagenerator import KerasDataGenerator
+from pfsspec.data.datasetaugmenter import DatasetAugmenter
 
-class SdssAugmenter(KerasDataGenerator):
+class SdssAugmenter(DatasetAugmenter):
     def __init__(self, dataset, labels, coeffs, batch_size=1, shuffle=True, seed=0):
-        self.dataset = dataset
-        self.labels = labels
-        self.coeffs = coeffs
-
-        input_shape = self.dataset.flux.shape
-        labels_shape = (len(self.labels),)
-        super(SdssAugmenter, self).__init__(input_shape, labels_shape,
+        input_shape = dataset.flux.shape
+        output_shape = (len(labels),)
+        super(SdssAugmenter, self).__init__(dataset, labels, coeffs,
+                                            input_shape, output_shape,
                                             batch_size=batch_size, shuffle=shuffle, seed=seed)
 
         self.include_wave = False
         self.multiplicative_bias = False
         self.additive_bias = False
-
-    def next_batch(self, batch_index):
-        bs = self.next_batch_size(batch_index)
-
-        input = np.array(self.dataset.flux[self.index[batch_index * self.batch_size:batch_index * self.batch_size + bs]], copy=True, dtype=np.float)
-        output = np.array(self.dataset.params[self.labels].iloc[self.index[batch_index * self.batch_size:batch_index * self.batch_size + bs]], copy=True, dtype=np.float)
-
-        input, output = self.augment_batch(self.dataset.wave, input, output)
-
-        if self.include_wave:
-            nflux = np.zeros((bs, self.dataset.flux.shape[1], 2))
-            nflux[:, :, 0] = input
-            nflux[:, :, 1] = self.dataset.wave
-            input = nflux
-
-        return input, output
 
     def scale_output(self, output):
         return output / self.coeffs
@@ -39,11 +20,21 @@ class SdssAugmenter(KerasDataGenerator):
     def rescale_output(self, output):
         return output * self.coeffs
 
-    def augment_batch(self, wave, flux, labels):
+    def augment_batch(self, batch_index):
+        flux = np.array(self.dataset.flux[batch_index], copy=True, dtype=np.float)
+        labels = np.array(self.dataset.params[self.labels].iloc[batch_index], copy=True, dtype=np.float)
+
         if self.multiplicative_bias:
             bias = np.random.uniform(0.8, 1.2, (flux.shape[0], 1))
             flux = flux * bias
         if self.additive_bias:
             bias = np.random.normal(0, 1.0, (flux.shape[0], 1))
             flux = flux + bias
+
+        if self.include_wave:
+            nflux = np.zeros((len(batch_index), self.dataset.flux.shape[1], 2))
+            nflux[:, :, 0] = flux
+            nflux[:, :, 1] = self.dataset.wave
+            flux = nflux
+
         return flux, labels
