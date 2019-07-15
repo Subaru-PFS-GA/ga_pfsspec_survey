@@ -58,12 +58,12 @@ class SdssSpectrumReader(SurveySpectrumReader):
         sql = \
         """
         SELECT {} 
-            s.specObjID, s.mjd, s.plate, s.fiberID, s.ra, s.dec, 
-            s.z, s.zErr AS z_err, s.sn_1 AS snr,
-            spp.feha AS fe_h, spp.fehaerr AS fe_h_err, 
-            spp.teffa AS t_eff, spp.teffaerr AS t_eff_err,
+            s.specObjID AS id, s.mjd, s.plate, s.fiberID, s.ra AS ra, s.dec AS dec, 
+            s.z AS redshift, s.zErr AS redshift_err, s.sn_1 AS snr,
+            spp.feha AS Fe_H, spp.fehaerr AS Fe_H_err, 
+            spp.teffa AS T_eff, spp.teffaerr AS T_eff_err,
             spp.logga AS log_g, spp.loggaerr AS log_g_err,
-            spp.alphafe AS a_fe, spp.alphafeerr AS a_fe_err,
+            spp.alphafe AS a_Fe, spp.alphafeerr AS a_Fe_err,
             p.psfMag_u AS mag_u, p.psfMagErr_u AS mag_u_err,
             p.psfMag_g AS mag_g, p.psfMagErr_g AS mag_g_err,
             p.psfMag_r AS mag_r, p.psfMagErr_r AS mag_r_err,

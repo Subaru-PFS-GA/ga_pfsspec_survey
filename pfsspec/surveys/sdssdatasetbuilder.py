@@ -17,7 +17,7 @@ class SdssDatasetBuilder(DatasetBuilder):
     def process_item(self, i):
         spec = self.survey.spectra[i]
         self.pipeline.run(spec)
-        return spec.flux
+        return spec
 
     def build(self):
         super(SdssDatasetBuilder, self).build()
