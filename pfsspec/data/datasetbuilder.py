@@ -48,6 +48,5 @@ class DatasetBuilder():
             columns = spectra[0].get_param_names()
             data = []
             for p in columns:
-                data.append([ getattr(s, p) for s in spectra ])
-
-            self.dataset.params = pd.DataFrame(list(zip(data)), columns)
+                data.append([getattr(s, p) for s in spectra])
+            self.dataset.params = pd.DataFrame(list(zip(*data)), columns=columns)
