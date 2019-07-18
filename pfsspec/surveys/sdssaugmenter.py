@@ -21,8 +21,7 @@ class SdssAugmenter(DatasetAugmenter):
         return output * self.coeffs
 
     def augment_batch(self, batch_index):
-        flux = np.array(self.dataset.flux[batch_index], copy=True, dtype=np.float)
-        labels = np.array(self.dataset.params[self.labels].iloc[batch_index], copy=True, dtype=np.float)
+        flux, labels = super(SdssAugmenter, self).augment_batch(batch_index)
 
         if self.multiplicative_bias:
             bias = np.random.uniform(0.8, 1.2, (flux.shape[0], 1))
