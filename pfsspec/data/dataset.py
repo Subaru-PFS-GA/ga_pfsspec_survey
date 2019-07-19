@@ -10,7 +10,7 @@ class Dataset():
             self.wave = None
             self.flux = None
         else:
-            self.params = orig.params
+            self.params = orig.params.copy()
             self.wave = orig.wave
             self.flux = orig.flux
 
