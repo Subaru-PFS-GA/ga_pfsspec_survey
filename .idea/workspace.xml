@@ -2,23 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f482f008-ec87-4c7c-9c56-8c2c00a67fd2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/basemodelcheckpoint.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pfsspec/scripts/predict_kurucz.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/predict_kurucz.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pfsspec/notebookrunner.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pfsspec/obsmod/noise.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/obsmod/test_noise.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/scripts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/scripts.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nb/eval_train_kurucz.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/nb/eval_train_kurucz.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/data/dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/data/dataset.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/data/prediction.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/cnngenerative.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/cnngenerative.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/cnnregressional.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/cnnregressional.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/densegenerative.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/densegenerative.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/denseregressional.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/denseregressional.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasdnnmodel.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasdnnmodel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/scripts/predict.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/scripts/predict.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nb/eval_ts.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/nb/eval_dataset.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/pipelines/kuruczbasicpipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/pipelines/kuruczbasicpipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/pipelines/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/pipelines/pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/scripts/convert.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/scripts/convert.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/scripts/convert_kurucz.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/scripts/convert_kurucz.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pfsspec/scripts/script.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/scripts/script.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/scripts/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/scripts/train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/scripts/train_kurucz.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/scripts/train_kurucz.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/spectrum.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/spectrum.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/obsmod/test_filter.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/obsmod/test_filter.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,7 +25,85 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pfsspec/pipelines/kuruczbasicpipeline.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="483">
+                  <caret line="32" selection-start-line="32" selection-end-line="32" />
+                  <folding>
+                    <element signature="e#0#14#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/pfsspec/scripts/script.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="668">
+                  <caret line="106" column="23" selection-start-line="106" selection-start-column="23" selection-end-line="106" selection-end-column="23" />
+                  <folding>
+                    <element signature="e#0#9#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pfsspec/scripts/convert_kurucz.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="626">
+                  <caret line="82" column="19" lean-forward="true" selection-start-line="82" selection-start-column="19" selection-end-line="82" selection-end-column="19" />
+                  <folding>
+                    <element signature="e#10#19#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pfsspec/scripts/convert.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="651">
+                  <caret line="31" column="62" selection-start-line="31" selection-start-column="62" selection-end-line="31" selection-end-column="62" />
+                  <folding>
+                    <element signature="e#0#9#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pfsspec/spectrum.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="360">
+                  <caret line="152" column="31" lean-forward="true" selection-start-line="152" selection-start-column="31" selection-end-line="152" selection-end-column="31" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/pfsspec/notebookrunner.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="101">
+                  <caret line="23" column="42" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
+                  <folding>
+                    <element signature="e#0#9#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -58,16 +134,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/pfsspec/pipelines/sdssbasicpipeline.py" />
-        <option value="$PROJECT_DIR$/scripts/convert_sdss.py" />
-        <option value="$PROJECT_DIR$/scripts/convert_kurucz.py" />
-        <option value="$PROJECT_DIR$/pfsspec/surveys/sdssdatasetbuilder.py" />
-        <option value="$PROJECT_DIR$/pfsspec/surveys/sdssspectrumreader.py" />
-        <option value="$PROJECT_DIR$/pfsspec/spectrum.py" />
-        <option value="$PROJECT_DIR$/pfsspec/stellarmod/modelspectrum.py" />
-        <option value="$PROJECT_DIR$/test/stellarmod/test_kuruczgrid.py" />
-        <option value="$PROJECT_DIR$/pfsspec/stellarmod/kuruczspectrumreader.py" />
-        <option value="$PROJECT_DIR$/pfsspec/stellarmod/kuruczgrid.py" />
         <option value="$PROJECT_DIR$/pfsspec/stellarmod/modelgriddatasetbuilder.py" />
         <option value="$PROJECT_DIR$/nb/kurucz.ipynb" />
         <option value="$PROJECT_DIR$/nb/.ipynb_checkpoints/eval_kurucz_gen-checkpoint.ipynb" />
@@ -84,18 +150,15 @@
         <option value="$PROJECT_DIR$/scripts/import_kurucz.sh" />
         <option value="$PROJECT_DIR$/scripts/import_sdss.sh" />
         <option value="$PROJECT_DIR$/scripts/convert_kurucz.sh" />
-        <option value="$PROJECT_DIR$/pfsspec/scripts/convert.py" />
         <option value="$PROJECT_DIR$/pfsspec/scripts/import_.py" />
         <option value="$PROJECT_DIR$/pfsspec/scripts/import_kurucz.py" />
         <option value="$PROJECT_DIR$/pfsspec/scripts/import_sdss.py" />
         <option value="$PROJECT_DIR$/pfsspec/scripts/train_sdss.py" />
         <option value="$PROJECT_DIR$/pfsspec/data/datasetaugmenter.py" />
         <option value="$PROJECT_DIR$/pfsspec/surveys/sdssaugmenter.py" />
-        <option value="$PROJECT_DIR$/pfsspec/scripts/convert_kurucz.py" />
         <option value="$PROJECT_DIR$/pfsspec/scripts/convert_sdss.py" />
         <option value="$PROJECT_DIR$/pfsspec/data/prediction.py" />
         <option value="$PROJECT_DIR$/pfsspec/data/dataset.py" />
-        <option value="$PROJECT_DIR$/pfsspec/scripts/script.py" />
         <option value="$PROJECT_DIR$/scripts/predict.sh" />
         <option value="$PROJECT_DIR$/pfsspec/ml/dnn/keras/modelcheckpoint.py" />
         <option value="$PROJECT_DIR$/pfsspec/ml/dnn/keras/basemodelcheckpoint.py" />
@@ -109,14 +172,27 @@
         <option value="$PROJECT_DIR$/pfsspec/ml/dnn/keras/denseregressional.py" />
         <option value="$PROJECT_DIR$/pfsspec/scripts/predict_kurucz.py" />
         <option value="$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasdnnmodel.py" />
+        <option value="$PROJECT_DIR$/pfsspec/constants.py" />
+        <option value="$PROJECT_DIR$/pfsspec/pipelines/pipeline.py" />
+        <option value="$PROJECT_DIR$/test/obsmod/test_filter.py" />
+        <option value="$PROJECT_DIR$/test/obsmod/test_noise.py" />
+        <option value="$PROJECT_DIR$/pfsspec/obsmod/noise.py" />
+        <option value="$PROJECT_DIR$/pfsspec/scripts/convert.py" />
+        <option value="$PROJECT_DIR$/pfsspec/pipelines/kuruczbasicpipeline.py" />
+        <option value="$PROJECT_DIR$/pfsspec/spectrum.py" />
+        <option value="$PROJECT_DIR$/pfsspec/runnb.py" />
+        <option value="$PROJECT_DIR$/pfsspec/notebookrunnen.py" />
+        <option value="$PROJECT_DIR$/pfsspec/scripts/convert_kurucz.py" />
+        <option value="$PROJECT_DIR$/pfsspec/notebookrunner.py" />
+        <option value="$PROJECT_DIR$/pfsspec/scripts/script.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-6" />
-    <option name="y" value="-6" />
-    <option name="width" value="864" />
-    <option name="height" value="944" />
+    <option name="x" value="-11" />
+    <option name="y" value="-11" />
+    <option name="width" value="1667" />
+    <option name="height" value="1821" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -140,56 +216,6 @@
               <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
               <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
               <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
-              <item name="ml" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
-              <item name="ml" type="462c0819:PsiDirectoryNode" />
-              <item name="dnn" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
-              <item name="ml" type="462c0819:PsiDirectoryNode" />
-              <item name="dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="keras" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
-              <item name="pipelines" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
-              <item name="scripts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
-              <item name="stellarmod" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
-              <item name="surveys" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
               <item name="scripts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -201,7 +227,7 @@
               <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
               <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="stellarmod" type="462c0819:PsiDirectoryNode" />
+              <item name="obsmod" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -240,7 +266,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.pytest for test_kuruczgrid.TestKuruczGrid">
+  <component name="RunManager" selected="Python tests.pytest for test_noise.TestNoise.test_resample">
     <configuration default="true" type="tests" factoryName="py.test">
       <module name="pfs_spec_dnn" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -280,48 +306,6 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;test_kuruczgrid.TestKuruczGrid&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest for test_kuruczgrid.TestKuruczGrid.test_get_nearby_indexes" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="pfs_spec_dnn" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYSYN_CDBS" value="C:\Data\dobos\data\pysyn" />
-        <env name="PFSSPEC_DATA_PATH" value="C:\Data\dobos\data" />
-        <env name="PFSSPEC_TEST_PATH" value="C:\Data\dobos\temp\pfsspec_test" />
-        <env name="PFSSPEC_SDSS_DATA_PATH" value="C:\Data\dobos\data\sdss" />
-      </envs>
-      <option name="SDK_HOME" value="C:\ProgramData\Anaconda3\envs\pfs_spec_dnn\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_kuruczgrid.TestKuruczGrid.test_get_nearby_indexes&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest for test_kuruczgrid.TestKuruczGrid.test_get_nearby_indexes_outside" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="pfs_spec_dnn" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYSYN_CDBS" value="C:\Data\dobos\data\pysyn" />
-        <env name="PFSSPEC_DATA_PATH" value="C:\Data\dobos\data" />
-        <env name="PFSSPEC_TEST_PATH" value="C:\Data\dobos\temp\pfsspec_test" />
-        <env name="PFSSPEC_SDSS_DATA_PATH" value="C:\Data\dobos\data\sdss" />
-      </envs>
-      <option name="SDK_HOME" value="C:\ProgramData\Anaconda3\envs\pfs_spec_dnn\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_kuruczgrid.TestKuruczGrid.test_get_nearby_indexes_outside&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -367,20 +351,62 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="pytest for test_noise.TestNoise.test_read" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="pfs_spec_dnn" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYSYN_CDBS" value="C:\Data\dobos\data\pysyn" />
+        <env name="PFSSPEC_DATA_PATH" value="C:\Data\dobos\data" />
+        <env name="PFSSPEC_TEST_PATH" value="C:\Data\dobos\temp\pfsspec_test" />
+        <env name="PFSSPEC_SDSS_DATA_PATH" value="C:\Data\dobos\data\sdss" />
+      </envs>
+      <option name="SDK_HOME" value="C:\ProgramData\Anaconda3\envs\pfs_spec_dnn\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_noise.TestNoise.test_read&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_noise.TestNoise.test_resample" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="pfs_spec_dnn" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYSYN_CDBS" value="C:\Data\dobos\data\pysyn" />
+        <env name="PFSSPEC_DATA_PATH" value="C:\Data\dobos\data" />
+        <env name="PFSSPEC_TEST_PATH" value="C:\Data\dobos\temp\pfsspec_test" />
+        <env name="PFSSPEC_SDSS_DATA_PATH" value="C:\Data\dobos\data\sdss" />
+      </envs>
+      <option name="SDK_HOME" value="C:\ProgramData\Anaconda3\envs\pfs_spec_dnn\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_noise.TestNoise.test_resample&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Python tests.pytest for test_kuruczgrid.TestKuruczGrid.test_get_nearby_indexes" />
-      <item itemvalue="Python tests.pytest for test_kuruczgrid.TestKuruczGrid.test_get_nearby_indexes_outside" />
       <item itemvalue="Python tests.pytest for test_kuruczgrid.TestKuruczGrid.test_interpolate_model_outside" />
       <item itemvalue="Python tests.pytest for test_kuruczgrid.TestKuruczGrid" />
       <item itemvalue="Python tests.pytest for test_kuruczgrid.TestKuruczGrid.test_save" />
+      <item itemvalue="Python tests.pytest for test_noise.TestNoise.test_read" />
+      <item itemvalue="Python tests.pytest for test_noise.TestNoise.test_resample" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.pytest for test_noise.TestNoise.test_resample" />
+        <item itemvalue="Python tests.pytest for test_noise.TestNoise.test_read" />
         <item itemvalue="Python tests.pytest for test_kuruczgrid.TestKuruczGrid" />
         <item itemvalue="Python tests.pytest for test_kuruczgrid.TestKuruczGrid.test_save" />
         <item itemvalue="Python tests.pytest for test_kuruczgrid.TestKuruczGrid.test_interpolate_model_outside" />
-        <item itemvalue="Python tests.pytest for test_kuruczgrid.TestKuruczGrid.test_get_nearby_indexes" />
-        <item itemvalue="Python tests.pytest for test_kuruczgrid.TestKuruczGrid.test_get_nearby_indexes_outside" />
       </list>
     </recent_temporary>
   </component>
@@ -398,54 +424,55 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="pytest_for_test_kuruczgrid_TestKuruczGrid_test_get_nearby_indexes_outside - 2019.07.15 at 11h 47m 28s.xml">
-      <configuration name="pytest for test_kuruczgrid.TestKuruczGrid.test_get_nearby_indexes_outside" configurationId="tests" />
+    <history-entry file="pytest_for_test_noise_TestNoise_test_read - 2019.07.19 at 18h 53m 32s.xml">
+      <configuration name="pytest for test_noise.TestNoise.test_read" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_kuruczgrid_TestKuruczGrid_test_get_nearby_indexes_outside - 2019.07.15 at 11h 47m 58s.xml">
-      <configuration name="pytest for test_kuruczgrid.TestKuruczGrid.test_get_nearby_indexes_outside" configurationId="tests" />
+    <history-entry file="pytest_for_test_noise_TestNoise_test_read - 2019.07.19 at 18h 54m 11s.xml">
+      <configuration name="pytest for test_noise.TestNoise.test_read" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_kuruczgrid_TestKuruczGrid_test_get_nearby_indexes_outside - 2019.07.15 at 11h 50m 28s.xml">
-      <configuration name="pytest for test_kuruczgrid.TestKuruczGrid.test_get_nearby_indexes_outside" configurationId="tests" />
+    <history-entry file="pytest_for_test_noise_TestNoise_test_read - 2019.07.19 at 18h 55m 04s.xml">
+      <configuration name="pytest for test_noise.TestNoise.test_read" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_kuruczgrid_TestKuruczGrid_test_get_nearby_indexes_outside - 2019.07.15 at 11h 51m 38s.xml">
-      <configuration name="pytest for test_kuruczgrid.TestKuruczGrid.test_get_nearby_indexes_outside" configurationId="tests" />
+    <history-entry file="pytest_for_test_noise_TestNoise_test_read - 2019.07.19 at 18h 56m 03s.xml">
+      <configuration name="pytest for test_noise.TestNoise.test_read" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_kuruczgrid_TestKuruczGrid_test_get_nearby_indexes - 2019.07.15 at 11h 51m 47s.xml">
-      <configuration name="pytest for test_kuruczgrid.TestKuruczGrid.test_get_nearby_indexes" configurationId="tests" />
+    <history-entry file="pytest_for_test_noise_TestNoise_test_read - 2019.07.19 at 18h 56m 07s.xml">
+      <configuration name="pytest for test_noise.TestNoise.test_read" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_kuruczgrid_TestKuruczGrid_test_interpolate_model_outside - 2019.07.15 at 11h 55m 21s.xml">
-      <configuration name="pytest for test_kuruczgrid.TestKuruczGrid.test_interpolate_model_outside" configurationId="tests" />
+    <history-entry file="pytest_for_test_noise_TestNoise_test_read - 2019.07.19 at 18h 56m 38s.xml">
+      <configuration name="pytest for test_noise.TestNoise.test_read" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_kuruczgrid_TestKuruczGrid_test_interpolate_model_outside - 2019.07.15 at 11h 57m 37s.xml">
-      <configuration name="pytest for test_kuruczgrid.TestKuruczGrid.test_interpolate_model_outside" configurationId="tests" />
+    <history-entry file="pytest_for_test_noise_TestNoise_test_resample - 2019.07.19 at 19h 01m 38s.xml">
+      <configuration name="pytest for test_noise.TestNoise.test_resample" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_kuruczgrid_TestKuruczGrid - 2019.07.15 at 11h 57m 45s.xml">
-      <configuration name="pytest for test_kuruczgrid.TestKuruczGrid" configurationId="tests" />
+    <history-entry file="pytest_for_test_noise_TestNoise_test_read - 2019.07.19 at 19h 03m 57s.xml">
+      <configuration name="pytest for test_noise.TestNoise.test_read" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_kuruczgrid_TestKuruczGrid_test_save - 2019.07.15 at 11h 58m 33s.xml">
-      <configuration name="pytest for test_kuruczgrid.TestKuruczGrid.test_save" configurationId="tests" />
+    <history-entry file="pytest_for_test_noise_TestNoise_test_resample - 2019.07.19 at 19h 04m 52s.xml">
+      <configuration name="pytest for test_noise.TestNoise.test_resample" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_kuruczgrid_TestKuruczGrid - 2019.07.15 at 12h 02m 39s.xml">
-      <configuration name="pytest for test_kuruczgrid.TestKuruczGrid" configurationId="tests" />
+    <history-entry file="pytest_for_test_noise_TestNoise_test_resample - 2019.07.19 at 19h 05m 27s.xml">
+      <configuration name="pytest for test_noise.TestNoise.test_resample" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
+    <frame x="-6" y="-6" width="2575" height="1415" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14460205" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1445451" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4933018" visible="true" weight="0.23304754" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48660362" weight="0.2517537" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49231982" weight="0.28037384" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49310753" weight="0.23286605" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48577377" weight="0.17847025" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49192595" weight="0.28037384" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49940923" weight="0.32943925" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49743995" weight="0.17056075" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5066982" side_tool="true" visible="true" weight="0.23304754" />
-      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49566588" weight="0.19641465" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49743995" weight="0.17445482" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.51458335" side_tool="true" weight="0.18864775" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="10" sideWeight="0.49547064" visible="true" weight="0.19470406" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -492,105 +519,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pfsspec/pipelines/pipeline.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/surveys/sdssspectrum.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="22" lean-forward="true" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/surveys/sdssspectrumreader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="22" column="65" selection-start-line="22" selection-start-column="65" selection-end-line="22" selection-end-column="65" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/spectrum.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="693">
-          <caret line="36" column="21" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/modelspectrum.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="651">
-          <caret line="31" column="37" lean-forward="true" selection-start-line="31" selection-start-column="37" selection-end-line="31" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/stellarmod/test_kuruczgrid.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="31" column="40" selection-start-line="31" selection-start-column="40" selection-end-line="31" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/kuruczspectrumreader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="147" column="23" selection-start-line="147" selection-start-column="23" selection-end-line="147" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nb/kurucz.ipynb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="722" column="34" selection-start-line="722" selection-start-column="34" selection-end-line="722" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nb/.ipynb_checkpoints/eval_kurucz_gen-checkpoint.ipynb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="621" column="50" selection-start-line="621" selection-start-column="50" selection-end-line="621" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nb/.ipynb_checkpoints/explore-checkpoint.ipynb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="397" column="18" selection-start-line="397" selection-start-column="18" selection-end-line="397" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nb/explore.ipynb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="397" column="18" selection-start-line="397" selection-start-column="18" selection-end-line="397" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nb/eval_kurucz_gen.ipynb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="629" column="48" selection-start-line="629" selection-start-column="48" selection-end-line="629" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/parallel.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
@@ -639,34 +567,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/import_sdss.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="37" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/convert_sdss.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
           <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/data/datasetbuilder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="882">
-          <caret line="47" column="19" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/convert.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="689">
-          <caret line="33" column="27" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -676,16 +580,6 @@
           <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/import_kurucz.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="21" column="47" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="47" />
-          <folding>
-            <element signature="e#10#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -700,27 +594,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/convert_kurucz.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/scripts/import_sdss.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="23" selection-start-line="23" selection-end-line="26" selection-end-column="97" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/modelgrid.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="618">
-          <caret line="71" column="26" lean-forward="true" selection-start-line="71" selection-start-column="26" selection-end-line="71" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -768,36 +645,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/modelgriddatasetbuilder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="22" column="41" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/convert_kurucz.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="29" column="36" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
-          <folding>
-            <element signature="e#10#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/script.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1543">
-          <caret line="94" column="62" selection-start-line="94" selection-start-column="54" selection-end-line="94" selection-end-column="62" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/data/dataset.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="756">
@@ -832,16 +679,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
           <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/train_kurucz.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
-          <folding>
-            <element signature="e#23#62#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -941,6 +778,202 @@
           <caret line="8" column="102" selection-start-line="8" selection-start-column="102" selection-end-line="8" selection-end-column="102" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/modelgrid.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1146">
+          <caret line="71" column="26" lean-forward="true" selection-start-line="71" selection-start-column="26" selection-end-line="71" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/constants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="20" column="63" lean-forward="true" selection-start-line="20" selection-start-column="63" selection-end-line="20" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_spectrum.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="104" column="54" lean-forward="true" selection-start-line="104" selection-start-column="54" selection-end-line="104" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/convert_kurucz.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="43" lean-forward="true" selection-start-line="2" selection-start-column="43" selection-end-line="2" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/obsmod/filter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="609">
+          <caret line="29" selection-start-line="29" selection-end-line="36" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/obsmod/hscfilter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="8" lean-forward="true" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/pipelines/pipeline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="19" column="35" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/obsmod/test_filter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="28" lean-forward="true" selection-end-line="32" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/train_kurucz.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
+          <folding>
+            <element signature="e#23#62#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/obsmod/noise.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="34" column="23" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/obsmod/test_noise.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="21" column="28" lean-forward="true" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/data/datasetbuilder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/pipelines/kuruczbasicpipeline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/import_kurucz.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="27" selection-start-line="27" selection-end-line="28" selection-end-column="10" />
+          <folding>
+            <element signature="e#10#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/import_sdss.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="37" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/modelgriddatasetbuilder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="14" column="33" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/ProgramData/Anaconda3/envs/pfs_spec_dnn/Lib/site-packages/nbparameterise/code.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="32" column="30" lean-forward="true" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/convert.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="31" column="62" selection-start-line="31" selection-start-column="62" selection-end-line="31" selection-end-column="62" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/spectrum.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="152" column="31" lean-forward="true" selection-start-line="152" selection-start-column="31" selection-end-line="152" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/convert_kurucz.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="626">
+          <caret line="82" column="19" lean-forward="true" selection-start-line="82" selection-start-column="19" selection-end-line="82" selection-end-column="19" />
+          <folding>
+            <element signature="e#10#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/notebookrunner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="23" column="42" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="668">
+          <caret line="106" column="23" selection-start-line="106" selection-start-column="23" selection-end-line="106" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>

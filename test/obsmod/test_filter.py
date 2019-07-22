@@ -15,7 +15,6 @@ class TestFilter(TestBase):
 
         self.save_fig()
 
-class TestFilter(TestBase):
     def test_extend(self):
         filename = os.path.join(self.PFSSPEC_DATA_PATH, 'subaru/hsc/hsc_r.dat')
         filter = Filter()
