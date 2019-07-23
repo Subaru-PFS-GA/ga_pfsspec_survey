@@ -64,6 +64,7 @@ class SdssSpectrumReader(SurveySpectrumReader):
             spp.teffa AS T_eff, spp.teffaerr AS T_eff_err,
             spp.logga AS log_g, spp.loggaerr AS log_g_err,
             spp.alphafe AS a_Fe, spp.alphafeerr AS a_Fe_err,
+            p.psfMag_r AS mag, p.psfMagErr_r AS mag_err,
             p.psfMag_u AS mag_u, p.psfMagErr_u AS mag_u_err,
             p.psfMag_g AS mag_g, p.psfMagErr_g AS mag_g_err,
             p.psfMag_r AS mag_r, p.psfMagErr_r AS mag_r_err,
