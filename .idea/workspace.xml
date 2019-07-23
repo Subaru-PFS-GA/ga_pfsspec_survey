@@ -2,15 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f482f008-ec87-4c7c-9c56-8c2c00a67fd2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/scripts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/scripts.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nb/eval_dataset.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/nb/eval_dataset.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nb/eval_train_kurucz.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/nb/eval_train_kurucz.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/pipelines/kuruczbasicpipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/pipelines/kuruczbasicpipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/scripts/convert.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/scripts/convert.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/scripts/convert_kurucz.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/scripts/convert_kurucz.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/scripts/script.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/scripts/script.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nb/eval_train_kurucz.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/nb/eval_train.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nb/eval_train_sdss.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/scripts/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/scripts/train.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pfsspec/scripts/train_kurucz.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/scripts/train_kurucz.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pfsspec/spectrum.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/spectrum.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/surveys/sdssspectrumreader.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/surveys/sdssspectrumreader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/convert_sdss.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/convert_sdss.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,6 +23,15 @@
       <split-first>
         <leaf>
           <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pfsspec/scripts/convert_sdss.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="390">
+                  <caret line="26" column="65" selection-start-line="26" selection-start-column="65" selection-end-line="26" selection-end-column="65" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pfsspec/pipelines/kuruczbasicpipeline.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="798">
@@ -34,7 +43,7 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pfsspec/scripts/script.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="787">
@@ -47,6 +56,15 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/scripts/import_sdss.sh">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="42">
+                  <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pfsspec/scripts/convert_kurucz.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="241">
@@ -54,6 +72,36 @@
                   <folding>
                     <element signature="e#10#19#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pfsspec/scripts/import_sdss.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="52">
+                  <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/pfsspec/surveys/sdssspectrumreader.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="819">
+                  <caret line="81" column="31" selection-start-line="81" selection-start-column="31" selection-end-line="81" selection-end-column="31" />
+                  <folding>
+                    <element signature="e#0#9#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/scripts/convert_sdss.sh">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="42">
+                  <caret line="2" column="41" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="41" />
                 </state>
               </provider>
             </entry>
@@ -74,11 +122,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pfsspec/scripts/train_kurucz.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="672">
-                  <caret line="32" column="48" selection-start-line="32" selection-start-column="48" selection-end-line="32" selection-end-column="48" />
+                <state relative-caret-position="105">
+                  <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
                   <folding>
                     <element signature="e#23#62#0" expanded="true" />
                   </folding>
@@ -86,11 +134,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/pfsspec/scripts/train.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="584">
-                  <caret line="65" column="87" selection-start-line="65" selection-start-column="87" selection-end-line="65" selection-end-column="87" />
+                <state relative-caret-position="794">
+                  <caret line="82" column="49" selection-start-line="82" selection-start-column="49" selection-end-line="82" selection-end-column="49" />
                   <folding>
                     <element signature="e#0#9#0" expanded="true" />
                   </folding>
@@ -110,8 +158,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pfsspec/spectrum.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="567">
-                  <caret line="136" lean-forward="true" selection-start-line="136" selection-end-line="136" />
+                <state relative-caret-position="-1491">
+                  <caret line="80" column="25" selection-start-line="80" selection-start-column="25" selection-end-line="80" selection-end-column="25" />
                 </state>
               </provider>
             </entry>
@@ -141,6 +189,7 @@
       <find>self.args.</find>
       <find>reset</find>
       <find>args['in']</find>
+      <find>eval_train</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -149,8 +198,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/pfsspec/stellarmod/modelgriddatasetbuilder.py" />
-        <option value="$PROJECT_DIR$/nb/kurucz.ipynb" />
         <option value="$PROJECT_DIR$/nb/.ipynb_checkpoints/eval_kurucz_gen-checkpoint.ipynb" />
         <option value="$PROJECT_DIR$/nb/.ipynb_checkpoints/explore-checkpoint.ipynb" />
         <option value="$PROJECT_DIR$/nb/explore.ipynb" />
@@ -171,7 +218,6 @@
         <option value="$PROJECT_DIR$/pfsspec/scripts/train_sdss.py" />
         <option value="$PROJECT_DIR$/pfsspec/data/datasetaugmenter.py" />
         <option value="$PROJECT_DIR$/pfsspec/surveys/sdssaugmenter.py" />
-        <option value="$PROJECT_DIR$/pfsspec/scripts/convert_sdss.py" />
         <option value="$PROJECT_DIR$/pfsspec/data/prediction.py" />
         <option value="$PROJECT_DIR$/pfsspec/data/dataset.py" />
         <option value="$PROJECT_DIR$/scripts/predict.sh" />
@@ -193,13 +239,16 @@
         <option value="$PROJECT_DIR$/pfsspec/runnb.py" />
         <option value="$PROJECT_DIR$/pfsspec/notebookrunnen.py" />
         <option value="$PROJECT_DIR$/pfsspec/notebookrunner.py" />
-        <option value="$PROJECT_DIR$/pfsspec/scripts/train.py" />
         <option value="$PROJECT_DIR$/pfsspec/scripts/convert_kurucz.py" />
         <option value="$PROJECT_DIR$/pfsspec/scripts/convert.py" />
         <option value="$PROJECT_DIR$/pfsspec/pipelines/kuruczbasicpipeline.py" />
+        <option value="$PROJECT_DIR$/pfsspec/scripts/script.py" />
+        <option value="$PROJECT_DIR$/pfsspec/surveys/sdssspectrumreader.py" />
+        <option value="$PROJECT_DIR$/pfsspec/scripts/convert_sdss.py" />
+        <option value="$PROJECT_DIR$/scripts/convert_sdss.sh" />
         <option value="$PROJECT_DIR$/pfsspec/spectrum.py" />
         <option value="$PROJECT_DIR$/pfsspec/scripts/train_kurucz.py" />
-        <option value="$PROJECT_DIR$/pfsspec/scripts/script.py" />
+        <option value="$PROJECT_DIR$/pfsspec/scripts/train.py" />
       </list>
     </option>
   </component>
@@ -237,6 +286,17 @@
               <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
               <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
               <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
+              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
+              <item name="surveys" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
               <item name="scripts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -540,16 +600,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pfsspec/parallel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-          <folding>
-            <element signature="e#789#811#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/surveys/sdssdatasetbuilder.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
@@ -588,13 +638,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/convert_sdss.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/scripts/import_.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -615,13 +658,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/import_sdss.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="23" selection-start-line="23" selection-end-line="26" selection-end-column="97" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/data/datasetaugmenter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
@@ -639,13 +675,6 @@
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/convert_sdss.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="642">
-          <caret line="38" column="77" selection-start-line="38" selection-start-column="77" selection-end-line="38" selection-end-column="77" />
         </state>
       </provider>
     </entry>
@@ -898,13 +927,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/import_sdss.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="37" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/modelgriddatasetbuilder.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="237">
@@ -932,16 +954,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="584">
-          <caret line="65" column="87" selection-start-line="65" selection-start-column="87" selection-end-line="65" selection-end-column="87" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/scripts/convert.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
@@ -959,13 +971,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/spectrum.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="136" lean-forward="true" selection-start-line="136" selection-end-line="136" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/pipelines/kuruczbasicpipeline.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="798">
@@ -976,20 +981,75 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="787">
+          <caret line="124" column="12" selection-start-line="124" selection-start-column="12" selection-end-line="124" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/import_sdss.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/import_sdss.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/convert_sdss.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="65" selection-start-line="26" selection-start-column="65" selection-end-line="26" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/convert_sdss.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="41" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/surveys/sdssspectrumreader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="819">
+          <caret line="81" column="31" selection-start-line="81" selection-start-column="31" selection-end-line="81" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/spectrum.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1491">
+          <caret line="80" column="25" selection-start-line="80" selection-start-column="25" selection-end-line="80" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/scripts/train_kurucz.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="32" column="48" selection-start-line="32" selection-start-column="48" selection-end-line="32" selection-end-column="48" />
+        <state relative-caret-position="105">
+          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
           <folding>
             <element signature="e#23#62#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/script.py">
+    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="787">
-          <caret line="124" column="12" selection-start-line="124" selection-start-column="12" selection-end-line="124" selection-end-column="12" />
+        <state relative-caret-position="794">
+          <caret line="82" column="49" selection-start-line="82" selection-start-column="49" selection-end-line="82" selection-end-column="49" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
