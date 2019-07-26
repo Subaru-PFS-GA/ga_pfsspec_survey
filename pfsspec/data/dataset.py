@@ -21,19 +21,25 @@ class Dataset():
         self.flux = np.empty((scount, wcount))
         self.error = np.empty((scount, wcount))
 
-    def save(self, filename):
+    def save(self, filename, format='pickle'):
         logging.info("Saving dataset to file {}...".format(filename))
 
-        with gzip.open(filename, 'wb') as f:
-            self.save_items(f)
+        if format == 'pickle':
+            with gzip.open(filename, 'wb') as f:
+                self.save_items(f)
+        else:
+            raise NotImplementedError()
 
         logging.info("Saved dataset.")
 
     def save_items(self, f):
-        pickle.dump(self.params, f)
-        pickle.dump(self.wave, f)
-        pickle.dump(self.flux, f)
-        pickle.dump(self.error, f)
+        pickle.dump(self.params, f, protocol=4)
+        pickle.dump(self.wave, f, protocol=4)
+        pickle.dump(self.flux, f, protocol=4)
+        pickle.dump(self.error, f, protocol=4)
+
+    def save_items_h5(self, f):
+        f.create_dataset()
 
     def load(self, filename):
         logging.info("Loading dataset from file {}...".format(filename))
