@@ -9,14 +9,17 @@ class Dataset():
             self.params = None
             self.wave = None
             self.flux = None
+            self.error = None
         else:
             self.params = orig.params.copy()
             self.wave = orig.wave
             self.flux = orig.flux
+            self.error = orig.error
 
     def init_storage(self, wcount, scount):
         self.wave = np.empty(wcount)
         self.flux = np.empty((scount, wcount))
+        self.error = np.empty((scount, wcount))
 
     def save(self, filename):
         logging.info("Saving dataset to file {}...".format(filename))
@@ -30,6 +33,7 @@ class Dataset():
         pickle.dump(self.params, f)
         pickle.dump(self.wave, f)
         pickle.dump(self.flux, f)
+        pickle.dump(self.error, f)
 
     def load(self, filename):
         logging.info("Loading dataset from file {}...".format(filename))
@@ -47,6 +51,7 @@ class Dataset():
         self.params = pickle.load(f)
         self.wave = pickle.load(f)
         self.flux = pickle.load(f)
+        self.error = pickle.load(f)
 
     def reset_index(self, df):
         df.index = pd.RangeIndex(len(df.index))
@@ -71,11 +76,13 @@ class Dataset():
         self.reset_index(a.params)
         a.wave = self.wave
         a.flux = self.flux[a_range]
+        a.error = self.error[a_range]
 
         b.params = self.params.iloc[b_range]
         self.reset_index(b.params)
         b.wave = self.wave
         b.flux = self.flux[b_range]
+        b.error = self.error[b_range]
 
         return split_index, a, b
 
@@ -87,11 +94,13 @@ class Dataset():
         self.reset_index(a.params)
         a.wave = self.wave
         a.flux = self.flux[f]
+        a.error = self.error[f]
 
         b.params = self.params.ix[~f]
         self.reset_index(b.params)
         b.wave = self.wave
         b.flux = self.flux[~f]
+        b.error = self.error[~f]
 
         return a, b
 
@@ -102,5 +111,6 @@ class Dataset():
         self.reset_index(a.params)
         a.wave = self.wave
         a.flux = np.concatenate([self.flux, b.flux], axis=0)
+        a.error = np.concatenate([self.error, b.error], axis=0)
 
         return a

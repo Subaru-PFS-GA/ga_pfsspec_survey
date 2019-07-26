@@ -41,6 +41,7 @@ class DatasetBuilder():
 
         for i in range(len(spectra)):
             self.dataset.flux[i, :] = spectra[i].flux
+            self.dataset.error[i, :] = spectra[i].flux_err
 
         if self.params is not None:
             self.dataset.params = self.params

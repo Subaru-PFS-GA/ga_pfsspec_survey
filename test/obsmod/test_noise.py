@@ -12,7 +12,7 @@ class TestNoise(TestBase):
         noise.plot()
 
         self.assertEqual((12288,), noise.wave.shape)
-        self.assertEqual((12288,), noise.noise.shape)
+        self.assertEqual((12288,), noise.sigma.shape)
 
         self.save_fig()
 
@@ -26,6 +26,6 @@ class TestNoise(TestBase):
         noise.resample(nwave)
 
         self.assertEqual((3600,), noise.wave.shape)
-        self.assertEqual((3600,), noise.noise.shape)
+        self.assertEqual((3600,), noise.sigma.shape)
 
         self.save_fig()
