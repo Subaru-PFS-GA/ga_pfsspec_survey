@@ -3,22 +3,17 @@ import numpy as np
 from pfsspec.data.datasetaugmenter import DatasetAugmenter
 
 class SdssAugmenter(DatasetAugmenter):
-    def __init__(self, dataset, labels, coeffs, batch_size=1, shuffle=True, seed=0):
+    def __init__(self):
+        super(SdssAugmenter, self).__init__()
+
+    @classmethod
+    def from_dataset(cls, dataset, labels, coeffs, batch_size=1, shuffle=True, seed=0):
         input_shape = dataset.flux.shape
         output_shape = (len(labels),)
-        super(SdssAugmenter, self).__init__(dataset, labels, coeffs,
+        d = super(SdssAugmenter, cls).from_dataset(dataset, labels, coeffs,
                                             input_shape, output_shape,
                                             batch_size=batch_size, shuffle=shuffle, seed=seed)
-
-        self.include_wave = False
-        self.multiplicative_bias = False
-        self.additive_bias = False
-
-    def scale_output(self, output):
-        return output / self.coeffs
-
-    def rescale_output(self, output):
-        return output * self.coeffs
+        return d
 
     def augment_batch(self, batch_index):
         flux, labels = super(SdssAugmenter, self).augment_batch(batch_index)

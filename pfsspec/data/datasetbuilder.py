@@ -16,6 +16,12 @@ class DatasetBuilder():
             self.params = None
             self.pipeline = None
 
+    def add_args(self, parser):
+        pass
+
+    def init_from_args(self, args):
+        self.parallel = not args['debug']
+
     def get_spectrum_count(self):
         raise NotImplementedError()
 
