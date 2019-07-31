@@ -7,16 +7,16 @@ class SdssAugmenter(DatasetAugmenter):
         super(SdssAugmenter, self).__init__()
 
     @classmethod
-    def from_dataset(cls, dataset, labels, coeffs, batch_size=1, shuffle=True, seed=0):
+    def from_dataset(cls, dataset, labels, coeffs, weight=None, batch_size=1, shuffle=True, seed=0):
         input_shape = dataset.flux.shape
         output_shape = (len(labels),)
-        d = super(SdssAugmenter, cls).from_dataset(dataset, labels, coeffs,
+        d = super(SdssAugmenter, cls).from_dataset(dataset, labels, coeffs, weight,
                                             input_shape, output_shape,
                                             batch_size=batch_size, shuffle=shuffle, seed=seed)
         return d
 
     def augment_batch(self, batch_index):
-        flux, labels = super(SdssAugmenter, self).augment_batch(batch_index)
+        flux, labels, weight = super(SdssAugmenter, self).augment_batch(batch_index)
 
         if self.multiplicative_bias:
             bias = np.random.uniform(0.8, 1.2, (flux.shape[0], 1))
@@ -31,4 +31,4 @@ class SdssAugmenter(DatasetAugmenter):
             nflux[:, :, 1] = self.dataset.wave
             flux = nflux
 
-        return flux, labels
+        return flux, labels, weight
