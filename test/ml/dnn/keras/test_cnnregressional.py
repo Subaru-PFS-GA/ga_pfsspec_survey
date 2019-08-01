@@ -24,5 +24,5 @@ class TestCnnRegressional(TestBase):
         model.epochs = 1
         model.ensure_model_created(training_generator.input_shape, training_generator.output_shape)
         model.train(training_generator, validation_generator)
-        model.load_weights(model.checkpoint_path)
+        model.load_weights(model.checkpoint_path)      # TODO
         model.predict(validation_generator)
