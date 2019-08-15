@@ -57,13 +57,24 @@ class TestSpectrum(TestBase):
 
         self.save_fig()
 
-    def test_normalize_in(self):
+    def test_normalize_in_single(self):
         grid = self.get_kurucz_grid()
         spec = grid.get_nearest_model(0.0, 7000, 1.45)
         spec.multiply(1e-7)
         spec.plot()
 
         spec.normalize_in((5513.7, 6124.2), np.mean)
+        spec.plot()
+
+        self.save_fig()
+
+    def test_normalize_in_multiple(self):
+        grid = self.get_kurucz_grid()
+        spec = grid.get_nearest_model(0.0, 7000, 1.45)
+        spec.multiply(1e-7)
+        spec.plot()
+
+        spec.normalize_in(((5513.7, 6124.2), (6513.7, 7124.2)), np.mean)
         spec.plot()
 
         self.save_fig()
@@ -97,7 +108,8 @@ class TestSpectrum(TestBase):
 
         flux = spec.synthflux(filter)
 
-        self.assertEqual(161746063.0325128, flux)
+        #self.assertEqual(161746063.0325128, flux)
+        self.assertEqual(5.0050577532662006e+19, flux)
 
     def test_synthmag(self):
         grid = self.get_kurucz_grid()
@@ -106,7 +118,8 @@ class TestSpectrum(TestBase):
 
         flux = spec.synthmag(filter)
 
-        self.assertEqual(-11.622084296395686, flux)
+        #self.assertEqual(-11.622084296395686, flux)
+        self.assertEqual(-40.34852273290004, flux)
 
     def test_running_mean(self):
         grid = self.get_kurucz_grid()
