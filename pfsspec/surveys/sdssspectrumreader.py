@@ -40,7 +40,7 @@ class SdssSpectrumReader(SurveySpectrumReader):
     def execute_query(self, sql, context='DR7'):
         return CasJobs.executeQuery(sql=sql, context=context, format="pandas")
 
-    def find_stars(self, top=None, mjd=None, plate=None, Fe_H=None, T_eff=None, log_g=None, a_fe=None):
+    def find_stars(self, top=None, mjd=None, plate=None, Fe_H=None, T_eff=None, log_g=None, a_Fe=None):
         where = ''
         if mjd is not None:
             where += "AND s.mjd = {:d} \n".format(mjd)
@@ -53,7 +53,7 @@ class SdssSpectrumReader(SurveySpectrumReader):
         if log_g is not None:
             where += "AND spp.logga BETWEEN {:f} AND {:f} \n".format(log_g[0], log_g[1])
         if a_fe is not None:
-            where += "AND spp.alphafe BETWEEN {:f} AND {:f} \n".format(a_fe[0], a_fe[1])
+            where += "AND spp.alphafe BETWEEN {:f} AND {:f} \n".format(a_Fe[0], a_Fe[1])
 
         sql = \
         """
