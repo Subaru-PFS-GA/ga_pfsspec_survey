@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f482f008-ec87-4c7c-9c56-8c2c00a67fd2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/scripts/convert.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/pfs_spec_dnn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pfs_spec_dnn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nb/explore_bosz.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/nb/explore_bosz.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nb/eval_dataset.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/nb/eval_dataset.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/data/datasetbuilder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/data/datasetbuilder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pfsspec/scripts/convert.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/scripts/convert.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/scripts/convert_kurucz.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/scripts/convert_sdss.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/scripts/script.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/scripts/script.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/stellarmod/modelgrid.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/stellarmod/modelgrid.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pfsspec/stellarmod/modelgriddatasetbuilder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/stellarmod/modelgriddatasetbuilder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/convert_kurucz.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/convert_sdss.sh" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,20 +21,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pfsspec/scripts/convert.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="271">
-                  <caret line="107" lean-forward="true" selection-start-line="107" selection-end-line="107" />
-                  <folding>
-                    <element signature="e#0#9#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/pfsspec/scripts/train.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="294">
-                  <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
+                <state relative-caret-position="250">
+                  <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
                   <folding>
                     <element signature="e#0#9#0" expanded="true" />
                   </folding>
@@ -60,8 +42,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/boszgrid.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="126">
-                  <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+                <state relative-caret-position="42">
+                  <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
                 </state>
               </provider>
             </entry>
@@ -75,11 +57,14 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/modelgrid.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="210">
-                  <caret line="14" column="24" lean-forward="true" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+                <state relative-caret-position="544">
+                  <caret line="121" column="60" lean-forward="true" selection-start-line="121" selection-start-column="60" selection-end-line="121" selection-end-column="60" />
+                  <folding>
+                    <element signature="e#0#14#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -103,8 +88,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/modelgriddatasetbuilder.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1638">
-                  <caret line="78" lean-forward="true" selection-start-line="78" selection-end-line="78" />
+                <state relative-caret-position="273">
+                  <caret line="79" column="46" selection-start-line="79" selection-start-column="29" selection-end-line="79" selection-end-column="46" />
                   <folding>
                     <element signature="e#0#18#0" expanded="true" />
                   </folding>
@@ -124,8 +109,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pfsspec/data/datasetbuilder.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="546">
-                  <caret line="31" column="32" lean-forward="true" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
+                <state relative-caret-position="649">
+                  <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
                 </state>
               </provider>
             </entry>
@@ -143,9 +128,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>reset</find>
-      <find>args['in']</find>
-      <find>eval_train</find>
       <find>learning</find>
       <find>generator</find>
       <find>pickle</find>
@@ -173,6 +155,9 @@
       <find>'dataset'</find>
       <find>prepar</find>
       <find>add_sub</find>
+      <find>quit</find>
+      <find>traitlets</find>
+      <find>notebook with kernel</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -184,7 +169,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/pfsspec/pipelines/pipeline.py" />
         <option value="$PROJECT_DIR$/pfsspec/pipelines/kuruczbasicpipeline.py" />
         <option value="$PROJECT_DIR$/pfsspec/ml/dnn/keras/cnngenerative.py" />
         <option value="$PROJECT_DIR$/pfsspec/surveys/sdssaugmenter.py" />
@@ -223,7 +207,6 @@
         <option value="$PROJECT_DIR$/pfsspec/surveys/sdssspectrumreader.py" />
         <option value="$PROJECT_DIR$/pfsspec/stellarmod/kuruczspectrumreader.py" />
         <option value="$PROJECT_DIR$/pfsspec/stellarmod/boszgrid.py" />
-        <option value="$PROJECT_DIR$/pfsspec/stellarmod/modelgrid.py" />
         <option value="$PROJECT_DIR$/pfsspec/stellarmod/boszspectrumreader.py" />
         <option value="$PROJECT_DIR$/pfsspec/obsmod/spectrum.py" />
         <option value="$PROJECT_DIR$/pfsspec/stellarmod/modelspectrum.py" />
@@ -232,9 +215,11 @@
         <option value="$PROJECT_DIR$/pfsspec/scripts/convert_bosz.py" />
         <option value="$PROJECT_DIR$/pfsspec/scripts/convert_kurucz.py" />
         <option value="$PROJECT_DIR$/pfsspec/scripts/convert_sdss.py" />
-        <option value="$PROJECT_DIR$/pfsspec/stellarmod/modelgriddatasetbuilder.py" />
         <option value="$PROJECT_DIR$/scripts/convert.sh" />
         <option value="$PROJECT_DIR$/pfsspec/scripts/convert.py" />
+        <option value="$PROJECT_DIR$/pfsspec/stellarmod/modelgriddatasetbuilder.py" />
+        <option value="$PROJECT_DIR$/pfsspec/data/datasetbuilder.py" />
+        <option value="$PROJECT_DIR$/pfsspec/stellarmod/modelgrid.py" />
       </list>
     </option>
   </component>
@@ -674,11 +659,6 @@
           <line>19</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/pfsspec/stellarmod/modelgrid.py</url>
-          <line>142</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
@@ -1057,13 +1037,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/surveys/sdssdatasetbuilder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="34" lean-forward="true" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/scripts/predict.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="966">
@@ -1074,20 +1047,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/modelgrid.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="24" lean-forward="true" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/modelparam.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" column="8" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/scripts/script.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="651">
@@ -1095,13 +1054,6 @@
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/boszgrid.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -1119,13 +1071,6 @@
           <folding>
             <element signature="e#10#19#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/data/datasetbuilder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="31" column="32" lean-forward="true" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -1149,13 +1094,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/modelgriddatasetbuilder.py">
+    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1638">
-          <caret line="78" lean-forward="true" selection-start-line="78" selection-end-line="78" />
+        <state relative-caret-position="294">
+          <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/modelparam.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="8" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/surveys/sdssdatasetbuilder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="34" lean-forward="true" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -1168,20 +1127,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/scripts/convert.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="107" lean-forward="true" selection-start-line="107" selection-end-line="107" />
+        <state relative-caret-position="250">
+          <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/train.py">
+    <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/boszgrid.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
+        <state relative-caret-position="42">
+          <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/data/datasetbuilder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="649">
+          <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/modelgriddatasetbuilder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="79" column="46" selection-start-line="79" selection-start-column="29" selection-end-line="79" selection-end-column="46" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/modelgrid.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="121" column="60" lean-forward="true" selection-start-line="121" selection-start-column="60" selection-end-line="121" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>

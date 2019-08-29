@@ -21,6 +21,8 @@ class DatasetBuilder():
 
     def init_from_args(self, args):
         self.parallel = not args['debug']
+        if not self.parallel:
+            logging.info('Dataset builder running in sequential mode.')
 
     def get_spectrum_count(self):
         raise NotImplementedError()
@@ -46,6 +48,7 @@ class DatasetBuilder():
             spectra = srl_map(self.process_item, range(self.get_spectrum_count()), verbose=True)
 
         for i in range(len(spectra)):
+            print(spectra[i].Fe_H, spectra[i].T_eff, spectra[i].log_g, spectra[i].flux.min(), spectra[i].flux.max())
             self.dataset.flux[i, :] = spectra[i].flux
             self.dataset.error[i, :] = spectra[i].flux_err
 
