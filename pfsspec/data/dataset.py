@@ -11,11 +11,19 @@ class Dataset():
             self.wave = None
             self.flux = None
             self.error = None
+            self.U = None
+            self.S = None
+            self.V = None
+            self.PC = None
         else:
             self.params = orig.params.copy()
             self.wave = orig.wave
             self.flux = orig.flux
             self.error = orig.error
+            self.U = None
+            self.S = None
+            self.V = None
+            self.PC = None
 
         self.filename = None
         self.fileformat = None
@@ -34,6 +42,12 @@ class Dataset():
 
         logging.info("Saved dataset.")
 
+    def save_items(self):
+        self.save_item('params', self.params)
+        self.save_item('wave', self.wave)
+        self.save_item('flux', self.flux)
+        self.save_item('error', self.error)
+
     def save_item(self, name, item):
         if self.fileformat == 'pickle':
             with gzip.open(self.filename, 'ab') as f:
@@ -49,12 +63,6 @@ class Dataset():
         else:
             raise NotImplementedError()
 
-    def save_items(self):
-        self.save_item('params', self.params)
-        self.save_item('wave', self.wave)
-        self.save_item('flux', self.flux)
-        self.save_item('error', self.error)
-
     def load(self, filename, format='pickle'):
         logging.info("Loading dataset from file {}...".format(filename))
 
@@ -67,6 +75,12 @@ class Dataset():
         logging.info("  wave:    {}".format(self.wave.shape))
         logging.info("  flux:    {}".format(self.flux.shape))
         logging.info("  columns: {}".format(self.params.columns))
+
+    def load_items(self):
+        self.params = self.load_item('params', pd.DataFrame)
+        self.wave = self.load_item('wave', np.ndarray)
+        self.flux = self.load_item('flux', np.ndarray)
+        self.error = self.load_item('error', np.ndarray)
 
     def load_item(self, name, type):
         if self.fileformat == 'pickle':
@@ -82,12 +96,6 @@ class Dataset():
                 raise NotImplementedError()
         else:
             raise NotImplementedError()
-
-    def load_items(self):
-        self.params = self.load_item('params', pd.DataFrame)
-        self.wave = self.load_item('wave', np.ndarray)
-        self.flux = self.load_item('flux', np.ndarray)
-        self.error = self.load_item('error', np.ndarray)
 
     def reset_index(self, df):
         df.index = pd.RangeIndex(len(df.index))
@@ -150,3 +158,45 @@ class Dataset():
         a.error = np.concatenate([self.error, b.error], axis=0)
 
         return a
+
+    def run_pca(self, truncate=None):
+        C = np.dot(self.flux.transpose(), self.flux)
+        self.U, self.S, self.V = np.linalg.svd(C)
+
+        if truncate is not None:
+            self.PC = np.dot(self.flux, self.U[:, 0:truncate])
+        else:
+            self.PC = np.dot(self.flux, self.U[:, :])
+
+        self.wave = np.arange(self.PC.shape[1])
+        self.flux = self.PC
+        self.error = np.zeros(self.flux.shape)
+
+    def save_pca(self, filename, format='pickle'):
+        logging.info("Saving PCA eigensystem to file {}...".format(filename))
+
+        self.filename = filename
+        self.fileformat = format
+        self.save_pca_items()
+
+        logging.info("Saved PCA eigensystem.")
+
+    def save_pca_items(self):
+        self.save_item('U', self.U)
+        self.save_item('S', self.S)
+        self.save_item('V', self.V)
+
+    def load_pca(self, filename, format='pickle'):
+        logging.info("Loading PCA eigensystem from file {}...".format(filename))
+
+        self.filename = filename
+        self.fileformat = format
+        self.load_pca_items()
+
+        logging.info("Loaded PCA eigensystem.")
+
+    def load_pca_items(self):
+        self.U = self.load_item('U', np.ndarray)
+        self.S = self.load_item('S', np.ndarray)
+        self.V = self.load_item('V', np.ndarray)
+
