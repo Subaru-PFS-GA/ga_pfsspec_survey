@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f482f008-ec87-4c7c-9c56-8c2c00a67fd2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/periodiccheckpoint.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pfsspec/scripts/pca.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/pca.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/scripts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/scripts.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nb/eval_train_gen.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/nb/eval_train_gen.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasmodel.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasmodel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/scripts/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/scripts/train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/stellarmod/modelgriddatasetbuilder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/stellarmod/modelgriddatasetbuilder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/data/dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/data/dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/data/datasetbuilder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/data/datasetbuilder.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,12 +17,21 @@
   <component name="FileEditorManager">
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasmodel.py">
+        <leaf>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/scripts/pca.sh">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3183">
-                  <caret line="231" column="8" selection-start-line="231" selection-start-column="8" selection-end-line="231" selection-end-column="8" />
+                <state relative-caret-position="42">
+                  <caret line="2" column="27" lean-forward="true" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pfsspec/scripts/convert.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="956">
+                  <caret line="127" column="20" lean-forward="true" selection-start-line="127" selection-start-column="20" selection-end-line="127" selection-end-column="20" />
                   <folding>
                     <element signature="e#0#9#0" expanded="true" />
                   </folding>
@@ -33,51 +40,9 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/pfsspec/constants.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="840">
-                  <caret line="40" column="28" selection-start-line="40" selection-start-column="28" selection-end-line="40" selection-end-column="28" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/weightedsum1d.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="57">
-                  <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
-                  <folding>
-                    <element signature="e#0#30#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/basemodelcheckpoint.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1050">
-                  <caret line="50" column="33" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
-                  <folding>
-                    <element signature="e#0#15#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://C:/ProgramData/Anaconda3/envs/pfs_spec_dnn/Lib/site-packages/keras/callbacks.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="418">
-                  <caret line="359" column="30" selection-start-line="359" selection-start-column="22" selection-end-line="359" selection-end-column="30" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pfsspec/scripts/train.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="651">
+                <state relative-caret-position="2268">
                   <caret line="108" column="27" selection-start-line="108" selection-start-column="27" selection-end-line="108" selection-end-column="27" />
                   <folding>
                     <element signature="e#0#9#0" expanded="true" />
@@ -87,46 +52,31 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/modelgrid.py">
+            <entry file="file://$PROJECT_DIR$/pfsspec/scripts/script.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="411">
-                  <caret line="129" column="8" selection-start-line="129" selection-start-column="8" selection-end-line="129" selection-end-column="8" />
+                <state relative-caret-position="22">
+                  <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
                   <folding>
-                    <element signature="e#0#14#0" expanded="true" />
+                    <element signature="e#0#9#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/modelspectrum.py">
+            <entry file="file://$PROJECT_DIR$/pfsspec/data/datasetbuilder.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1128">
-                  <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
-                  <folding>
-                    <element signature="e#0#18#0" expanded="true" />
-                  </folding>
+                <state relative-caret-position="462">
+                  <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/boszgrid.py">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/pfsspec/data/dataset.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="294">
-                  <caret line="18" column="19" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="19" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/densegenerative.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1218">
-                  <caret line="58" column="60" lean-forward="true" selection-start-line="58" selection-start-column="60" selection-end-line="58" selection-end-column="60" />
-                  <folding>
-                    <element signature="e#0#25#0" expanded="true" />
-                  </folding>
+                <state relative-caret-position="473">
+                  <caret line="170" column="47" lean-forward="true" selection-start-line="170" selection-start-column="47" selection-end-line="170" selection-end-column="47" />
                 </state>
               </provider>
             </entry>
@@ -135,32 +85,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/modelgriddatasetbuilder.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="861">
-                  <caret line="83" column="43" selection-start-line="83" selection-start-column="43" selection-end-line="83" selection-end-column="43" />
-                  <folding>
-                    <element signature="e#0#18#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/losses.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="273">
-                  <caret line="13" selection-start-line="13" selection-end-line="13" />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/periodiccheckpoint.py">
+            <entry file="file://$PROJECT_DIR$/pfsspec/scripts/pca.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="294">
-                  <caret line="14" column="32" lean-forward="true" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+                <state relative-caret-position="630">
+                  <caret line="30" column="54" lean-forward="true" selection-start-line="30" selection-start-column="54" selection-end-line="30" selection-end-column="54" />
                   <folding>
                     <element signature="e#0#9#0" expanded="true" />
                   </folding>
@@ -222,9 +151,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/pfsspec/stellarmod/modelparam.py" />
-        <option value="$PROJECT_DIR$/pfsspec/stellarmod/kuruczgrid.py" />
-        <option value="$PROJECT_DIR$/test/stellarmod/test_boszspectrumreader.py" />
         <option value="$PROJECT_DIR$/scripts/import_bosz.sh" />
         <option value="$PROJECT_DIR$/pfsspec/scripts/import_kurucz.py" />
         <option value="$PROJECT_DIR$/pfsspec/scripts/import_sdss.py" />
@@ -240,7 +166,6 @@
         <option value="$PROJECT_DIR$/pfsspec/scripts/convert_sdss.py" />
         <option value="$PROJECT_DIR$/scripts/convert.sh" />
         <option value="$PROJECT_DIR$/pfsspec/scripts/import_.py" />
-        <option value="$PROJECT_DIR$/pfsspec/data/datasetbuilder.py" />
         <option value="$PROJECT_DIR$/scripts/weight.sh" />
         <option value="$PROJECT_DIR$/pfsspec/scripts/weight.py" />
         <option value="$PROJECT_DIR$/pfsspec/pipelines/pipeline.py" />
@@ -273,6 +198,10 @@
         <option value="$PROJECT_DIR$/pfsspec/scripts/train.py" />
         <option value="$PROJECT_DIR$/pfsspec/constants.py" />
         <option value="$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasmodel.py" />
+        <option value="$PROJECT_DIR$/scripts/pca.sh" />
+        <option value="$PROJECT_DIR$/pfsspec/data/datasetbuilder.py" />
+        <option value="$PROJECT_DIR$/pfsspec/scripts/pca.py" />
+        <option value="$PROJECT_DIR$/pfsspec/data/dataset.py" />
       </list>
     </option>
   </component>
@@ -309,45 +238,6 @@
             <path>
               <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
               <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
-              <item name="ml" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
-              <item name="ml" type="462c0819:PsiDirectoryNode" />
-              <item name="dnn" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
-              <item name="ml" type="462c0819:PsiDirectoryNode" />
-              <item name="dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="keras" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
-              <item name="pipelines" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
-              <item name="scripts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
-              <item name="stellarmod" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
               <item name="scripts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -370,21 +260,21 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../pysynphot" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/scripts" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="H:\project\pfs_spec_dnn\scripts" />
+      <recent name="H:\project\pfs_spec_dnn\pfsspec\scripts" />
+      <recent name="C:\Data\dobos\project\pfs_spec_dnn\test\stellarmod" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="H:\project\pfs_spec_dnn\test\obsmod" />
       <recent name="H:\project\pfs_spec_dnn\pfsspec\obsmod" />
       <recent name="H:\project\pfs_spec_dnn\pfsspec\scripts" />
       <recent name="H:\project\pfs_spec_dnn\pfsspec\scripts\utils\" />
       <recent name="H:\project\pfs_spec_dnn\pfsspec\surveys" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="H:\project\pfs_spec_dnn\pfsspec\scripts" />
-      <recent name="H:\project\pfs_spec_dnn\scripts" />
-      <recent name="C:\Data\dobos\project\pfs_spec_dnn\test\stellarmod" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -592,7 +482,7 @@
     <frame x="-7" y="-7" width="2575" height="1415" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1319417" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1319417" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -733,20 +623,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/modelparam.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" column="8" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/surveys/sdssdatasetbuilder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/scripts/import_bosz.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
@@ -778,13 +654,6 @@
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/data/dataset.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="152" selection-start-line="152" selection-end-line="152" />
         </state>
       </provider>
     </entry>
@@ -955,16 +824,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/convert.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="40" column="52" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="52" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/pipelines/kuruczbasicpipeline.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -988,16 +847,6 @@
           <caret line="30" column="35" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/script.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1191">
-          <caret line="123" column="24" selection-start-line="123" selection-start-column="8" selection-end-line="123" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1029,13 +878,6 @@
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/data/datasetbuilder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="960">
-          <caret line="54" column="45" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="45" />
         </state>
       </provider>
     </entry>
@@ -1120,16 +962,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/periodiccheckpoint.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="14" column="32" lean-forward="true" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/ProgramData/Anaconda3/envs/pfs_spec_dnn/Lib/site-packages/keras/callbacks.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
@@ -1141,16 +973,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="840">
           <caret line="40" column="28" selection-start-line="40" selection-start-column="28" selection-end-line="40" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="651">
-          <caret line="108" column="27" selection-start-line="108" selection-start-column="27" selection-end-line="108" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1166,11 +988,82 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasmodel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3183">
-          <caret line="231" column="8" selection-start-line="231" selection-start-column="8" selection-end-line="231" selection-end-column="8" />
+        <state relative-caret-position="663">
+          <caret line="111" column="22" selection-start-line="111" selection-start-column="16" selection-end-line="111" selection-end-column="22" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/periodiccheckpoint.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="14" column="32" lean-forward="true" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2268">
+          <caret line="108" column="27" selection-start-line="108" selection-start-column="27" selection-end-line="108" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/data/datasetbuilder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/pca.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="27" lean-forward="true" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/pca.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="30" column="54" lean-forward="true" selection-start-line="30" selection-start-column="54" selection-end-line="30" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/convert.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="956">
+          <caret line="127" column="20" lean-forward="true" selection-start-line="127" selection-start-column="20" selection-end-line="127" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/data/dataset.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="473">
+          <caret line="170" column="47" lean-forward="true" selection-start-line="170" selection-start-column="47" selection-end-line="170" selection-end-column="47" />
         </state>
       </provider>
     </entry>

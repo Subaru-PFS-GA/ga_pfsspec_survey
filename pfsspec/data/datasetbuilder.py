@@ -8,10 +8,12 @@ from pfsspec.data.dataset import Dataset
 class DatasetBuilder():
     def __init__(self, orig=None):
         if orig is not None:
+            self.dataset = orig.dataset
             self.parallel = orig.parallel
             self.params = orig.params
             self.pipeline = orig.pipeline
         else:
+            self.dataset = None
             self.parallel = True
             self.params = None
             self.pipeline = None
