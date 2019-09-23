@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f482f008-ec87-4c7c-9c56-8c2c00a67fd2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/nb/eval_train_gen.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/nb/eval_train_gen.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/obsmod/spectrum.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/obsmod/spectrum.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfsspec/stellarmod/modelgriddatasetbuilder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/stellarmod/modelgriddatasetbuilder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nb/eval_dataset.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/nb/eval_dataset.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nb/eval_train_reg.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/nb/eval_train_reg.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfsspec/stellarmod/modelgrid.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/stellarmod/modelgrid.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -79,11 +79,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/modelgrid.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="789">
-                  <caret line="174" column="19" lean-forward="true" selection-start-line="174" selection-start-column="19" selection-end-line="174" selection-end-column="19" />
+                <state relative-caret-position="631">
+                  <caret line="145" column="23" lean-forward="true" selection-start-line="145" selection-start-column="23" selection-end-line="145" selection-end-column="23" />
                   <folding>
                     <element signature="e#0#14#0" expanded="true" />
                   </folding>
@@ -91,11 +91,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/modelgriddatasetbuilder.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="939">
-                  <caret line="89" column="36" selection-start-line="89" selection-start-column="36" selection-end-line="89" selection-end-column="36" />
+                <state relative-caret-position="735">
+                  <caret line="104" column="40" selection-start-line="104" selection-start-column="40" selection-end-line="104" selection-end-column="40" />
                   <folding>
                     <element signature="e#0#18#0" expanded="true" />
                   </folding>
@@ -156,7 +156,7 @@
             <entry file="file://$PROJECT_DIR$/pfsspec/obsmod/spectrum.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="540">
-                  <caret line="188" column="33" lean-forward="true" selection-start-line="188" selection-start-column="33" selection-end-line="188" selection-end-column="33" />
+                  <caret line="188" column="33" selection-start-line="188" selection-start-column="33" selection-end-line="188" selection-end-column="33" />
                   <folding>
                     <element signature="e#0#18#0" expanded="true" />
                   </folding>
@@ -220,6 +220,7 @@
       <list>
         <option value="$PROJECT_DIR$/pfsspec/obsmod/spectrum.py" />
         <option value="$PROJECT_DIR$/pfsspec/stellarmod/modelgriddatasetbuilder.py" />
+        <option value="$PROJECT_DIR$/pfsspec/stellarmod/modelgrid.py" />
       </list>
     </option>
   </component>
@@ -716,19 +717,9 @@
     <entry file="file://$PROJECT_DIR$/pfsspec/obsmod/spectrum.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
-          <caret line="188" column="33" lean-forward="true" selection-start-line="188" selection-start-column="33" selection-end-line="188" selection-end-column="33" />
+          <caret line="188" column="33" selection-start-line="188" selection-start-column="33" selection-end-line="188" selection-end-column="33" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/modelgrid.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="789">
-          <caret line="174" column="19" lean-forward="true" selection-start-line="174" selection-start-column="19" selection-end-line="174" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -742,10 +733,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/modelgriddatasetbuilder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="939">
-          <caret line="89" column="36" selection-start-line="89" selection-start-column="36" selection-end-line="89" selection-end-column="36" />
+        <state relative-caret-position="735">
+          <caret line="104" column="40" selection-start-line="104" selection-start-column="40" selection-end-line="104" selection-end-column="40" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/stellarmod/modelgrid.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="631">
+          <caret line="145" column="23" lean-forward="true" selection-start-line="145" selection-start-column="23" selection-end-line="145" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
