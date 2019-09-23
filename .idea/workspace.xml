@@ -2,19 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f482f008-ec87-4c7c-9c56-8c2c00a67fd2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasmodel.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasmodel.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/keyboardinterrupt.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/ml/dnn/keras/keyboardinterrupt.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pfsspec/scripts/predict.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/scripts/predict.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pfsspec/scripts/script.py" beforeDir="false" afterPath="$PROJECT_DIR$/pfsspec/scripts/script.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/convert.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/convert.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/import_bosz.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/import_bosz.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/import_kurucz.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/import_kurucz.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/import_sdss.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/import_sdss.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/pca.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/pca.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/predict_kurucz.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/predict_kurucz.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/train.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/train.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/weight.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/weight.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,11 +17,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/keyboardinterrupt.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="525">
-                  <caret line="25" column="30" lean-forward="true" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+                <state relative-caret-position="315">
+                  <caret line="15" column="41" lean-forward="true" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
                   <folding>
                     <element signature="e#0#9#0" expanded="true" />
                   </folding>
@@ -38,11 +29,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasmodel.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="525">
-                  <caret line="43" column="50" lean-forward="true" selection-start-line="43" selection-start-column="50" selection-end-line="43" selection-end-column="50" />
+                <state relative-caret-position="484">
+                  <caret line="326" column="38" lean-forward="true" selection-start-line="326" selection-start-column="38" selection-end-line="326" selection-end-column="38" />
                   <folding>
                     <element signature="e#0#9#0" expanded="true" />
                   </folding>
@@ -54,11 +45,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pfsspec/scripts/predict.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="609">
-                  <caret line="107" column="43" selection-start-line="107" selection-start-column="43" selection-end-line="107" selection-end-column="43" />
+                <state relative-caret-position="882">
+                  <caret line="108" column="41" selection-start-line="108" selection-start-column="41" selection-end-line="108" selection-end-column="41" />
                   <folding>
                     <element signature="e#0#9#0" expanded="true" />
                   </folding>
@@ -66,11 +57,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/pfsspec/scripts/script.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1303">
-                  <caret line="132" column="12" lean-forward="true" selection-start-line="132" selection-start-column="12" selection-end-line="132" selection-end-column="12" />
+                <state relative-caret-position="441">
+                  <caret line="21" column="65" selection-start-line="21" selection-start-column="65" selection-end-line="21" selection-end-column="65" />
                   <folding>
                     <element signature="e#0#9#0" expanded="true" />
                   </folding>
@@ -103,7 +94,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>wave</find>
       <find>checkpoint_path</find>
       <find>get_weights_path</find>
       <find>regularization_factor</find>
@@ -133,6 +123,7 @@
       <find>history</find>
       <find>vector_error_test</find>
       <find>prepare</find>
+      <find>is_parallel</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -158,9 +149,9 @@
         <option value="$PROJECT_DIR$/scripts/import_bosz.sh" />
         <option value="$PROJECT_DIR$/scripts/convert.sh" />
         <option value="$PROJECT_DIR$/pfsspec/ml/dnn/keras/keyboardinterrupt.py" />
-        <option value="$PROJECT_DIR$/pfsspec/scripts/script.py" />
-        <option value="$PROJECT_DIR$/pfsspec/scripts/predict.py" />
         <option value="$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasmodel.py" />
+        <option value="$PROJECT_DIR$/pfsspec/scripts/predict.py" />
+        <option value="$PROJECT_DIR$/pfsspec/scripts/script.py" />
       </list>
     </option>
   </component>
@@ -179,72 +170,6 @@
             <path>
               <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
               <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
-              <item name="ml" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
-              <item name="ml" type="462c0819:PsiDirectoryNode" />
-              <item name="dnn" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
-              <item name="ml" type="462c0819:PsiDirectoryNode" />
-              <item name="dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="keras" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
-              <item name="obsmod" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
-              <item name="scripts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="pfsspec" type="462c0819:PsiDirectoryNode" />
-              <item name="stellarmod" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="scripts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pfs_spec_dnn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pfs_spec_dnn" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="stellarmod" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -797,26 +722,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/keyboardinterrupt.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="25" column="30" lean-forward="true" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/script.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1303">
-          <caret line="132" column="12" lean-forward="true" selection-start-line="132" selection-start-column="12" selection-end-line="132" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pfsspec/scripts/train.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
@@ -827,20 +732,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/predict.py">
+    <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasmodel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="107" column="43" selection-start-line="107" selection-start-column="43" selection-end-line="107" selection-end-column="43" />
+        <state relative-caret-position="484">
+          <caret line="326" column="38" lean-forward="true" selection-start-line="326" selection-start-column="38" selection-end-line="326" selection-end-column="38" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/kerasmodel.py">
+    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/predict.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="43" column="50" lean-forward="true" selection-start-line="43" selection-start-column="50" selection-end-line="43" selection-end-column="50" />
+        <state relative-caret-position="882">
+          <caret line="108" column="41" selection-start-line="108" selection-start-column="41" selection-end-line="108" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/scripts/script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="21" column="65" selection-start-line="21" selection-start-column="65" selection-end-line="21" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pfsspec/ml/dnn/keras/keyboardinterrupt.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="15" column="41" lean-forward="true" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
