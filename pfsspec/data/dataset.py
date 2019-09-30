@@ -1,10 +1,10 @@
 import logging
 import numpy as np
 import pandas as pd
-import gzip, pickle
-import h5py
 
-class Dataset():
+from pfsspec.pfsobject import PfsObject
+
+class Dataset(PfsObject):
     def __init__(self, orig=None):
         if orig is None:
             self.params = None
@@ -25,22 +25,10 @@ class Dataset():
             self.V = None
             self.PC = None
 
-        self.filename = None
-        self.fileformat = None
-
     def init_storage(self, wcount, scount):
         self.wave = np.empty(wcount)
         self.flux = np.empty((scount, wcount))
         self.error = np.empty((scount, wcount))
-
-    def save(self, filename, format='pickle'):
-        logging.info("Saving dataset to file {}...".format(filename))
-
-        self.filename = filename
-        self.fileformat = format
-        self.save_items()
-
-        logging.info("Saved dataset.")
 
     def save_items(self):
         self.save_item('params', self.params)
@@ -48,27 +36,8 @@ class Dataset():
         self.save_item('flux', self.flux)
         self.save_item('error', self.error)
 
-    def save_item(self, name, item):
-        if self.fileformat == 'pickle':
-            with gzip.open(self.filename, 'ab') as f:
-                pickle.dump(item, f, protocol=4)
-        elif self.fileformat == 'h5':
-            if isinstance(item, pd.DataFrame):
-                item.to_hdf(self.filename, name, mode='a')
-            elif isinstance(item, np.ndarray):
-                with h5py.File(self.filename, 'a') as f:
-                    f.create_dataset(name, data=item)
-            else:
-                raise NotImplementedError()
-        else:
-            raise NotImplementedError()
-
     def load(self, filename, format='pickle'):
-        logging.info("Loading dataset from file {}...".format(filename))
-
-        self.filename = filename
-        self.fileformat = format
-        self.load_items()
+        super(Dataset, self).load(filename, format)
 
         logging.info("Loaded dataset with shapes:")
         logging.info("  params:  {}".format(self.params.shape))
@@ -83,19 +52,7 @@ class Dataset():
         self.error = self.load_item('error', np.ndarray)
 
     def load_item(self, name, type):
-        if self.fileformat == 'pickle':
-            with gzip.open(self.filename, 'rb') as f:
-                return pickle.read(f)
-        elif self.fileformat == 'h5':
-            if type == pd.DataFrame:
-                return pd.read_hdf(self.filename, name)
-            elif type == np.ndarray:
-                with h5py.File(self.filename, 'r') as f:
-                    return f[name][:]
-            else:
-                raise NotImplementedError()
-        else:
-            raise NotImplementedError()
+        return load_item(self.filename, self.fileformat, name, type)
 
     def reset_index(self, df):
         df.index = pd.RangeIndex(len(df.index))
