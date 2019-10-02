@@ -52,7 +52,7 @@ class SdssSpectrumReader(SurveySpectrumReader):
             where += "AND spp.teffa BETWEEN {:f} AND {:f} \n".format(T_eff[0], T_eff[1])
         if log_g is not None:
             where += "AND spp.logga BETWEEN {:f} AND {:f} \n".format(log_g[0], log_g[1])
-        if a_fe is not None:
+        if a_Fe is not None:
             where += "AND spp.alphafe BETWEEN {:f} AND {:f} \n".format(a_Fe[0], a_Fe[1])
 
         sql = \
