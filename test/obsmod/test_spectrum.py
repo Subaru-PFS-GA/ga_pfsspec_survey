@@ -79,6 +79,14 @@ class TestSpectrum(TestBase):
 
         self.save_fig()
 
+    def test_normalize_by_T_eff(self):
+        grid = self.get_kurucz_grid()
+        spec = grid.get_nearest_model(Fe_H=0.0, T_eff=5000, log_g=2.45)
+        spec.normalize_by_T_eff(5000)
+        spec.plot()
+
+        self.save_fig()
+
     def test_redden(self):
         grid = self.get_kurucz_grid()
         spec = grid.get_nearest_model(0.0, 7000, 1.45)
