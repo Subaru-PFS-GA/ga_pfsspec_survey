@@ -51,9 +51,6 @@ class Dataset(PfsObject):
         self.flux = self.load_item('flux', np.ndarray)
         self.error = self.load_item('error', np.ndarray)
 
-    def load_item(self, name, type):
-        return load_item(self.filename, self.fileformat, name, type)
-
     def reset_index(self, df):
         df.index = pd.RangeIndex(len(df.index))
 
