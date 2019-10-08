@@ -74,13 +74,15 @@ class Dataset(PfsObject):
         self.reset_index(a.params)
         a.wave = self.wave
         a.flux = self.flux[a_range]
-        a.error = self.error[a_range]
+        if self.error is not None:
+            a.error = self.error[a_range]
 
         b.params = self.params.iloc[b_range]
         self.reset_index(b.params)
         b.wave = self.wave
         b.flux = self.flux[b_range]
-        b.error = self.error[b_range]
+        if self.error is not None:
+            b.error = self.error[b_range]
 
         return split_index, a, b
 
