@@ -24,7 +24,8 @@ class TestDenseGenerative(TestBase):
         model = DenseGenerative(levels=1, units=32)
         model.loss = max_absolute_error
         model.epochs = 1
-        model.ensure_model_created(training_generator.input_shape, training_generator.output_shape)
+        model.set_model_shapes(training_generator.input_shape, training_generator.output_shape)
+        model.ensure_model_created()
         model.train(training_generator, validation_generator)
         model.load_weights(model.checkpoint_path)   # TODO
         model.predict(validation_generator)
