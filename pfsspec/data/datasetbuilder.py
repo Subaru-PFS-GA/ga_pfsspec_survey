@@ -1,5 +1,6 @@
 import sys
 import logging
+import numpy as np
 import pandas as pd
 
 from pfsspec.parallel import srl_map, prll_map
@@ -57,7 +58,19 @@ class DatasetBuilder():
             self.dataset.params = self.params
         else:
             columns = spectra[0].get_param_names()
+            names = []
             data = []
             for p in columns:
-                data.append([getattr(s, p) for s in spectra])
-            self.dataset.params = pd.DataFrame(list(zip(*data)), columns=columns)
+                v = getattr(spectra[0], p)
+                # If parameter is an array, assume it's equal length and copy to
+                # pandas as a set of columns instead of a single column
+                if isinstance(v, np.ndarray):
+                    if len(v.shape) > 1:
+                        raise Exception('Can only serialize one-dimensional arrays')
+                    for i in range(v.shape[0]):
+                        names.append('{}_{}'.format(p, i))
+                        data.append([getattr(s, p)[i] for s in spectra])
+                else:
+                    names.append(p)
+                    data.append([getattr(s, p) for s in spectra])
+            self.dataset.params = pd.DataFrame(list(zip(*data)), columns=names)
