@@ -7,13 +7,16 @@ from pfsspec.parallel import srl_map, prll_map
 from pfsspec.data.dataset import Dataset
 
 class DatasetBuilder():
-    def __init__(self, orig=None):
+    def __init__(self, orig=None, random_seed=None):
         if orig is not None:
+            self.random_seed = random_seed or orig.random_seed
+            self.random_state = None
             self.dataset = orig.dataset
             self.parallel = orig.parallel
             self.params = orig.params
             self.pipeline = orig.pipeline
         else:
+            self.random_seed = random_seed
             self.dataset = None
             self.parallel = True
             self.params = None
@@ -23,7 +26,9 @@ class DatasetBuilder():
         pass
 
     def init_from_args(self, args):
-        self.parallel = not args['debug']
+        # Only allow parallel if random seed is not set
+        # It would be very painful to reproduce the same dataset with multiprocessing
+        self.parallel = ('debug' not in args or not args['debug']) and self.random_seed is None
         if not self.parallel:
             logging.info('Dataset builder running in sequential mode.')
 
@@ -43,6 +48,7 @@ class DatasetBuilder():
         raise NotImplementedError()
 
     def build(self):
+        self.random_state = np.random.RandomState(self.random_seed)
         self.create_dataset()
 
         if self.parallel:
@@ -64,7 +70,10 @@ class DatasetBuilder():
                 v = getattr(spectra[0], p)
                 # If parameter is an array, assume it's equal length and copy to
                 # pandas as a set of columns instead of a single column
-                if isinstance(v, np.ndarray):
+                if v is None:
+                    names.append(p)
+                    data.append([np.nan for s in spectra])
+                elif isinstance(v, np.ndarray):
                     if len(v.shape) > 1:
                         raise Exception('Can only serialize one-dimensional arrays')
                     for i in range(v.shape[0]):

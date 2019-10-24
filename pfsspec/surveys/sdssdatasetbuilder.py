@@ -1,8 +1,8 @@
 from pfsspec.data.datasetbuilder import DatasetBuilder
 
 class SdssDatasetBuilder(DatasetBuilder):
-    def __init__(self, orig=None):
-        super(SdssDatasetBuilder, self).__init__(orig)
+    def __init__(self, orig=None, random_seed=None):
+        super(SdssDatasetBuilder, self).__init__(orig=orig, random_seed=random_seed)
         if orig is not None:
             self.survey = orig.survey
         else:
