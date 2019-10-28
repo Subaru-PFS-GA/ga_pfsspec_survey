@@ -6,6 +6,8 @@ from pfsspec.pfsobject import PfsObject
 
 class Dataset(PfsObject):
     def __init__(self, orig=None):
+        self.top = None
+
         if orig is None:
             self.params = None
             self.wave = None
@@ -45,7 +47,7 @@ class Dataset(PfsObject):
         logging.info("  flux:    {}".format(self.flux.shape))
         logging.info("  columns: {}".format(self.params.columns))
 
-    def load_items(self):
+    def load_items(self, slice=None):
         self.params = self.load_item('params', pd.DataFrame)
         self.wave = self.load_item('wave', np.ndarray)
         self.flux = self.load_item('flux', np.ndarray)
@@ -129,6 +131,7 @@ class Dataset(PfsObject):
         self.error = np.zeros(self.flux.shape)
 
     def save_pca(self, filename, format='pickle'):
+        # TODO: review this and compare with PfsObject.save
         logging.info("Saving PCA eigensystem to file {}...".format(filename))
 
         self.filename = filename
@@ -143,6 +146,8 @@ class Dataset(PfsObject):
         self.save_item('V', self.V)
 
     def load_pca(self, filename, format='pickle'):
+        # TODO: review this and compare with PfsObject.load
+        #       Probably pass a callback to PfsObject.load instead of load_items
         logging.info("Loading PCA eigensystem from file {}...".format(filename))
 
         self.filename = filename

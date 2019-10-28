@@ -24,6 +24,6 @@ class SurveySpectrumReader(SpectrumReader):
         survey.spectra = []
 
         rows = [rows for index, rows in params.iterrows()]
-        survey.spectra = prll_map(self.load_spectrum_wrapper, rows, verbose=True)
+        survey.spectra = prll_map(None, self.load_spectrum_wrapper, rows, verbose=True)
 
         return survey
