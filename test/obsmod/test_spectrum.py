@@ -12,7 +12,7 @@ class TestSpectrum(TestBase):
 
     def test_set_redshift(self):
         grid = self.get_kurucz_grid()
-        spec = grid.get_nearest_model(0.0, 7000, 1.45)
+        spec = grid.get_nearest_model(Fe_H=0.0, T_eff=7000, log_g=1.45)
         spec.plot()
 
         spec.set_redshift(0.003)
@@ -23,7 +23,7 @@ class TestSpectrum(TestBase):
 
     def test_rebin(self):
         grid = self.get_kurucz_grid()
-        spec = grid.get_nearest_model(0.0, 7000, 1.45)
+        spec = grid.get_nearest_model(Fe_H=0.0, T_eff=7000, log_g=1.45)
         spec.plot()
 
         nwave = np.arange(3800, 6500, 2.7) + 2.7 / 2
@@ -89,7 +89,7 @@ class TestSpectrum(TestBase):
 
     def test_redden(self):
         grid = self.get_kurucz_grid()
-        spec = grid.get_nearest_model(0.0, 7000, 1.45)
+        spec = grid.get_nearest_model(Fe_H=0.0, T_eff=7000, log_g=1.45)
         spec.plot()
 
         spec.redden(0.1)
@@ -101,7 +101,7 @@ class TestSpectrum(TestBase):
         # This one doesn't make much sense with a model spectrum
         # pysynphot is tricked by using a negative extinction value
         grid = self.get_kurucz_grid()
-        spec = grid.get_nearest_model(0.0, 7000, 1.45)
+        spec = grid.get_nearest_model(Fe_H=0.0, T_eff=7000, log_g=1.45)
         spec.plot()
 
         spec.deredden(0.1)
@@ -111,7 +111,7 @@ class TestSpectrum(TestBase):
 
     def test_synthflux(self):
         grid = self.get_kurucz_grid()
-        spec = grid.get_nearest_model(-0.5, 9600, 4.1)
+        spec = grid.get_nearest_model(Fe_H=-0.5, T_eff=9600, log_g=4.1)
         filter = self.get_hsc_filter('r')
 
         flux = spec.synthflux(filter)
@@ -121,7 +121,7 @@ class TestSpectrum(TestBase):
 
     def test_synthmag(self):
         grid = self.get_kurucz_grid()
-        spec = grid.get_nearest_model(-0.5, 9600, 4.1)
+        spec = grid.get_nearest_model(Fe_H=-0.5, T_eff=9600, log_g=4.1)
         filter = self.get_hsc_filter('r')
 
         flux = spec.synthmag(filter)
@@ -131,7 +131,7 @@ class TestSpectrum(TestBase):
 
     def test_running_mean(self):
         grid = self.get_kurucz_grid()
-        spec = grid.get_nearest_model(0.0, 7000, 1.45)
+        spec = grid.get_nearest_model(Fe_H=0.0, T_eff=7000, log_g=1.45)
         spec.plot()
 
         rmean = Spectrum.running_filter(spec.wave, spec.flux, np.mean)
@@ -144,7 +144,7 @@ class TestSpectrum(TestBase):
 
     def test_running_max(self):
         grid = self.get_kurucz_grid()
-        spec = grid.get_nearest_model(0.0, 7000, 1.45)
+        spec = grid.get_nearest_model(Fe_H=0.0, T_eff=7000, log_g=1.45)
         spec.plot()
 
         rmean = Spectrum.running_filter(spec.wave, spec.flux, np.max)
@@ -157,7 +157,7 @@ class TestSpectrum(TestBase):
 
     def test_running_median(self):
         grid = self.get_kurucz_grid()
-        spec = grid.get_nearest_model(0.0, 7000, 1.45)
+        spec = grid.get_nearest_model(Fe_H=0.0, T_eff=7000, log_g=1.45)
         spec.plot()
 
         rmean = Spectrum.running_filter(spec.wave, spec.flux, np.median)
@@ -170,7 +170,7 @@ class TestSpectrum(TestBase):
 
     def test_high_pass_filter(self):
         grid = self.get_kurucz_grid()
-        spec = grid.get_nearest_model(0.0, 7000, 1.45)
+        spec = grid.get_nearest_model(Fe_H=0.0, T_eff=7000, log_g=1.45)
         spec.plot()
 
         spec.high_pass_filter()
@@ -180,7 +180,7 @@ class TestSpectrum(TestBase):
 
     def test_high_pass_filter_dlambda_1(self):
         grid = self.get_kurucz_grid()
-        spec = grid.get_nearest_model(0.0, 7000, 1.45)
+        spec = grid.get_nearest_model(Fe_H=0.0, T_eff=7000, log_g=1.45)
         spec.plot()
 
         spec.high_pass_filter(dlambda=200)
@@ -190,10 +190,31 @@ class TestSpectrum(TestBase):
 
     def test_high_pass_filter_dlambda_2(self):
         grid = self.get_kurucz_grid()
-        spec = grid.get_nearest_model(0.0, 7000, 1.45)
+        spec = grid.get_nearest_model(Fe_H=0.0, T_eff=7000, log_g=1.45)
         spec.plot()
 
         spec.high_pass_filter(dlambda=(200, 250))
         spec.plot(xlim=(2000, 12000))
+
+        self.save_fig()
+
+    def test_fit_envelope_chebyshev(self):
+        grid = self.get_kurucz_grid()
+        spec = grid.get_nearest_model(Fe_H=0.0, T_eff=7000, log_g=1.45)
+
+        p, c = spec.fit_envelope_chebyshev(wlim=(6300, 9700), order=10)
+        spec.flux /= c
+        spec.plot(xlim=(2000, 12000), ylim=(0, 1.1))
+
+        self.save_fig()
+
+    def test_add_calib_bias(self):
+        grid = self.get_kurucz_grid()
+        spec = grid.get_nearest_model(Fe_H=0.0, T_eff=7000, log_g=1.45)
+        spec.rebin(np.linspace(6300, 9700, 1200))
+        spec.plot(xlim=(5000, 10000))
+
+        spec.add_calib_bias()
+        spec.plot()
 
         self.save_fig()
