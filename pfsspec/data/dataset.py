@@ -13,6 +13,7 @@ class Dataset(PfsObject):
             self.wave = None
             self.flux = None
             self.error = None
+            self.mask = None
             self.U = None
             self.S = None
             self.V = None
@@ -22,6 +23,7 @@ class Dataset(PfsObject):
             self.wave = orig.wave
             self.flux = orig.flux
             self.error = orig.error
+            self.mask = orig.mask
             self.U = None
             self.S = None
             self.V = None
@@ -31,12 +33,14 @@ class Dataset(PfsObject):
         self.wave = np.empty(wcount)
         self.flux = np.empty((scount, wcount))
         self.error = np.empty((scount, wcount))
+        self.mask = np.empty((scount, wcount))
 
     def save_items(self):
         self.save_item('params', self.params)
         self.save_item('wave', self.wave)
         self.save_item('flux', self.flux)
         self.save_item('error', self.error)
+        self.save_item('mask', self.error)
 
     def load(self, filename, format='pickle'):
         super(Dataset, self).load(filename, format)
@@ -45,6 +49,8 @@ class Dataset(PfsObject):
         logging.info("  params:  {}".format(self.params.shape))
         logging.info("  wave:    {}".format(self.wave.shape))
         logging.info("  flux:    {}".format(self.flux.shape))
+        logging.info("  error:   {}".format(self.error.shape if self.error is not None else "None"))
+        logging.info("  mask:    {}".format(self.mask.shape if self.mask is not None else "None"))
         logging.info("  columns: {}".format(self.params.columns))
 
     def load_items(self, slice=None):
@@ -52,6 +58,9 @@ class Dataset(PfsObject):
         self.wave = self.load_item('wave', np.ndarray)
         self.flux = self.load_item('flux', np.ndarray)
         self.error = self.load_item('error', np.ndarray)
+        if self.error is not None and np.any(np.isnan(self.error)):
+            self.error = None
+        self.mask = self.load_item('mask', np.ndarray)
 
     def reset_index(self, df):
         df.index = pd.RangeIndex(len(df.index))
@@ -76,15 +85,15 @@ class Dataset(PfsObject):
         self.reset_index(a.params)
         a.wave = self.wave
         a.flux = self.flux[a_range]
-        if self.error is not None:
-            a.error = self.error[a_range]
+        a.error = self.error[a_range] if self.error is not None else None
+        a.mask = self.mask[a_range] if self.mask is not None else None
 
         b.params = self.params.iloc[b_range]
         self.reset_index(b.params)
         b.wave = self.wave
         b.flux = self.flux[b_range]
-        if self.error is not None:
-            b.error = self.error[b_range]
+        b.error = self.error[b_range] if self.error is not None else None
+        b.mask = self.mask[b_range] if self.mask is not None else None
 
         return split_index, a, b
 
@@ -96,13 +105,15 @@ class Dataset(PfsObject):
         self.reset_index(a.params)
         a.wave = self.wave
         a.flux = self.flux[f]
-        a.error = self.error[f]
+        a.error = self.error[f] if self.error is not None else None
+        a.mask = self.mask[f] if self.mask is not None else None
 
         b.params = self.params.ix[~f]
         self.reset_index(b.params)
         b.wave = self.wave
         b.flux = self.flux[~f]
-        b.error = self.error[~f]
+        b.error = self.error[~f] if self.error is not None else None
+        b.mask = self.mask[~f] if self.mask is not None else None
 
         return a, b
 
@@ -113,7 +124,8 @@ class Dataset(PfsObject):
         self.reset_index(a.params)
         a.wave = self.wave
         a.flux = np.concatenate([self.flux, b.flux], axis=0)
-        a.error = np.concatenate([self.error, b.error], axis=0)
+        a.error = np.concatenate([self.error, b.error], axis=0) if self.error is not None and b.error is not None else None
+        a.mask = np.concatenate([self.mask, b.mask], axis=0) if self.mask is not None and b.mask is not None else None
 
         return a
 
@@ -129,15 +141,11 @@ class Dataset(PfsObject):
         self.wave = np.arange(self.PC.shape[1])
         self.flux = self.PC
         self.error = np.zeros(self.flux.shape)
+        self.mask = np.full(self.flux.shape, False)
 
-    def save_pca(self, filename, format='pickle'):
-        # TODO: review this and compare with PfsObject.save
+    def save_pca(self, filename, format=None):
         logging.info("Saving PCA eigensystem to file {}...".format(filename))
-
-        self.filename = filename
-        self.fileformat = format
-        self.save_pca_items()
-
+        self.save(filename, format=format, save_items_func=self.save_pca_items)
         logging.info("Saved PCA eigensystem.")
 
     def save_pca_items(self):
@@ -145,18 +153,12 @@ class Dataset(PfsObject):
         self.save_item('S', self.S)
         self.save_item('V', self.V)
 
-    def load_pca(self, filename, format='pickle'):
-        # TODO: review this and compare with PfsObject.load
-        #       Probably pass a callback to PfsObject.load instead of load_items
+    def load_pca(self, filename, slice=None, format=None):
         logging.info("Loading PCA eigensystem from file {}...".format(filename))
-
-        self.filename = filename
-        self.fileformat = format
-        self.load_pca_items()
-
+        self.load(filename, slice=slice, format=format, load_items_func=self.load_pca_items)
         logging.info("Loaded PCA eigensystem.")
 
-    def load_pca_items(self):
+    def load_pca_items(self, slice=None):
         self.U = self.load_item('U', np.ndarray)
         self.S = self.load_item('S', np.ndarray)
         self.V = self.load_item('V', np.ndarray)
