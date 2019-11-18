@@ -5,13 +5,13 @@ import keras.models as km
 from test.test_base import TestBase
 
 from pfsspec.ml.dnn.keras.losses import *
-from pfsspec.ml.dnn.keras.weightedsum1d import WeightedSum1D
+from pfsspec.ml.dnn.keras.parallelsum import ParallelSum
 
-class TestWeightedSum1D(TestBase):
+class TestParallelSum(TestBase):
     def create_model(self):
         inputs = x = kl.Input((100, 1))                 # output shape: [*, 100]
         x = kl.Conv1D(32, 11, padding='same')(x)        # output shape: [*, 100, 32]
-        x = WeightedSum1D()(x)                          # output shape: [*, 32]
+        x = ParallelSum()(x)                          # output shape: [*, 32]
         outputs = x = kl.Dense(1)(x)
         return km.Model(inputs=inputs, outputs=x)
 
