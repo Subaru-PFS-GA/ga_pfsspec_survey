@@ -30,10 +30,14 @@ class Dataset(PfsObject):
             self.PC = None
 
     def init_storage(self, wcount, scount):
+        logging.debug('Initializing memory for dataset of size {}.'.format((scount, wcount)))
+
         self.wave = np.empty(wcount)
         self.flux = np.empty((scount, wcount))
         self.error = np.empty((scount, wcount))
         self.mask = np.empty((scount, wcount))
+
+        logging.debug('Initialized memory for dataset of size {}.'.format((scount, wcount)))
 
     def save_items(self):
         self.save_item('params', self.params)
