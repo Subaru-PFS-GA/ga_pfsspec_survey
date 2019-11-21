@@ -42,8 +42,6 @@ class DatasetBuilder():
         dataset = Dataset()
         if init_storage:
             dataset.init_storage(self.get_wave_count(), self.get_spectrum_count())
-            # This is used with surveys
-            logging.info('Creating dataset with shapes {} {}.'.format(dataset.wave.shape, dataset.flux.shape))
         return dataset
 
     def init_process(self, i):
@@ -58,6 +56,8 @@ class DatasetBuilder():
     def build(self):
         self.random_state = np.random.RandomState(self.random_seed)
         self.dataset = self.create_dataset()
+
+        logging.info('Building dataset of size {}'.format(self.dataset.flux.shape))
 
         if self.parallel:
             spectra = prll_map(self.init_process, self.process_item, range(self.get_spectrum_count()), verbose=True)
