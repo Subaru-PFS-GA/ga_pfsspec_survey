@@ -6,8 +6,6 @@ from pfsspec.pfsobject import PfsObject
 
 class Dataset(PfsObject):
     def __init__(self, orig=None):
-        self.top = None
-
         if orig is None:
             self.params = None
             self.wave = None
