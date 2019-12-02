@@ -2,7 +2,7 @@ import sys
 
 from pfsspec.data.spectrumreader import SpectrumReader
 from pfsspec.surveys.survey import Survey
-from pfsspec.parallel import prll_map
+from pfsspec.parallel import SmartParallel
 
 class SurveySpectrumReader(SpectrumReader):
     def __init__(self):
@@ -23,7 +23,11 @@ class SurveySpectrumReader(SpectrumReader):
         survey.params = params
         survey.spectra = []
 
-        rows = [rows for index, rows in params.iterrows()]
-        survey.spectra = prll_map(None, self.load_spectrum_wrapper, rows, verbose=True)
+        # TODO: rewrite to SmartParallel
+        raise NotImplementedError()
+        #rows = [rows for index, rows in params.iterrows()]
+        #q, rng = prll_map(None, self.load_spectrum_wrapper, rows, verbose=True)
+        ## TODO: test
+        #survey.spectra = [q.get()[1] for x in rng]
 
         return survey
