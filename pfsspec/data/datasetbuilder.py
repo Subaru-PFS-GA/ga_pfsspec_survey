@@ -3,7 +3,7 @@ import logging
 import numpy as np
 import pandas as pd
 
-from pfsspec.parallel import srl_map, prll_map
+from pfsspec.parallel import SmartParallel
 from pfsspec.data.dataset import Dataset
 
 class DatasetBuilder():
@@ -44,11 +44,13 @@ class DatasetBuilder():
             dataset.init_storage(self.get_wave_count(), self.get_spectrum_count())
         return dataset
 
-    def init_process(self, i):
-        if self.random_seed is not None:
-            self.random_state = np.random.RandomState(self.random_seed + i + 1)
-        else:
-            self.random_state = np.random.RandomState(None)
+    def init_process(self):
+        # TODO: test if works, had to change because of using ProcessPoolExecutor
+        #if self.random_seed is not None:
+        #    self.random_state = np.random.RandomState(self.random_seed + i + 1)
+        #else:
+        #    self.random_state = np.random.RandomState(None)
+        self.random_state = np.random.RandomState()
 
     def process_item(self, i):
         raise NotImplementedError()
@@ -59,10 +61,15 @@ class DatasetBuilder():
 
         logging.info('Building dataset of size {}'.format(self.dataset.flux.shape))
 
-        if self.parallel:
-            spectra = prll_map(self.init_process, self.process_item, range(self.get_spectrum_count()), verbose=True)
-        else:
-            spectra = srl_map(self.init_process, self.process_item, range(self.get_spectrum_count()), verbose=True)
+        with SmartParallel(initializer=self.init_process, verbose=True, parallel=self.parallel) as p:
+            spectra = [ s for s in p.map(self.process_item, range(self.get_spectrum_count())) ]
+
+        #if self.parallel:
+        #    q, rng = prll_map(self.init_process, self.process_item, range(self.get_spectrum_count()), verbose=True)
+        #    # TODO: test
+        #    spectra = [q.get()[1] for x in rng]
+        #else:
+        #    spectra = srl_map(self.init_process, self.process_item, range(self.get_spectrum_count()), verbose=True)
 
         # Sort spectra by id
         # Here we assume that params is also sorted on the id column (not the default index!)
