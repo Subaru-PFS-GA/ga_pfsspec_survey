@@ -64,13 +64,6 @@ class DatasetBuilder():
         with SmartParallel(initializer=self.init_process, verbose=True, parallel=self.parallel) as p:
             spectra = [ s for s in p.map(self.process_item, range(self.get_spectrum_count())) ]
 
-        #if self.parallel:
-        #    q, rng = prll_map(self.init_process, self.process_item, range(self.get_spectrum_count()), verbose=True)
-        #    # TODO: test
-        #    spectra = [q.get()[1] for x in rng]
-        #else:
-        #    spectra = srl_map(self.init_process, self.process_item, range(self.get_spectrum_count()), verbose=True)
-
         # Sort spectra by id
         # Here we assume that params is also sorted on the id column (not the default index!)
         if self.params is not None and spectra[0].id is not None:
