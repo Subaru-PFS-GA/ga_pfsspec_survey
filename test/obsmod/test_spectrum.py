@@ -101,6 +101,20 @@ class TestSpectrum(TestBase):
 
         self.save_fig()
 
+    def test_convolve_gaussian_log(self):
+        grid = self.get_kurucz_grid()
+
+        spec = grid.get_nearest_model(Fe_H=0.0, T_eff=5000, log_g=2.45)
+        spec.plot()
+
+        spec.convolve_gaussian_log(dlambda=15, wlim=[5000, 9000])
+        spec.plot()
+
+        spec.convolve_gaussian_log(vdisp=2000, wlim=[5500, 8000])
+        spec.plot()
+
+        self.save_fig()
+
     def test_redden(self):
         grid = self.get_kurucz_grid()
         spec = grid.get_nearest_model(Fe_H=0.0, T_eff=7000, log_g=1.45)
