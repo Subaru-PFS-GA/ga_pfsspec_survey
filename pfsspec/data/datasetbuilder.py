@@ -1,4 +1,5 @@
 import sys
+import os
 import logging
 import numpy as np
 import pandas as pd
@@ -17,6 +18,7 @@ class DatasetBuilder():
             self.pipeline = orig.pipeline
         else:
             self.random_seed = random_seed
+            self.random_state = None
             self.dataset = None
             self.parallel = True
             self.params = None
@@ -45,18 +47,24 @@ class DatasetBuilder():
         return dataset
 
     def init_process(self):
-        # TODO: test if works, had to change because of using ProcessPoolExecutor
-        #if self.random_seed is not None:
-        #    self.random_state = np.random.RandomState(self.random_seed + i + 1)
-        #else:
-        #    self.random_state = np.random.RandomState(None)
-        self.random_state = np.random.RandomState()
+        # NOTE: cannot initialize class-specific data here because the initializer function is executed inside
+        #       the worker process before the class data is copied over (although not sure why, since the
+        #       process is supposed to be forked rather than a new one started...)
+        pass
+
+    def init_random_state(self):
+        if self.random_state is None:
+            if self.random_seed is not None:
+                # NOTE: this seed won't be consistent across runs because pids can vary
+                self.random_state = np.random.RandomState(self.random_seed + os.getpid() + 1)
+            else:
+                self.random_state = np.random.RandomState(None)
+            logging.debug("Initialized random state on pid {}, rnd={}".format(os.getpid(), self.random_state.rand()))
 
     def process_item(self, i):
         raise NotImplementedError()
 
     def build(self):
-        self.random_state = np.random.RandomState(self.random_seed)
         self.dataset = self.create_dataset()
 
         logging.info('Building dataset of size {}'.format(self.dataset.flux.shape))
