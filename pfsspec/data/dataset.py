@@ -55,7 +55,7 @@ class Dataset(PfsObject):
         logging.info("  mask:    {}".format(self.mask.shape if self.mask is not None else "None"))
         logging.info("  columns: {}".format(self.params.columns))
 
-    def load_items(self, slice=None):
+    def load_items(self, s=None):
         self.params = self.load_item('params', pd.DataFrame)
         self.wave = self.load_item('wave', np.ndarray)
         self.flux = self.load_item('flux', np.ndarray)
@@ -155,12 +155,12 @@ class Dataset(PfsObject):
         self.save_item('S', self.S)
         self.save_item('V', self.V)
 
-    def load_pca(self, filename, slice=None, format=None):
+    def load_pca(self, filename, s=None, format=None):
         logging.info("Loading PCA eigensystem from file {}...".format(filename))
-        self.load(filename, slice=slice, format=format, load_items_func=self.load_pca_items)
+        self.load(filename, s=s, format=format, load_items_func=self.load_pca_items)
         logging.info("Loaded PCA eigensystem.")
 
-    def load_pca_items(self, slice=None):
+    def load_pca_items(self, s=None):
         self.U = self.load_item('U', np.ndarray)
         self.S = self.load_item('S', np.ndarray)
         self.V = self.load_item('V', np.ndarray)
