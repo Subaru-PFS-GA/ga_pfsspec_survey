@@ -6,6 +6,7 @@ import pandas as pd
 
 from pfsspec.parallel import SmartParallel
 from pfsspec.data.dataset import Dataset
+import pfsspec.util as util
 
 class DatasetBuilder():
     def __init__(self, orig=None, random_seed=None):
@@ -14,15 +15,23 @@ class DatasetBuilder():
             self.random_state = None
             self.dataset = orig.dataset
             self.parallel = orig.parallel
-            self.params = orig.params
+            self.match_params = orig.params
             self.pipeline = orig.pipeline
         else:
             self.random_seed = random_seed
             self.random_state = None
             self.dataset = None
             self.parallel = True
-            self.params = None
+            self.match_params = None
             self.pipeline = None
+
+    def get_arg(self, name, old_value, args=None):
+        args = args or self.args
+        return util.get_arg(name, old_value, args)
+
+    def is_arg(self, name, args=None):
+        args = args or self.args
+        return util.is_arg(name, args)
 
     def add_args(self, parser):
         pass
@@ -69,12 +78,13 @@ class DatasetBuilder():
 
         logging.info('Building dataset of size {}'.format(self.dataset.flux.shape))
 
+        rng = range(self.get_spectrum_count())
         with SmartParallel(initializer=self.init_process, verbose=True, parallel=self.parallel) as p:
-            spectra = [ s for s in p.map(self.process_item, range(self.get_spectrum_count())) ]
+            spectra = [ s for s in p.map(self.process_item, rng) ]
 
         # Sort spectra by id
         # Here we assume that params is also sorted on the id column (not the default index!)
-        if self.params is not None and spectra[0].id is not None:
+        if self.match_params is not None and spectra[0].id is not None:
             spectra.sort(key=lambda s: s.id)
 
         for i in range(len(spectra)):
