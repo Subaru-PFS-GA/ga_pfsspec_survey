@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 
 from pfsspec.pfsobject import PfsObject
+from pfsspec.obsmod.spectrum import Spectrum
 
 class Dataset(PfsObject):
     def __init__(self, orig=None):
@@ -27,9 +28,35 @@ class Dataset(PfsObject):
             self.V = None
             self.PC = None
 
+    def get_spectrum_count(self):
+        return self.params.shape[0]
+
+    def create_spectrum(self):
+        return Spectrum()
+
+    def get_spectrum(self, i):
+        spec = self.create_spectrum()
+
+        # TODO: update this to handle variable wavelength
+
+        spec.wave = self.wave
+        spec.flux = self.flux[i]
+        if self.error is not None:
+            spec.flux_err = self.error[i]
+        if self.mask is not None:
+            spec.mask = self.mask[i]
+
+        params = self.params.loc[i].to_dict()
+        for p in params:
+            if hasattr(spec, p):
+                setattr(spec, p, params[p])
+
+        return spec
+
     def init_storage(self, wcount, scount):
         logging.debug('Initializing memory for dataset of size {}.'.format((scount, wcount)))
 
+        # TODO: update this to handle variable wavelength
         self.wave = np.empty(wcount)
         self.flux = np.empty((scount, wcount))
         self.error = np.empty((scount, wcount))
