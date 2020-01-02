@@ -4,12 +4,6 @@ import numpy as np
 from pfsspec.obsmod.spectrum import Spectrum
 
 class TestSpectrum(TestBase):
-    def test_fnu_to_flam(self):
-        self.fail()
-
-    def test_flam_to_fnu(self):
-        self.fail()
-
     def test_set_redshift(self):
         grid = self.get_kurucz_grid()
         spec = grid.get_nearest_model(Fe_H=0.0, T_eff=7000, log_g=1.45)
