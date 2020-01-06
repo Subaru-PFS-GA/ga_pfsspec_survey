@@ -1,8 +1,7 @@
 from test.test_base import TestBase
 import os
-import numpy as np
 
-from pfsspec.noisemod.sky import Sky
+from pfsspec.obsmod.sky import Sky
 
 
 class TestSky(TestBase):
