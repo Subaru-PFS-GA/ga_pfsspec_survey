@@ -2,12 +2,12 @@ import os
 import numpy as np
 from test.test_base import TestBase
 
-from pfsspec.noisemod.noise import Noise
+from pfsspec.obsmod.observation import Observation
 
 class TestError(TestBase):
     def test_read(self):
         filename = os.path.join(self.PFSSPEC_DATA_PATH, 'subaru/pfs/noise/sim8hr.dat')
-        error = Noise()
+        error = Observation()
         error.read(filename)
         error.plot()
 
@@ -18,7 +18,7 @@ class TestError(TestBase):
 
     def test_resample(self):
         filename = os.path.join(self.PFSSPEC_DATA_PATH, 'subaru/pfs/noise/sim8hr.dat')
-        error = Noise()
+        error = Observation()
         error.read(filename)
         error.plot()
 
