@@ -52,7 +52,8 @@ class DatasetBuilder():
     def create_dataset(self, init_storage=True):
         dataset = Dataset()
         if init_storage:
-            dataset.init_storage(self.get_wave_count(), self.get_spectrum_count())
+            constant_wave = self.pipeline.is_constant_wave()
+            dataset.init_storage(self.get_wave_count(), self.get_spectrum_count(), constant_wave=constant_wave)
         return dataset
 
     def init_process(self):
@@ -68,10 +69,11 @@ class DatasetBuilder():
                 self.random_state = np.random.RandomState(self.random_seed + os.getpid() + 1)
             else:
                 self.random_state = np.random.RandomState(None)
+            self.pipeline.random_state = self.random_state
             logging.debug("Initialized random state on pid {}, rnd={}".format(os.getpid(), self.random_state.rand()))
 
     def process_item(self, i):
-        raise NotImplementedError()
+        self.init_random_state()
 
     def build(self):
         self.dataset = self.create_dataset()
@@ -88,8 +90,14 @@ class DatasetBuilder():
             spectra.sort(key=lambda s: s.id)
 
         for i in range(len(spectra)):
+            if self.dataset.wave.ndim != 1:
+                self.dataset.wave[i, :] = spectra[i].wave
+            else:
+                self.dataset.wave[:] = self.pipeline.get_wave()
             self.dataset.flux[i, :] = spectra[i].flux
             self.dataset.error[i, :] = spectra[i].flux_err
+
+        self.copy_params_from_spectra(spectra)
 
         return spectra
 
