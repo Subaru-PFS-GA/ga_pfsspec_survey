@@ -39,7 +39,10 @@ class Dataset(PfsObject):
 
         # TODO: update this to handle variable wavelength
 
-        spec.wave = self.wave
+        if self.wave.ndim == 1:
+            spec.wave = self.wave
+        else:
+            spec.wave = self.wave[i]
         spec.flux = self.flux[i]
         if self.error is not None:
             spec.flux_err = self.error[i]
@@ -53,11 +56,13 @@ class Dataset(PfsObject):
 
         return spec
 
-    def init_storage(self, wcount, scount):
+    def init_storage(self, wcount, scount, constant_wave=True):
         logging.debug('Initializing memory for dataset of size {}.'.format((scount, wcount)))
 
-        # TODO: update this to handle variable wavelength
-        self.wave = np.empty(wcount)
+        if constant_wave:
+            self.wave = np.empty(wcount)
+        else:
+            self.wave = np.empty((scount, wcount))
         self.flux = np.empty((scount, wcount))
         self.error = np.empty((scount, wcount))
         self.mask = np.empty((scount, wcount))
@@ -104,61 +109,49 @@ class Dataset(PfsObject):
         return a_range, b_range
 
     def split(self, split_value):
-        a = Dataset()
-        b = Dataset()
-
         split_index = self.get_split_index(split_value)
         a_range, b_range = self.get_split_ranges(split_index)
 
-        a.params = self.params.iloc[a_range]
-        self.reset_index(a.params)
-        a.wave = self.wave
-        a.flux = self.flux[a_range]
-        a.error = self.error[a_range] if self.error is not None else None
-        a.mask = self.mask[a_range] if self.mask is not None else None
-
-        b.params = self.params.iloc[b_range]
-        self.reset_index(b.params)
-        b.wave = self.wave
-        b.flux = self.flux[b_range]
-        b.error = self.error[b_range] if self.error is not None else None
-        b.mask = self.mask[b_range] if self.mask is not None else None
+        a = self.filter(a_range)
+        b = self.filter(b_range)
 
         return split_index, a, b
 
     def filter(self, f):
-        a = Dataset()
-        b = Dataset()
+        ds = Dataset()
 
-        a.params = self.params.ix[f]
-        self.reset_index(a.params)
-        a.wave = self.wave
-        a.flux = self.flux[f]
-        a.error = self.error[f] if self.error is not None else None
-        a.mask = self.mask[f] if self.mask is not None else None
+        ds.params = self.params.ix[f]
+        #ds.params = self.params.iloc[a_range]
+        self.reset_index(ds.params)
+        if self.wave.ndim == 1:
+            ds.wave = self.wave
+        else:
+            ds.wave = self.wave[f]
+        ds.flux = self.flux[f]
+        ds.error = self.error[f] if self.error is not None else None
+        ds.mask = self.mask[f] if self.mask is not None else None
 
-        b.params = self.params.ix[~f]
-        self.reset_index(b.params)
-        b.wave = self.wave
-        b.flux = self.flux[~f]
-        b.error = self.error[~f] if self.error is not None else None
-        b.mask = self.mask[~f] if self.mask is not None else None
-
-        return a, b
+        return ds
 
     def merge(self, b):
-        a = Dataset()
+        ds = Dataset()
 
-        a.params = pd.concat([self.params, b.params], axis=0)
-        self.reset_index(a.params)
-        a.wave = self.wave
-        a.flux = np.concatenate([self.flux, b.flux], axis=0)
-        a.error = np.concatenate([self.error, b.error], axis=0) if self.error is not None and b.error is not None else None
-        a.mask = np.concatenate([self.mask, b.mask], axis=0) if self.mask is not None and b.mask is not None else None
+        ds.params = pd.concat([self.params, b.params], axis=0)
+        self.reset_index(ds.params)
+        if self.wave.ndim == 1:
+            ds.wave = self.wave
+        else:
+            ds.wave = np.concatenate([self.wave, b.wave], axis=0)
+        ds.flux = np.concatenate([self.flux, b.flux], axis=0)
+        ds.error = np.concatenate([self.error, b.error], axis=0) if self.error is not None and b.error is not None else None
+        ds.mask = np.concatenate([self.mask, b.mask], axis=0) if self.mask is not None and b.mask is not None else None
 
-        return a
+        return ds
 
     def run_pca(self, truncate=None):
+        if self.wave.ndim != 1:
+            raise Exception('PCA is only meaningful with a constant wave grid.')
+
         C = np.dot(self.flux.transpose(), self.flux)
         self.U, self.S, self.V = np.linalg.svd(C)
 
