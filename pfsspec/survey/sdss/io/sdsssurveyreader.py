@@ -43,8 +43,8 @@ class SdssSurveyReader(SurveyReader):
         parser.add_argument('--mjd', type=int, default=None, help='Limit to a single MJD')
         # TODO: add more filters
 
-    def init_from_args(self, args):
-        super(SdssSurveyReader, self).init_from_args(args)
+    def init_from_args(self, config, args):
+        super(SdssSurveyReader, self).init_from_args(config, args)
 
         self.user = self.get_arg('user', self.user, args)
         self.token = self.get_arg('token', self.token, args)
@@ -69,8 +69,8 @@ class SdssSurveyReader(SurveyReader):
     def execute_query(self, sql, context='DR7'):
         return CasJobs.executeQuery(sql=sql, context=context, format="pandas")
 
-    def open_data(self, indir, outdir):
-        super(SdssSurveyReader, self).open_data(indir, outdir)
+    def open_data(self, args, indir, outdir):
+        super(SdssSurveyReader, self).open_data(args, indir, outdir)
 
         self.create_auth_token()
 

@@ -32,8 +32,8 @@ class SurveyReader(Importer):
     def add_args(self, parser):
         parser.add_argument('--top', type=int, help='Stop after this many items.\n')
 
-    def init_from_args(self, args):
-        super(SurveyReader, self).init_from_args(args)
+    def init_from_args(self, config, args):
+        super(SurveyReader, self).init_from_args(config, args)
 
         self.threads = self.get_arg('threads', self.threads, args)
         self.parallel = self.threads is None or self.threads > 1
@@ -41,7 +41,7 @@ class SurveyReader(Importer):
             self.logger.info('Survey reader running in sequential mode.')
         self.top = self.get_arg('top', self.top, args)
 
-    def open_data(self, indir, outdir):
+    def open_data(self, args, indir, outdir):
         fn = os.path.join(outdir, 'spectra.dat')
 
         self.outdir = outdir
@@ -49,7 +49,7 @@ class SurveyReader(Importer):
         self.survey.filename = fn
         self.survey.fileformat = 'pickle'
 
-    def save_data(self):
+    def save_data(self, args, output_path):
         self.survey.save()
 
     def create_survey(self):
