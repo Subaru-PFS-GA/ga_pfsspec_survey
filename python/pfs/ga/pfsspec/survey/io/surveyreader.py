@@ -1,10 +1,10 @@
 import os
 import sys
 
-import pfsspec.util as util
-from pfsspec.util.parallel import SmartParallel
-from pfsspec.data.importer import Importer
-from pfsspec.data.survey import Survey
+import pfs.ga.pfsspec.util as util
+from pfs.ga.pfsspec.util.parallel import SmartParallel
+from pfs.ga.pfsspec.data.importer import Importer
+from pfs.ga.pfsspec.data.survey import Survey
 
 class SurveyReader(Importer):
     """

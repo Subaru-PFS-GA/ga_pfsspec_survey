@@ -2,12 +2,12 @@ import os
 from unittest import TestCase
 import matplotlib.pyplot as plt
 
-# from pfsspec.data.dataset import Dataset
-# from pfsspec.data.arraygrid import ArrayGrid
-# from pfsspec.stellarmod.modelgrid import ModelGrid
-# from pfsspec.stellarmod.kuruczgrid import KuruczGrid
-# from pfsspec.stellarmod.bosz import Bosz
-# from pfsspec.obsmod.filter import Filter
+# from pfs.ga.pfsspec.data.dataset import Dataset
+# from pfs.ga.pfsspec.data.arraygrid import ArrayGrid
+# from pfs.ga.pfsspec.stellarmod.modelgrid import ModelGrid
+# from pfs.ga.pfsspec.stellarmod.kuruczgrid import KuruczGrid
+# from pfs.ga.pfsspec.stellarmod.bosz import Bosz
+# from pfs.ga.pfsspec.obsmod.filter import Filter
 
 # TODO: inherit from core.TestBase
 class TestBase(TestCase):

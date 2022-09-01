@@ -4,7 +4,7 @@ import numpy as np
 import requests
 from astropy.io import fits
 
-from pfsspec.data.spectrumreader import SpectrumReader
+from pfs.ga.pfsspec.data.spectrumreader import SpectrumReader
 
 class Sdss4SpectrumReader(SpectrumReader):
     """

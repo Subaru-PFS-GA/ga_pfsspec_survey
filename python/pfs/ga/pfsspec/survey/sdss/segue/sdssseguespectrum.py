@@ -1,5 +1,5 @@
-from pfsspec.common.stellarspectrum import StellarSpectrum
-from pfsspec.surveys.sdssspectrum import SdssSpectrum
+from pfs.ga.pfsspec.common.stellarspectrum import StellarSpectrum
+from pfs.ga.pfsspec.surveys.sdssspectrum import SdssSpectrum
 
 class SdssSegueSpectrum(StellarSpectrum, SdssSpectrum):
     # TODO: make StellarSpectrum a mixin

@@ -1,4 +1,4 @@
-from pfsspec.surveys.surveyspectrum import SurveySpectrum
+from pfs.ga.pfsspec.surveys.surveyspectrum import SurveySpectrum
 
 class SdssSpectrum(SurveySpectrum):
     """

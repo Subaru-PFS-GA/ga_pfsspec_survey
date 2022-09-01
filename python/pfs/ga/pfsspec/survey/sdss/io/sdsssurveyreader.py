@@ -4,7 +4,7 @@ import getpass
 
 from SciServer import Authentication, CasJobs
 
-from pfsspec.data.surveyreader import SurveyReader
+from pfs.ga.pfsspec.data.surveyreader import SurveyReader
 
 class SdssSurveyReader(SurveyReader):
     def __init__(self, orig=None):

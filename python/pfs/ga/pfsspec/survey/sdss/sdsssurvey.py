@@ -1,4 +1,4 @@
-from pfsspec.data.survey import Survey
+from pfs.ga.pfsspec.data.survey import Survey
 
 class SdssSurvey(Survey):
     pass

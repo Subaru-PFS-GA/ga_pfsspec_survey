@@ -3,7 +3,7 @@ import sys
 import numpy as np
 from astropy.io import fits
 
-from pfsspec.data.spectrumreader import SpectrumReader
+from pfs.ga.pfsspec.data.spectrumreader import SpectrumReader
 
 class Sdss1SpectrumReader(SpectrumReader):
     def __init__(self, orig=None):

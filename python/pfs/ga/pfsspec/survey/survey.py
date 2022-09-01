@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import pickle
 
-from pfsspec.core import PfsObject
+from pfs.ga.pfsspec.core import PfsObject
 
 class Survey(PfsObject):
     """

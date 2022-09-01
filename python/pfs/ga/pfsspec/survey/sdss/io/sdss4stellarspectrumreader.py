@@ -1,5 +1,5 @@
-from pfsspec.surveys.sdss4spectrumreader import Sdss4SpectrumReader
-from pfsspec.surveys.sdssseguespectrum import SdssSegueSpectrum
+from pfs.ga.pfsspec.surveys.sdss4spectrumreader import Sdss4SpectrumReader
+from pfs.ga.pfsspec.surveys.sdssseguespectrum import SdssSegueSpectrum
 
 class Sdss4StellarSpectrumReader(Sdss4SpectrumReader):
     def __init__(self, orig=None):
