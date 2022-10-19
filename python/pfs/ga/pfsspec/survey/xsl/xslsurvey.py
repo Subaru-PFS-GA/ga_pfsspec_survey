@@ -1,4 +1,4 @@
 from ..survey import Survey
 
-class SdssSurvey(Survey):
+class XslSurvey(Survey):
     pass

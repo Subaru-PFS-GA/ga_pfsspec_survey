@@ -1,4 +1,4 @@
-from pfs.ga.pfsspec.common.spectrum import Spectrum
+from pfs.ga.pfsspec.core import Spectrum
 
 class SurveySpectrum():
     """
@@ -9,15 +9,15 @@ class SurveySpectrum():
         if isinstance(orig, SurveySpectrum):
             self.ra = orig.ra
             self.dec = orig.dec
+            self.mjd = orig.mjd
         else:
             self.ra = None
             self.dec = None
+            self.mjd = None
 
     def get_param_names(self):
         params = ['ra',
-                  'dec']
+                  'dec',
+                  'mjd']
         return params
 
-    def print_info(self):
-        print('ra=', self.ra)
-        print('dec=', self.dec)

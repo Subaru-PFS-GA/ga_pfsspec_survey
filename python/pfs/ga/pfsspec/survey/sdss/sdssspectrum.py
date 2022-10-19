@@ -1,4 +1,4 @@
-from pfs.ga.pfsspec.surveys.surveyspectrum import SurveySpectrum
+from ..surveyspectrum import SurveySpectrum
 
 class SdssSpectrum(SurveySpectrum):
     """
@@ -9,21 +9,13 @@ class SdssSpectrum(SurveySpectrum):
         super(SdssSpectrum, self).__init__(orig=orig)
 
         if isinstance(orig, SdssSpectrum):
-            self.mjd = orig.mjd
             self.plate = orig.plate
             self.fiber = orig.fiber
         else:
-            self.mjd = None
             self.plate = None
             self.fiber = None
 
     def get_param_names(self):
-        params = ['mjd',
-                  'plate',
+        params = ['plate',
                   'fiber']
         return params
-
-    def print_info(self):
-        print('mjd=', self.mjd)
-        print('plate=', self.plate)
-        print('fiber=', self.fiber)

@@ -1,0 +1,2 @@
+from .sdssseguespectrum import SdssSegueSpectrum
+from .sdssseguesurvey import SdssSegueSurvey

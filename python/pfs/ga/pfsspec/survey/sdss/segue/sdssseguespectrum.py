@@ -1,5 +1,5 @@
-from pfs.ga.pfsspec.common.stellarspectrum import StellarSpectrum
-from pfs.ga.pfsspec.surveys.sdssspectrum import SdssSpectrum
+from pfs.ga.pfsspec.stellar import StellarSpectrum
+from pfs.ga.pfsspec.survey.sdss.sdssspectrum import SdssSpectrum
 
 class SdssSegueSpectrum(StellarSpectrum, SdssSpectrum):
     # TODO: make StellarSpectrum a mixin
@@ -18,7 +18,3 @@ class SdssSegueSpectrum(StellarSpectrum, SdssSpectrum):
         params = SdssSpectrum.get_param_names(self)
         params += StellarSpectrum.get_param_names(self)
         return params
-
-    def print_info(self):
-        SdssSpectrum.print_info(self)
-        StellarSpectrum.print_info(self)

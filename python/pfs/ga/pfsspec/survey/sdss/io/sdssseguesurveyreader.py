@@ -1,9 +1,9 @@
 import os
 
-from pfs.ga.pfsspec.surveys.sdssseguesurvey import SdssSegueSurvey
-from pfs.ga.pfsspec.surveys.sdsssurveyreader import SdssSurveyReader
-from pfs.ga.pfsspec.surveys.sdss1stellarspectrumreader import Sdss1StellarSpectrumReader
-from pfs.ga.pfsspec.surveys.sdss4stellarspectrumreader import Sdss4StellarSpectrumReader
+from ..segue.sdssseguesurvey import SdssSegueSurvey
+from .sdss1stellarspectrumreader import Sdss1StellarSpectrumReader
+from .sdss4stellarspectrumreader import Sdss4StellarSpectrumReader
+from .sdsssurveyreader import SdssSurveyReader
 
 class SdssSegueSurveyReader(SdssSurveyReader):
     def __init__(self, orig=None):

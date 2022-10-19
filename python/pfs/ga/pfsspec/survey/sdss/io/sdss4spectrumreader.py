@@ -4,7 +4,7 @@ import numpy as np
 import requests
 from astropy.io import fits
 
-from pfs.ga.pfsspec.data.spectrumreader import SpectrumReader
+from pfs.ga.pfsspec.core.io import SpectrumReader
 
 class Sdss4SpectrumReader(SpectrumReader):
     """
@@ -60,6 +60,7 @@ class Sdss4SpectrumReader(SpectrumReader):
         filename = os.path.join(self.path, filename)
         
         # If the file is not available at a local/lan path, download from the web
+        # TODO: move this logic to a generic function
         if not os.path.isfile(filename):
             url = row['url']
             req = requests.get(url, allow_redirects=True)
