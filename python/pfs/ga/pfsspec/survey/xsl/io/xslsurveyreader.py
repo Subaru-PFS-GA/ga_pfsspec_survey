@@ -143,12 +143,14 @@ class XslSurveyReader(SurveyReader):
             'ra', 'dec', 'mjd',
             '[Fe/H]', 'Teff', 'logg',
             'e_[Fe/H]', 'e_Teff', 'e_logg',
+            'BARY_COR',
             'SPEC_RES', 'FWHM', 'SNR']]
 
         params.columns = ['xsl_id', 'obj_id', 'filename',
             'ra', 'dec', 'mjd',
             'Fe_H', 'T_eff', 'log_g',
             'Fe_H_err', 'T_eff_err', 'log_g_err',
+            'bary_cor',
             'res', 'pfs_fwhm', 'snr']
 
         return params
