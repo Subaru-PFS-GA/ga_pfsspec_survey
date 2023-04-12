@@ -15,31 +15,15 @@ class SurveyReader(Importer):
         super(SurveyReader, self).__init__(orig=orig)
 
         if isinstance(orig, SurveyReader):
-            self.verbose = orig.verbose
-            self.parallel = orig.parallel
-            self.threads = orig.threads
-            self.resume = orig.resume
-            self.top = orig.top
             self.outdir = orig.outdir
         else:
-            self.verbose = True
-            self.parallel = True
-            self.threads = None
-            self.resume = False
-            self.top = None
             self.outdir = None
 
-    def add_args(self, parser):
-        parser.add_argument('--top', type=int, help='Stop after this many items.\n')
+    def add_args(self, parser, config):
+        super().add_args(parser, config)
 
     def init_from_args(self, config, args):
-        super(SurveyReader, self).init_from_args(config, args)
-
-        self.threads = self.get_arg('threads', self.threads, args)
-        self.parallel = self.threads is None or self.threads > 1
-        if not self.parallel:
-            self.logger.info('Survey reader running in sequential mode.')
-        self.top = self.get_arg('top', self.top, args)
+        super().init_from_args(config, args)
 
     def open_data(self, args, indir, outdir):
         fn = os.path.join(outdir, 'spectra.dat')
