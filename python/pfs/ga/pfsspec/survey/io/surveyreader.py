@@ -52,6 +52,9 @@ class SurveyReader(Importer):
         except Exception as e:
             self.logger.error(e)
             return None
+        
+    def process_item_error(self, ex, ix_row):
+        raise NotImplementedError()
 
     def store_item(self, ix_row, spec):
         # TODO: When optimizing memory use to process larger surveys,
@@ -68,7 +71,7 @@ class SurveyReader(Importer):
 
         rows = [(index, row) for index, row in params.iterrows()]
         with SmartParallel(verbose=self.verbose, parallel=self.parallel, threads=self.threads) as p:
-            self.survey.spectra = [r for r in p.map(self.process_item, rows)]
+            self.survey.spectra = [r for r in p.map(self.process_item, self.process_item_error, rows)]
         
         # In case errors happened we get Nones
         self.survey.spectra = list(filter(lambda s: s is not None, self.survey.spectra))
