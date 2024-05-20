@@ -1,5 +1,4 @@
 import os
-import logging
 import getpass
 
 from SciServer import Authentication, CasJobs

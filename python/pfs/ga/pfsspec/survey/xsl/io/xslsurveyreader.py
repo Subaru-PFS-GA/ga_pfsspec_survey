@@ -1,6 +1,5 @@
 import os, re
 from glob import glob
-import logging
 import numpy as np
 import pandas as pd
 from astropy import units as u
@@ -103,8 +102,8 @@ class XslSurveyReader(SurveyReader):
 
         fn = os.path.join(self.indir, 'Arentsen+19/tablea1.dat')
         cols = {
-            'HNAME':        (0, 24,    np.str),    
-            'xsl_id':       (26, 29,   np.int),     
+            'HNAME':        (0, 24,    str),    
+            'xsl_id':       (26, 29,   int),     
             'Teffuvb':      (30, 35,   float),    
             'logguvb':      (36, 41,   float),    
             '[Fe/H]uvb':    (42, 47,   float),    
@@ -117,10 +116,10 @@ class XslSurveyReader(SurveyReader):
             'e_logg':       (83, 87,   float),    
             '[Fe/H]':       (88, 93,   float),    
             'e_[Fe/H]':     (94, 98,   float),    
-            'f_Teff':       (99, 100,  np.str),    
-            'f_logg':       (101, 102, np.str),    
-            'f_[Fe/H]':     (103, 104, np.str),    
-            'Cflag':        (105, 106, np.str),    
+            'f_Teff':       (99, 100,  str),    
+            'f_logg':       (101, 102, str),    
+            'f_[Fe/H]':     (103, 104, str),    
+            'Cflag':        (105, 106, str),    
         }
         tablea1 = pd.read_fwf(fn, header=None,
             names=[ k for k in cols.keys() ],
