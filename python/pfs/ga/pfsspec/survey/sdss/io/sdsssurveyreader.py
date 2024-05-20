@@ -4,6 +4,7 @@ import getpass
 
 from SciServer import Authentication, CasJobs
 
+from pfs.ga.pfsspec.core.setup_logger import logger
 from ...io.surveyreader import SurveyReader
 
 class SdssSurveyReader(SurveyReader):
@@ -61,7 +62,7 @@ class SdssSurveyReader(SurveyReader):
                 self.user = input('SciServer username: ')
             password = getpass.getpass()
             self.token = Authentication.login(self.user, password)
-        self.logger.info('SciServer token: {}'.format(self.token))
+        logger.info('SciServer token: {}'.format(self.token))
 
     def authenticate(self, username, password):
         self.sciserver_token = Authentication.login(username, password)
@@ -83,11 +84,11 @@ class SdssSurveyReader(SurveyReader):
         raise NotImplementedError()
 
     def run(self):
-        self.logger.info('Querying SkyServer for spectrum headers')
+        logger.info('Querying SkyServer for spectrum headers')
         params = self.find_objects()
-        self.logger.info('Found {} objects.'.format(params.shape[0]))
+        logger.info('Found {} objects.'.format(params.shape[0]))
 
-        self.logger.info('Start loading spectra from `{}`'.format(self.reader.path))
+        logger.info('Start loading spectra from `{}`'.format(self.reader.path))
         self.load_survey(params)
 
     def execute_notebooks(self, script):

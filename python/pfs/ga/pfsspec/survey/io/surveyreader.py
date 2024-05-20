@@ -1,6 +1,7 @@
 import os
 import sys
 
+from pfs.ga.pfsspec.core.setup_logger import logger
 import pfs.ga.pfsspec.core.util as util
 from pfs.ga.pfsspec.core.util import SmartParallel
 from pfs.ga.pfsspec.core.io import Importer
@@ -50,7 +51,7 @@ class SurveyReader(Importer):
         try:
             return self.load_spectrum(index, row)
         except Exception as e:
-            self.logger.error(e)
+            logger.error(e)
             return None
         
     def process_item_error(self, ex, ix_row):

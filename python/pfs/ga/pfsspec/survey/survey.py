@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import pickle
 
+from pfs.ga.pfsspec.core.setup_logger import logger
 from pfs.ga.pfsspec.core import PfsObject
 
 class Survey(PfsObject):
@@ -42,10 +43,10 @@ class Survey(PfsObject):
             self.params = pickle.load(f)
             self.spectra = pickle.load(f)
 
-        self.logger.info("Loaded survey with shapes:")
-        self.logger.info("  spectra: {}".format(len(self.spectra)))
-        self.logger.info("  params:  {}".format(self.params.shape))
-        self.logger.info("  columns: {}".format(self.params.columns))
+        logger.info("Loaded survey with shapes:")
+        logger.info("  spectra: {}".format(len(self.spectra)))
+        logger.info("  params:  {}".format(self.params.shape))
+        logger.info("  columns: {}".format(self.params.columns))
 
     def add_args(self, parser):
         pass
