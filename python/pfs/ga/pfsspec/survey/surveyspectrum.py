@@ -6,18 +6,21 @@ class SurveySpectrum():
     """
 
     def __init__(self, orig=None):
-        if isinstance(orig, SurveySpectrum):
-            self.ra = orig.ra
-            self.dec = orig.dec
-            self.mjd = orig.mjd
-        else:
+        if not isinstance(orig, SurveySpectrum):
             self.ra = None
             self.dec = None
             self.mjd = None
+            self.airmass = None
+        else:
+            self.ra = orig.ra
+            self.dec = orig.dec
+            self.mjd = orig.mjd
+            self.airmass = orig.airmass
 
     def get_param_names(self):
         params = ['ra',
                   'dec',
-                  'mjd']
+                  'mjd',
+                  'airmass']
         return params
 

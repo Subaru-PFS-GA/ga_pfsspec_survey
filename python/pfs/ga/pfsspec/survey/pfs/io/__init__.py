@@ -1,1 +1,2 @@
 from .pfssurveydownloader import PfsSurveyDownloader
+from .pfsstellarspectrumreader import PfsStellarSpectrumReader

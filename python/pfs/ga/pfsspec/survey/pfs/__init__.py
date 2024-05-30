@@ -1,0 +1,1 @@
+from .pfsstellarspectrum import PfsStellarSpectrum
