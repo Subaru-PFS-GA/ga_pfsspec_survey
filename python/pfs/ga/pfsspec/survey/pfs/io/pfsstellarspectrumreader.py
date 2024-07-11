@@ -10,11 +10,30 @@ class PfsStellarSpectrumReader(PfsSpectrumReader):
     def __init__(self, wave_lim=None, orig=None):
         super().__init__(wave_lim=wave_lim, orig=orig)
 
-    def read_from_pfsSingle(self, pfsSingle, index=-1, 
+    def read_from_pfsSingle(self, pfsSingle, index=-1, /,
                             arm=None, arm_limits=None, arm_mask=None,
                             ref_mag=None):
         """
-        Create a PfsStellarSpectrum from a PfsSingle object.
+        Create a PfsStellarSpectrum object from a PfsSingle object.
+
+        PfsSingle object contain the spectrum in the fluxTable attribute, which
+        lists all pixels of all arms. This method extracts the spectrum of a
+        single arm with either `arm_limits` or `arm_mask` specified.
+
+        Parameters
+        ----------
+        pfsSingle : PfsSingle
+            The PfsSingle object.
+        index : int
+            A value to assign to the index attribute of the PfsStellarSpectrum object.
+        arm : str
+            The arm to extract the spectrum from.
+        arm_limits : tuple
+            The wavelength limits of the arm.
+        arm_mask : array-like
+            A mask defining the pixels of the arm.
+        ref_mag : str
+            Magnitude to be used as reference for the target.
         """
 
         # TODO: What if the arms overlap?
