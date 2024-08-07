@@ -1,0 +1,44 @@
+package:
+    name: pfsspec-survey
+    version: 0.1.1
+
+source:
+  fn: pfsspec-survey-0.1.1.tar.gz
+  url: https://pypi.python.org/packages/source/t/toolz/toolz-0.6.0.tar.gz
+  md5: 779bd5844a223c9f0be7e7ea03cc02b1
+
+build:
+    noarch: python
+    number: 1
+    script: python -m pip install --no-deps --ignore-installed .
+    entry_points:
+
+
+requirements:
+    build:
+        - python >=3.7
+        - setuptools >=65.0.2
+        - setuptools_scm[toml]>=4
+        - pip >=22.0
+
+    run:
+        - python >=3.10
+        - tqdm >=4
+        - numpy >=1.24
+        - pandas >=1.5
+        - h5py >=3.8
+        - matplotlib >=3.7
+        - scipy >=1.10
+        - pyyaml >=6.0
+
+
+test:
+    imports:
+        - toolz
+
+    #commands:
+    #    -
+
+about:
+    home: https://github.com/Subaru-PFS-GA/ga_pfsspec_survey
+    license: NO LICENSE - DO NOT DISTRIBUTE
