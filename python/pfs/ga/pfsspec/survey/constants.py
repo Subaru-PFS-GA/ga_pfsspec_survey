@@ -1,4 +1,7 @@
 class Constants():
+    PFSSPEC_SURVEY_LOGNAME = 'pfs.ga.survey'
+
+    # TODO: move these under SDSS
     SDSS_SP_MASK_OK = 0x000
     SDSS_SP_MASK_NOPLUG = 0x001  # Fiber not listed in plugmap file
     SDSS_SP_MASK_BADTRACE = 0x002  # Bad trace from routine TRACE320CRUDE
