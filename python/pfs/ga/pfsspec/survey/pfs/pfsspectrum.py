@@ -9,26 +9,14 @@ class PfsSpectrum(SurveySpectrum):
         super().__init__(orig=orig)
 
         if not isinstance(orig, PfsSpectrum):
-            self.catId = None
-            self.objId = None
-            self.visit = None
-
-            self.spectrograph = None
-            self.fiberId = None
+            self.target = None
+            self.identity = None
         else:
-            self.catId = orig.catId
-            self.objId = orig.objId
-            self.visit = orig.visit
-
-            self.spectrograph = orig.spectrograph
-            self.fiberId = orig.fiberId
+            self.target = orig.target
+            self.identity = orig.identity
 
     def get_param_names(self):
-        params = ['catId',
-                  'objId',
-                  'visit',
-                  'spectrograph',
-                  'fiberId',]
+        params = []
         return params
     
     def get_name(self):
