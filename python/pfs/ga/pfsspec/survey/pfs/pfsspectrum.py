@@ -24,9 +24,12 @@ class PfsSpectrum(SurveySpectrum):
     
     def get_mask_bits(self, mask_flags):
         mask_flags = set(mask_flags)
+        max_bit = max(self.mask_flags.keys())
+        
         mask_bits = 0
-        for i in range(len(self.mask_flags)):
-            if self.mask_flags[i] in mask_flags:
+        for i in range(max_bit, -1, -1):
+            mask_bits <<= 1
+            if i in self.mask_flags and self.mask_flags[i] in mask_flags:
                 mask_bits |= 1
-                mask_bits <<= 1
+            
         return mask_bits
