@@ -1,4 +1,5 @@
 import os
+from types import SimpleNamespace
 from astropy.io import fits
 
 from test.pfs.ga.pfsspec.core import TestBase
@@ -19,6 +20,7 @@ class TestPfsSpectrumReader(TestBase):
         self.assertEqual(s.catid, 10015)
         self.assertEqual(s.identity.catId, 10015)
         self.assertEqual(s.identity.objId, 23870)
+        self.assertEqual(s.observations.num, 1)
 
     def test_read_from_pfsDesign(self):
         filename = '/datascope/subaru/data/commissioning/pfsConfig/2024-06-01/pfsConfig-0x6d832ca291636984-111483.fits'
@@ -33,6 +35,7 @@ class TestPfsSpectrumReader(TestBase):
         self.assertEqual(s.catid, 10015)
         self.assertEqual(s.identity.catId, 10015)
         self.assertEqual(s.identity.objId, 23870)
+        self.assertEqual(s.observations.num, 1)
 
     def test_read_from_pfsFiberArraySet(self):
         filename = '/datascope/subaru/data/commissioning/rerun/run17/20240604/pfsMerged/2024-06-02/v111637/pfsMerged-111637.fits'

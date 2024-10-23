@@ -25,6 +25,8 @@ PfsFileSystemConfig = SimpleNamespace(
             ],
             dir_format = '$datadir/pfsDesign',
             filename_format = 'pfsDesign-0x{pfsDesignId}.fits',
+            identity = lambda data:
+                SimpleNamespace(pfsDesignId=data.pfsDesignId),
             load = lambda identity, filename, dir:
                 PfsDesign.read(pfsDesignId=identity.pfsDesignId, dirName=dir),
         ),
@@ -40,6 +42,8 @@ PfsFileSystemConfig = SimpleNamespace(
             ],
             dir_format = '$datadir/pfsConfig/{date}/',
             filename_format = 'pfsConfig-0x{pfsDesignId}-{visit}.fits',
+            identity = lambda data:
+                SimpleNamespace(pfsDesignId=data.pfsDesignId, visit=data.visit),
             load = lambda identity, filename, dir: 
                 PfsConfig.read(pfsDesignId=identity.pfsDesignId, visit=identity.visit, dirName=dir),
         ),
@@ -56,6 +60,8 @@ PfsFileSystemConfig = SimpleNamespace(
             ],
             dir_format = '$datadir/rerun/$rerundir/pfsArm/{date}/v{visit}/',
             filename_format = 'pfsArm-{visit}-{arm}{spectrograph}.fits',
+            identity = lambda data:
+                SimpleNamespace(visit=data.identity.visit, arm=data.identity.arm, spectrograph=data.identity.spectrograph),
             load = lambda identity, filename, dir:
                 PfsArm.read(Identity(identity.visit, arm=identity.arm, spectrograph=identity.spectrograph), dirName=dir),
         ),
@@ -70,6 +76,8 @@ PfsFileSystemConfig = SimpleNamespace(
             ],
             dir_format = '$datadir/rerun/$rerundir/pfsMerged/{date}/v{visit}/',
             filename_format = 'pfsMerged-{visit}.fits',
+            identity = lambda data:
+                SimpleNamespace(visit=data.identity.visit),     # TODO: add date
             load = lambda identity, filename, dir:
                 PfsMerged.read(Identity(identity.visit), dirName=dir),
         ),
@@ -86,6 +94,8 @@ PfsFileSystemConfig = SimpleNamespace(
             ],
             dir_format = '$datadir/rerun/$rerundir/pfsSingle/{catId}/{tract}/{patch}',
             filename_format = 'pfsSingle-{catId}-{tract}-{patch}-{objId}-{visit}.fits',
+            identity = lambda data:
+                SimpleNamespace(catId=data.target.catId, tract=data.target.tract, patch=data.target.patch, objId=data.target.objId, visit=data.observations.visit[0]),
             load = lambda identity, filename, dir:
                 PfsSingle.read(identity.__dict__, dirName=dir),
         ),
@@ -103,6 +113,8 @@ PfsFileSystemConfig = SimpleNamespace(
             ],
             dir_format = '$datadir/rerun/$rerundir/pfsObject/{catId}/{tract}/{patch}',
             filename_format = 'pfsObject-{catId}-{tract}-{patch}-{objId}-{nVisit}-0x{pfsVisitHash}.fits',
+            identity = lambda data:
+                SimpleNamespace(catId=data.target.catId, tract=data.target.tract, patch=data.target.patch, objId=data.target.objId, nVisit=data.nVisit, pfsVisitHash=data.pfsVisitHash),
             load = lambda identity, filename, dir:
                 PfsObject.read(identity.__dict__, dirName=dir),
         ),
@@ -120,6 +132,8 @@ PfsFileSystemConfig = SimpleNamespace(
             ],
             dir_format = '$datadir/rerun/$rerundir/pfsGAObject/{catId}/{tract}/{patch}',
             filename_format = 'pfsGAObject-{catId}-{tract}-{patch}-{objId}-{nVisit}-0x{pfsVisitHash}.fits',
+            identity = lambda data:
+                SimpleNamespace(catId=data.target.catId, tract=data.target.tract, patch=data.target.patch, objId=data.target.objId, nVisit=data.nVisit, pfsVisitHash=data.pfsVisitHash),
             load = lambda identity, filename, dir:
                 PfsGAObject.read(identity.__dict__, dirName=dir),
         ),

@@ -1,6 +1,8 @@
 import os
 import sys
 import numpy as np
+from datetime import datetime
+import pytz
 from types import SimpleNamespace
 
 import astropy.units as u
@@ -43,7 +45,7 @@ class PfsSpectrumReader(SpectrumReader):
 
         return spec
     
-    def read_from_pfsFiberArray(self, data, spec, /,
+    def read_from_pfsFiberArray(self, data, spec, arm=None,
                                 wave_limits=None, wave_mask=None):
         """
         Read a spectrum from a PfsFiberArray object (PfsSingle, PfsObject or PfsGAObject).
@@ -97,8 +99,16 @@ class PfsSpectrumReader(SpectrumReader):
         spec.fiberid = data.observations.fiberId[0]
 
         # Extract Pfs header information
-        spec.identity = SimpleNamespace(**data.target.identity)
+        spec.identity = SimpleNamespace(
+            visit = data.observations.visit[0],
+            arm = arm if arm is not None else data.observations.arm[0],
+            spectrograph = data.observations.spectrograph[0],
+            pfsDesignId = data.observations.pfsDesignId[0],
+            **data.target.identity)
+        spec.target = data.target
         spec.observations = data.observations
+        if arm is not None:
+            spec.observations.arm = [ arm for a in data.observations.arm ]
 
         # Extract the spectrum
 
@@ -143,18 +153,27 @@ class PfsSpectrumReader(SpectrumReader):
         filename = data.filenameFormat % dict(**data.target.identity, visit=data.observations.visit[0])
         spec.history.append(f'Loaded from PfsFiberArraySet `{filename}`.')
     
-    def read_from_pfsDesign(self, data: PfsDesign, spec, index=None, fiberid=None):
+    def read_from_pfsDesign(self, data: PfsDesign, spec, arm=None, objid=None, fiberid=None, index=None,):
         """
         Read the spectrum header from a PfsDesign or PfsConfig object. This information is
         not available in the PfsFiberArraySet objects.
         """
         
         if index is None:
-            index = np.where(data.fiberId == fiberid)[0][0]
-        elif fiberid is None:
+            if fiberid is not None:
+                index = np.where(data.fiberId == fiberid)[0][0]
+            elif objid is not None:
+                index = np.where(data.objId == objid)[0][0]
+            else:
+                raise ValueError('Either fiberId or objId must be specified if index is None.')
+
+        if fiberid is None:
             fiberid = data.fiberId[index]
 
-        spec.id = data.objId[index]
+        if objid is None:
+            objid = data.objId[index]
+
+        spec.id = objid
         spec.catid = data.catId[index]
 
         spec.ra = data.ra[index]
@@ -177,37 +196,54 @@ class PfsSpectrumReader(SpectrumReader):
         spec.spectrograph = data.spectrograph[fiberid]
         spec.fiberid = data.fiberId[index]
 
-        # Extract Pfs header information
+        # Extract Pfs header information, this is different what the
+        # data model uses for the identity, we collect all fields here that
+        # are necessary to uniquely identify the spectrum
         spec.identity = SimpleNamespace(
+            visit = data.visit,
+            arm = arm if arm is not None else data.arms,
+            spectrograph = data.spectrograph[fiberid],
+            pfsDesignId = data.pfsDesignId,
             catId = data.catId[index],
             objId = data.objId[index],
             tract = data.tract[index],
             patch = data.patch[index],
         )
 
-        spec.observations = SimpleNamespace(
-            visit = data.visit,
-            arm = data.arms,
-            spectrograph = data.spectrograph[fiberid],
-            pfsDesignId = data.pfsDesignId,
-            fiberId = data.fiberId[index],
-            pfiNominal = data.pfiNominal[index],
-            pfiCenter = data.pfiCenter[index],
-            obsTime = None,
-            expTime = np.nan,
-            num = 1
+        spec.target = Target(
+            catId = data.catId[index],
+            tract = data.tract[index],
+            patch = data.patch[index],
+            objId = data.objId[index],
+            ra = data.ra[index],
+            dec = data.dec[index],
+            targetType = data.targetType[index],
+        )
+
+        spec.observations = Observations(
+            visit = np.array([ data.visit ]),
+            arm = np.array([ arm if arm is not None else data.arms ]),
+            spectrograph = np.array([ data.spectrograph[fiberid] ]),
+            pfsDesignId = np.array([ data.pfsDesignId ]),
+            fiberId = np.array([ data.fiberId[index] ]),
+            pfiNominal = np.array([ data.pfiNominal[index] ]),
+            pfiCenter = np.array([ data.pfiCenter[index] ]),
+            obsTime = np.array([ None ]),
+            expTime = np.array([ np.nan ]),
         )
 
         filename = data.fileNameFormat % (data.pfsDesignId, data.visit)
         spec.history.append(f'Loaded from PfsFiberArraySet `{filename}`, index={index}.')
     
-    def read_from_pfsFiberArraySet(self, data, spec, fiberid=None, index=None,
+    def read_from_pfsFiberArraySet(self, data, spec, arm=None,
+                                   fiberid=None, index=None,
                                    wave_limits=None, wave_mask=None):
     
         if index is None:
-            index = np.where(data.fiberId == fiberid)[0][0]
-        elif fiberid is None:
-            fiberid = data.fiberId[index]
+            if fiberid is not None:
+                index = np.where(data.fiberId == fiberid)[0][0]
+            else:
+                raise ValueError('Either fiberId or objId must be specified if index is None.')
         
         # Extract the spectrum
 
@@ -261,3 +297,11 @@ class PfsSpectrumReader(SpectrumReader):
     def __get_mask_flags(self, pfsSingle):
         # For now, ignore mask_flags and copy all flags
         return { v: k for k, v in pfsSingle.flags.flags.items() }
+    
+    def __calculate_params(self, spec):
+        # TODO: read MJD from somewhere
+        # Convert datetime to MJD using astropy
+        # Create datetime with UTC time zone (Hawaii: UTC - 10)
+        spec.mjd = Astro.datetime_to_mjd(datetime(2023, 7, 24, 14, 0, 0, tzinfo=pytz.timezone('UTC')))
+        spec.alt, spec.az = Astro.radec_to_altaz(spec.ra, spec.dec, spec.mjd)
+        spec.airmass = 1 / np.cos(np.radians(90 - spec.alt))

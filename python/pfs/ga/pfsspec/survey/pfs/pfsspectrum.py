@@ -20,4 +20,13 @@ class PfsSpectrum(SurveySpectrum):
         return params
     
     def get_name(self):
-        return f'catId={self.catId:05d}, objID={self.objId:016x}, visit={self.visit:06d}'
+        return f'catId={self.identity.catId:05d}, objID={self.identity.objId:016x}, visit={self.identity.visit:06d}'
+    
+    def get_mask_bits(self, mask_flags):
+        mask_flags = set(mask_flags)
+        mask_bits = 0
+        for i in range(len(self.mask_flags)):
+            if self.mask_flags[i] in mask_flags:
+                mask_bits |= 1
+                mask_bits <<= 1
+        return mask_bits

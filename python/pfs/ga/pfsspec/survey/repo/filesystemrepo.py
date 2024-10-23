@@ -580,5 +580,17 @@ class FileSystemRepo():
 
         format_string = self.__config.products[product].filename_format
         return self.__format_path(product, identity, format_string, variables=variables)
+    
+    def get_identity(self, data):
+        """
+        Returns the identity of the product.
+
+        Arguments
+        ---------
+        data : object
+            Product data.
+        """
+
+        return self.__config.products[type(data)].identity(data)
 
     #endregion
