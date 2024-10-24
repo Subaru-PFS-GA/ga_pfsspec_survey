@@ -12,6 +12,9 @@ from pfs.ga.pfsspec.core.obsmod.resampling import Binning
 from pfs.ga.pfsspec.core.io import SpectrumReader
 
 from ..datamodel import *
+from ..utils import *
+
+from ..setup_logger import logger
 
 class PfsSpectrumReader(SpectrumReader):
     def __init__(self, wave_lim=None, orig=None):
@@ -76,7 +79,6 @@ class PfsSpectrumReader(SpectrumReader):
         
         # Get coordinates, observation time, airmass
         spec.id = data.target.objId
-        spec.catid = data.target.catId
 
         spec.ra = data.target.ra
         spec.dec = data.target.dec
@@ -98,17 +100,25 @@ class PfsSpectrumReader(SpectrumReader):
         spec.spectrograph = data.observations.spectrograph[0]
         spec.fiberid = data.observations.fiberId[0]
 
-        # Extract Pfs header information
-        spec.identity = SimpleNamespace(
-            visit = data.observations.visit[0],
-            arm = arm if arm is not None else data.observations.arm[0],
-            spectrograph = data.observations.spectrograph[0],
-            pfsDesignId = data.observations.pfsDesignId[0],
-            **data.target.identity)
         spec.target = data.target
         spec.observations = data.observations
+
+        # Override arm if reading a single-arm spectrum
         if arm is not None:
             spec.observations.arm = [ arm for a in data.observations.arm ]
+
+        if len(data.observations) == 1:
+            spec.identity = Identity(
+                visit = data.observations.visit[0],
+                arm = arm if arm is not None else data.observations.arm[0],
+                spectrograph = data.observations.spectrograph[0],
+                pfsDesignId = data.observations.pfsDesignId[0],
+                obsTime = data.observations.obsTime[0],
+                expTime = data.observations.expTime[0],
+            )
+        else:
+            logger.warning(f'Multiple observations in PfsFiberArray object for spectrum {spec.get_name()}, cannot generate a single identity.')
+            spec.identity = None
 
         # Extract the spectrum
 
@@ -117,38 +127,17 @@ class PfsSpectrumReader(SpectrumReader):
         # nJy -> erg s-1 cm-2 A-1
         flux = 1e-32 * Physics.fnu_to_flam(wave, data.fluxTable.flux)
         flux_err = 1e-32 * Physics.fnu_to_flam(wave, data.fluxTable.error)
+        flux_sky = None
+        mask = data.fluxTable.mask
 
         # TODO: covariances?
 
-        # Apply the arm mask
-        if wave_mask is None:
-            if wave_limits is not None:
-                wave_mask = (wave >= wave_limits[0]) & (wave <= wave_limits[1])
-            else:
-                wave_mask = ()
-
-        if wave_mask.sum() == 0:
-            # TODO write warning
-            return None
-
-        spec.wave = wave[wave_mask]
-        spec.wave_edges = Binning.find_wave_edges(spec.wave)
-        spec.flux = flux[wave_mask]
-        spec.flux_err = flux_err[wave_mask]
-        spec.mask = data.fluxTable.mask[wave_mask]
-
-        # Make sure pixels with nan and inf are masked
-        spec.mask = np.where(np.isnan(spec.flux) | np.isinf(spec.flux) | np.isnan(spec.flux_err) | np.isinf(spec.flux_err),
-                             spec.mask | data.flags['UNMASKEDNAN'],
-                             spec.mask)
-        
-        spec.mask_bits = 0
         spec.mask_flags = self.__get_mask_flags(data)
+        spec.mask_bits = 0
 
-        spec.resolution = np.round(np.median(0.5 * (spec.wave[1:] + spec.wave[:-1]) / np.diff(spec.wave)), -3)
-        spec.is_wave_regular = False
-        spec.is_wave_lin = False
-        spec.is_wave_log = False
+        self.__set_data_vectors(spec, wave, flux, flux_err, flux_sky,
+                                mask, data.flags['UNMASKEDNAN'],
+                                wave_mask, wave_limits)
 
         filename = data.filenameFormat % dict(**data.target.identity, visit=data.observations.visit[0])
         spec.history.append(f'Loaded from PfsFiberArraySet `{filename}`.')
@@ -196,20 +185,6 @@ class PfsSpectrumReader(SpectrumReader):
         spec.spectrograph = data.spectrograph[fiberid]
         spec.fiberid = data.fiberId[index]
 
-        # Extract Pfs header information, this is different what the
-        # data model uses for the identity, we collect all fields here that
-        # are necessary to uniquely identify the spectrum
-        spec.identity = SimpleNamespace(
-            visit = data.visit,
-            arm = arm if arm is not None else data.arms,
-            spectrograph = data.spectrograph[fiberid],
-            pfsDesignId = data.pfsDesignId,
-            catId = data.catId[index],
-            objId = data.objId[index],
-            tract = data.tract[index],
-            patch = data.patch[index],
-        )
-
         spec.target = Target(
             catId = data.catId[index],
             tract = data.tract[index],
@@ -221,16 +196,34 @@ class PfsSpectrumReader(SpectrumReader):
         )
 
         spec.observations = Observations(
-            visit = np.array([ data.visit ]),
-            arm = np.array([ arm if arm is not None else data.arms ]),
-            spectrograph = np.array([ data.spectrograph[fiberid] ]),
-            pfsDesignId = np.array([ data.pfsDesignId ]),
-            fiberId = np.array([ data.fiberId[index] ]),
-            pfiNominal = np.array([ data.pfiNominal[index] ]),
-            pfiCenter = np.array([ data.pfiCenter[index] ]),
-            obsTime = np.array([ None ]),
-            expTime = np.array([ np.nan ]),
+            visit = np.atleast_1d(data.visit),
+            arm = np.atleast_1d(arm if arm is not None else data.arms),
+            spectrograph = np.atleast_1d(data.spectrograph[fiberid]),
+            pfsDesignId = np.atleast_1d(data.pfsDesignId),
+            fiberId = np.atleast_1d(data.fiberId[index]),
+            pfiNominal = np.atleast_2d(data.pfiNominal[index]),
+            pfiCenter = np.atleast_2d(data.pfiCenter[index]),
+            obsTime = np.atleast_1d(Identity.defaultObsTime),
+            expTime = np.atleast_1d(Identity.defaultExpTime),
         )
+
+        # Extract Pfs header information, this is different what the
+        # data model uses for the identity, we collect all fields here that
+        # are necessary to uniquely identify the spectrum
+        identity = Identity(
+            visit = data.visit,
+            arm = arm if arm is not None else data.arms,
+            spectrograph = data.spectrograph[fiberid],
+            pfsDesignId = data.pfsDesignId,
+            obsTime = Identity.defaultObsTime,
+            expTime = Identity.defaultExpTime
+        )
+        
+        if spec.identity is None:
+            spec.identity = identity
+        else:
+            spec.identity = merge_identity(spec.identity, identity, arm=arm)
+            
 
         filename = data.fileNameFormat % (data.pfsDesignId, data.visit)
         spec.history.append(f'Loaded from PfsFiberArraySet `{filename}`, index={index}.')
@@ -259,7 +252,27 @@ class PfsSpectrumReader(SpectrumReader):
         # TODO: covariances? norm?
         # data.covar - (nfiber, 3, nwave) flux covariance band matrix, still all nan
         # data.norm - normalization factor for each spectrum - can we use it for anything?
+       
+        spec.mask_bits = 0
+        spec.mask_flags = self.__get_mask_flags(data)
 
+        self.__set_data_vectors(spec, wave, flux, flux_err, flux_sky,
+                        mask, data.flags['UNMASKEDNAN'],
+                        wave_mask, wave_limits)
+        
+        if spec.identity is None:
+            spec.identity = data.identity
+        else:
+            spec.identity = merge_identity(spec.identity, data.identity, arm=arm)
+
+        filename = data.getFilename(data.identity)
+        spec.history.append(f'Loaded from PfsFiberArraySet `{filename}`, index={index}.')
+
+    def __set_data_vectors(self, spec,
+                           wave, flux, flux_err, flux_sky,
+                           mask, unmasked_nan_flag,
+                           wave_mask, wave_limits):
+        
         # Apply the arm mask
         if wave_mask is None:
             if wave_limits is not None:
@@ -275,27 +288,22 @@ class PfsSpectrumReader(SpectrumReader):
         spec.wave_edges = Binning.find_wave_edges(spec.wave)
         spec.flux = flux[wave_mask]
         spec.flux_err = flux_err[wave_mask]
-        spec.flux_sky = flux_sky[wave_mask]
+        self.flux_sky = flux_sky[wave_mask] if flux_sky is not None else None
         spec.mask = mask[wave_mask]
 
         # Make sure pixels with nan and inf are masked
         spec.mask = np.where(np.isnan(spec.flux) | np.isinf(spec.flux) | np.isnan(spec.flux_err) | np.isinf(spec.flux_err),
-                             spec.mask | data.flags['UNMASKEDNAN'],
+                             spec.mask | unmasked_nan_flag,
                              spec.mask)
-        
-        spec.mask_bits = 0
-        spec.mask_flags = self.__get_mask_flags(data)
 
         spec.resolution = np.round(np.median(0.5 * (spec.wave[1:] + spec.wave[:-1]) / np.diff(spec.wave)), -3)
         spec.is_wave_regular = False
         spec.is_wave_lin = False
         spec.is_wave_log = False
-
-        filename = data.getFilename(data.identity)
-        spec.history.append(f'Loaded from PfsFiberArraySet `{filename}`, index={index}.')
         
     def __get_mask_flags(self, pfsSingle):
-        # For now, ignore mask_flags and copy all flags
+        # Get the dictionary from the PFS data model object because we need to be
+        # compatible with the rest of the GA spectrum library
         return { v: k for k, v in pfsSingle.flags.flags.items() }
     
     def __calculate_params(self, spec):
