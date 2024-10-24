@@ -513,6 +513,17 @@ class FileSystemRepo():
             Path to the file to load.
         identity : SimpleNamespace
             Identity of the product to load.
+        variables : dict
+            Dictionary of variables that can be expanded in the file paths.
+
+        Returns
+        -------
+        object
+            Loaded product.
+        SimpleNamespace
+            Identity of the product.
+        str
+            Path to the file that was loaded.
         """
 
         self.__ensure_one_arg(filename=filename, identity=identity)
@@ -537,9 +548,53 @@ class FileSystemRepo():
 
         # Load the product via the dispatcher
         logger.debug(f'Loading product {product.__name__} from {filename}.')
-        product = self.__config.products[product].load(identity, filename, dir)
+        data = self.__config.products[product].load(identity, filename, dir)
 
-        return product, identity, filename
+        return data, identity, filename
+    
+    def save_product(self, data, filename=None, identity=None, variables=None, create_dir=True):
+        """
+        Saves a product to a file. The filename is either provided or constructed based on the identity.
+
+        Arguments
+        ---------
+        product : object
+            Product to save.
+        filename : str
+            Path to the file to save.
+        identity : SimpleNamespace
+            Identity of the product.
+        variables : dict
+            Dictionary of variables that can be expanded in the file paths.
+
+        Returns
+        -------
+        SimpleNamespace
+            Identity of the product.
+        str
+            Path to the file that was saved.
+        """
+
+        product = type(data)
+        identity = self.get_identity(data) if identity is None else identity
+
+        # These are the intended locations that might be overriden if filename is provided
+        if filename is None:
+            dir = self.format_dir(product, identity, variables=variables)
+            filename = self.format_filename(product, identity, variables=variables) if filename is None else filename
+            filename = os.path.join(dir, filename)
+        else:
+            dir = os.path.dirname(filename)
+
+        if create_dir and not os.path.exists(dir):
+            logger.debug(f'Creating directory {dir}.')
+            os.makedirs(dir, exist_ok=True)
+
+        # Save the product via the dispatcher
+        logger.debug(f'Savinging product {product.__name__} to {filename}.')
+        self.__config.products[product].save(data, identity, filename, dir)
+
+        return identity, filename
     
     def __format_path(self, product, identity, format_string, variables=None):
         params = self.__config.products[product].params.__dict__

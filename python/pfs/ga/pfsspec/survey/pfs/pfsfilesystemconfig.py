@@ -133,9 +133,18 @@ PfsFileSystemConfig = SimpleNamespace(
             dir_format = '$datadir/rerun/$rerundir/pfsGAObject/{catId}/{tract}/{patch}',
             filename_format = 'pfsGAObject-{catId}-{tract}-{patch}-{objId}-{nVisit}-0x{pfsVisitHash}.fits',
             identity = lambda data:
-                SimpleNamespace(catId=data.target.catId, tract=data.target.tract, patch=data.target.patch, objId=data.target.objId, nVisit=data.nVisit, pfsVisitHash=data.pfsVisitHash),
+                SimpleNamespace(
+                    catId = data.target.catId,
+                    tract = data.target.tract,
+                    patch = data.target.patch,
+                    objId = data.target.objId,
+                    nVisit = data.nVisit,
+                    pfsVisitHash = calculatePfsVisitHash(data.observations.visit)
+                ),
             load = lambda identity, filename, dir:
-                PfsGAObject.read(identity.__dict__, dirName=dir),
+                PfsGAObject.readFits(os.path.join(dir, filename)),
+            save = lambda data, identity, filename, dir:
+                PfsGAObject.writeFits(data, os.path.join(dir, filename))
         ),
     }
 )
