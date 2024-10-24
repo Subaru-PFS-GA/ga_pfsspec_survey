@@ -1,5 +1,7 @@
 from ...io.surveyreader import SurveyReader
 
+from ..setup_logger import logger
+
 class PfsSurverReader(SurveyReader):
     def __init__(self, orig=None):
         super().__init__(orig=orig)

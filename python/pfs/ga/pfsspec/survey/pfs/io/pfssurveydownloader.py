@@ -6,6 +6,8 @@ from pfs.ga.pfsspec.core.util import SmartParallel
 from pfs.ga.pfsspec.core.util.dict import pivot_array_of_dicts, pivot_dict_of_arrays
 from ...io import SurveyDownloader
 
+from ..setup_logger import logger
+
 class PfsSurveyDownloader(SurveyDownloader):
     """
     Implements function to download spectra from a survey.
