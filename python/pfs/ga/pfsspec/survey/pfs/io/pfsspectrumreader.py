@@ -124,6 +124,7 @@ class PfsSpectrumReader(SpectrumReader):
 
         # nm -> A
         wave = Physics.nm_to_angstrom(data.fluxTable.wavelength)
+
         # nJy -> erg s-1 cm-2 A-1
         flux = 1e-32 * Physics.fnu_to_flam(wave, data.fluxTable.flux)
         flux_err = 1e-32 * Physics.fnu_to_flam(wave, data.fluxTable.error)
@@ -132,8 +133,11 @@ class PfsSpectrumReader(SpectrumReader):
 
         # TODO: covariances?
 
-        spec.mask_flags = self.__get_mask_flags(data)
+        # TODO: Check class type here if necessary. PfsSingle and PfsObject are both flux-calibrated.
+        spec.is_flux_calibrated = True
+
         spec.mask_bits = 0
+        spec.mask_flags = self.__get_mask_flags(data)
 
         self.__set_data_vectors(spec, wave, flux, flux_err, flux_sky,
                                 mask, data.flags['UNMASKEDNAN'],
@@ -242,6 +246,7 @@ class PfsSpectrumReader(SpectrumReader):
 
         # nm -> A
         wave = Physics.nm_to_angstrom(data.wavelength[index])
+        
         # nJy -> erg s-1 cm-2 A-1
         flux = data.flux[index]
         flux_err = np.sqrt(data.variance[index])
@@ -252,6 +257,9 @@ class PfsSpectrumReader(SpectrumReader):
         # TODO: covariances? norm?
         # data.covar - (nfiber, 3, nwave) flux covariance band matrix, still all nan
         # data.norm - normalization factor for each spectrum - can we use it for anything?
+
+        # TODO: Check class type here if necessary. PfsMerged and PfsArm are both uncalibrated
+        spec.is_flux_calibrated = False
        
         spec.mask_bits = 0
         spec.mask_flags = self.__get_mask_flags(data)
