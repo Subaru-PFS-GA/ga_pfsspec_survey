@@ -31,6 +31,72 @@ class PfsSpectrumReader(SpectrumReader):
     def init_from_args(self, args):
         super().init_from_args(args)
 
+    def is_available(self, data, arm=None, objid=None, fiberid=None, index=None):
+        """
+        Verify if the requested arm is available, at least according to the metadata.
+        """
+
+        def get_type_string():
+            return f'{type(data).__name__}'
+
+        def get_id_string():
+            id = ''
+
+            if isinstance(data, PfsFiberArray):
+                raise NotImplementedError()
+            
+            if isinstance(data, PfsFiberArraySet):
+                raise NotImplementedError()
+            
+            if isinstance(data, PfsDesign):
+                id = f'pfsDesignId={data.pfsDesignId:016x}, '
+
+            if isinstance(data, PfsConfig):
+                id += f'visit={data.visit:06d}, '
+            
+            if objid is not None:
+                id += f'objId={objid:016x}, '
+
+            if fiberid is not None:
+                id += f'fiberId={fiberid:03d}, '
+
+            return id
+
+        if isinstance(data, PfsFiberArray):                         # pfsSingle
+            raise NotImplementedError()
+        elif isinstance(data, PfsFiberArraySet):                    # PfsMerged
+            if arm is not None and arm not in data.identity.arm:
+                logger.warning(f'Arm {arm} not available in {get_type_string()} object.')
+                return False
+
+            if fiberid is not None and fiberid not in data.fiberId:
+                logger.warning(f'Fiber {fiberid} not available in {get_type_string()} object.')
+                return False
+            
+            if index is not None and index >= len(data.fiberId):
+                logger.warning(f'Index {index} out of range in {get_type_string()} object.')
+                return False
+        elif isinstance(data, PfsDesign):
+            if arm is not None and arm not in data.arms:
+                logger.warning(f'Arm {arm} not available in {get_type_string()} object with {get_id_string()}.')
+                return False
+
+            if objid is not None and objid not in data.objId:
+                logger.warning(f'Object {objid} not available in {get_type_string()} object with {get_id_string()}.')
+                return False
+
+            if fiberid is not None and fiberid not in data.fiberId:
+                logger.warning(f'Fiber {fiberid} not available in {get_type_string()} object with {get_id_string()}.')
+                return False
+            
+            if index is not None and index >= len(data.fiberId):
+                logger.warning(f'Index {index} out of range in {get_type_string()} object with {get_id_string()}.')
+                return False
+        else:
+            raise NotImplementedError()
+        
+        return True
+
     def read(self):
         raise NotImplementedError()
 
@@ -146,7 +212,7 @@ class PfsSpectrumReader(SpectrumReader):
         filename = data.filenameFormat % dict(**data.target.identity, visit=data.observations.visit[0])
         spec.history.append(f'Loaded from PfsFiberArraySet `{filename}`.')
     
-    def read_from_pfsDesign(self, data: PfsDesign, spec, arm=None, objid=None, fiberid=None, index=None,):
+    def read_from_pfsDesign(self, data: PfsDesign, spec, arm=None, objid=None, fiberid=None, index=None):
         """
         Read the spectrum header from a PfsDesign or PfsConfig object. This information is
         not available in the PfsFiberArraySet objects.
