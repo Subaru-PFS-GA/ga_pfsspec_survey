@@ -1,2 +1,3 @@
 from .pfsfilesystemconfig import PfsFileSystemConfig
+from .pfsgen3filesystemconfig import PfsGen3FileSystemConfig
 from .pfsstellarspectrum import PfsStellarSpectrum

@@ -8,12 +8,12 @@ class HexFilter(SearchFilter):
 
     def __init__(self, *values, name=None, format=None, orig=None):
 
-        super().__init__(*values, name=name, format=format, orig=orig)
-
         if not isinstance(orig, HexFilter):
             format = format if format is not None else '{:x}'
         else:
-            format = format if format is not None else orig._format
+            format = format if format is not None else orig.format
+
+        super().__init__(*values, name=name, format=format, orig=orig)
        
     def _parse_value(self, value):
         return int(value, 16)

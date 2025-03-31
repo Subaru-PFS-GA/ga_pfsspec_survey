@@ -1,7 +1,7 @@
 from .searchfilter import SearchFilter
-from datetime import date
+from datetime import datetime
 
-class DateFilter(SearchFilter):
+class TimeFilter(SearchFilter):
     """
     Implements an argument parser for date filters and logic to match
     ranges of dates within file names.
@@ -18,8 +18,8 @@ class DateFilter(SearchFilter):
 
     def __init__(self, *values, name=None, format=None, orig=None):
 
-        if not isinstance(orig, DateFilter):
-            format = format if format is not None else '{:%Y-%m-%d}'
+        if not isinstance(orig, TimeFilter):
+            format = format if format is not None else '{:%Y-%m-%dT%H:%M:%SZ}'
         else:
             format =  format if format is not None else orig.format
 
@@ -27,7 +27,7 @@ class DateFilter(SearchFilter):
 
     def _parse_value(self, value):
         # Parse value as a date
-        return date.fromisoformat(value)
+        return datetime.fromisoformat(value)
     
     def _parse(self, arg: list):
         """
@@ -65,7 +65,7 @@ class DateFilter(SearchFilter):
         else:
             # TODO: this is specific to the default format string
             glob_pattern = self.format[2:-1]
-            for key, value in DateFilter.FORMAT_GLOB_PATTERNS.items():
+            for key, value in TimeFilter.FORMAT_GLOB_PATTERNS.items():
                 glob_pattern = glob_pattern.replace(key, value)
 
             return glob_pattern

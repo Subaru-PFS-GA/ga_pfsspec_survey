@@ -1,5 +1,5 @@
 try:
-    from pfs.datamodel import PfsFiberArray, PfsFiberArraySet, PfsSingle, PfsObject, PfsArm, PfsMerged
+    from pfs.datamodel import PfsFiberArray, PfsFiberArraySet, PfsSingle, PfsObject, PfsArm, PfsMerged, PfsCalibrated, PfsCoadd
     from pfs.datamodel import PfsConfig, PfsDesign
     from pfs.datamodel import PfsGAObject
     from pfs.datamodel import Target, Identity, Observations
@@ -12,6 +12,8 @@ except ImportError:
     PfsObject = object()
     PfsArm = object()
     PfsMerged = object()
+    PfsCalibrated = object()
+    PfsCoadd = object()
     PfsConfig = object()
     PfsDesign = object()
     PfsGAObject = object()

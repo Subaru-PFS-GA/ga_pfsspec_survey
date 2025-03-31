@@ -270,16 +270,27 @@ class FileSystemRepo():
                 elif hasattr(self.__filters, k):
                     params[k].values = getattr(self.__filters, k)
 
+        # Substitute patterns in  variables with environment variables
+        vars = {}
+        if self.__variables is not None:
+            for k, v in self.__variables.items():
+                vars[k] = self.__expandvars(v, os.environ)
+        if variables is not None:
+            for k, v in variables.items():
+                vars[k] = self.__expandvars(v, os.environ)
+
+        # Substitute config variables into the glob pattern
+        patts = []
+        for p in patterns:
+            p = self.__expandvars(p, vars)
+            p = self.__expandvars(p, os.environ)
+            patts.append(p)
+
         # Evaluate the glob pattern for each filter parameter
         glob_pattern_parts = { k: p.get_glob_pattern() for k, p in params.items() }
 
         # Compose the full glob pattern
-        glob_pattern = os.path.join(*[ p.format(**glob_pattern_parts) for p in patterns ])
-
-        # Substitute config variables into the glob pattern
-        glob_pattern = self.__expandvars(glob_pattern, variables)
-        glob_pattern = self.__expandvars(glob_pattern, self.__variables)
-        glob_pattern = self.__expandvars(glob_pattern, os.environ)
+        glob_pattern = os.path.join(*[ p.format(**glob_pattern_parts) for p in patts ])
 
         # Find the files that match the glob pattern
         # Set breakpoint here to debug issues regarding files not found
