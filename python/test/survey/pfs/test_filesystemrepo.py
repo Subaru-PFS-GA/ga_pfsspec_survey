@@ -7,7 +7,9 @@ from pfs.datamodel import *
 from pfs.ga.pfsspec.survey.repo import FileSystemRepo
 from pfs.ga.pfsspec.survey.pfs import PfsFileSystemConfig
 
-class TestFileSystemConnector(TestCase):
+class TestFileSystemRepo(TestCase):
+
+    # TODO: this is obsolete
 
     def get_test_repo(self):
         return FileSystemRepo(PfsFileSystemConfig)

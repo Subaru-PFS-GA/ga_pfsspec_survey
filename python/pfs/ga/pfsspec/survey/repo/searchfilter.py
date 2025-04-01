@@ -1,4 +1,5 @@
 from collections.abc import Iterable
+import numpy as np
 
 class SearchFilter():
     """
@@ -140,9 +141,13 @@ class SearchFilter():
         self._parse(arg)
 
     def match(self, arg):
-        # The filter matches the value if the filter is empty or the value
-        # is equal to one of the values or within the inclusive range of one
-        # of the ranges in the filter.
+        """
+        Return True if `arg` matches the filter. Arg can have various data types.
+        
+        The value matches the filter if the filter is empty or the value
+        is equal to one of the values or within the inclusive range of one
+        of the ranges in the filter.
+        """
 
         if isinstance(arg, str):
             value = self._parse_value(arg)
@@ -159,6 +164,28 @@ class SearchFilter():
                         return True
 
             return False
+
+    def mask(self, values):
+        """
+        Create a boolean mask with True where the values match the filter.
+
+        The values matche the filter if the filter is empty or the value
+        is equal to one of the values or within the inclusive range of one
+        of the ranges in the filter. 
+        """
+
+        mask = np.full_like(values, True, dtype=bool)
+
+        if self._values is None or len(self._values) == 0:
+            return mask
+        else:
+            for v in self._values:
+                if isinstance(v, tuple):
+                    mask &= (values >= v[0]) & (values <= v[1])
+                else:
+                    mask &= values == v
+
+        return mask
             
     def get_glob_pattern(self):
         """

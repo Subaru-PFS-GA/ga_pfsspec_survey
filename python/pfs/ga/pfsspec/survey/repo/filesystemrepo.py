@@ -227,7 +227,7 @@ class FileSystemRepo():
     def __find_files_and_match_params(self,
                                       patterns: list,
                                       params: SimpleNamespace,
-                                      param_values: SimpleNamespace,
+                                      param_values: dict,
                                       params_regex: list,
                                       variables: dict):
         """
@@ -242,7 +242,7 @@ class FileSystemRepo():
             List of directory name glob pattern template strings.
         params : SimpleNamespace
             Parameters to match the IDs in the file names.
-        param_values : SimpleNamespace
+        param_values : dict
             Values of the parameters to match the IDs in the file names.
         params_regex : str
             Regular expression patterns to match the filename. The regex should contain named groups

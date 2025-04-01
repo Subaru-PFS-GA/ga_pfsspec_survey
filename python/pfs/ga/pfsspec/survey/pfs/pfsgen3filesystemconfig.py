@@ -6,6 +6,39 @@ from .datamodel import *
 
 from ..repo import IntFilter, HexFilter, DateFilter, TimeFilter, StringFilter
 
+def load_PfsDesign(identity, filename, dir):
+    return PfsDesign.read(pfsDesignId=identity.pfsDesignId, dirName=dir)
+
+def load_PfsConfig(identity, filename, dir):
+    if filename is not None:
+        return PfsConfig._readImpl(filename, visit=identity.visit)
+    else:
+        return PfsConfig.read(pfsDesignId=identity.pfsDesignId, visit=identity.visit, dirName=dir)
+
+def load_PfsArm(identity, filename, dir):
+    return PfsArm.read(Identity(identity.visit, arm=identity.arm, spectrograph=identity.spectrograph), dirName=dir)
+
+def load_PfsMerged(identity, filename, dir):
+    if filename is not None:
+        return PfsMerged.readFits(filename)
+    else:
+        return PfsMerged.read(Identity(identity.visit), dirName=dir)
+
+def load_PfsCalibrated(identity, filename, dir):
+    return PfsCalibrated.read(Identity(identity.visit), dirName=dir)
+
+def load_PfsSingle(identity, filename, dir):
+    return PfsSingle.read(identity.__dict__, dirName=dir)
+
+def load_PfsObject(identity, filename, dir):
+    return PfsObject.read(identity.__dict__, dirName=dir)
+
+def load_PfsGAObject(identity, filename, dir):
+    return PfsGAObject.readFits(os.path.join(dir, filename))
+
+def save_PfsGAObject(data, identity, filename, dir):
+    PfsGAObject.writeFits(data, os.path.join(dir, filename))
+
 PfsGen3FileSystemConfig = SimpleNamespace(
     root = '$datadir',
     variables = {
@@ -27,8 +60,7 @@ PfsGen3FileSystemConfig = SimpleNamespace(
             filename_format = 'pfsDesign-0x{pfsDesignId}.fits',
             identity = lambda data:
                 SimpleNamespace(pfsDesignId=data.pfsDesignId),
-            load = lambda identity, filename, dir:
-                PfsDesign.read(pfsDesignId=identity.pfsDesignId, dirName=dir),
+            load = load_PfsDesign,
         ),
         PfsConfig: SimpleNamespace(
             params = SimpleNamespace(
@@ -43,8 +75,7 @@ PfsGen3FileSystemConfig = SimpleNamespace(
             filename_format = 'pfsConfig_PFS_{visit}_PFS_raw_pfsConfig.fits',
             identity = lambda data:
                 SimpleNamespace(pfsDesignId=data.pfsDesignId, visit=data.visit),
-            load = lambda identity, filename, dir: 
-                PfsConfig.read(pfsDesignId=identity.pfsDesignId, visit=identity.visit, dirName=dir),
+            load = load_PfsConfig,
         ),
         PfsArm: SimpleNamespace(
             params = SimpleNamespace(
@@ -62,8 +93,7 @@ PfsGen3FileSystemConfig = SimpleNamespace(
             filename_format = 'pfsArm_PFS_{visit}_{arm}{spectrograph}_${rerun}_{proctime}.fits',
             identity = lambda data:
                 SimpleNamespace(visit=data.identity.visit, arm=data.identity.arm, spectrograph=data.identity.spectrograph),
-            load = lambda identity, filename, dir:
-                PfsArm.read(Identity(identity.visit, arm=identity.arm, spectrograph=identity.spectrograph), dirName=dir),
+            load = load_PfsArm,
         ),
         PfsMerged: SimpleNamespace(
             params = SimpleNamespace(
@@ -79,8 +109,7 @@ PfsGen3FileSystemConfig = SimpleNamespace(
             filename_format = 'pfsMerged_PFS_{visit}_${rerun}_{proctime}.fits',
             identity = lambda data:
                 SimpleNamespace(visit=data.identity.visit),     # TODO: add date
-            load = lambda identity, filename, dir:
-                PfsMerged.read(Identity(identity.visit), dirName=dir),
+            load = load_PfsMerged,
         ),
         PfsCalibrated: SimpleNamespace(
             params = SimpleNamespace(
@@ -96,8 +125,7 @@ PfsGen3FileSystemConfig = SimpleNamespace(
             filename_format = 'pfsCalibrated_PFS_{visit}_${rerun}_{proctime}.fits',
             identity = lambda data:
                 SimpleNamespace(visit=data.identity.visit),     # TODO: add date
-            load = lambda identity, filename, dir:
-                PfsCalibrated.read(Identity(identity.visit), dirName=dir),
+            load = load_PfsCalibrated,
         ),
         PfsSingle: SimpleNamespace(
             params = SimpleNamespace(
@@ -114,8 +142,7 @@ PfsGen3FileSystemConfig = SimpleNamespace(
             filename_format = 'pfsSingle-{catId}-{tract}-{patch}-{objId}-{visit}.fits',
             identity = lambda data:
                 SimpleNamespace(catId=data.target.catId, tract=data.target.tract, patch=data.target.patch, objId=data.target.objId, visit=data.observations.visit[0]),
-            load = lambda identity, filename, dir:
-                PfsSingle.read(identity.__dict__, dirName=dir),
+            load = load_PfsSingle,
         ),
         PfsObject: SimpleNamespace(
             params = SimpleNamespace(
@@ -133,8 +160,7 @@ PfsGen3FileSystemConfig = SimpleNamespace(
             filename_format = 'pfsObject-{catId}-{tract}-{patch}-{objId}-{nVisit}-0x{pfsVisitHash}.fits',
             identity = lambda data:
                 SimpleNamespace(catId=data.target.catId, tract=data.target.tract, patch=data.target.patch, objId=data.target.objId, nVisit=data.nVisit, pfsVisitHash=data.pfsVisitHash),
-            load = lambda identity, filename, dir:
-                PfsObject.read(identity.__dict__, dirName=dir),
+            load = load_PfsObject,
         ),
         PfsGAObject: SimpleNamespace(
             params = SimpleNamespace(
@@ -159,10 +185,8 @@ PfsGen3FileSystemConfig = SimpleNamespace(
                     nVisit = data.nVisit,
                     pfsVisitHash = calculatePfsVisitHash(data.observations.visit)
                 ),
-            load = lambda identity, filename, dir:
-                PfsGAObject.readFits(os.path.join(dir, filename)),
-            save = lambda data, identity, filename, dir:
-                PfsGAObject.writeFits(data, os.path.join(dir, filename))
+            load = load_PfsGAObject,
+            save = save_PfsGAObject
         ),
     }
 )

@@ -18,6 +18,9 @@ class TestDateFilter(TestCase):
     def test_parse(self):
         filter = DateFilter()
 
+        filter.parse(['20240102'])
+        self.assertEqual([date(2024, 1, 2)], filter.values)
+
         filter.parse(['2024-01-02'])
         self.assertEqual([date(2024, 1, 2)], filter.values)
 

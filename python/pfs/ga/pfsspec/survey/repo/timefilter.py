@@ -1,5 +1,6 @@
 from .searchfilter import SearchFilter
 from datetime import datetime
+import dateutil.parser as dateparser
 
 class TimeFilter(SearchFilter):
     """
@@ -26,8 +27,7 @@ class TimeFilter(SearchFilter):
         super().__init__(*values, name=name, format=format, orig=orig)
 
     def _parse_value(self, value):
-        # Parse value as a date
-        return datetime.fromisoformat(value)
+        return dateparser.parse(value)
     
     def _parse(self, arg: list):
         """
