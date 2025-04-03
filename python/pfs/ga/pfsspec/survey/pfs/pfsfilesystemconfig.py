@@ -21,7 +21,7 @@ PfsFileSystemConfig = SimpleNamespace(
                 pfsDesignId = HexFilter(name='pfsDesignId', format='{:016x}')
             ),
             params_regex = [
-                re.compile(r'pfsDesign-0x(?P<pfsDesignId>[0-9a-fA-F]{16})\.(?:fits|fits\.gz)$'),
+                re.compile(r'pfsDesign-(?P<pfsDesignId>0x[0-9a-fA-F]{16})\.(?:fits|fits\.gz)$'),
             ],
             dir_format = '$datadir/pfsDesign',
             filename_format = 'pfsDesign-0x{pfsDesignId}.fits',
@@ -37,8 +37,8 @@ PfsFileSystemConfig = SimpleNamespace(
                 date = DateFilter(name='date', format='{:%Y-%m-%d}'),
             ),
             params_regex = [
-                re.compile(r'(?P<date>\d{4}-\d{2}-\d{2})/pfsConfig-0x(?P<pfsDesignId>[0-9a-fA-F]{16})-(?P<visit>\d{6})\.(fits|fits\.gz)$'),
-                re.compile(r'pfsConfig-0x(?P<pfsDesignId>[0-9a-fA-F]{16})-(?P<visit>\d{6})\.(fits|fits\.gz)$')
+                re.compile(r'(?P<date>\d{4}-\d{2}-\d{2})/pfsConfig-(?P<pfsDesignId>0x[0-9a-fA-F]{16})-(?P<visit>\d{6})\.(fits|fits\.gz)$'),
+                re.compile(r'pfsConfig-(?P<pfsDesignId>0x[0-9a-fA-F]{16})-(?P<visit>\d{6})\.(fits|fits\.gz)$')
             ],
             dir_format = '$datadir/pfsConfig/{date}/',
             filename_format = 'pfsConfig-0x{pfsDesignId}-{visit}.fits',
@@ -109,7 +109,7 @@ PfsFileSystemConfig = SimpleNamespace(
                 pfsVisitHash = HexFilter(name='pfsVisitHash', format='{:016x}'),
             ),
             params_regex = [
-                re.compile(r'pfsObject-(?P<catId>\d{5})-(?P<tract>\d{5})-(?P<patch>.*)-(?P<objId>[0-9a-f]{16})-(?P<nVisit>\d{3})-0x(?P<pfsVisitHash>[0-9a-f]{16})\.(fits|fits\.gz)$'),
+                re.compile(r'pfsObject-(?P<catId>\d{5})-(?P<tract>\d{5})-(?P<patch>.*)-(?P<objId>[0-9a-f]{16})-(?P<nVisit>\d{3})-(?P<pfsVisitHash>0x[0-9a-f]{16})\.(fits|fits\.gz)$'),
             ],
             dir_format = '$datadir/rerun/$rerundir/pfsObject/{catId}/{tract}/{patch}',
             filename_format = 'pfsObject-{catId}-{tract}-{patch}-{objId}-{nVisit}-0x{pfsVisitHash}.fits',
@@ -128,7 +128,7 @@ PfsFileSystemConfig = SimpleNamespace(
                 pfsVisitHash = HexFilter(name='pfsVisitHash', format='{:016x}'),
             ),
             params_regex = [
-                re.compile(r'pfsGAObject-(?P<catId>\d{5})-(?P<tract>\d{5})-(?P<patch>.*)-(?P<objId>[0-9a-f]{16})-(?P<nVisit>\d{3})-0x(?P<pfsVisitHash>[0-9a-f]{16})\.(fits|fits\.gz)$'),
+                re.compile(r'pfsGAObject-(?P<catId>\d{5})-(?P<tract>\d{5})-(?P<patch>.*)-(?P<objId>[0-9a-f]{16})-(?P<nVisit>\d{3})-(?P<pfsVisitHash>0x[0-9a-f]{16})\.(fits|fits\.gz)$'),
             ],
             dir_format = '$datadir/rerun/$rerundir/pfsGAObject/{catId}/{tract}/{patch}',
             filename_format = 'pfsGAObject-{catId}-{tract}-{patch}-{objId}-{nVisit}-0x{pfsVisitHash}.fits',
