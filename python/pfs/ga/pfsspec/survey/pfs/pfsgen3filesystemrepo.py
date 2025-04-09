@@ -11,8 +11,8 @@ class PfsGen3FileSystemRepo(FileSystemRepo):
     stored in the file system without Butler.
     """
 
-    def __init__(self):
-        super().__init__(config=PfsGen3FileSystemConfig)
+    def __init__(self, config=PfsGen3FileSystemConfig):
+        super().__init__(config=config)
 
         self.__object_filters = SimpleNamespace(
             # visit = IntFilter(name='visit', format='{:06d}'),
@@ -85,29 +85,75 @@ class PfsGen3FileSystemRepo(FileSystemRepo):
                 identities[visit] = SimpleNamespace(
                     visit = n * [visit],
                     pfsDesignId = n * [config.pfsDesignId],
+                    obstime = n * [config.obstime],
+                    exptime = n * [None],
                     fiberId = list(config.fiberId[mask]),
+                    spectrograph = list(config.spectrograph[mask]),
+                    arms = n * [config.arms],
+                    fiberStatus = list(config.fiberStatus[mask]),
                     proposalId = list(config.proposalId[mask]),
                     catId = list(config.catId[mask]),
                     objId = list(config.objId[mask]),
+                    tract = list(config.tract[mask]),
+                    patch = list(config.patch[mask]),
                     targetType = list(config.targetType[mask]),
                     obCode = list(config.obCode[mask]),
                 )
 
         if groupby == 'visit':
-            return identities
+            return self.__group_objects_by_visit(identities)
         elif groupby == 'objid':
-            raise NotImplementedError()
+            return self.__group_objects_by_objid(identities)
         elif groupby == 'none':
-            # Concatenate everything into a single namespace
-            results = None
-            for v, ids in identities.items():
-                if results is None:
-                    results = ids
-                else:
-                    for k, v in ids.__dict__.items():
-                        getattr(results, k).extend(v)
-            return results
+            return self.__group_objects_by_none(identities)
         else:
             raise NotImplementedError()
 
-        
+    def __group_objects_by_visit(self, identities):
+        return identities
+
+    def __group_objects_by_objid(self, identities):
+        results = {}
+        for v, ids in identities.items():
+            for i in range(len(ids.fiberId)):
+                objid = ids.objId[i]
+                id = SimpleNamespace(
+                    visit = [v],
+                    pfsDesignId = [ids.pfsDesignId[i]],
+                    obstime = [ids.obstime[i]],
+                    exptime = [ids.exptime[i]],
+                    fiberId = [ids.fiberId[i]],
+                    spectrograph = [ids.spectrograph[i]],
+                    arms = [ids.arms[i]],
+                    fiberStatus = [ids.fiberStatus[i]],
+                    proposalId = [ids.proposalId[i]],
+                    catId = [ids.catId[i]],
+                    objId = [ids.objId[i]],
+                    tract = [ids.tract[i]],
+                    patch = [ids.patch[i]],
+                    targetType = [ids.targetType[i]],
+                    obCode = [ids.obCode[i]],
+                )
+
+                if objid not in results:
+                    results[objid] = id
+                else:
+                    # Merge lists
+                    r = results[objid]
+                    for k, v in id.__dict__.items():
+                        getattr(r, k).extend(v)
+
+        return results
+    
+    def __group_objects_by_none(self, identities):
+        # Concatenate everything into a single namespace
+        results = None
+        for v, ids in identities.items():
+            if results is None:
+                results = ids
+            else:
+                for k, v in ids.__dict__.items():
+                    getattr(results, k).extend(v)
+        return results
+
+    
