@@ -25,10 +25,19 @@ def load_PfsMerged(identity, filename, dir):
         return PfsMerged.read(Identity(identity.visit), dirName=dir)
 
 def load_PfsCalibrated(identity, filename, dir):
-    return PfsCalibrated.read(Identity(identity.visit), dirName=dir)
+    if filename is not None:
+        return PfsCalibrated.readFits(filename)
+    else:
+        return PfsCalibrated.read(Identity(identity.visit), dirName=dir)
 
 def load_PfsSingle(identity, filename, dir):
     return PfsSingle.read(identity.__dict__, dirName=dir)
+
+def save_PfsSingle(data, identity, filename, dir):
+    if filename is not None:
+        data.writeFits(filename)
+    else:
+        raise NotImplementedError()
 
 def load_PfsObject(identity, filename, dir):
     return PfsObject.read(identity.__dict__, dirName=dir)
@@ -138,11 +147,12 @@ PfsGen3FileSystemConfig = SimpleNamespace(
             params_regex = [
                 re.compile(r'pfsSingle-(?P<catId>\d{5})-(?P<tract>\d{5})-(?P<patch>.*)-(?P<objId>[0-9a-f]{16})-(?P<visit>\d{6})\.(fits|fits\.gz)$'),
             ],
-            dir_format = '$datadir/rerun/$rerundir/pfsSingle/{catId}/{tract}/{patch}',
+            dir_format = '$datadir/$rerundir/pfsSingle/{catId}/{tract}/{patch}',
             filename_format = 'pfsSingle-{catId}-{tract}-{patch}-{objId}-{visit}.fits',
             identity = lambda data:
                 SimpleNamespace(catId=data.target.catId, tract=data.target.tract, patch=data.target.patch, objId=data.target.objId, visit=data.observations.visit[0]),
             load = load_PfsSingle,
+            save = save_PfsSingle,
         ),
         PfsObject: SimpleNamespace(
             params = SimpleNamespace(

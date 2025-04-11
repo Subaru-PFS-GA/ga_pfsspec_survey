@@ -21,7 +21,7 @@ class PfsGen3FileSystemRepo(FileSystemRepo):
             # catId = IntFilter(name='catId'),
             proposalId = StringFilter(name='proposalId'),
             # objId = HexFilter(name='objId', format='{:016x}'),
-            obCode = StringFilter(name='objCode'),
+            obCode = StringFilter(name='obCode'),
             targetType = EnumFilter(name='targetType', enum_type=TargetType),
         )
 
@@ -47,6 +47,30 @@ class PfsGen3FileSystemRepo(FileSystemRepo):
             if script.is_arg(k.lower()):
                 p.parse(script.get_arg(k.lower()))
 
+    def filters_match_object(self, identity, **kwargs):
+        """
+        Match an identity against the filters.
+        """
+
+        # Update the parameters with the values
+        # TODO: this actually destroys the original class-level values
+        #       consider making copies
+        for k, v in kwargs.items():
+            if hasattr(self.filters, k) and v is not None:
+                getattr(self.filters, k).values = v
+            if hasattr(self.__object_filters, k) and v is not None:
+                getattr(self.__object_filters, k).values = v
+
+        # Check if the identity matches the filters
+        match = not hasattr(identity, 'fiberId') or self.__object_filters.fiberId.mask(identity.fiberId)
+        match &= not hasattr(identity, 'catId') or self.filters.catId.mask(identity.catId)
+        match &= not hasattr(identity, 'objId') or self.filters.objId.mask(identity.objId)
+        match &= not hasattr(identity, 'targetType') or self.__object_filters.targetType.mask(identity.targetType)
+        match &= not hasattr(identity, 'proposalId') or self.__object_filters.proposalId.mask(identity.proposalId)
+        match &= not hasattr(identity, 'obCode') or self.__object_filters.obCode.mask(identity.obCode)
+
+        return match
+
     def find_object(self, groupby='visit', **kwargs):
         
         """
@@ -54,6 +78,8 @@ class PfsGen3FileSystemRepo(FileSystemRepo):
         """
 
         # Update the parameters with the values
+        # TODO: this actually destroys the original class-level values
+        #       consider making copies
         for k, v in kwargs.items():
             if hasattr(self.filters, k) and v is not None:
                 getattr(self.filters, k).values = v

@@ -602,14 +602,15 @@ class FileSystemRepo():
             os.makedirs(dir, exist_ok=True)
 
         # Save the product via the dispatcher
-        logger.debug(f'Savinging product {product.__name__} to {filename}.')
+        logger.debug(f'Saving product {product.__name__} to {filename}.')
         self.__config.products[product].save(data, identity, filename, dir)
 
         return identity, filename
     
     def __format_path(self, product, identity, format_string, variables=None):
         params = self.__config.products[product].params.__dict__
-        identity = identity.__dict__
+        if not isinstance(identity, dict):
+            identity = identity.__dict__
         values = { k: p.format.format(identity[k]) for k, p in params.items() if k in identity }
         path = format_string.format(**values)
         path = self.__expandvars(path, variables)

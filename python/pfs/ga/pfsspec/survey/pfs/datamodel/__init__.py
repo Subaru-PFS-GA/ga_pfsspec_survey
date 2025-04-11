@@ -1,12 +1,13 @@
 from ..setup_logger import logger
 
 try:
-    from pfs.datamodel import PfsFiberArray, PfsFiberArraySet, PfsSingle, PfsObject, PfsArm, PfsMerged, PfsCalibrated, PfsCoadd
+    from pfs.datamodel import PfsFiberArray, PfsFiberArraySet, PfsSingle, PfsObject, PfsArm, PfsMerged, PfsCoadd
     from pfs.datamodel import PfsConfig, PfsDesign
     from pfs.datamodel import PfsGAObject
     from pfs.datamodel import Target, Identity, Observations
     from pfs.datamodel import TargetType, MaskHelper
     from pfs.datamodel.utils import calculatePfsVisitHash, calculate_pfsDesignId
+    from .pfscalibrated import PfsCalibrated
 except ImportError as ex:
     logger.warning('Cannot import PFS data model. Is package `pfs.datamodel` available?')
     logger.exception(ex)
