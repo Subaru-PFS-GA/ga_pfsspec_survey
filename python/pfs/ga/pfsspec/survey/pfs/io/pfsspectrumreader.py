@@ -48,7 +48,7 @@ class PfsSpectrumReader(SpectrumReader):
             if isinstance(data, PfsFiberArraySet):
                 raise NotImplementedError()
             
-            if isinstance(data, PfsDesign):
+            if isinstance(data, PfsConfig):
                 id = f'pfsDesignId={data.pfsDesignId:016x}, '
 
             if isinstance(data, PfsConfig):
@@ -63,20 +63,30 @@ class PfsSpectrumReader(SpectrumReader):
             return id
 
         if isinstance(data, PfsFiberArray):                         # pfsSingle
-            raise NotImplementedError()
+            if arm is not None and arm not in data.observations.arm[0]:
+                logger.warning(f'Arm {arm} not available in {get_type_string()} object.')
+                return False
+            
+            if fiberid is not None and fiberid != data.observations.fiberId[0]:
+                logger.warning(f'Fiber ID {fiberid} does not match the fiber ID {data.observations.fiberId[0]} in the {get_type_string()} object.')
+                return False
+
+            if index is not None:
+                logger.warning(f'The {get_type_string()} object does not support accessign spectra by index, yet the index value of {index} is specified.')
+                return False
         elif isinstance(data, PfsFiberArraySet):                    # PfsMerged
             if arm is not None and arm not in data.identity.arm:
                 logger.warning(f'Arm {arm} not available in {get_type_string()} object.')
                 return False
 
             if fiberid is not None and fiberid not in data.fiberId:
-                logger.warning(f'Fiber {fiberid} not available in {get_type_string()} object.')
+                logger.warning(f'Fiber ID {fiberid} not available in {get_type_string()} object.')
                 return False
             
             if index is not None and index >= len(data.fiberId):
                 logger.warning(f'Index {index} out of range in {get_type_string()} object.')
                 return False
-        elif isinstance(data, PfsDesign):
+        elif isinstance(data, PfsConfig):
             if arm is not None and arm not in data.arms:
                 logger.warning(f'Arm {arm} not available in {get_type_string()} object with {get_id_string()}.')
                 return False
@@ -169,10 +179,6 @@ class PfsSpectrumReader(SpectrumReader):
         spec.target = data.target
         spec.observations = data.observations
 
-        # Override arm if reading a single-arm spectrum
-        if arm is not None:
-            spec.observations.arm = [ arm for a in data.observations.arm ]
-
         if len(data.observations) == 1:
             spec.identity = Identity(
                 visit = data.observations.visit[0],
@@ -212,9 +218,9 @@ class PfsSpectrumReader(SpectrumReader):
         filename = data.filenameFormat % dict(**data.target.identity, visit=data.observations.visit[0])
         spec.history.append(f'Loaded from PfsFiberArraySet `{filename}`.')
     
-    def read_from_pfsDesign(self, data: PfsDesign, spec, arm=None, objid=None, fiberid=None, index=None):
+    def read_from_pfsConfig(self, data: PfsConfig, spec, arm=None, objid=None, fiberid=None, index=None):
         """
-        Read the spectrum header from a PfsDesign or PfsConfig object. This information is
+        Read the spectrum header from a PfsConfig object. This information is
         not available in the PfsFiberArraySet objects.
         """
         

@@ -16,7 +16,4 @@ class HexFilter(SearchFilter):
         super().__init__(*values, name=name, format=format, orig=orig)
        
     def _parse_value(self, value):
-        if value.startswith('0x') or value.startswith('0X'):
-            return int(value, 16)
-        else:
-            return int(value)
+        return int(value, 16)

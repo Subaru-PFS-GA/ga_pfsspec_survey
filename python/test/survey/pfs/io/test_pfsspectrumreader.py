@@ -24,14 +24,14 @@ class TestPfsSpectrumReader(TestBase):
         self.assertEqual(s.identity.visit, 111483)
         self.assertEqual(s.observations.num, 1)
 
-    def test_read_from_pfsDesign(self):
+    def test_read_from_pfsConfig(self):
         filename = '/datascope/subaru/data/commissioning/pfsConfig/2024-06-01/pfsConfig-0x6d832ca291636984-111483.fits'
         dir = os.path.dirname(filename)
         pfsConfig = PfsConfig.read(0x6d832ca291636984, 111483, dirName=dir)
 
         r = PfsSpectrumReader()
         s = PfsStellarSpectrum()
-        r.read_from_pfsDesign(pfsConfig, s, index=1946)
+        r.read_from_pfsConfig(pfsConfig, s, index=1946)
 
         self.assertEqual('catId=10015, objId=0000000000005d3e, visit=111483, arm=bnm', s.get_name())
         self.assertEqual(s.id, 23870)
@@ -61,7 +61,7 @@ class TestPfsSpectrumReader(TestBase):
         # Normal
         s = PfsStellarSpectrum()
         r.read_from_pfsFiberArraySet(pfsMerged, s, index=1946, wave_limits=[4000, 6000])
-        r.read_from_pfsDesign(pfsConfig, s, index=1946)
+        r.read_from_pfsConfig(pfsConfig, s, index=1946)
 
         self.assertEqual(111483, s.identity.visit)
         self.assertEqual('bmn', s.identity.arm)
@@ -72,7 +72,7 @@ class TestPfsSpectrumReader(TestBase):
 
         # Opposite order
         s = PfsStellarSpectrum()
-        r.read_from_pfsDesign(pfsConfig, s, index=1946)
+        r.read_from_pfsConfig(pfsConfig, s, index=1946)
         r.read_from_pfsFiberArraySet(pfsMerged, s, index=1946, wave_limits=[4000, 6000])
         
         self.assertEqual(111483, s.identity.visit)
