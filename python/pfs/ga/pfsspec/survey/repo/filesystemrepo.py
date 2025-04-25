@@ -562,6 +562,19 @@ class FileSystemRepo():
         data = self.__config.products[product].load(identity, filename, dir)
 
         return data, identity, filename
+
+    def get_data_path(self, data, filename=None, identity=None, variables=None):
+        product = type(data)
+        identity = self.get_identity(data) if identity is None else identity
+
+        if filename is None:
+            dir = self.format_dir(product, identity, variables=variables)
+            filename = self.format_filename(product, identity, variables=variables) if filename is None else filename
+            filename = os.path.join(dir, filename)
+        else:
+            dir = os.path.dirname(filename)
+
+        return dir, filename, identity
     
     def save_product(self, data, filename=None, identity=None, variables=None, create_dir=True):
         """
@@ -588,6 +601,9 @@ class FileSystemRepo():
 
         product = type(data)
         identity = self.get_identity(data) if identity is None else identity
+        dir, filename, identity = self.get_data_path(data, filename=filename,
+                                                     identity=identity,
+                                                     variables=variables)
 
         # These are the intended locations that might be overriden if filename is provided
         if filename is None:

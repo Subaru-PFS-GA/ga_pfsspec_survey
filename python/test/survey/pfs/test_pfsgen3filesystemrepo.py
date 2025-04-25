@@ -28,12 +28,12 @@ class TestPfsGen3FileSystemRepo(TestCase):
         self.assertEqual(len(files), len(ids.visit))
         self.assertEqual(len(files), len(ids.date))
         
-    def test_find_object(self):
+    def test_find_objects(self):
         repo = self.get_test_repo()
 
         # Find a bunch or outer disk science targets
-        ids = repo.find_object(visit=[(120001, 120008)], catId=10088)
+        ids = repo.find_objects(visit=[(120001, 120008)], catId=10088)
 
         # Get observations of a specific object
-        ids = repo.find_object(visit=[(120001, 120008)], objId=154931150335344425)
+        ids = repo.find_objects(visit=[(120001, 120008)], objId=154931150335344425)
         pass

@@ -71,7 +71,7 @@ class PfsGen3FileSystemRepo(FileSystemRepo):
 
         return match
 
-    def find_object(self, product=PfsConfig, groupby='visit', **kwargs):
+    def find_objects(self, product=PfsConfig, configs=None, groupby='visit', **kwargs):
         
         """
         Find individual objects by looking them up in the config files.
@@ -88,13 +88,14 @@ class PfsGen3FileSystemRepo(FileSystemRepo):
 
         # We either look up objects in PfsConfig files or look for the available PfsSingle files
         if product == PfsConfig:
-            # Load the config files for each visit
-            files, ids = self.find_product(PfsConfig, visit=self.filters.visit, date=self.filters.date)
+            # If not provided, load the config files for each visit
+            if configs is None:
+                files, ids = self.find_product(PfsConfig, visit=self.filters.visit, date=self.filters.date)
 
-            configs = {}
-            for file in files:
-                config, id, fn = self.load_product(PfsConfig, filename=file)
-                configs[id.visit] = config
+                configs = {}
+                for file in files:
+                    config, id, fn = self.load_product(PfsConfig, filename=file)
+                    configs[id.visit] = config
 
             identities = {}
             for visit, config in configs.items():

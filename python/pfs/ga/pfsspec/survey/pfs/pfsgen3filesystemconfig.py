@@ -48,6 +48,12 @@ def load_PfsGAObject(identity, filename, dir):
 def save_PfsGAObject(data, identity, filename, dir):
     PfsGAObject.writeFits(data, os.path.join(dir, filename))
 
+def load_PfsGACatalog(identity, filename, dir):
+    pass
+
+def save_PfsGACatalog(data, identity, filename, dir):
+    data.writeFits(filename)
+
 PfsGen3FileSystemConfig = SimpleNamespace(
     root = '$datadir',
     variables = {
@@ -198,5 +204,25 @@ PfsGen3FileSystemConfig = SimpleNamespace(
             load = load_PfsGAObject,
             save = save_PfsGAObject
         ),
+        PfsGACatalog: SimpleNamespace(
+            params = SimpleNamespace(
+                catId = IntFilter(name='catId', format='{:05d}'),
+                nVisit = IntFilter(name='nVisit', format='{:03d}'),
+                pfsVisitHash = HexFilter(name='pfsVisitHash', format='{:016x}'),
+            ),
+            params_regex = [
+                re.compile(r'pfsGACatalog-(?P<catId>\d{5})-(?P<nVisit>\d{3})-0x(?P<pfsVisitHash>[0-9a-f]{16})\.(fits|fits\.gz)$'),
+            ],
+            dir_format = '$datadir/$rerundir/pfsGACatalog/{catId}',
+            filename_format = 'pfsGACatalog-{catId}-{nVisit}-0x{pfsVisitHash}.fits',
+            identity = lambda data:
+                SimpleNamespace(
+                    catId = data.catId,
+                    nVisit = data.nVisit,
+                    pfsVisitHash = calculatePfsVisitHash(data.observations.visit)
+                ),
+            load = load_PfsGACatalog,
+            save = save_PfsGACatalog
+        )
     }
 )
