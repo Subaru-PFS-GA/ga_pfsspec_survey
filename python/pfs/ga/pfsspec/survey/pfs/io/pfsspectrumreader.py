@@ -258,7 +258,7 @@ class PfsSpectrumReader(SpectrumReader):
         spec.snr = np.nan
         spec.mag = np.nan
 
-        spec.spectrograph = data.spectrograph[fiberid]
+        spec.spectrograph = data.spectrograph[index]
         spec.fiberid = data.fiberId[index]
 
         spec.target = Target(
@@ -274,7 +274,7 @@ class PfsSpectrumReader(SpectrumReader):
         spec.observations = Observations(
             visit = np.atleast_1d(data.visit),
             arm = np.atleast_1d(arm if arm is not None else data.arms),
-            spectrograph = np.atleast_1d(data.spectrograph[fiberid]),
+            spectrograph = np.atleast_1d(data.spectrograph[index]),
             pfsDesignId = np.atleast_1d(data.pfsDesignId),
             fiberId = np.atleast_1d(data.fiberId[index]),
             pfiNominal = np.atleast_2d(data.pfiNominal[index]),
@@ -289,7 +289,7 @@ class PfsSpectrumReader(SpectrumReader):
         identity = Identity(
             visit = data.visit,
             arm = arm if arm is not None else data.arms,
-            spectrograph = data.spectrograph[fiberid],
+            spectrograph = data.spectrograph[index],
             pfsDesignId = data.pfsDesignId,
             obsTime = Identity.defaultObsTime,
             expTime = Identity.defaultExpTime
