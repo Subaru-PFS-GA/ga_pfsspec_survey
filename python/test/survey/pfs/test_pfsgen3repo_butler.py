@@ -3,22 +3,16 @@ from datetime import date
 from unittest import TestCase
 
 from pfs.datamodel import *
-from pfs.ga.pfsspec.survey.repo import FileSystemRepo
-from pfs.ga.pfsspec.survey.pfs import PfsGen3Repo, PfsGen3FileSystemConfig
+from pfs.ga.pfsspec.survey.repo import ButlerRepo
+from pfs.ga.pfsspec.survey.pfs import PfsGen3Repo, PfsGen3ButlerConfig
 
-class TestPfsGen3FileSystemRepo(TestCase):
+class TestPfsGen3Repo_Butler(TestCase):
 
     def get_test_repo(self):
-        return PfsGen3Repo(repo_type=FileSystemRepo, config=PfsGen3FileSystemConfig)
+        return PfsGen3Repo(repo_type=ButlerRepo, config=PfsGen3ButlerConfig)
 
     def test_init(self):
         repo = self.get_test_repo()
-
-    def test_parse_product_identity(self):
-        repo = self.get_test_repo()
-
-        identity = repo.parse_product_identity(PfsDesign, 'pfsDesign-0x6d832ca291636984.fits')
-        self.assertEqual(0x6d832ca291636984, identity.pfs_design_id)
 
     def test_find_product(self):
         repo = self.get_test_repo()
@@ -28,7 +22,18 @@ class TestPfsGen3FileSystemRepo(TestCase):
         self.assertEqual(len(files), len(ids.pfs_design_id))
         self.assertEqual(len(files), len(ids.visit))
         self.assertEqual(len(files), len(ids.date))
-        
+
+    def test_locate_product(self):
+        repo = self.get_test_repo()
+
+        file, id = repo.locate_product(PfsConfig, visit=122771)
+
+    def test_load_product(self):
+        repo = self.get_test_repo()
+
+        file, id = repo.locate_product(PfsConfig, visit=122771)
+        pfsConfig = repo.load_product(PfsConfig, identity=id)
+
     def test_find_objects(self):
         repo = self.get_test_repo()
 

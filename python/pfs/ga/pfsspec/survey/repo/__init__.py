@@ -6,3 +6,4 @@ from .datefilter import DateFilter
 from .timefilter import TimeFilter
 
 from .filesystemrepo import FileSystemRepo
+from .butlerrepo import ButlerRepo

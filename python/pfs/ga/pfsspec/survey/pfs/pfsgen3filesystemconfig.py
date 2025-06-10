@@ -7,13 +7,13 @@ from .datamodel import *
 from ..repo import IntFilter, HexFilter, DateFilter, TimeFilter, StringFilter
 
 def load_PfsDesign(identity, filename, dir):
-    return PfsDesign.read(pfsDesignId=identity.pfsDesignId, dirName=dir)
+    return PfsDesign.read(pfsDesignId=identity.pfs_design_id, dirName=dir)
 
 def load_PfsConfig(identity, filename, dir):
     if filename is not None:
         return PfsConfig._readImpl(filename, visit=identity.visit)
     else:
-        return PfsConfig.read(pfsDesignId=identity.pfsDesignId, visit=identity.visit, dirName=dir)
+        return PfsConfig.read(pfsDesignId=identity.pfs_design_id, visit=identity.visit, dirName=dir)
 
 def load_PfsArm(identity, filename, dir):
     return PfsArm.read(Identity(identity.visit, arm=identity.arm, spectrograph=identity.spectrograph), dirName=dir)
@@ -65,20 +65,23 @@ PfsGen3FileSystemConfig = SimpleNamespace(
     },
     products = {
         PfsDesign: SimpleNamespace(
+            name = 'pfsDesign',
             params = SimpleNamespace(
-                pfsDesignId = HexFilter(name='pfsDesignId', format='{:016x}')
+                pfs_design_id = HexFilter(name='pfs_design_id', format='{:016x}')
             ),
             params_regex = [
-                re.compile(r'pfsDesign-0x(?P<pfsDesignId>[0-9a-fA-F]{16})\.(?:fits|fits\.gz)$'),
+                re.compile(r'pfsDesign-0x(?P<pfs_design_id>[0-9a-fA-F]{16})\.(?:fits|fits\.gz)$'),
             ],
             dir_format = '$pfsdesigndir/pfsDesign',
-            filename_format = 'pfsDesign-0x{pfsDesignId}.fits',
+            filename_format = 'pfsDesign-0x{pfs_design_id}.fits',
             identity = lambda data:
-                SimpleNamespace(pfsDesignId=data.pfsDesignId),
+                SimpleNamespace(pfs_design_id=data.pfsDesignId),
             load = load_PfsDesign,
         ),
         PfsConfig: SimpleNamespace(
+            name = 'pfsConfig',
             params = SimpleNamespace(
+                pfs_design_id = HexFilter(name='pfs_design_id', format='{:016x}'),
                 visit = IntFilter(name='visit', format='{:06d}'),
                 date = DateFilter(name='date', format='{:%Y%m%d}'),
             ),
@@ -89,7 +92,7 @@ PfsGen3FileSystemConfig = SimpleNamespace(
             dir_format = '$psfconfigdir/pfsConfig/{date}/{visit}',
             filename_format = 'pfsConfig_PFS_{visit}_PFS_raw_pfsConfig.fits',
             identity = lambda data:
-                SimpleNamespace(pfsDesignId=data.pfsDesignId, visit=data.visit),
+                SimpleNamespace(pfs_design_id=data.pfsDesignId, visit=data.visit),
             load = load_PfsConfig,
         ),
         PfsArm: SimpleNamespace(
