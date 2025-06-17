@@ -8,6 +8,7 @@ try:
     from pfs.datamodel import TargetType, MaskHelper
     from pfs.datamodel.utils import calculatePfsVisitHash, calculate_pfsDesignId
     from .pfscalibrated import PfsCalibrated
+    from .pfscalibratedlsf import PfsCalibratedLsf
 except ImportError as ex:
     logger.warning('Cannot import PFS data model. Is package `pfs.datamodel` available?')
     logger.exception(ex)
@@ -19,6 +20,7 @@ except ImportError as ex:
     PfsArm = object()
     PfsMerged = object()
     PfsCalibrated = object()
+    PfsCalibratedLsf = object()
     PfsCoadd = object()
     PfsConfig = object()
     PfsDesign = object()

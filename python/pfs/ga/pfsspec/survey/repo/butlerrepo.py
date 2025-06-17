@@ -151,3 +151,6 @@ class ButlerRepo(Repo):
 
         files, ids = self.find_product(product, variables=variables, **kwargs)
         return self._get_single_file(files, ids)
+
+    def save_product(self, data, filename=None, identity=None, variables=None, create_dir=True):
+        raise NotImplementedError()

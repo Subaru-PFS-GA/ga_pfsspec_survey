@@ -30,6 +30,9 @@ def load_PfsCalibrated(identity, filename, dir):
     else:
         return PfsCalibrated.read(Identity(identity.visit), dirName=dir)
 
+def load_PfsCalibratedLsf(identity, filename, dir):
+    raise NotImplementedError()
+
 def load_PfsSingle(identity, filename, dir):
     return PfsSingle.read(identity.__dict__, dirName=dir)
 
@@ -96,6 +99,7 @@ PfsGen3FileSystemConfig = SimpleNamespace(
             load = load_PfsConfig,
         ),
         PfsArm: SimpleNamespace(
+            name = 'pfsArm',
             params = SimpleNamespace(
                 visit = IntFilter(name='visit', format='{:06d}'),
                 arm = StringFilter(name='arm'),
@@ -114,6 +118,7 @@ PfsGen3FileSystemConfig = SimpleNamespace(
             load = load_PfsArm,
         ),
         PfsMerged: SimpleNamespace(
+            name = 'pfsMerged',
             params = SimpleNamespace(
                 visit = IntFilter(name='visit', format='{:06d}'),
                 date = DateFilter(name='date', format='{:%Y%m%d}'),
@@ -130,6 +135,7 @@ PfsGen3FileSystemConfig = SimpleNamespace(
             load = load_PfsMerged,
         ),
         PfsCalibrated: SimpleNamespace(
+            name = 'pfsCalibrated',
             params = SimpleNamespace(
                 visit = IntFilter(name='visit', format='{:06d}'),
                 date = DateFilter(name='date', format='{:%Y%m%d}'),
@@ -145,7 +151,25 @@ PfsGen3FileSystemConfig = SimpleNamespace(
                 SimpleNamespace(visit=data.identity.visit),     # TODO: add date
             load = load_PfsCalibrated,
         ),
+        PfsCalibratedLsf: SimpleNamespace(
+            name = 'pfsCalibratedLsf',
+            params = SimpleNamespace(
+                visit = IntFilter(name='visit', format='{:06d}'),
+                date = DateFilter(name='date', format='{:%Y%m%d}'),
+                proctime = TimeFilter(name='proctime', format='{:%Y%m%dT%H%M%SZ}'),
+            ),
+            params_regex = [
+                re.compile(r'(\d{8}T\d{6}Z)/pfsCalibratedLsf/(?P<date>\d{4}\d{2}\d{2})/(\d{6})/pfsCalibratedLsf_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)_(?P<proctime>\d{8}T\d{6}Z)\.pickle$'),
+                re.compile(r'pfsCalibratedLsf_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)_(?P<proctime>\d{8}T\d{6}Z)\.pickle$')
+            ],
+            dir_format = '${datadir}/${rerundir}/{proctime}/pfsCalibratedLsf/{date}/{visit}/',
+            filename_format = 'pfsCalibratedLsf_PFS_{visit}_${rerun}_{proctime}.pickle',
+            identity = lambda data:
+                SimpleNamespace(visit=data.identity.visit),     # TODO: add date
+            load = load_PfsCalibratedLsf,
+        ),
         PfsSingle: SimpleNamespace(
+            name = 'pfsSingle',
             params = SimpleNamespace(
                 catId = IntFilter(name='catId', format='{:05d}'),
                 tract = IntFilter(name='tract', format='{:05d}'),
@@ -164,6 +188,7 @@ PfsGen3FileSystemConfig = SimpleNamespace(
             save = save_PfsSingle,
         ),
         PfsObject: SimpleNamespace(
+            name = 'pfsObject',
             params = SimpleNamespace(
                 catId = IntFilter(name='catId', format='{:05d}'),
                 tract = IntFilter(name='tract', format='{:05d}'),
@@ -182,6 +207,7 @@ PfsGen3FileSystemConfig = SimpleNamespace(
             load = load_PfsObject,
         ),
         PfsGAObject: SimpleNamespace(
+            name = 'pfsGAObject',
             params = SimpleNamespace(
                 catId = IntFilter(name='catId', format='{:05d}'),
                 tract = IntFilter(name='tract', format='{:05d}'),
@@ -208,6 +234,7 @@ PfsGen3FileSystemConfig = SimpleNamespace(
             save = save_PfsGAObject
         ),
         PfsGACatalog: SimpleNamespace(
+            name = 'pfsGACatalog',
             params = SimpleNamespace(
                 catId = IntFilter(name='catId', format='{:05d}'),
                 nVisit = IntFilter(name='nVisit', format='{:03d}'),

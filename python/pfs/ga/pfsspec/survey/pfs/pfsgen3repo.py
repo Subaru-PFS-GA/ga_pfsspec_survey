@@ -37,7 +37,11 @@ class PfsGen3Repo():
         self.__repo.add_args(script, include_variables=include_variables, include_filters=include_filters)
 
         for k, p in self.__object_filters.__dict__.items():
-            script.add_arg(f'--{k.lower()}', type=str, nargs='*', help=f'Filter on {k}')
+            script.add_arg(f'--{k.lower()}',
+                           type=str,
+                           nargs='*',
+                           help=f'Filter on {k}',
+                           ignore_duplicate=True)
         
     def init_from_args(self, script):
         self.__repo.init_from_args(script)
@@ -49,16 +53,19 @@ class PfsGen3Repo():
     def __init_object_filters(self):
         # Instantiate target object search filters
         # TODO: extend these if Butler has support for more filters
-        return SimpleNamespace(
-            # visit = IntFilter(name='visit', format='{:06d}'),
-            # date = DateFilter(name='date', format='{:%Y%m%d}'),
+        # NOTE: filters commented out are handled by the wrapped class
+        object_filters = SimpleNamespace(
+            visit = IntFilter(name='visit', format='{:06d}'),
+            date = DateFilter(name='date', format='{:%Y%m%d}'),
             fiberId = IntFilter(name='fiberId'),
-            # catId = IntFilter(name='catId'),
+            catId = IntFilter(name='catId'),
             proposalId = StringFilter(name='proposalId'),
-            # objId = HexFilter(name='objId', format='{:016x}'),
+            objId = HexFilter(name='objId', format='{:016x}'),
             obCode = StringFilter(name='obCode'),
             targetType = EnumFilter(name='targetType', enum_type=TargetType),
         )
+
+        return object_filters
 
     def match_object_filters(self, identity, **kwargs):
         """
@@ -76,8 +83,8 @@ class PfsGen3Repo():
 
         # Check if the identity matches the filters
         match = not hasattr(identity, 'fiberId') or self.__object_filters.fiberId.mask(identity.fiberId)
-        match &= not hasattr(identity, 'catId') or self.filters.catId.mask(identity.catId)
-        match &= not hasattr(identity, 'objId') or self.filters.objId.mask(identity.objId)
+        match &= not hasattr(identity, 'catId') or self.__object_filters.catId.mask(identity.catId)
+        match &= not hasattr(identity, 'objId') or self.__object_filters.objId.mask(identity.objId)
         match &= not hasattr(identity, 'targetType') or self.__object_filters.targetType.mask(identity.targetType)
         match &= not hasattr(identity, 'proposalId') or self.__object_filters.proposalId.mask(identity.proposalId)
         match &= not hasattr(identity, 'obCode') or self.__object_filters.obCode.mask(identity.obCode)
