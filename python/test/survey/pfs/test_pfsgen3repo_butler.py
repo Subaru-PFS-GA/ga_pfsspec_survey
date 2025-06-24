@@ -1,6 +1,6 @@
 import os
-from datetime import date
 from unittest import TestCase
+from types import SimpleNamespace
 
 from pfs.ga.pfsspec.survey.pfs.datamodel import *
 from pfs.ga.pfsspec.survey.repo import ButlerRepo
@@ -23,16 +23,35 @@ class TestPfsGen3Repo_Butler(TestCase):
         self.assertEqual(len(files), len(ids.visit))
         self.assertEqual(len(files), len(ids.date))
 
+        # Locate a specific product by visit
+        files, ids = repo.find_product(PfsCalibrated, visit=122794)
+
+        # Locate a specific container product with subproduct
+        files, ids = repo.find_product((PfsCalibrated, PfsSingle), visit=122794)
+
     def test_locate_product(self):
         repo = self.get_test_repo()
 
+        # Locate a specific product by visit
         file, id = repo.locate_product(PfsConfig, visit=122794)
+
+        # Locate a specific container product with subproduct
+        file, id = repo.locate_product((PfsCalibrated, PfsSingle), visit=122794)
 
     def test_load_product(self):
         repo = self.get_test_repo()
 
-        file, id = repo.locate_product(PfsConfig, visit=122794)
-        pfsConfig = repo.load_product(PfsConfig, identity=id)
+        # Load a specific product by visit
+        # file, id = repo.locate_product(PfsConfig, visit=122794)
+        # pfsConfig, id, file = repo.load_product(PfsConfig, identity=id)
+
+        # file, id = repo.locate_product(PfsCalibrated, visit=122794)
+        # pfsCalibrated, id, file = repo.load_product(PfsCalibrated, identity=id)
+
+        # Load a specific subproduct within a container product
+        id = SimpleNamespace(visit=122794, objId=25769835249)
+        file, _ = repo.locate_product((PfsCalibrated, PfsSingle), **id.__dict__)
+        pfsSingle, id, file = repo.load_product((PfsCalibrated, PfsSingle), identity=id)
 
     def test_find_objects(self):
         repo = self.get_test_repo()

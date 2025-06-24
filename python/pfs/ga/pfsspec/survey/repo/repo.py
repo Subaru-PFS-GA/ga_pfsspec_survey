@@ -361,6 +361,16 @@ class Repo():
 
         self._ensure_one_arg(filename=filename, identity=identity)
 
+        if isinstance(product, tuple):
+            return self.__load_product_from_container(*product, filename=filename, identity=identity, variables=variables)
+        else:
+            return self.__load_product_single(product, filename=filename, identity=identity, variables=variables)
+
+    def __load_product_single(self, product, filename=None, identity=None, variables=None):
+        """
+        Load a data product that consists of an entire file.
+        """
+
         if product is None and filename is not None:
             product = self.parse_product_name(filename)
 
@@ -384,10 +394,41 @@ class Repo():
         dir = os.path.dirname(filename)
 
         # Load the product via the dispatcher
-        logger.debug(f'Loading product {product.__name__} from {filename}.')
+        logger.debug(f'Loading product {self.config.products[product].name} from {filename}.')
         data = self.config.products[product].load(identity, filename, dir)
 
         return data, identity, filename
+
+    def __load_product_from_container(self, container, product, filename=None, identity=None, variables=None):
+        """
+        Load a data product that is a subproduct of a container product.
+
+        Here we assume that the identity is specified because the full identity of the sub-product
+        cannot be determined from the filename alone.
+        """
+
+        if isinstance(identity, dict):
+            params = identity
+        elif isinstance(identity, SimpleNamespace):
+            params = identity.__dict__
+        else:
+            params = { k: p.copy() for k, p in self.filters.__dict__.items() if p.value is not None }
+           
+        # The file name might not contain all information necessary to load the
+        # product, so given the parsed identity, we need to locate the file.
+        filename, cid = self.locate_product(container, variables=variables, **params)
+        dir = os.path.dirname(filename)
+
+        # At this point cid contains the parameters that are associated with the container only,
+        # but any additional parameters that are passed to this function are necessary to
+        # look up the subproduct.
+
+        # Load the product via the dispatcher
+        logger.debug(f'Loading product {self.config.products[(container, product)].name} from {filename}.')
+        data = self.config.products[(container, product)].load(identity, filename, dir)
+
+        return data, identity, filename
+
 
     def save_product(self, data, filename=None, identity=None, variables=None, create_dir=True):
         raise NotImplementedError()

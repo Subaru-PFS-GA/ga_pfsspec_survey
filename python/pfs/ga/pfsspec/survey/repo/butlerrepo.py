@@ -119,7 +119,7 @@ class ButlerRepo(Repo):
         params = { k: p.copy() for k, p in self.filters.__dict__.items() }
         params.update(kwargs)
 
-        logger.debug(f'Finding product {product.__name__} with parameters: {params}.')
+        logger.debug(f'Finding product {self.config.products[product].name} with parameters: {params}.')
 
         return self.__find_datasets(
             self.config.products[product].name,

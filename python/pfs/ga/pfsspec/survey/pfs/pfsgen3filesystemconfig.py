@@ -33,6 +33,16 @@ def load_PfsCalibrated(identity, filename, dir):
 def load_PfsCalibratedLsf(identity, filename, dir):
     raise NotImplementedError()
 
+def load_PfsCalibrated_PfsSingle(identity, filename, dir):
+    if filename is not None and identity is not None:
+        # Limit id fields to those that are in the PfsCalibrated class
+        valid = ['targetId', 'catId', 'tract', 'patch', 'objId', 'targetType']
+        id = { k: getattr(identity, k) for k in valid if hasattr(identity, k) }
+        results = PfsCalibrated.readFits(filename, **id)
+        return results[id['objId']]
+    else:
+        raise NotImplementedError()
+
 def load_PfsSingle(identity, filename, dir):
     return PfsSingle.read(identity.__dict__, dirName=dir)
 
@@ -167,6 +177,23 @@ PfsGen3FileSystemConfig = SimpleNamespace(
             identity = lambda data:
                 SimpleNamespace(visit=data.identity.visit),     # TODO: add date
             load = load_PfsCalibratedLsf,
+        ),
+        (PfsCalibrated, PfsSingle): SimpleNamespace(
+            name = 'pfsCalibrated',
+            params = SimpleNamespace(
+                visit = IntFilter(name='visit', format='{:06d}'),
+                date = DateFilter(name='date', format='{:%Y%m%d}'),
+                proctime = TimeFilter(name='proctime', format='{:%Y%m%dT%H%M%SZ}'),
+            ),
+            params_regex = [
+                re.compile(r'(\d{8}T\d{6}Z)/pfsCalibrated/(?P<date>\d{4}\d{2}\d{2})/(\d{6})/pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)_(?P<proctime>\d{8}T\d{6}Z)\.(fits|fits\.gz)$'),
+                re.compile(r'pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)_(?P<proctime>\d{8}T\d{6}Z)\.(fits|fits\.gz)$')
+            ],
+            dir_format = '${datadir}/${rerundir}/{proctime}/pfsCalibrated/{date}/{visit}/',
+            filename_format = 'pfsCalibrated_PFS_{visit}_${rerun}_{proctime}.fits',
+            identity = lambda data:
+                SimpleNamespace(visit=data.identity.visit),     # TODO: add date
+            load = load_PfsCalibrated_PfsSingle,
         ),
         PfsSingle: SimpleNamespace(
             name = 'pfsSingle',
