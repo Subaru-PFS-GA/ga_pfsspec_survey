@@ -2,11 +2,11 @@ import os
 from datetime import date
 from unittest import TestCase
 
-from pfs.datamodel import *
+from pfs.ga.pfsspec.survey.pfs.datamodel import *
 from pfs.ga.pfsspec.survey.repo import FileSystemRepo
 from pfs.ga.pfsspec.survey.pfs import PfsGen3Repo, PfsGen3FileSystemConfig
 
-class TestPfsGen3FileSystemRepo(TestCase):
+class TestPfsGen3Repo_FileSystem(TestCase):
 
     def get_test_repo(self):
         return PfsGen3Repo(repo_type=FileSystemRepo, config=PfsGen3FileSystemConfig)

@@ -1,9 +1,16 @@
 import os
 import getpass
 
-from SciServer import Authentication, CasJobs
-
 from pfs.ga.pfsspec.core.setup_logger import logger
+
+try:
+    from SciServer import Authentication, CasJobs
+except ImportError:
+    logger.warning("SciServer Python package is not installed. Please install it to use SdssSurveyReader.")
+    
+    Authentication = None
+    CasJobs = None
+
 from ...io.surveyreader import SurveyReader
 
 class SdssSurveyReader(SurveyReader):

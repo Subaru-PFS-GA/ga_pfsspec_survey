@@ -1,4 +1,5 @@
 from types import SimpleNamespace
+from copy import deepcopy
 import numpy as np
 
 from ..repo import *
@@ -120,20 +121,23 @@ class PfsGen3Repo():
         Find individual objects by looking them up in the config files.
         """
 
-        # Update the parameters with the values
-        # TODO: this actually destroys the original class-level values
-        #       consider making copies
+        # Update the parameters with the values provided in kwargs
+
+        repo_filters = deepcopy(self.__repo.filters)
+        object_filters = deepcopy(self.__object_filters)
+        
         for k, v in kwargs.items():
-            if hasattr(self.filters, k) and v is not None:
-                getattr(self.filters, k).values = v
-            if hasattr(self.__object_filters, k) and v is not None:
-                getattr(self.__object_filters, k).values = v
+            if hasattr(repo_filters, k) and v is not None:
+                getattr(repo_filters, k).values = v
+
+            if hasattr(object_filters, k) and v is not None:
+                getattr(object_filters, k).values = v
 
         # We either look up objects in PfsConfig files or look for the available PfsSingle files
         if product == PfsConfig:
             # If not provided, load the config files for each visit
             if configs is None:
-                files, ids = self.find_product(PfsConfig, visit=self.filters.visit, date=self.filters.date)
+                files, ids = self.find_product(PfsConfig, visit=repo_filters.visit, date=repo_filters.date)
 
                 configs = {}
                 for file in files:
@@ -145,12 +149,12 @@ class PfsGen3Repo():
                 # Find objects matching the criteria
                 mask = np.full(config.fiberId.shape, True)
 
-                mask &= self.__object_filters.fiberId.mask(config.fiberId)
-                mask &= self.filters.catId.mask(config.catId)
-                mask &= self.filters.objId.mask(config.objId)
-                mask &= self.__object_filters.targetType.mask(config.targetType)
-                mask &= self.__object_filters.proposalId.mask(config.proposalId)
-                mask &= self.__object_filters.obCode.mask(config.obCode)
+                mask &= object_filters.fiberId.mask(config.fiberId)
+                mask &= repo_filters.catId.mask(config.catId)
+                mask &= repo_filters.objId.mask(config.objId)
+                mask &= object_filters.targetType.mask(config.targetType)
+                mask &= object_filters.proposalId.mask(config.proposalId)
+                mask &= object_filters.obCode.mask(config.obCode)
 
                 n = mask.sum()
                 if n > 0:

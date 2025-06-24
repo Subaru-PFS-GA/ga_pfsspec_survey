@@ -256,6 +256,27 @@ class Repo():
         else:
             return files[0], SimpleNamespace(**{ k: v[0] for k, v in identities.__dict__.items() })
 
+    def parse_product_name(self, filename):
+        """
+        Parses the product type from the filename.
+
+        Arguments
+        ---------
+        filename : str
+            Path to the file.
+        
+        Returns
+        -------
+        type
+            Type of the product.
+        """
+
+        # Try to match each product regex pattern against the filename
+        for product, config in self.__config.products.items():
+            for regex in config.params_regex:
+                if re.search(regex, filename):
+                    return product
+
     def parse_product_type(self, product):
         """
         Based on a string, figure out the product type.
@@ -339,6 +360,12 @@ class Repo():
         """
 
         self._ensure_one_arg(filename=filename, identity=identity)
+
+        if product is None and filename is not None:
+            product = self.parse_product_name(filename)
+
+        if isinstance(product, str):
+            product = self.parse_product_type(product)
 
         # Some products cannot be loaded by filename, so we need to parse the identity
         if filename is not None:

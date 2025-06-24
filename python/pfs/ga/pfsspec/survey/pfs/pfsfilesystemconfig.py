@@ -9,6 +9,8 @@ from ..repo.hexfilter import HexFilter
 from ..repo.datefilter import DateFilter
 from ..repo.stringfilter import StringFilter
 
+# This is the old-style directory structure for PFS data.
+
 PfsFileSystemConfig = SimpleNamespace(
     root = '$datadir',
     variables = {

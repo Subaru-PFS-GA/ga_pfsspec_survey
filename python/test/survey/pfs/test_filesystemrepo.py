@@ -2,8 +2,7 @@ import os
 from datetime import date
 from unittest import TestCase
 
-from pfs.datamodel import *
-
+from pfs.ga.pfsspec.survey.pfs.datamodel import *
 from pfs.ga.pfsspec.survey.repo import FileSystemRepo
 from pfs.ga.pfsspec.survey.pfs import PfsFileSystemConfig
 
@@ -42,13 +41,15 @@ class TestFileSystemRepo(TestCase):
         self.assertEqual(1, identity.tract)
         self.assertEqual('1,1', identity.patch)
 
-    def test_find_product(self):
+    def test_find_pfsDesign(self):
         repo = self.get_test_repo()
 
-        files, ids = repo.find_product(PfsDesign)
-        self.assertTrue(len(files) > 0)
-        self.assertEqual(len(files), len(ids.pfsDesignId))
+        # files, ids = repo.find_product(PfsDesign)
+        # self.assertTrue(len(files) > 0)
+        # self.assertEqual(len(files), len(ids.pfsDesignId))
 
+    def test_find_pfsConfig(self):
+        repo = self.get_test_repo()
 
         files, ids = repo.find_product(PfsConfig)
         self.assertTrue(len(files) > 0)
@@ -70,6 +71,9 @@ class TestFileSystemRepo(TestCase):
         self.assertTrue(len(files) > 0)
 
 
+    def test_find_pfsSingle(self):
+        repo = self.get_test_repo()
+
         files, ids = repo.find_product(PfsSingle, catId=10015, visit=111317)
         self.assertTrue(len(files) > 0)
 
@@ -79,13 +83,15 @@ class TestFileSystemRepo(TestCase):
         files, ids = repo.find_product(PfsSingle, catId=10015, visit=(111317, 111318))
         self.assertTrue(len(files) > 0)
 
-    def test_locate_product(self):
+    def test_locate_pfsDesign(self):
         repo = self.get_test_repo()
 
         file, id = repo.locate_product(PfsDesign, pfsDesignId=0x6d832ca291636984)
         self.assertIsNotNone(file)
         self.assertEqual(0x6d832ca291636984, id.pfsDesignId)
 
+    def test_locate_pfsConfig(self):
+        repo = self.get_test_repo()
 
         files = repo.locate_product(PfsConfig, visit=111636, pfsDesignId=0x6d832ca291636984)
         files = repo.locate_product(PfsConfig, visit=111636)

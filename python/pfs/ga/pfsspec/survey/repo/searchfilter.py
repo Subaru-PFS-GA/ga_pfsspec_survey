@@ -140,6 +140,22 @@ class SearchFilter():
     def parse(self, arg: list):
         self._parse(arg)
 
+    def render(self):
+        """
+        Render the filter as a command-line argument string.
+        """
+
+        if self._values is None or len(self._values) == 0:
+            return None
+        else:
+            args = f'--{self._name}'
+            for v in self._values:
+                if isinstance(v, tuple):
+                    args += f' {self._format.format(v[0])}-{self._format.format(v[1])}'
+                else:
+                    args += f' {self._format.format(v)}'
+            return args
+
     def match(self, arg):
         """
         Return True if `arg` matches the filter. Arg can have various data types.

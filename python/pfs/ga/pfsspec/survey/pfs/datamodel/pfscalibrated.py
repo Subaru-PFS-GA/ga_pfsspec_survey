@@ -1,6 +1,14 @@
 from types import SimpleNamespace
 
-from pfs.datamodel import PfsCalibrated as PfsCalibratedBase
+from ..setup_logger import logger
+
+try:
+    from pfs.datamodel import PfsCalibrated as PfsCalibratedBase
+except ImportError as ex:
+    logger.warning('Cannot import PFS data model. Is package `pfs.datamodel` available?')
+    logger.exception(ex)
+
+    PfsCalibratedBase = None
 
 class PfsCalibrated(PfsCalibratedBase):
     """

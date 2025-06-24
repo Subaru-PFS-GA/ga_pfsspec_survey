@@ -2,7 +2,7 @@ import os
 from datetime import date
 from unittest import TestCase
 
-from pfs.datamodel import *
+from pfs.ga.pfsspec.survey.pfs.datamodel import *
 from pfs.ga.pfsspec.survey.repo import ButlerRepo
 from pfs.ga.pfsspec.survey.pfs import PfsGen3Repo, PfsGen3ButlerConfig
 
@@ -26,20 +26,20 @@ class TestPfsGen3Repo_Butler(TestCase):
     def test_locate_product(self):
         repo = self.get_test_repo()
 
-        file, id = repo.locate_product(PfsConfig, visit=122771)
+        file, id = repo.locate_product(PfsConfig, visit=122794)
 
     def test_load_product(self):
         repo = self.get_test_repo()
 
-        file, id = repo.locate_product(PfsConfig, visit=122771)
+        file, id = repo.locate_product(PfsConfig, visit=122794)
         pfsConfig = repo.load_product(PfsConfig, identity=id)
 
     def test_find_objects(self):
         repo = self.get_test_repo()
 
         # Find a bunch or outer disk science targets
-        ids = repo.find_objects(visit=[(120001, 120008)], catId=10088)
+        ids = repo.find_objects(visit=[(122794, 122799)], catId=10092)
 
         # Get observations of a specific object
-        ids = repo.find_objects(visit=[(120001, 120008)], objId=154931150335344425)
+        ids = repo.find_objects(visit=[(122794, 122799)], objId=154931150335344425)
         pass

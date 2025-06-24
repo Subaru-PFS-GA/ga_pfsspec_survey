@@ -128,14 +128,17 @@ class FileSystemRepo(Repo):
                 
                 if match is not None:
                     # If all parameters match the param filters, add the IDs to the list
+                    # Some parameters are allowed to be missing because they might not be part of the filename
                     good = True
+                    groups = match.groupdict()
                     for k, param in params.items():
-                        # Parse the string value from the match and convert it to the correct type
-                        values[k] = param.parse_value(match.group(k))
+                        if k in groups:
+                            # Parse the string value from the match and convert it to the correct type
+                            values[k] = param.parse_value(groups[k])
 
-                        # Match the parameter against the filter. This is a comparison
-                        # against the values and value ranges specified in the filter.
-                        good &= param.match(values[k])
+                            # Match the parameter against the filter. This is a comparison
+                            # against the values and value ranges specified in the filter.
+                            good &= param.match(values[k])
 
                     if good:
                         filenames.append(path)
