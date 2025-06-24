@@ -19,6 +19,7 @@ PfsFileSystemConfig = SimpleNamespace(
     },
     products = {
         PfsDesign: SimpleNamespace(
+            name = 'pfsDesign',
             params = SimpleNamespace(
                 pfsDesignId = HexFilter(name='pfsDesignId', format='{:016x}')
             ),
@@ -33,6 +34,7 @@ PfsFileSystemConfig = SimpleNamespace(
                 PfsDesign.read(pfsDesignId=identity.pfsDesignId, dirName=dir),
         ),
         PfsConfig: SimpleNamespace(
+            name = 'pfsConfig',
             params = SimpleNamespace(
                 pfsDesignId = HexFilter(name='pfsDesignId', format='{:016x}'),
                 visit = IntFilter(name='visit', format='{:06d}'),
@@ -50,6 +52,7 @@ PfsFileSystemConfig = SimpleNamespace(
                 PfsConfig.read(pfsDesignId=identity.pfsDesignId, visit=identity.visit, dirName=dir),
         ),
         PfsArm: SimpleNamespace(
+            name = 'pfsArm',
             params = SimpleNamespace(
                 visit = IntFilter(name='visit', format='{:06d}'),
                 arm = StringFilter(name='arm'),
@@ -68,6 +71,7 @@ PfsFileSystemConfig = SimpleNamespace(
                 PfsArm.read(Identity(identity.visit, arm=identity.arm, spectrograph=identity.spectrograph), dirName=dir),
         ),
         PfsMerged: SimpleNamespace(
+            name = 'pfsMerged',
             params = SimpleNamespace(
                 visit = IntFilter(name='visit', format='{:06d}'),
                 date = DateFilter(name='date', format='{:%Y-%m-%d}'),
@@ -84,6 +88,7 @@ PfsFileSystemConfig = SimpleNamespace(
                 PfsMerged.read(Identity(identity.visit), dirName=dir),
         ),
         PfsSingle: SimpleNamespace(
+            name = 'pfsSingle',
             params = SimpleNamespace(
                 catId = IntFilter(name='catId', format='{:05d}'),
                 tract = IntFilter(name='tract', format='{:05d}'),
@@ -102,6 +107,7 @@ PfsFileSystemConfig = SimpleNamespace(
                 PfsSingle.read(identity.__dict__, dirName=dir),
         ),
         PfsObject: SimpleNamespace(
+            name = 'pfsObject',
             params = SimpleNamespace(
                 catId = IntFilter(name='catId', format='{:05d}'),
                 tract = IntFilter(name='tract', format='{:05d}'),
@@ -121,6 +127,7 @@ PfsFileSystemConfig = SimpleNamespace(
                 PfsObject.read(identity.__dict__, dirName=dir),
         ),
         PfsGAObject: SimpleNamespace(
+            name = 'pfsGAObject',
             params = SimpleNamespace(
                 catId = IntFilter(name='catId', format='{:05d}'),
                 tract = IntFilter(name='tract', format='{:05d}'),
