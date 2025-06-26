@@ -15,14 +15,18 @@ class Repo():
     def __init__(self, config=None, orig=None):
 
         if not isinstance(orig, Repo):
+            self.__ignore_missing_files = False
+
             self.__config = config
             self.__variables = self._init_variables()
             self.__filters = self._init_filters()
         else:
+            self.__ignore_missing_files = orig.__ignore_missing_files
+
             self.__config = config if config is not None else orig.__config
             self.__variables = orig.__variables
             self.__filters = self._init_filters()
-
+            
     def _init_variables(self):
         # Enumerate all variables that appear in the config and make a 
         # unique dictionary of them
@@ -43,6 +47,14 @@ class Repo():
 
     #region Properties
 
+    def __get_ignore_missing_files(self):
+        return self.__ignore_missing_files
+    
+    def __set_ignore_missing_files(self, value):
+        self.__ignore_missing_files = value
+
+    ignore_missing_files = property(__get_ignore_missing_files, __set_ignore_missing_files)
+
     def __get_config(self):
         return self.__config
     
@@ -61,18 +73,27 @@ class Repo():
     #endregion
     #region Command-line arguments
 
-    def add_args(self, script, include_variables=True, include_filters=True):
+    def add_args(self, script, include_variables=True, include_filters=True, ignore_duplicates=False):
+        script.add_arg('--ignore-missing-files', action='store_true',
+                       default=None,
+                        help='Ignore missing data files.',
+                        ignore_duplicate=ignore_duplicates)
+
         # Add arguments for the variables
         if include_variables:
             for k, v in self.__config.variables.items():
-                script.add_arg(f'--{k.lower()}', type=str, help=f'Set variable {k}')
+                script.add_arg(f'--{k.lower()}', type=str, help=f'Set variable {k}',
+                               ignore_duplicate=ignore_duplicates)
 
         # Add arguments for the filters
         if include_filters:
             for k, p in self.__filters.__dict__.items():
-                script.add_arg(f'--{k.lower()}', type=str, nargs='*', help=f'Filter on {k}')
+                script.add_arg(f'--{k.lower()}', type=str, nargs='*', help=f'Filter on {k}',
+                               ignore_duplicate=ignore_duplicates)
 
     def init_from_args(self, script):
+        self.__ignore_missing_files = script.get_arg('ignore_missing_files', default=self.__ignore_missing_files)
+
         # Parse variables
         for k, v in self.__config.variables.items():
             if script.is_arg(k.lower()):
@@ -334,7 +355,8 @@ class Repo():
     def locate_product(self, product=None, variables=None, **kwargs):
         raise NotImplementedError()
 
-    def load_product(self, product=None, filename=None, identity=None, variables=None):
+    def load_product(self, product=None, filename=None, identity=None, variables=None,
+                     ignore_missing_files=None):
         """
         Loads a product from a file or based on identity.
 
@@ -348,6 +370,8 @@ class Repo():
             Identity of the product to load.
         variables : dict
             Dictionary of variables that can be expanded in the file paths.
+        ignore_missing_files: bool
+            If True, missing files are ignored and None is returned instead of raising an exception.
 
         Returns
         -------
@@ -360,13 +384,20 @@ class Repo():
         """
 
         self._ensure_one_arg(filename=filename, identity=identity)
+        ignore_missing_files = ignore_missing_files if ignore_missing_files is not None else self.__ignore_missing_files
 
         if isinstance(product, tuple):
-            return self.__load_product_from_container(*product, filename=filename, identity=identity, variables=variables)
+            return self.__load_product_from_container(*product,
+                                                      filename, identity, variables,
+                                                      ignore_missing_files)
         else:
-            return self.__load_product_single(product, filename=filename, identity=identity, variables=variables)
+            return self.__load_product_single(product,
+                                              filename, identity, variables,
+                                              ignore_missing_files)
 
-    def __load_product_single(self, product, filename=None, identity=None, variables=None):
+    def __load_product_single(self, product,
+                              filename, identity, variables,
+                              ignore_missing_files):
         """
         Load a data product that consists of an entire file.
         """
@@ -395,11 +426,20 @@ class Repo():
 
         # Load the product via the dispatcher
         logger.debug(f'Loading product {self.config.products[product].name} from {filename}.')
-        data = self.config.products[product].load(identity, filename, dir)
+        try:
+            data = self.config.products[product].load(identity, filename, dir)
+        except FileNotFoundError as ex:
+            if ignore_missing_files:
+                logger.warning(f'File not found: {filename}. Ignoring missing file.')
+                return None, None, filename
+            else:
+                raise ex
 
         return data, identity, filename
 
-    def __load_product_from_container(self, container, product, filename=None, identity=None, variables=None):
+    def __load_product_from_container(self, container, product,
+                                      filename, identity, variables,
+                                      ignore_missing_files):
         """
         Load a data product that is a subproduct of a container product.
 
@@ -425,10 +465,16 @@ class Repo():
 
         # Load the product via the dispatcher
         logger.debug(f'Loading product {self.config.products[(container, product)].name} from {filename}.')
-        data = self.config.products[(container, product)].load(identity, filename, dir)
+        try:
+            data = self.config.products[(container, product)].load(identity, filename, dir)
+        except FileNotFoundError as ex:
+            if ignore_missing_files:
+                logger.warning(f'File not found: {filename}. Ignoring missing file.')
+                return None, None, filename
+            else:
+                raise ex
 
         return data, identity, filename
-
 
     def save_product(self, data, filename=None, identity=None, variables=None, create_dir=True):
         raise NotImplementedError()

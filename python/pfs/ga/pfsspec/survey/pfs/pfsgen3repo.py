@@ -19,6 +19,18 @@ class PfsGen3Repo():
 
     def __init_repo(self, repo_type, config):
         return repo_type(config)
+
+    def __getattr__(self, name):
+        """
+        Forwards attribute access to the wrapped object. This will allow
+        calling methods and accessing properties of the wrapped repository.
+
+        This function is only called for attributes that are not defined
+        in this class, so it will not interfere with the properties defined
+        in the wrapper.
+        """
+
+        return getattr(self.__repo, name)
         
     #region Properties
 
@@ -27,22 +39,33 @@ class PfsGen3Repo():
     
     repo = property(__get_repo)
 
-    def __get_object_filters(self):
-        return self.__object_filters
+    def __get_ignore_missing_files(self):
+        return self.__repo.ignore_missing_files
     
-    object_filters = property(__get_object_filters)
+    def __set_ignore_missing_files(self, value):
+        self.__repo.ignore_missing_files = value
+
+    ignore_missing_files = property(__get_ignore_missing_files, __set_ignore_missing_files)
 
     #endregion
 
-    def add_args(self, script, include_variables=True, include_filters=True):
-        self.__repo.add_args(script, include_variables=include_variables, include_filters=include_filters)
+    def add_args(self,
+                 script,
+                 include_variables=True,
+                 include_filters=True,
+                 ignore_duplicates=False):
+        
+        self.__repo.add_args(script,
+                             include_variables=include_variables,
+                             include_filters=include_filters,
+                             ignore_duplicates=ignore_duplicates)
 
         for k, p in self.__object_filters.__dict__.items():
             script.add_arg(f'--{k.lower()}',
                            type=str,
                            nargs='*',
                            help=f'Filter on {k}',
-                           ignore_duplicate=True)
+                           ignore_duplicate=ignore_duplicates)
         
     def init_from_args(self, script):
         self.__repo.init_from_args(script)
@@ -142,7 +165,11 @@ class PfsGen3Repo():
                 configs = {}
                 for file in files:
                     config, id, fn = self.load_product(PfsConfig, filename=file)
-                    configs[id.visit] = config
+
+                    # If the file is missing, and ignore_missing_files is True,
+                    # the function silently returns a None, so simply skip it
+                    if config is not None:
+                        configs[id.visit] = config
 
             identities = {}
             for visit, config in configs.items():
