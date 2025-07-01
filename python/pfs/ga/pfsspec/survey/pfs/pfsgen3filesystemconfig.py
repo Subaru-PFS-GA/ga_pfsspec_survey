@@ -33,13 +33,13 @@ def load_PfsCalibrated(identity, filename, dir):
 def load_PfsCalibratedLsf(identity, filename, dir):
     raise NotImplementedError()
 
-def load_PfsCalibrated_PfsSingle(identity, filename, dir):
+def load_PfsCalibrated_PfsSingle(identity, filename, dir, **kwargs):
     if filename is not None and identity is not None:
         # Limit id fields to those that are in the PfsCalibrated class
         valid = ['targetId', 'catId', 'tract', 'patch', 'objId', 'targetType']
-        id = { k: getattr(identity, k) for k in valid if hasattr(identity, k) }
-        results = PfsCalibrated.readFits(filename, **id)
-        return results[id['objId']]
+        params = { k: v for k, v in { **(identity.__dict__), **kwargs }.items() if k in valid }
+        results = PfsCalibrated.readFits(filename, **params)
+        return ( (results[k], SimpleNamespace(**results[k].getIdentity())) for k in results.keys() )
     else:
         raise NotImplementedError()
 
@@ -74,7 +74,7 @@ PfsGen3FileSystemConfig = SimpleNamespace(
         'rerundir': '$PFSSPEC_PFS_RERUNDIR',
         'rerun': '$PFSSPEC_PFS_RERUN',
         'pfsdesigndir': '$PFSSPEC_PFS_DESIGNDIR',
-        'psfconfigdir': '$PFSSPEC_PFS_CONFIGDIR',
+        'pfsconfigdir': '$PFSSPEC_PFS_CONFIGDIR',
     },
     products = {
         PfsDesign: SimpleNamespace(
@@ -102,7 +102,7 @@ PfsGen3FileSystemConfig = SimpleNamespace(
                 re.compile(r'(?P<date>\d{4}\d{2}\d{2})/(?P<visit>\d{6})/pfsConfig_PFS_\d{6}_PFS_raw_pfsConfig\.(fits|fits\.gz)$'),
                 re.compile(r'pfsConfig-PFS-(?P<visit>\d{6})_PFS_raw_pfsConfig\.(fits|fits\.gz)$'),
             ],
-            dir_format = '$psfconfigdir/pfsConfig/{date}/{visit}',
+            dir_format = '$pfsconfigdir/pfsConfig/{date}/{visit}',
             filename_format = 'pfsConfig_PFS_{visit}_PFS_raw_pfsConfig.fits',
             identity = lambda data:
                 SimpleNamespace(pfs_design_id=data.pfsDesignId, visit=data.visit),

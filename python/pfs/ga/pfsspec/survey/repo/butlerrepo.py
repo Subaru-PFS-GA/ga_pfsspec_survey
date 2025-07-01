@@ -121,6 +121,8 @@ class ButlerRepo(Repo):
 
         logger.debug(f'Finding product {self.config.products[product].name} with parameters: {params}.')
 
+        # TODO: implement finding sub-products in container products
+
         return self.__find_datasets(
             self.config.products[product].name,
             params_regex = self.config.products[product].params_regex,

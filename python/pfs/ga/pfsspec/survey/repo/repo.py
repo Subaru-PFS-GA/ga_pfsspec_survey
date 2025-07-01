@@ -309,9 +309,15 @@ class Repo():
         """
 
         product = product.lower()
+        parts = product.split(',')
 
         for t in self.__config.products.keys():
-            if inspect.isclass(t) and t.__name__.lower() == product:
+            if isinstance(t, tuple) and len(t) == 2 and len(parts) == 2:
+                # This is a container product
+                if t[0].__name__.lower() == parts[0] and t[1].__name__.lower() == parts[1]:
+                    return t
+            elif inspect.isclass(t) and t.__name__.lower() == product:
+                # This is a single product
                 return t
             
         raise ValueError(f'Product type not recognized: {product}')
@@ -355,8 +361,14 @@ class Repo():
     def locate_product(self, product=None, variables=None, **kwargs):
         raise NotImplementedError()
 
-    def load_product(self, product=None, filename=None, identity=None, variables=None,
-                     ignore_missing_files=None):
+    def load_product(self,
+                     product=None,
+                     filename=None,
+                     identity=None,
+                     variables=None,
+                     ignore_missing_files=None,
+                     **kwargs):
+        
         """
         Loads a product from a file or based on identity.
 
@@ -367,11 +379,15 @@ class Repo():
         filename : str
             Path to the file to load.
         identity : SimpleNamespace
-            Identity of the product to load.
+            Identity of the product to load. If it is a container product, it should 
+            only contain the parameters of the container and all other parameters
+            should be passed as keyword arguments.
         variables : dict
             Dictionary of variables that can be expanded in the file paths.
         ignore_missing_files: bool
             If True, missing files are ignored and None is returned instead of raising an exception.
+        kwargs : dict
+            Additional parameters to pass to the load function of the product.
 
         Returns
         -------
@@ -385,22 +401,6 @@ class Repo():
 
         self._ensure_one_arg(filename=filename, identity=identity)
         ignore_missing_files = ignore_missing_files if ignore_missing_files is not None else self.__ignore_missing_files
-
-        if isinstance(product, tuple):
-            return self.__load_product_from_container(*product,
-                                                      filename, identity, variables,
-                                                      ignore_missing_files)
-        else:
-            return self.__load_product_single(product,
-                                              filename, identity, variables,
-                                              ignore_missing_files)
-
-    def __load_product_single(self, product,
-                              filename, identity, variables,
-                              ignore_missing_files):
-        """
-        Load a data product that consists of an entire file.
-        """
 
         if product is None and filename is not None:
             product = self.parse_product_name(filename)
@@ -427,7 +427,7 @@ class Repo():
         # Load the product via the dispatcher
         logger.debug(f'Loading product {self.config.products[product].name} from {filename}.')
         try:
-            data = self.config.products[product].load(identity, filename, dir)
+            data = self.config.products[product].load(identity, filename, dir, **kwargs)
         except FileNotFoundError as ex:
             if ignore_missing_files:
                 logger.warning(f'File not found: {filename}. Ignoring missing file.')
@@ -437,22 +437,28 @@ class Repo():
 
         return data, identity, filename
 
-    def __load_product_from_container(self, container, product,
-                                      filename, identity, variables,
-                                      ignore_missing_files):
-        """
-        Load a data product that is a subproduct of a container product.
+    def load_products_from_container(self,
+                                     container,
+                                     product,
+                                     filename=None,
+                                     identity=None,
+                                     variables=None,
+                                     ignore_missing_files=None,
+                                     **kwargs):
 
-        Here we assume that the identity is specified because the full identity of the sub-product
-        cannot be determined from the filename alone.
+        """
+        Load data products that are subproducts of a container product.
         """
 
-        if isinstance(identity, dict):
+        if filename is not None:
+            cid = self.parse_product_identity(container, filename, required=True)
+            params = identity.__dict__
+        elif isinstance(identity, dict):
             params = identity
         elif isinstance(identity, SimpleNamespace):
             params = identity.__dict__
         else:
-            params = { k: p.copy() for k, p in self.filters.__dict__.items() if p.value is not None }
+            params = { k: p.copy() for k, p in self.filters.__dict__.items() if not p.is_none }
            
         # The file name might not contain all information necessary to load the
         # product, so given the parsed identity, we need to locate the file.
@@ -466,7 +472,7 @@ class Repo():
         # Load the product via the dispatcher
         logger.debug(f'Loading product {self.config.products[(container, product)].name} from {filename}.')
         try:
-            data = self.config.products[(container, product)].load(identity, filename, dir)
+            data = self.config.products[(container, product)].load(identity, filename, dir, **kwargs)
         except FileNotFoundError as ex:
             if ignore_missing_files:
                 logger.warning(f'File not found: {filename}. Ignoring missing file.')
@@ -474,7 +480,7 @@ class Repo():
             else:
                 raise ex
 
-        return data, identity, filename
+        return [ (d, id, filename) for d, id in data ]
 
     def save_product(self, data, filename=None, identity=None, variables=None, create_dir=True):
         raise NotImplementedError()

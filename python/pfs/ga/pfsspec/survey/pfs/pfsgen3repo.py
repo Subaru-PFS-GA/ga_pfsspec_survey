@@ -39,6 +39,11 @@ class PfsGen3Repo():
     
     repo = property(__get_repo)
 
+    def __get_object_filters(self):
+        return self.__object_filters
+    
+    object_filters = property(__get_object_filters)
+
     def __get_ignore_missing_files(self):
         return self.__repo.ignore_missing_files
     

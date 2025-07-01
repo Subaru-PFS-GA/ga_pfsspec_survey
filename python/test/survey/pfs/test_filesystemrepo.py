@@ -11,7 +11,10 @@ class TestFileSystemRepo(TestCase):
     # TODO: this is obsolete
 
     def get_test_repo(self):
-        return FileSystemRepo(PfsFileSystemConfig)
+        repo = FileSystemRepo(PfsFileSystemConfig)
+        repo.variables['datadir'] = '/datascope/subaru/data/commissioning/gen2'
+        repo.variables['rerundir'] = 'rerun/run17/20240604'
+        return repo
 
     def test_init(self):
         repo = self.get_test_repo()
@@ -113,7 +116,6 @@ class TestFileSystemRepo(TestCase):
     def test_load_product(self):
         repo = self.get_test_repo()
 
-        repo.variables['rerundir'] = 'run17/20240604'
         filename, identity = repo.locate_product(PfsDesign, pfsDesignId=0x6d832ca291636984)
 
         pfsDesign = repo.load_product(PfsDesign, filename=filename)
@@ -128,7 +130,7 @@ class TestFileSystemRepo(TestCase):
 
         #
 
-        repo.variables['rerundir'] = 'run08'
+        repo.variables['rerundir'] = 'rerun/run08'
         filename, identity = repo.locate_product(PfsArm, visit=83249, arm='r', spectrograph=1)
 
         pfsArm = repo.load_product(PfsArm, filename=filename)
@@ -136,7 +138,7 @@ class TestFileSystemRepo(TestCase):
 
         #
 
-        repo.variables['rerundir'] = 'run08'
+        repo.variables['rerundir'] = 'rerun/run08'
         filename, identity = repo.locate_product(PfsMerged, visit=83245)
 
         pfsMerged = repo.load_product(PfsMerged, filename=filename)
@@ -144,8 +146,8 @@ class TestFileSystemRepo(TestCase):
 
         #
 
-        repo.variables['rerundir'] = 'run17/20240604'
-        filename, identity = repo.locate_product(PfsSingle, catId=10015, tract=1, patch='1,1', objId=0x5d48, visit=111317)
+        repo.variables['rerundir'] = 'rerun/run08'
+        filename, identity = repo.locate_product(PfsSingle, catId=90003, tract=1, patch='1,1', objId=0xcf0, visit=83218)
 
         pfsSingle = repo.load_product(PfsSingle, filename=filename)
         pfsSingle = repo.load_product(PfsSingle, identity=identity)
@@ -153,7 +155,7 @@ class TestFileSystemRepo(TestCase):
     def test_get_identity(self):
         repo = self.get_test_repo()
 
-        repo.variables['rerundir'] = 'run17/20240604'
+        repo.variables['rerundir'] = 'rerun/run17/20240604'
         filename, identity = repo.locate_product(PfsDesign, pfsDesignId=0x6d832ca291636984)
         pfsDesign, _, _ = repo.load_product(PfsDesign, filename=filename)
 
@@ -171,7 +173,7 @@ class TestFileSystemRepo(TestCase):
 
         #
 
-        repo.variables['rerundir'] = 'run08'
+        repo.variables['rerundir'] = 'rerun/run08'
         filename, identity = repo.locate_product(PfsArm, visit=83249, arm='r', spectrograph=1)
         pfsArm, _, _ = repo.load_product(PfsArm, filename=filename)
 
@@ -182,7 +184,7 @@ class TestFileSystemRepo(TestCase):
 
         #
 
-        repo.variables['rerundir'] = 'run08'
+        repo.variables['rerundir'] = 'rerun/run08'
         filename, identity = repo.locate_product(PfsMerged, visit=83245)
         pfsMerged, _, _ = repo.load_product(PfsMerged, filename=filename)
 
@@ -192,7 +194,7 @@ class TestFileSystemRepo(TestCase):
 
         #
 
-        repo.variables['rerundir'] = 'run17/20240604'
+        repo.variables['rerundir'] = 'rerun/run17/20240604'
         filename, identity = repo.locate_product(PfsSingle, catId=10015, tract=1, patch='1,1', objId=0x5d48, visit=111317)
         pfsSingle, _ , _ = repo.load_product(PfsSingle, filename=filename)
 
