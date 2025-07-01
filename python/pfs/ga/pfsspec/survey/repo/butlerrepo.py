@@ -93,7 +93,7 @@ class ButlerRepo(Repo):
 
         return filenames, identities
 
-    def find_product(self, product=None, variables=None, **kwargs):
+    def find_product(self, product, variables=None, **kwargs):
         """
         Finds product files that match the specified filters.
 

@@ -277,7 +277,7 @@ class Repo():
         else:
             return files[0], SimpleNamespace(**{ k: v[0] for k, v in identities.__dict__.items() })
 
-    def parse_product_name(self, filename):
+    def match_product_type(self, filename):
         """
         Parses the product type from the filename.
 
@@ -355,7 +355,7 @@ class Repo():
         self._throw_or_warn(f'Filename does not match expected format: {path}', required)
         return None
 
-    def find_product(self, product=None, variables=None, **kwargs):
+    def find_product(self, product, variables=None, **kwargs):
         raise NotImplementedError()
 
     def locate_product(self, product=None, variables=None, **kwargs):
@@ -403,12 +403,13 @@ class Repo():
         ignore_missing_files = ignore_missing_files if ignore_missing_files is not None else self.__ignore_missing_files
 
         if product is None and filename is not None:
-            product = self.parse_product_name(filename)
+            product = self.match_product_type(filename)
 
         if isinstance(product, str):
             product = self.parse_product_type(product)
 
-        # Some products cannot be loaded by filename, so we need to parse the identity
+        # Some products cannot be loaded by filename, so we need to parse the identity. If the
+        # identity is not provided, use the filters.
         if filename is not None:
             identity = self.parse_product_identity(product, filename, required=True)
             params = identity.__dict__
@@ -417,7 +418,7 @@ class Repo():
         elif isinstance(identity, SimpleNamespace):
             params = identity.__dict__
         else:
-            params = { k: p.copy() for k, p in self.filters.__dict__.items() if p.value is not None }
+            params = { k: p.copy() for k, p in self.filters.__dict__.items() if not p.is_none }
            
         # The file name might not contain all information necessary to load the
         # product, so given the parsed identity, we need to locate the file.
@@ -452,13 +453,13 @@ class Repo():
 
         if filename is not None:
             cid = self.parse_product_identity(container, filename, required=True)
-            params = identity.__dict__
+            params = cid.__dict__
         elif isinstance(identity, dict):
             params = identity
         elif isinstance(identity, SimpleNamespace):
             params = identity.__dict__
         else:
-            params = { k: p.copy() for k, p in self.filters.__dict__.items() if not p.is_none }
+            params = { k: p.value for k, p in self.filters.__dict__.items() if p.is_constant }
            
         # The file name might not contain all information necessary to load the
         # product, so given the parsed identity, we need to locate the file.
@@ -466,17 +467,25 @@ class Repo():
         dir = os.path.dirname(filename)
 
         # At this point cid contains the parameters that are associated with the container only,
-        # but any additional parameters that are passed to this function are necessary to
-        # look up the subproduct.
+        # but any additional filters that are defined on the class need to be applied.
+        # Since we don't expect that the load function supports range filters, we only pass in
+        # the constants
+        for k, p in self.filters.__dict__.items():
+            if p.is_constant:
+                params[k] = p.value
 
         # Load the product via the dispatcher
         logger.debug(f'Loading product {self.config.products[(container, product)].name} from {filename}.')
         try:
+            # load function expects an identity, it isn't supposed to support filters
+            # so pass in filters as part of the identity and assumed that there are no
+            # range filter in the list
+            identity = SimpleNamespace(**params)
             data = self.config.products[(container, product)].load(identity, filename, dir, **kwargs)
         except FileNotFoundError as ex:
             if ignore_missing_files:
                 logger.warning(f'File not found: {filename}. Ignoring missing file.')
-                return None, None, filename
+                return None
             else:
                 raise ex
 

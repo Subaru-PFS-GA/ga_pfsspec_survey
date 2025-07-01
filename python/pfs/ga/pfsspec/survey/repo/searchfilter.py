@@ -116,6 +116,13 @@ class SearchFilter():
     
     is_none = property(__is_none)
 
+    def __is_constant(self):
+        return self._values is not None and \
+            len(self._values) == 1 and \
+            not isinstance(self._values[0], tuple)
+
+    is_constant = property(__is_constant)
+
     def _parse_value(self, value):
         raise NotImplementedError()
     
@@ -140,7 +147,7 @@ class SearchFilter():
     def parse(self, arg: list):
         self._parse(arg)
 
-    def render(self):
+    def render(self, lower=False, upper=False):
         """
         Render the filter as a command-line argument string.
         """
@@ -148,7 +155,14 @@ class SearchFilter():
         if self._values is None or len(self._values) == 0:
             return None
         else:
-            args = f'--{self._name}'
+            if lower:
+                args = f'--{self._name.lower()}'
+            elif upper:
+                args = f'--{self._name.upper()}'
+            else:
+                args = f'--{self._name}'
+            
+            # Override format strings here because
             for v in self._values:
                 if isinstance(v, tuple):
                     args += f' {self._format.format(v[0])}-{self._format.format(v[1])}'

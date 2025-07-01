@@ -1,3 +1,4 @@
+import re
 from types import SimpleNamespace
 from copy import deepcopy
 import numpy as np
@@ -119,6 +120,14 @@ class PfsGen3Repo():
         match &= not hasattr(identity, 'obCode') or self.__object_filters.obCode.mask(identity.obCode)
 
         return match
+
+    def match_container_product_type(self, filename):
+        # Try to match each product regex pattern against the filename
+        for product, config in self.repo.config.products.items():
+            if isinstance(product, tuple):
+                for regex in config.params_regex:
+                    if re.search(regex, filename):
+                        return product
 
     #region Wrapper functions
 

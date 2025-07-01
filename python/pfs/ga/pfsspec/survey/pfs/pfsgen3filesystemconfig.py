@@ -39,7 +39,13 @@ def load_PfsCalibrated_PfsSingle(identity, filename, dir, **kwargs):
         valid = ['targetId', 'catId', 'tract', 'patch', 'objId', 'targetType']
         params = { k: v for k, v in { **(identity.__dict__), **kwargs }.items() if k in valid }
         results = PfsCalibrated.readFits(filename, **params)
-        return ( (results[k], SimpleNamespace(**results[k].getIdentity())) for k in results.keys() )
+        
+        return ((results[k],
+                 SimpleNamespace(
+                    **results[k].getIdentity(),
+                    visit = results[k].observations.visit[0],
+                 )
+                ) for k in results.keys())
     else:
         raise NotImplementedError()
 
