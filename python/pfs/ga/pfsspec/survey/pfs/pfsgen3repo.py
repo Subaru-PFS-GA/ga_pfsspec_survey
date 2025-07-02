@@ -200,21 +200,21 @@ class PfsGen3Repo():
                 n = mask.sum()
                 if n > 0:
                     identities[visit] = SimpleNamespace(
-                        visit = n * [visit],
-                        pfsDesignId = n * [config.pfsDesignId],
-                        obstime = n * [config.obstime],
-                        exptime = n * [None],
-                        fiberId = list(config.fiberId[mask]),
-                        spectrograph = list(config.spectrograph[mask]),
-                        arms = n * [config.arms],
-                        fiberStatus = list(config.fiberStatus[mask]),
-                        proposalId = list(config.proposalId[mask]),
-                        catId = list(config.catId[mask]),
-                        objId = list(config.objId[mask]),
-                        tract = list(config.tract[mask]),
-                        patch = list(config.patch[mask]),
-                        targetType = list(config.targetType[mask]),
-                        obCode = list(config.obCode[mask]),
+                        visit = np.array(n * [visit]),
+                        pfsDesignId = np.array(n * [config.pfsDesignId]),
+                        obstime = np.array(n * [config.obstime]),
+                        exptime = np.array(n * [None]),
+                        fiberId = np.array(config.fiberId[mask]),
+                        spectrograph = np.array(config.spectrograph[mask]),
+                        arms = np.array(n * [config.arms]),
+                        fiberStatus = np.array(config.fiberStatus[mask]),
+                        proposalId = np.array(config.proposalId[mask]),
+                        catId = np.array(config.catId[mask]),
+                        objId = np.array(config.objId[mask]),
+                        tract = np.array(config.tract[mask]),
+                        patch = np.array(config.patch[mask]),
+                        targetType = np.array(config.targetType[mask]),
+                        obCode = np.array(config.obCode[mask]),
                     )
         elif product == PfsSingle:
             raise NotImplementedError()
@@ -240,7 +240,7 @@ class PfsGen3Repo():
                 # Exclude engineering fibers
                 if objid != -1:
                     id = SimpleNamespace(
-                        visit = [ visit ],
+                        visit = [visit],
                         pfsDesignId = [ids.pfsDesignId[i]],
                         obstime = [ids.obstime[i]],
                         exptime = [ids.exptime[i]],
@@ -265,9 +265,17 @@ class PfsGen3Repo():
                         for k, v in id.__dict__.items():
                             getattr(r, k).extend(v)
 
+        # Convert lists to numpy arrays
+        for objid, ids in results.items():
+            for k, v in ids.__dict__.items():
+                setattr(ids, k, np.array(v))
+
         return results
     
     def __group_objects_by_none(self, identities):
+        # TODO: convert lists to numpy arrays
+        raise NotImplementedError()
+
         # Concatenate everything into a single namespace
         results = None
         for v, ids in identities.items():

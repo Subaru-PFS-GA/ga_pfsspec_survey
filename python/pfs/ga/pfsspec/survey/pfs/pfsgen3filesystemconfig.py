@@ -201,25 +201,25 @@ PfsGen3FileSystemConfig = SimpleNamespace(
                 SimpleNamespace(visit=data.identity.visit),     # TODO: add date
             load = load_PfsCalibrated_PfsSingle,
         ),
-        PfsSingle: SimpleNamespace(
-            name = 'pfsSingle',
-            params = SimpleNamespace(
-                catId = IntFilter(name='catId', format='{:05d}'),
-                tract = IntFilter(name='tract', format='{:05d}'),
-                patch = StringFilter(name='patch'),
-                objId = HexFilter(name='objId', format='{:016x}'),
-                visit = IntFilter(name='visit', format='{:06d}'),
-            ),
-            params_regex = [
-                re.compile(r'pfsSingle-(?P<catId>\d{5})-(?P<tract>\d{5})-(?P<patch>.*)-(?P<objId>[0-9a-f]{16})-(?P<visit>\d{6})\.(fits|fits\.gz)$'),
-            ],
-            dir_format = '$datadir/$rerundir/pfsSingle/{catId}/{tract}/{patch}',
-            filename_format = 'pfsSingle-{catId}-{tract}-{patch}-{objId}-{visit}.fits',
-            identity = lambda data:
-                SimpleNamespace(catId=data.target.catId, tract=data.target.tract, patch=data.target.patch, objId=data.target.objId, visit=data.observations.visit[0]),
-            load = load_PfsSingle,
-            save = save_PfsSingle,
-        ),
+        # PfsSingle: SimpleNamespace(
+        #     name = 'pfsSingle',
+        #     params = SimpleNamespace(
+        #         catId = IntFilter(name='catId', format='{:05d}'),
+        #         tract = IntFilter(name='tract', format='{:05d}'),
+        #         patch = StringFilter(name='patch'),
+        #         objId = HexFilter(name='objId', format='{:016x}'),
+        #         visit = IntFilter(name='visit', format='{:06d}'),
+        #     ),
+        #     params_regex = [
+        #         re.compile(r'pfsSingle-(?P<catId>\d{5})-(?P<tract>\d{5})-(?P<patch>.*)-(?P<objId>[0-9a-f]{16})-(?P<visit>\d{6})\.(fits|fits\.gz)$'),
+        #     ],
+        #     dir_format = '$datadir/$rerundir/pfsSingle/{catId}/{tract}/{patch}',
+        #     filename_format = 'pfsSingle-{catId}-{tract}-{patch}-{objId}-{visit}.fits',
+        #     identity = lambda data:
+        #         SimpleNamespace(catId=data.target.catId, tract=data.target.tract, patch=data.target.patch, objId=data.target.objId, visit=data.observations.visit[0]),
+        #     load = load_PfsSingle,
+        #     save = save_PfsSingle,
+        # ),
         PfsObject: SimpleNamespace(
             name = 'pfsObject',
             params = SimpleNamespace(

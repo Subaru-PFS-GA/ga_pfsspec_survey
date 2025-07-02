@@ -1,4 +1,5 @@
 from types import SimpleNamespace
+from copy import deepcopy
 
 from .pfsgen3filesystemconfig import PfsGen3FileSystemConfig
 
@@ -8,5 +9,5 @@ PfsGen3ButlerConfig = SimpleNamespace(
         'butlerconfigdir': '$BUTLER_CONFIGDIR',
         'butlercollections': '$BUTLER_COLLECTIONS',
     },
-    products = PfsGen3FileSystemConfig.products,
+    products = deepcopy(PfsGen3FileSystemConfig.products),
 )
