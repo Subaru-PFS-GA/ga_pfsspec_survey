@@ -53,6 +53,11 @@ class PfsGen3Repo():
 
     ignore_missing_files = property(__get_ignore_missing_files, __set_ignore_missing_files)
 
+    def __get_is_filesystem_repo(self):
+        return self.__repo.is_file_system_repo
+
+    is_filesystem_repo = property(__get_is_filesystem_repo)
+
     #endregion
 
     def add_args(self,

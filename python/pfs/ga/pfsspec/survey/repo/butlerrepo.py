@@ -35,6 +35,11 @@ class ButlerRepo(Repo):
     
     butler = property(__get_butler)
 
+    def __get_is_filesystem_repo(self):
+        return False
+
+    is_filesystem_repo = property(__get_is_filesystem_repo)
+
     #endregion
 
     def __find_datasets(self, product_name, params_regex, params, param_values, variables):

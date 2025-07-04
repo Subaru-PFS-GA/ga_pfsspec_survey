@@ -40,6 +40,14 @@ class FileSystemRepo(Repo):
         
         super().__init__(config=config, orig=orig)
 
+    #region Properties
+
+    def __get_is_filesystem_repo(self):
+        return True
+
+    is_filesystem_repo = property(__get_is_filesystem_repo)
+
+    #endregion
     #region Utility functions
 
     def __find_files_and_match_params(self,
@@ -215,7 +223,8 @@ class FileSystemRepo(Repo):
         files, ids = self.find_product(product, variables=variables, **kwargs)
         return self._get_single_file(files, ids)
     
-    def save_product(self, data, filename=None, identity=None, variables=None, create_dir=True):
+    def save_product(self, data, filename=None, identity=None, variables=None,
+                     exist_ok=True, create_dir=True):
         """
         Saves a product to a file. The filename is either provided or constructed based on the identity.
 
@@ -251,6 +260,9 @@ class FileSystemRepo(Repo):
             filename = os.path.join(dir, filename)
         else:
             dir = os.path.dirname(filename)
+
+        if not exist_ok and os.path.exists(filename):
+            raise FileExistsError(f'File {filename} already exists. Use `exist_ok=True` to overwrite it.')
 
         if create_dir and not os.path.exists(dir):
             logger.debug(f'Creating directory {dir}.')
@@ -315,17 +327,5 @@ class FileSystemRepo(Repo):
             dir = os.path.dirname(filename)
 
         return dir, filename, identity
-    
-    def get_identity(self, data):
-        """
-        Returns the identity of the product.
-
-        Arguments
-        ---------
-        data : object
-            Product data.
-        """
-
-        return self.config.products[type(data)].identity(data)
 
     #endregion

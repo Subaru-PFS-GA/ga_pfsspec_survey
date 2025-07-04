@@ -355,6 +355,18 @@ class Repo():
         self._throw_or_warn(f'Filename does not match expected format: {path}', required)
         return None
 
+    def get_identity(self, data):
+        """
+        Returns the identity of the product.
+
+        Arguments
+        ---------
+        data : object
+            Product data.
+        """
+
+        return self.__config.products[type(data)].identity(data)
+
     def find_product(self, product, variables=None, **kwargs):
         raise NotImplementedError()
 
@@ -491,7 +503,9 @@ class Repo():
 
         return [ (d, id, filename) for d, id in data ]
 
-    def save_product(self, data, filename=None, identity=None, variables=None, create_dir=True):
+    def save_product(self, data, filename=None, identity=None, variables=None,
+                     exist_ok=True,
+                     create_dir=True):
         raise NotImplementedError()
 
     #region

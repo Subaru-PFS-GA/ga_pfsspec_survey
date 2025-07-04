@@ -50,7 +50,10 @@ def load_PfsCalibrated_PfsSingle(identity, filename, dir, **kwargs):
         raise NotImplementedError()
 
 def load_PfsSingle(identity, filename, dir):
-    return PfsSingle.read(identity.__dict__, dirName=dir)
+    if filename is not None:
+        return PfsSingle.readFits(filename)
+    else:
+        return PfsSingle.read(identity.__dict__, dirName=dir)
 
 def save_PfsSingle(data, identity, filename, dir):
     if filename is not None:
