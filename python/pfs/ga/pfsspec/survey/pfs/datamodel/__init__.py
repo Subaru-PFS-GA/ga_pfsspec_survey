@@ -2,6 +2,7 @@ from ..setup_logger import logger
 
 try:
     from pfs.datamodel import PfsFiberArray, PfsFiberArraySet, PfsSingle, PfsObject, PfsArm, PfsMerged, PfsCoadd
+    from pfs.datamodel.pfsTargetSpectra import PfsTargetSpectra
     from pfs.datamodel import PfsConfig, PfsDesign
     from pfs.datamodel import PfsGAObject, PfsGACatalog
     from pfs.datamodel import Target, Identity, Observations
@@ -22,6 +23,7 @@ except ImportError as ex:
     PfsCalibrated = object()
     PfsCalibratedLsf = object()
     PfsCoadd = object()
+    PfsTargetSpectra = object()
     PfsConfig = object()
     PfsDesign = object()
     PfsGAObject = object()

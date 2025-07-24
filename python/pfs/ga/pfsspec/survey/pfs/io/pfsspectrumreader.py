@@ -86,6 +86,18 @@ class PfsSpectrumReader(SpectrumReader):
             if index is not None and index >= len(data.fiberId):
                 logger.warning(f'Index {index} out of range in {get_type_string()} object.')
                 return False
+        elif isinstance(data, PfsTargetSpectra):
+            found = False
+            for target in data.keys():
+                if (objid is None or target.identity['objId'] == objid) \
+                    and (arm is None or arm in data[target].observations.arm[0]):
+                    
+                    found = True
+                    break
+            
+            if not found:
+                logger.warning(f'Arm {arm} or objId {objid} not available in {get_type_string()} object.')
+                return False
         elif isinstance(data, PfsConfig):
             if arm is not None and arm not in data.arms:
                 logger.warning(f'Arm {arm} not available in {get_type_string()} object with {get_id_string()}.')
@@ -113,12 +125,14 @@ class PfsSpectrumReader(SpectrumReader):
     def read_all(self):
         return [self.read(),]
     
-    def read_from_product(self, data, spec):
+    def read_from_product(self, data, spec, **kwargs):
         
         if isinstance(data, PfsFiberArray):
-            self.read_from_pfsFiberArray(data, spec)
+            self.read_from_pfsFiberArray(data, spec, **kwargs)
         elif isinstance(data, PfsFiberArraySet):
-            self.read_from_pfsFiberArraySet(data, spec)
+            self.read_from_pfsFiberArraySet(data, spec, **kwargs)
+        elif isinstance(data, PfsTargetSpectra):
+            self.read_from_pfsTargetSpectra(data, spec, **kwargs)
         else:
             raise NotImplementedError()
 
@@ -393,3 +407,16 @@ class PfsSpectrumReader(SpectrumReader):
         spec.mjd = Astro.datetime_to_mjd(datetime(2023, 7, 24, 14, 0, 0, tzinfo=pytz.timezone('UTC')))
         spec.alt, spec.az = Astro.radec_to_altaz(spec.ra, spec.dec, spec.mjd)
         spec.airmass = 1 / np.cos(np.radians(90 - spec.alt))
+
+    def read_from_pfsTargetSpectra(self, data, spec, arm=None, objid=None,
+                                   wave_limits=None, wave_mask=None):
+        
+        for target in data.keys():
+            if (objid is None or target.identity['objId'] == objid) \
+                and (arm is None or arm in data[target].observations.arm[0]):
+                
+                return self.read_from_pfsFiberArray(data[target], spec, arm=arm,
+                                                    wave_limits=wave_limits,
+                                                    wave_mask=wave_mask)
+
+        raise ValueError(f'Arm {arm} or objId {objid} not available in PfsTargetSpectra object.')

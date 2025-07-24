@@ -150,7 +150,8 @@ PfsGen3FileSystemConfig = SimpleNamespace(
             dir_format = '${datadir}/${rerundir}/{proctime}/pfsMerged/{date}/{visit}/',
             filename_format = 'pfsMerged_PFS_{visit}_${rerun}_{proctime}.fits',
             identity = lambda data:
-                SimpleNamespace(visit=data.identity.visit),     # TODO: add date
+                # TODO: add date and proctime but from where?
+                SimpleNamespace(visit=data[list(data.keys())[0]].observations.visit[0]),     
             load = load_PfsMerged,
         ),
         PfsCalibrated: SimpleNamespace(
@@ -167,7 +168,7 @@ PfsGen3FileSystemConfig = SimpleNamespace(
             dir_format = '${datadir}/${rerundir}/{proctime}/pfsCalibrated/{date}/{visit}/',
             filename_format = 'pfsCalibrated_PFS_{visit}_${rerun}_{proctime}.fits',
             identity = lambda data:
-                SimpleNamespace(visit=data.identity.visit),     # TODO: add date
+                SimpleNamespace(visit=data[list(data.keys())[0]].observations.visit[0]),     # TODO: add date
             load = load_PfsCalibrated,
         ),
         PfsCalibratedLsf: SimpleNamespace(
