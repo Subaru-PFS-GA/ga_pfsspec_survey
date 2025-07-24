@@ -278,9 +278,6 @@ class PfsGen3Repo():
         return results
     
     def __group_objects_by_none(self, identities):
-        # TODO: convert lists to numpy arrays
-        raise NotImplementedError()
-
         # Concatenate everything into a single namespace
         results = None
         for v, ids in identities.items():
