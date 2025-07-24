@@ -461,6 +461,23 @@ class Repo():
 
         """
         Load data products that are subproducts of a container product.
+
+        Arguments
+        ---------
+        container : type
+            Type of the container product.
+        product : type
+            Type of the product to load from the container.
+        filename : str
+            Path to the container file to load. If None, the identity is used to locate the file.
+        identity : SimpleNamespace
+            Identity of the product to load.
+        variables : dict
+            Dictionary of variables that can be expanded in the file paths by the repository.
+        ignore_missing_files: bool
+            If True, missing files are ignored and None is returned instead of raising an exception.
+        kwargs : dict
+            Additional parameters to pass to the load function of the product.
         """
 
         if filename is not None:
