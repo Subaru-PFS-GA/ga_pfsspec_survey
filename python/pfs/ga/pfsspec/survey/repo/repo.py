@@ -277,6 +277,23 @@ class Repo():
         else:
             return files[0], SimpleNamespace(**{ k: v[0] for k, v in identities.__dict__.items() })
 
+    def has_product(self, product):
+        """
+        Checks if the repository has a product of the specified type.
+
+        Arguments
+        ---------
+        product : type
+            Type of the product to check.
+
+        Returns
+        -------
+        bool
+            True if the product is available, False otherwise.
+        """
+
+        return product in self.__config.products
+
     def match_product_type(self, filename):
         """
         Parses the product type from the filename.

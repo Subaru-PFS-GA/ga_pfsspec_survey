@@ -95,6 +95,10 @@ class FileSystemRepo(Repo):
                     params[k].values = v
                 elif hasattr(self.filters, k):
                     params[k].values = getattr(self.filters, k)
+            else:
+                # TODO: maybe we don't want to swallow this to detect mispelled kwargs?
+                # logger.warning(f'Parameter {k} is not defined in the config, skipping it.')
+                pass
 
         # Substitute patterns in variables with environment variables
         vars = {}
@@ -118,7 +122,7 @@ class FileSystemRepo(Repo):
         # Compose the full glob pattern
         glob_pattern = os.path.join(*[ p.format(**glob_pattern_parts) for p in patts ])
 
-        # Find the files that match the glob pattern
+        # Find the files that match the glob pattern.
         # Set breakpoint here to debug issues regarding files not found
         logger.debug(f'Finding files with glob using pattern: `{glob_pattern}`.')
         paths = glob(glob_pattern)
@@ -185,10 +189,10 @@ class FileSystemRepo(Repo):
         """
 
         # Use all specified filters with function arguments taking precedence
-        params = { k: p.copy() for k, p in self.filters.__dict__.items() if not p.is_none }
-        params.update(kwargs)
+        params_values = { k: p.copy() for k, p in self.filters.__dict__.items() if not p.is_none }
+        params_values.update(kwargs)
 
-        logger.debug(f'Finding product {self.config.products[product].name} with parameters: {params}.')
+        logger.debug(f'Finding product {self.config.products[product].name} with parameters: {params_values}.')
 
         return self.__find_files_and_match_params(
             patterns = [
@@ -197,7 +201,7 @@ class FileSystemRepo(Repo):
             ],
             params_regex = self.config.products[product].params_regex,
             params = self.config.products[product].params,
-            param_values = params,
+            param_values = params_values,
             variables = variables)
     
     def locate_product(self, product=None, variables=None, **kwargs):
