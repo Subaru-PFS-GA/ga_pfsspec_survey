@@ -1,6 +1,7 @@
 import re
 from types import SimpleNamespace
 from copy import deepcopy
+from collections import defaultdict
 import numpy as np
 
 from ..repo import *
@@ -279,13 +280,22 @@ class PfsGen3Repo():
     
     def __group_objects_by_none(self, identities):
         # Concatenate everything into a single namespace
-        results = None
-        for v, ids in identities.items():
-            if results is None:
-                results = ids
-            else:
-                for k, v in ids.__dict__.items():
-                    getattr(results, k).extend(v)
-        return results
+        results = defaultdict(list)
+        for visit, ids in identities.items():
+            for k, v in ids.__dict__.items():
+                results[k].append(v)
+
+        # Convert lists to numpy arrays.
+        # Verify that all arrays have the same length
+        length = None
+        for k, v in results.items():
+            results[k] = np.concatenate(v)
+            if length is None:
+                length = len(results[k])
+            elif length != len(results[k]):
+                raise ValueError(f"Length mismatch for {k}: expected {length}, got {len(results[k])}")
+
+        # Convert to SimpleNamespace
+        return SimpleNamespace(**results)
 
     #endregion
