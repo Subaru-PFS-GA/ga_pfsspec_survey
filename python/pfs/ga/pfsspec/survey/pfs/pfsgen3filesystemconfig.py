@@ -89,32 +89,34 @@ PfsGen3FileSystemConfig = SimpleNamespace(
         PfsDesign: SimpleNamespace(
             name = 'pfsDesign',
             params = SimpleNamespace(
-                pfs_design_id = HexFilter(name='pfs_design_id', format='{:016x}')
+                pfsDesignId = HexFilter(name='pfsDesignId', format='{:016x}')
             ),
             params_regex = [
-                re.compile(r'pfsDesign-0x(?P<pfs_design_id>[0-9a-fA-F]{16})\.(?:fits|fits\.gz)$'),
+                re.compile(r'pfsDesign-0x(?P<pfsDesignId>[0-9a-fA-F]{16})\.(?:fits|fits\.gz)$'),
             ],
             dir_format = '$pfsdesigndir/pfsDesign',
-            filename_format = 'pfsDesign-0x{pfs_design_id}.fits',
+            filename_format = 'pfsDesign-0x{pfsDesignId}.fits',
             identity = lambda data:
-                SimpleNamespace(pfs_design_id=data.pfsDesignId),
+                SimpleNamespace(pfsDesignId=data.pfsDesignId),
             load = load_PfsDesign,
         ),
         PfsConfig: SimpleNamespace(
             name = 'pfsConfig',
             params = SimpleNamespace(
-                pfs_design_id = HexFilter(name='pfs_design_id', format='{:016x}'),
                 visit = IntFilter(name='visit', format='{:06d}'),
                 date = DateFilter(name='date', format='{:%Y%m%d}'),
             ),
             params_regex = [
-                re.compile(r'(?P<date>\d{4}\d{2}\d{2})/(?P<visit>\d{6})/pfsConfig_PFS_\d{6}_PFS_raw_pfsConfig\.(fits|fits\.gz)$'),
-                re.compile(r'pfsConfig-PFS-(?P<visit>\d{6})_PFS_raw_pfsConfig\.(fits|fits\.gz)$'),
+                # re.compile(r'(?P<date>\d{4}\d{2}\d{2})/(?P<visit>\d{6})/pfsConfig_PFS_\d{6}_PFS_raw_pfsConfig\.(fits|fits\.gz)$'),
+                # re.compile(r'pfsConfig-PFS-(?P<visit>\d{6})_PFS_raw_pfsConfig\.(fits|fits\.gz)$'),
+                re.compile(r'pfsConfig_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)\.(fits|fits\.gz)$'),
             ],
-            dir_format = '$pfsconfigdir/pfsConfig/{date}/{visit}',
-            filename_format = 'pfsConfig_PFS_{visit}_PFS_raw_pfsConfig.fits',
+            # dir_format = '$pfsconfigdir/pfsConfig/{date}/{visit}',
+            # filename_format = 'pfsConfig_PFS_{visit}_PFS_raw_pfsConfig.fits',
+            dir_format = '${datadir}/${rerundir}/pfsConfig/{date}/{visit}',
+            filename_format = 'pfsConfig_PFS_{visit}_{rerun}.fits',
             identity = lambda data:
-                SimpleNamespace(pfs_design_id=data.pfsDesignId, visit=data.visit),
+                SimpleNamespace(visit=data.visit),
             load = load_PfsConfig,
         ),
         PfsArm: SimpleNamespace(
@@ -159,14 +161,16 @@ PfsGen3FileSystemConfig = SimpleNamespace(
             params = SimpleNamespace(
                 visit = IntFilter(name='visit', format='{:06d}'),
                 date = DateFilter(name='date', format='{:%Y%m%d}'),
-                proctime = TimeFilter(name='proctime', format='{:%Y%m%dT%H%M%SZ}'),
+                # proctime = TimeFilter(name='proctime', format='{:%Y%m%dT%H%M%SZ}'),
             ),
             params_regex = [
-                re.compile(r'(\d{8}T\d{6}Z)/pfsCalibrated/(?P<date>\d{4}\d{2}\d{2})/(\d{6})/pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)_(?P<proctime>\d{8}T\d{6}Z)\.(fits|fits\.gz)$'),
-                re.compile(r'pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)_(?P<proctime>\d{8}T\d{6}Z)\.(fits|fits\.gz)$')
+                # re.compile(r'(\d{8}T\d{6}Z)/pfsCalibrated/(?P<date>\d{4}\d{2}\d{2})/(\d{6})/pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)_(?P<proctime>\d{8}T\d{6}Z)\.(fits|fits\.gz)$'),
+                # re.compile(r'pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)_(?P<proctime>\d{8}T\d{6}Z)\.(fits|fits\.gz)$')
+                re.compile(r'pfsCalibrated/(?P<date>\d{4}\d{2}\d{2})/(\d{6})/pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)\.(fits|fits\.gz)$'),
+                re.compile(r'pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)\.(fits|fits\.gz)$')
             ],
-            dir_format = '${datadir}/${rerundir}/{proctime}/pfsCalibrated/{date}/{visit}/',
-            filename_format = 'pfsCalibrated_PFS_{visit}_${rerun}_{proctime}.fits',
+            dir_format = '${datadir}/${rerundir}/pfsCalibrated/{date}/{visit}/',
+            filename_format = 'pfsCalibrated_PFS_{visit}_${rerun}.fits',
             identity = lambda data:
                 SimpleNamespace(visit=data[list(data.keys())[0]].observations.visit[0]),     # TODO: add date
             load = load_PfsCalibrated,
@@ -193,14 +197,16 @@ PfsGen3FileSystemConfig = SimpleNamespace(
             params = SimpleNamespace(
                 visit = IntFilter(name='visit', format='{:06d}'),
                 date = DateFilter(name='date', format='{:%Y%m%d}'),
-                proctime = TimeFilter(name='proctime', format='{:%Y%m%dT%H%M%SZ}'),
+                # proctime = TimeFilter(name='proctime', format='{:%Y%m%dT%H%M%SZ}'),
             ),
             params_regex = [
-                re.compile(r'(\d{8}T\d{6}Z)/pfsCalibrated/(?P<date>\d{4}\d{2}\d{2})/(\d{6})/pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)_(?P<proctime>\d{8}T\d{6}Z)\.(fits|fits\.gz)$'),
-                re.compile(r'pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)_(?P<proctime>\d{8}T\d{6}Z)\.(fits|fits\.gz)$')
+                # re.compile(r'(\d{8}T\d{6}Z)/pfsCalibrated/(?P<date>\d{4}\d{2}\d{2})/(\d{6})/pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)_(?P<proctime>\d{8}T\d{6}Z)\.(fits|fits\.gz)$'),
+                # re.compile(r'pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)_(?P<proctime>\d{8}T\d{6}Z)\.(fits|fits\.gz)$')
+                re.compile(r'pfsCalibrated/(?P<date>\d{4}\d{2}\d{2})/(\d{6})/pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)\.(fits|fits\.gz)$'),
+                re.compile(r'pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)\.(fits|fits\.gz)$')
             ],
-            dir_format = '${datadir}/${rerundir}/{proctime}/pfsCalibrated/{date}/{visit}/',
-            filename_format = 'pfsCalibrated_PFS_{visit}_${rerun}_{proctime}.fits',
+            dir_format = '${datadir}/${rerundir}/pfsCalibrated/{date}/{visit}/',
+            filename_format = 'pfsCalibrated_PFS_{visit}_${rerun}.fits',
             identity = lambda data:
                 SimpleNamespace(visit=data.identity.visit),     # TODO: add date
             load = load_PfsCalibrated_PfsSingle,
