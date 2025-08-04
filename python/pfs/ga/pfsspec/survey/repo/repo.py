@@ -26,6 +26,8 @@ class Repo():
             self.__config = config if config is not None else orig.__config
             self.__variables = orig.__variables
             self.__filters = self._init_filters()
+
+        self.__location_cache = {}
             
     def _init_variables(self):
         # Enumerate all variables that appear in the config and make a 
@@ -384,11 +386,62 @@ class Repo():
 
         return self.__config.products[type(data)].identity(data)
 
+    def simplify_identity(self, product_type, identity, return_type=None):
+        """
+        Simplifies the identity by removing redundant or unnecessary parameters.
+
+        Arguments
+        ---------
+        identity : SimpleNamespace or dict
+            Identity
+        """
+
+        if return_type is None:
+            return_type = 'd' if isinstance(identity, dict) else 'ns'
+
+        if isinstance(identity, SimpleNamespace):
+            identity = identity.__dict__
+
+        res = { k: identity[k]
+                for k in self.__config.products[product_type].params.__dict__
+                if k in identity and identity[k] is not None }
+
+        if return_type == 'd':
+            return res
+        elif return_type == 'ns':
+            return SimpleNamespace(**res)
+
     def find_product(self, product, variables=None, **kwargs):
         raise NotImplementedError()
 
     def locate_product(self, product=None, variables=None, **kwargs):
-        raise NotImplementedError()
+        """
+        Finds a specific product file.
+
+        Arguments
+        ---------
+        product : type
+            Type of the product to locate.
+        kwargs : dict
+            Additional parameters to match the product identity. Can be of one of scalar type,
+            or a SearchFilter instance.
+
+        Returns
+        -------
+        str
+            Path to the file that matches the query.
+        SimpleNamespace
+            The identity of the product that matches the query.
+        """
+
+        key = (product,) + tuple(self.simplify_identity(product, kwargs).values())
+        if key in self.__location_cache:
+            return self.__location_cache[key]
+        else:
+            files, ids = self.find_product(product, variables=variables, **kwargs)
+            res = self._get_single_file(files, ids)
+            self.__location_cache[key] = res
+            return res
 
     def load_product(self,
                      product=None,

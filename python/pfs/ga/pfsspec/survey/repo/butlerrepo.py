@@ -136,28 +136,5 @@ class ButlerRepo(Repo):
             variables = variables
         )
     
-    def locate_product(self, product=None, variables=None, **kwargs):
-        """
-        Finds a specific product file.
-
-        Arguments
-        ---------
-        product : type
-            Type of the product to locate.
-        kwargs : dict
-            Additional parameters to match the product identity. Can be of one of scalar type,
-            or a SearchFilter instance.
-
-        Returns
-        -------
-        str
-            Path to the file that matches the query.
-        SimpleNamespace
-            The identity of the product that matches the query.
-        """
-
-        files, ids = self.find_product(product, variables=variables, **kwargs)
-        return self._get_single_file(files, ids)
-
     def save_product(self, data, filename=None, identity=None, variables=None, create_dir=True):
         raise NotImplementedError()

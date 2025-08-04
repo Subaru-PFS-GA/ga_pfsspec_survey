@@ -177,7 +177,7 @@ class PfsGen3Repo():
                 getattr(object_filters, k).values = v
 
         # We either look up objects in PfsConfig files or look for the available PfsSingle files
-        if product == PfsConfig:
+        if product is PfsConfig:
             # If not provided, load the config files for each visit
             if configs is None:
                 files, ids = self.find_product(PfsConfig, visit=repo_filters.visit, date=repo_filters.date)
