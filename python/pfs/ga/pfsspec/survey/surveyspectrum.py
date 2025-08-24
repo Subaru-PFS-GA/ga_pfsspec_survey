@@ -13,13 +13,21 @@ class SurveySpectrum():
             self.alt = None
             self.az = None
             self.airmass = None
+            self.seeing = None
+            self.obs_time = None
+            self.exp_time = None
+            self.exp_count = None
         else:
             self.ra = orig.ra
             self.dec = orig.dec
             self.mjd = orig.mjd
-            self.alt = None
-            self.az = None
+            self.alt = orig.alt
+            self.az = orig.az
             self.airmass = orig.airmass
+            self.seeing = orig.seeing
+            self.obs_time = orig.obs_time
+            self.exp_time = orig.exp_time
+            self.exp_count = orig.exp_count
 
     def get_param_names(self):
         params = ['ra',
@@ -27,6 +35,10 @@ class SurveySpectrum():
                   'mjd',
                   'alt',
                   'az',
-                  'airmass']
+                  'airmass',
+                  'seeing',
+                  'obs_time',
+                  'exp_time',
+                  'exp_count']
         return params
 
