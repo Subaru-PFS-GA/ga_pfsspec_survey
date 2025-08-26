@@ -57,7 +57,7 @@ class PfsSpectrum(SurveySpectrum):
         if hasattr(self, 'identity') and self.identity is not None:
             name_parts.append(f'visit={self.identity.visit:06d}')
 
-        if hasattr(self, 'observations') and len(self.observations) == 1:
+        if hasattr(self, 'observations') and self.observations is not None and len(self.observations.arm) == 1:
             name_parts.append(f'arm={self.observations.arm[0]}')
             
         return ', '.join(name_parts)

@@ -191,7 +191,20 @@ class PfsSpectrumReader(SpectrumReader):
         spec.fiberid = data.observations.fiberId[0]
 
         spec.target = data.target
-        spec.observations = data.observations
+        
+        shape = np.atleast_1d(data.observations.visit).shape
+        spec.observations = Observations(
+            visit = np.atleast_1d(data.observations.visit),
+            # If the arms are specified, override the metadata
+            arm = np.full(shape, arm) if arm is not None else np.atleast_1d(data.observations.arm),
+            spectrograph = np.atleast_1d(data.observations.spectrograph),
+            pfsDesignId = np.atleast_1d(data.observations.pfsDesignId),
+            fiberId = np.atleast_1d(data.observations.fiberId),
+            pfiNominal = np.atleast_2d(data.observations.pfiNominal),
+            pfiCenter = np.atleast_2d(data.observations.pfiCenter),
+            obsTime = np.full(data.observations.visit.shape, Identity.defaultObsTime),
+            expTime = np.full(data.observations.visit.shape, Identity.defaultExpTime),
+        )
 
         if len(data.observations) == 1:
             spec.identity = Identity(
@@ -203,6 +216,7 @@ class PfsSpectrumReader(SpectrumReader):
                 expTime = data.observations.expTime[0],
             )
         else:
+            # TODO: how do we load coadded spectra?
             logger.warning(f'Multiple observations in PfsFiberArray object for spectrum {spec.get_name()}, cannot generate a single identity.')
             spec.identity = None
 
@@ -217,7 +231,10 @@ class PfsSpectrumReader(SpectrumReader):
         flux_sky = None
         mask = data.fluxTable.mask
 
-        # TODO: covariances?
+        # Covariances 
+        # TODO: these are not used anywhere yet and empty in PfsCalibrated files
+        spec.covar = data.covar
+        spec.covar2 = data.covar2
 
         # TODO: Check class type here if necessary. PfsSingle and PfsObject are both flux-calibrated.
         spec.is_flux_calibrated = True
@@ -285,9 +302,11 @@ class PfsSpectrumReader(SpectrumReader):
             targetType = data.targetType[index],
         )
 
+        shape = np.atleast_1d(data.visit).shape
         spec.observations = Observations(
             visit = np.atleast_1d(data.visit),
-            arm = np.atleast_1d(arm if arm is not None else data.arms),
+            # If the arms are specified, override the metadata
+            arm = np.full(shape, arm) if arm is not None else np.atleast_1d(data.arms),
             spectrograph = np.atleast_1d(data.spectrograph[index]),
             pfsDesignId = np.atleast_1d(data.pfsDesignId),
             fiberId = np.atleast_1d(data.fiberId[index]),
