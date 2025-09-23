@@ -158,7 +158,7 @@ class PfsGen3Repo():
     #endregion
     #region Object search
 
-    def find_objects(self, product=PfsConfig, configs=None, groupby='visit', **kwargs):
+    def find_objects(self, product=PfsConfig, pfs_configs=None, groupby='visit', **kwargs):
         
         """
         Find individual objects by looking them up in the config files.
@@ -179,20 +179,11 @@ class PfsGen3Repo():
         # We either look up objects in PfsConfig files or look for the available PfsSingle files
         if product is PfsConfig:
             # If not provided, load the config files for each visit
-            if configs is None:
-                files, ids = self.find_product(PfsConfig, visit=repo_filters.visit, date=repo_filters.date)
-
-                configs = {}
-                for file in files:
-                    config, id, fn = self.load_product(PfsConfig, filename=file)
-
-                    # If the file is missing, and ignore_missing_files is True,
-                    # the function silently returns a None, so simply skip it
-                    if config is not None:
-                        configs[id.visit] = config
+            if pfs_configs is None:
+                pfs_configs = self.load_pfsConfigs(visit=repo_filters.visit, date=repo_filters.date)
 
             identities = {}
-            for visit, config in configs.items():
+            for visit, config in pfs_configs.items():
                 # Find objects matching the criteria
                 mask = np.full(config.fiberId.shape, True)
 
@@ -208,7 +199,7 @@ class PfsGen3Repo():
                     identities[visit] = SimpleNamespace(
                         visit = np.array(n * [visit]),
                         pfsDesignId = np.array(n * [config.pfsDesignId]),
-                        obstime = np.array(n * [config.obstime]),
+                        obstime = np.array(n * [config.obsTime]),
                         exptime = np.array(n * [None]),
                         fiberId = np.array(config.fiberId[mask]),
                         spectrograph = np.array(config.spectrograph[mask]),
@@ -234,6 +225,26 @@ class PfsGen3Repo():
         else:
             raise NotImplementedError()
 
+    def load_pfsConfigs(self, visit=None, date=None):
+        """
+        Load all PfsConfig files matching the visit and date filters.
+        """
+
+        visit = visit if visit is not None else self.__repo.filters.visit
+        date = date if date is not None else self.__repo.filters.date
+
+        files, ids = self.find_product(PfsConfig, visit=visit, date=date)
+        configs = {}
+        for file in files:
+            config, id, fn = self.load_product(PfsConfig, filename=file)
+
+            # If the file is missing, and ignore_missing_files is True,
+            # the function silently returns a None, so simply skip it
+            if config is not None:
+                configs[id.visit] = config
+
+        return configs
+
     def __group_objects_by_visit(self, identities):
         return identities
 
@@ -248,8 +259,8 @@ class PfsGen3Repo():
                     id = SimpleNamespace(
                         visit = [visit],
                         pfsDesignId = [ids.pfsDesignId[i]],
-                        obstime = [ids.obstime[i]],
-                        exptime = [ids.exptime[i]],
+                        obstime = [ids.obsTime[i]],
+                        exptime = [ids.expTime[i]],
                         fiberId = [ids.fiberId[i]],
                         spectrograph = [ids.spectrograph[i]],
                         arms = [ids.arms[i]],
