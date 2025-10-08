@@ -183,35 +183,35 @@ class PfsGen3Repo():
                 pfs_configs = self.load_pfsConfigs(visit=repo_filters.visit, date=repo_filters.date)
 
             identities = {}
-            for visit, config in pfs_configs.items():
+            for visit, psf_config in pfs_configs.items():
                 # Find objects matching the criteria
-                mask = np.full(config.fiberId.shape, True)
+                mask = np.full(psf_config.fiberId.shape, True)
 
-                mask &= object_filters.fiberId.mask(config.fiberId)
-                mask &= repo_filters.catId.mask(config.catId)
-                mask &= repo_filters.objId.mask(config.objId)
-                mask &= object_filters.targetType.mask(config.targetType)
-                mask &= object_filters.proposalId.mask(config.proposalId)
-                mask &= object_filters.obCode.mask(config.obCode)
+                mask &= object_filters.fiberId.mask(psf_config.fiberId)
+                mask &= repo_filters.catId.mask(psf_config.catId)
+                mask &= repo_filters.objId.mask(psf_config.objId)
+                mask &= object_filters.targetType.mask(psf_config.targetType)
+                mask &= object_filters.proposalId.mask(psf_config.proposalId)
+                mask &= object_filters.obCode.mask(psf_config.obCode)
 
                 n = mask.sum()
                 if n > 0:
                     identities[visit] = SimpleNamespace(
                         visit = np.array(n * [visit]),
-                        pfsDesignId = np.array(n * [config.pfsDesignId]),
-                        obstime = np.array(n * [config.obsTime]),
+                        pfsDesignId = np.array(n * [psf_config.pfsDesignId]),
+                        obstime = np.array(n * [psf_config.obstime]),
                         exptime = np.array(n * [None]),
-                        fiberId = np.array(config.fiberId[mask]),
-                        spectrograph = np.array(config.spectrograph[mask]),
-                        arms = np.array(n * [config.arms]),
-                        fiberStatus = np.array(config.fiberStatus[mask]),
-                        proposalId = np.array(config.proposalId[mask]),
-                        catId = np.array(config.catId[mask]),
-                        objId = np.array(config.objId[mask]),
-                        tract = np.array(config.tract[mask]),
-                        patch = np.array(config.patch[mask]),
-                        targetType = np.array(config.targetType[mask]),
-                        obCode = np.array(config.obCode[mask]),
+                        fiberId = np.array(psf_config.fiberId[mask]),
+                        spectrograph = np.array(psf_config.spectrograph[mask]),
+                        arms = np.array(n * [psf_config.arms]),
+                        fiberStatus = np.array(psf_config.fiberStatus[mask]),
+                        proposalId = np.array(psf_config.proposalId[mask]),
+                        catId = np.array(psf_config.catId[mask]),
+                        objId = np.array(psf_config.objId[mask]),
+                        tract = np.array(psf_config.tract[mask]),
+                        patch = np.array(psf_config.patch[mask]),
+                        targetType = np.array(psf_config.targetType[mask]),
+                        obCode = np.array(psf_config.obCode[mask]),
                     )
         elif product == PfsSingle:
             raise NotImplementedError()
@@ -259,8 +259,8 @@ class PfsGen3Repo():
                     id = SimpleNamespace(
                         visit = [visit],
                         pfsDesignId = [ids.pfsDesignId[i]],
-                        obstime = [ids.obsTime[i]],
-                        exptime = [ids.expTime[i]],
+                        obstime = [ids.obstime[i]],
+                        exptime = [ids.exptime[i]],
                         fiberId = [ids.fiberId[i]],
                         spectrograph = [ids.spectrograph[i]],
                         arms = [ids.arms[i]],
