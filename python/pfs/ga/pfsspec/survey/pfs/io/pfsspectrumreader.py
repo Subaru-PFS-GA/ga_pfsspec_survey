@@ -141,7 +141,7 @@ class PfsSpectrumReader(SpectrumReader):
     def read_from_pfsFiberArray(self, data, spec, arm=None,
                                 wave_limits=None, wave_mask=None):
         """
-        Read a spectrum from a PfsFiberArray object (PfsSingle, PfsObject or PfsGAObject).
+        Read a spectrum from a PfsFiberArray object (PfsSingle, PfsObject or PfsStar).
 
         These objects contain the spectrum in the fluxTable attribute, which
         lists all pixels of all arms. This method extracts the spectrum of a
@@ -190,7 +190,8 @@ class PfsSpectrumReader(SpectrumReader):
         spec.spectrograph = data.observations.spectrograph[0]
         spec.fiberid = data.observations.fiberId[0]
 
-        spec.target = data.target
+        if spec.target is None:
+            spec.target = data.target
         
         shape = np.atleast_1d(data.observations.visit).shape
         spec.observations = Observations(
@@ -249,7 +250,7 @@ class PfsSpectrumReader(SpectrumReader):
         filename = data.filenameFormat % dict(**data.target.identity, visit=data.observations.visit[0])
         spec.history.append(f'Loaded from PfsFiberArraySet `{filename}`.')
     
-    def read_from_pfsConfig(self, data: PfsConfig, spec, arm=None, objid=None, fiberid=None, index=None):
+    def read_from_pfsConfig(self, pfsConfig: PfsConfig, spec, arm=None, objid=None, fiberid=None, index=None):
         """
         Read the spectrum header from a PfsConfig object. This information is
         not available in the PfsFiberArraySet objects.
@@ -257,23 +258,23 @@ class PfsSpectrumReader(SpectrumReader):
         
         if index is None:
             if fiberid is not None:
-                index = np.where(data.fiberId == fiberid)[0][0]
+                index = np.where(pfsConfig.fiberId == fiberid)[0][0]
             elif objid is not None:
-                index = np.where(data.objId == objid)[0][0]
+                index = np.where(pfsConfig.objId == objid)[0][0]
             else:
                 raise ValueError('Either fiberId or objId must be specified if index is None.')
 
         if fiberid is None:
-            fiberid = data.fiberId[index]
+            fiberid = pfsConfig.fiberId[index]
 
         if objid is None:
-            objid = data.objId[index]
+            objid = pfsConfig.objId[index]
 
         spec.id = objid
-        spec.catid = data.catId[index]
+        spec.catid = pfsConfig.catId[index]
 
-        spec.ra = data.ra[index]
-        spec.dec = data.dec[index]
+        spec.ra = pfsConfig.ra[index]
+        spec.dec = pfsConfig.dec[index]
 
         spec.redshift = np.nan
         spec.redshift_err = np.nan
@@ -289,29 +290,44 @@ class PfsSpectrumReader(SpectrumReader):
         spec.snr = np.nan
         spec.mag = np.nan
 
-        spec.spectrograph = data.spectrograph[index]
-        spec.fiberid = data.fiberId[index]
+        spec.spectrograph = pfsConfig.spectrograph[index]
+        spec.fiberid = pfsConfig.fiberId[index]
 
-        spec.target = Target(
-            catId = data.catId[index],
-            tract = data.tract[index],
-            patch = data.patch[index],
-            objId = data.objId[index],
-            ra = data.ra[index],
-            dec = data.dec[index],
-            targetType = data.targetType[index],
-        )
+        if spec.target is None:
+            spec.target = Target(
+                catId = int(pfsConfig.catId[index]),
+                tract = int(pfsConfig.tract[index]),
+                patch = str(pfsConfig.patch[index]),
+                objId = int(pfsConfig.objId[index]),
+                ra = float(pfsConfig.ra[index]),
+                dec = float(pfsConfig.dec[index]),
+                targetType = pfsConfig.targetType[index],
+            )
 
-        shape = np.atleast_1d(data.visit).shape
+        # pfsConfig doesn't always have the fiberFlux so use whichever is available
+        spec.target.fiberFlux = {}
+        spec.target.psfFlux = {}
+        spec.target.totalFlux = {}
+        for target_flux, config_flux in zip(
+            [spec.target.fiberFlux, spec.target.psfFlux, spec.target.totalFlux],
+            [pfsConfig.fiberFlux[index], pfsConfig.psfFlux[index], pfsConfig.totalFlux[index]],
+        ):
+            for j, filter_name in enumerate(pfsConfig.filterNames[index]):
+                if filter_name is not None and filter_name != 'none' and \
+                    np.isfinite(config_flux[j]) and not np.isnan(config_flux[j]):
+                
+                    target_flux[filter_name] = float(config_flux[j])
+
+        shape = np.atleast_1d(pfsConfig.visit).shape
         spec.observations = Observations(
-            visit = np.atleast_1d(data.visit),
+            visit = np.atleast_1d(pfsConfig.visit),
             # If the arms are specified, override the metadata
-            arm = np.full(shape, arm) if arm is not None else np.atleast_1d(data.arms),
-            spectrograph = np.atleast_1d(data.spectrograph[index]),
-            pfsDesignId = np.atleast_1d(data.pfsDesignId),
-            fiberId = np.atleast_1d(data.fiberId[index]),
-            pfiNominal = np.atleast_2d(data.pfiNominal[index]),
-            pfiCenter = np.atleast_2d(data.pfiCenter[index]),
+            arm = np.full(shape, arm) if arm is not None else np.atleast_1d(pfsConfig.arms),
+            spectrograph = np.atleast_1d(pfsConfig.spectrograph[index]),
+            pfsDesignId = np.atleast_1d(pfsConfig.pfsDesignId),
+            fiberId = np.atleast_1d(pfsConfig.fiberId[index]),
+            pfiNominal = np.atleast_2d(pfsConfig.pfiNominal[index]),
+            pfiCenter = np.atleast_2d(pfsConfig.pfiCenter[index]),
             obsTime = np.atleast_1d(Identity.defaultObsTime),
             expTime = np.atleast_1d(Identity.defaultExpTime),
         )
@@ -320,10 +336,10 @@ class PfsSpectrumReader(SpectrumReader):
         # data model uses for the identity, we collect all fields here that
         # are necessary to uniquely identify the spectrum
         identity = Identity(
-            visit = data.visit,
-            arm = arm if arm is not None else data.arms,
-            spectrograph = data.spectrograph[index],
-            pfsDesignId = data.pfsDesignId,
+            visit = int(pfsConfig.visit),
+            arm = arm if arm is not None else pfsConfig.arms,
+            spectrograph = int(pfsConfig.spectrograph[index]),
+            pfsDesignId = int(pfsConfig.pfsDesignId),
             obsTime = Identity.defaultObsTime,
             expTime = Identity.defaultExpTime
         )
@@ -334,7 +350,7 @@ class PfsSpectrumReader(SpectrumReader):
             spec.identity = merge_identity(spec.identity, identity, arm=arm)
             
 
-        filename = data.fileNameFormat % (data.pfsDesignId, data.visit)
+        filename = pfsConfig.fileNameFormat % (pfsConfig.pfsDesignId, pfsConfig.visit)
         spec.history.append(f'Loaded from PfsFiberArraySet `{filename}`, index={index}.')
     
     def read_from_pfsFiberArraySet(self, data, spec, arm=None,
