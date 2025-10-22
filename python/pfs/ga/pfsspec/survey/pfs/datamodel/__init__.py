@@ -4,7 +4,7 @@ try:
     from pfs.datamodel import PfsFiberArray, PfsFiberArraySet, PfsSingle, PfsObject, PfsArm, PfsMerged, PfsCoadd
     from pfs.datamodel.pfsTargetSpectra import PfsTargetSpectra
     from pfs.datamodel import PfsConfig, PfsDesign
-    from pfs.datamodel import PfsGAObject, PfsGACatalog
+    from pfs.datamodel import PfsStar, PfsStarCatalog
     from pfs.datamodel import Target, Identity, Observations
     from pfs.datamodel import TargetType, MaskHelper
     from pfs.datamodel.utils import calculatePfsVisitHash, calculate_pfsDesignId
@@ -26,8 +26,8 @@ except ImportError as ex:
     PfsTargetSpectra = object()
     PfsConfig = object()
     PfsDesign = object()
-    PfsGAObject = object()
-    PfsGACatalog = object()
+    PfsStar = object()
+    PfsStarCatalog = object()
     Target = object()
     Identity = object()
     Observations = object()

@@ -64,16 +64,16 @@ def save_PfsSingle(data, identity, filename, dir):
 def load_PfsObject(identity, filename, dir):
     return PfsObject.read(identity.__dict__, dirName=dir)
 
-def load_PfsGAObject(identity, filename, dir):
-    return PfsGAObject.readFits(os.path.join(dir, filename))
+def load_PfsStar(identity, filename, dir):
+    return PfsStar.readFits(os.path.join(dir, filename))
 
-def save_PfsGAObject(data, identity, filename, dir):
-    PfsGAObject.writeFits(data, os.path.join(dir, filename))
+def save_PfsStar(data, identity, filename, dir):
+    PfsStar.writeFits(data, os.path.join(dir, filename))
 
-def load_PfsGACatalog(identity, filename, dir):
+def load_PfsStarCatalog(identity, filename, dir):
     pass
 
-def save_PfsGACatalog(data, identity, filename, dir):
+def save_PfsStarCatalog(data, identity, filename, dir):
     data.writeFits(filename)
 
 PfsGen3FileSystemConfig = SimpleNamespace(
@@ -249,8 +249,8 @@ PfsGen3FileSystemConfig = SimpleNamespace(
                 SimpleNamespace(catId=data.target.catId, tract=data.target.tract, patch=data.target.patch, objId=data.target.objId, nVisit=data.nVisit, pfsVisitHash=data.pfsVisitHash),
             load = load_PfsObject,
         ),
-        PfsGAObject: SimpleNamespace(
-            name = 'pfsGAObject',
+        PfsStar: SimpleNamespace(
+            name = 'pfsStar',
             params = SimpleNamespace(
                 catId = IntFilter(name='catId', format='{:05d}'),
                 tract = IntFilter(name='tract', format='{:05d}'),
@@ -260,10 +260,10 @@ PfsGen3FileSystemConfig = SimpleNamespace(
                 pfsVisitHash = HexFilter(name='pfsVisitHash', format='{:016x}'),
             ),
             params_regex = [
-                re.compile(r'pfsGAObject-(?P<catId>\d{5})-(?P<tract>\d{5})-(?P<patch>.*)-(?P<objId>[0-9a-f]{16})-(?P<nVisit>\d{3})-0x(?P<pfsVisitHash>[0-9a-f]{16})\.(fits|fits\.gz)$'),
+                re.compile(r'pfsStar-(?P<catId>\d{5})-(?P<tract>\d{5})-(?P<patch>.*)-(?P<objId>[0-9a-f]{16})-(?P<nVisit>\d{3})-0x(?P<pfsVisitHash>[0-9a-f]{16})\.(fits|fits\.gz)$'),
             ],
-            dir_format = '$datadir/$rerundir/pfsGAObject/{catId}/{tract}/{patch}',
-            filename_format = 'pfsGAObject-{catId}-{tract}-{patch}-{objId}-{nVisit}-0x{pfsVisitHash}.fits',
+            dir_format = '$datadir/$rerundir/pfsStar/{catId}/{tract}/{patch}',
+            filename_format = 'pfsStar-{catId}-{tract}-{patch}-{objId}-{nVisit}-0x{pfsVisitHash}.fits',
             identity = lambda data:
                 SimpleNamespace(
                     catId = data.target.catId,
@@ -273,29 +273,29 @@ PfsGen3FileSystemConfig = SimpleNamespace(
                     nVisit = data.nVisit,
                     pfsVisitHash = calculatePfsVisitHash(data.observations.visit)
                 ),
-            load = load_PfsGAObject,
-            save = save_PfsGAObject
+            load = load_PfsStar,
+            save = save_PfsStar
         ),
-        PfsGACatalog: SimpleNamespace(
-            name = 'pfsGACatalog',
+        PfsStarCatalog: SimpleNamespace(
+            name = 'pfsStarCatalog',
             params = SimpleNamespace(
                 catId = IntFilter(name='catId', format='{:05d}'),
                 nVisit = IntFilter(name='nVisit', format='{:03d}'),
                 pfsVisitHash = HexFilter(name='pfsVisitHash', format='{:016x}'),
             ),
             params_regex = [
-                re.compile(r'pfsGACatalog-(?P<catId>\d{5})-(?P<nVisit>\d{3})-0x(?P<pfsVisitHash>[0-9a-f]{16})\.(fits|fits\.gz)$'),
+                re.compile(r'pfsStarCatalog-(?P<catId>\d{5})-(?P<nVisit>\d{3})-0x(?P<pfsVisitHash>[0-9a-f]{16})\.(fits|fits\.gz)$'),
             ],
-            dir_format = '$datadir/$rerundir/pfsGACatalog/{catId}',
-            filename_format = 'pfsGACatalog-{catId}-{nVisit}-0x{pfsVisitHash}.fits',
+            dir_format = '$datadir/$rerundir/pfsStarCatalog/{catId}',
+            filename_format = 'pfsStarCatalog-{catId}-{nVisit}-0x{pfsVisitHash}.fits',
             identity = lambda data:
                 SimpleNamespace(
                     catId = data.catId,
                     nVisit = data.nVisit,
                     pfsVisitHash = calculatePfsVisitHash(data.observations.visit)
                 ),
-            load = load_PfsGACatalog,
-            save = save_PfsGACatalog
+            load = load_PfsStarCatalog,
+            save = save_PfsStarCatalog
         )
     }
 )
