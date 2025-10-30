@@ -4,7 +4,7 @@ from numbers import Number
 from ..setup_logger import logger
 
 try:
-    from lsst.daf.butler import Butler
+    from lsst.daf.butler import Butler, EmptyQueryResultError
 except ImportError:
     logger.warning("Butler is not available. Ensure that the lsst.daf.butler package is installed.")
     Butler = None
@@ -71,10 +71,14 @@ class ButlerRepo(Repo):
                     where.append('(' + ' OR '.join(ww) + ')')
         where = ' AND '.join(where)
 
-        datasetRefs = self.__butler.query_datasets(
-            product_name,
-            where = where
-        )
+        try:
+            datasetRefs = self.__butler.query_datasets(
+                product_name,
+                where = where
+            )
+        except EmptyQueryResultError:
+            logger.warning(f'No datasets found for product {product_name} with parameters: {params}.')
+            datasetRefs = []
 
         # Convert Butler datasets into file paths and identities
         filenames = []
