@@ -199,21 +199,21 @@ class SearchFilter():
         """
         Create a boolean mask with True where the values match the filter.
 
-        The values matche the filter if the filter is empty or the value
+        The values match the filter if the filter is empty or the value
         is equal to one of the values or within the inclusive range of one
         of the ranges in the filter. 
         """
 
-        mask = np.full_like(values, True, dtype=bool)
+        mask = np.full_like(values, False, dtype=bool)
 
         if self._values is None or len(self._values) == 0:
-            return mask
+            return ~mask
         else:
             for v in self._values:
                 if isinstance(v, tuple):
-                    mask &= (values >= v[0]) & (values <= v[1])
+                    mask |= (values >= v[0]) & (values <= v[1])
                 else:
-                    mask &= values == v
+                    mask |= values == v
 
         return mask
             
