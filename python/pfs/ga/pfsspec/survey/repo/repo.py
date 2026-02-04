@@ -448,6 +448,7 @@ class Repo():
                      filename=None,
                      identity=None,
                      variables=None,
+                     skip_locate=None,
                      ignore_missing_files=None,
                      **kwargs):
         
@@ -482,6 +483,7 @@ class Repo():
         """
 
         self._ensure_one_arg(filename=filename, identity=identity)
+        skip_locate = skip_locate if skip_locate is not None else (filename is not None)
         ignore_missing_files = ignore_missing_files if ignore_missing_files is not None else self.__ignore_missing_files
 
         if product is None and filename is not None:
@@ -504,7 +506,11 @@ class Repo():
            
         # The file name might not contain all information necessary to load the
         # product, so given the parsed identity, we need to locate the file.
-        filename, identity = self.locate_product(product, variables=variables, **params)
+        if skip_locate:
+            identity = None
+        else:
+            filename, identity = self.locate_product(product, variables=variables, **params)
+            
         dir = os.path.dirname(filename)
 
         # Load the product via the dispatcher
