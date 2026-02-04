@@ -260,10 +260,10 @@ PfsGen3FileSystemConfig = SimpleNamespace(
                 pfsVisitHash = HexFilter(name='pfsVisitHash', format='{:016x}'),
             ),
             params_regex = [
-                re.compile(r'pfsStar-(?P<catId>\d{5})-(?P<tract>\d{5})-(?P<patch>.*)-(?P<objId>[0-9a-f]{16})-(?P<nVisit>\d{3})-0x(?P<pfsVisitHash>[0-9a-f]{16})\.(fits|fits\.gz)$'),
+                re.compile(r'pfsStar-(?P<catId>\d{5})-(?P<objId>[0-9a-f]{16})-(?P<nVisit>\d{3})-0x(?P<pfsVisitHash>[0-9a-f]{16})\.(fits|fits\.gz)$'),
             ],
             dir_format = '$datadir/$rerundir/pfsStar/{catId}/{tract}/{patch}',
-            filename_format = 'pfsStar-{catId}-{tract}-{patch}-{objId}-{nVisit}-0x{pfsVisitHash}.fits',
+            filename_format = 'pfsStar-{catId}-{objId}-{nVisit}-0x{pfsVisitHash}.fits',
             identity = lambda data:
                 SimpleNamespace(
                     catId = data.target.catId,
