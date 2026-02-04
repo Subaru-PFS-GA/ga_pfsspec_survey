@@ -101,6 +101,31 @@ class ButlerRepo(Repo):
         identities = SimpleNamespace(**identities)
 
         return filenames, identities
+    
+    def has_product(self, product):
+        """
+        Checks if the repository has the specified product.
+
+        Arguments
+        ---------
+        product : type
+            Type of the product to check.
+
+        Returns
+        -------
+        bool
+            True if the product is available in the repository, False otherwise.
+        """
+
+        try:
+            # Butler is case-sensitive, ensure product names match exactly
+            name = product.__name__
+            name = name[0].lower() + name[1:]  # Convert first letter to lowercase
+
+            self.__butler.get_dataset_type(name)
+            return True
+        except Exception:
+            return False
 
     def find_product(self, product, variables=None, **kwargs):
         """
