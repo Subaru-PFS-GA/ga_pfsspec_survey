@@ -199,7 +199,7 @@ class PfsGen3Repo():
                     identities[visit] = SimpleNamespace(
                         visit = np.array(n * [visit]),
                         pfsDesignId = np.array(n * [psf_config.pfsDesignId]),
-                        obstime = np.array(n * [psf_config.obstime]),
+                        obstime = np.array(n * [psf_config.obstime]),       # UTC iso string
                         exptime = np.array(n * [None]),
                         fiberId = np.array(psf_config.fiberId[mask]),
                         spectrograph = np.array(psf_config.spectrograph[mask]),

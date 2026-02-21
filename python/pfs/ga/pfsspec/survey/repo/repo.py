@@ -483,7 +483,7 @@ class Repo():
         """
 
         self._ensure_one_arg(filename=filename, identity=identity)
-        skip_locate = skip_locate if skip_locate is not None else (filename is not None)
+        skip_locate = skip_locate if skip_locate is not None else False
         ignore_missing_files = ignore_missing_files if ignore_missing_files is not None else self.__ignore_missing_files
 
         if product is None and filename is not None:
