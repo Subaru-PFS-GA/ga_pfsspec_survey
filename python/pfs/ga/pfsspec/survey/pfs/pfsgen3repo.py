@@ -89,6 +89,7 @@ class PfsGen3Repo():
     def __init_object_filters(self):
         # Instantiate target object search filters
         # TODO: extend these if Butler has support for more filters
+        # TODO: add filters for spectrograph, fiberStatus, etc
         # NOTE: filters commented out are handled by the wrapped class
         object_filters = SimpleNamespace(
             visit = IntFilter(name='visit', format='{:06d}'),
@@ -212,6 +213,8 @@ class PfsGen3Repo():
                         patch = np.array(psf_config.patch[mask]),
                         targetType = np.array(psf_config.targetType[mask]),
                         obCode = np.array(psf_config.obCode[mask]),
+                        ra = np.array(psf_config.ra[mask]),
+                        dec = np.array(psf_config.dec[mask])
                     )
         elif product == PfsSingle:
             raise NotImplementedError()
@@ -272,6 +275,8 @@ class PfsGen3Repo():
                         patch = [ids.patch[i]],
                         targetType = [ids.targetType[i]],
                         obCode = [ids.obCode[i]],
+                        ra = [ids.ra[i]],
+                        dec = [ids.dec[i]]
                     )
 
                     if objid not in results:
