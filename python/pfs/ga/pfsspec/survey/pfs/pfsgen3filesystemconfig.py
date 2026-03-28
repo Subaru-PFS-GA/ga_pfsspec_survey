@@ -40,12 +40,16 @@ def load_PfsCalibrated_PfsSingle(identity, filename, dir, **kwargs):
         params = { k: v for k, v in { **(identity.__dict__), **kwargs }.items() if k in valid }
         results = PfsCalibrated.readFits(filename, **params)
         
-        return ((results[k],
-                 SimpleNamespace(
+        return (
+            (
+                results[k],
+                SimpleNamespace(
                     **results[k].getIdentity(),
                     visit = results[k].observations.visit[0],
-                 )
-                ) for k in results.keys())
+                    run = identity.run,
+                )
+            ) for k in results.keys()
+        )
     else:
         raise NotImplementedError()
 
@@ -97,7 +101,7 @@ PfsGen3FileSystemConfig = SimpleNamespace(
                 re.compile(r'pfsConfig/(?P<date>\d{8})/(\d{6})/pfsConfig_PFS_(?P<visit>\d{6})_(?P<run>[^.]+)\.(fits|fits\.gz)$'),
                 re.compile(r'pfsConfig_PFS_(?P<visit>\d{6})_(?P<run>[^.]+)\.(fits|fits\.gz)$'),
             ],
-            dir_format = '${pfsconfigdir}/pfsConfig/{date}/{visit}',
+            dir_format = '$pfsconfigdir/pfsConfig/{date}/{visit}',
             filename_format = 'pfsConfig_PFS_{visit}_{run_}.fits',
             identity = lambda data:
                 SimpleNamespace(visit=data.visit),
@@ -114,7 +118,7 @@ PfsGen3FileSystemConfig = SimpleNamespace(
                 re.compile(r'pfsCalibrated/(?P<date>\d{8})/(\d{6})/pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<run>[^.]+)\.(fits|fits\.gz)$'),
                 re.compile(r'pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<run>[^.]+)\.(fits|fits\.gz)$')
             ],
-            dir_format = '${datadir}/${rundir}/pfsCalibrated/{date}/{visit}/',
+            dir_format = '$datadir/$rundir/pfsCalibrated/{date}/{visit}/',
             filename_format = 'pfsCalibrated_PFS_{visit}_{run_}.fits',
             identity = lambda data:
                 SimpleNamespace(visit=data[list(data.keys())[0]].observations.visit[0]),
@@ -131,7 +135,7 @@ PfsGen3FileSystemConfig = SimpleNamespace(
                 re.compile(r'pfsCalibratedLsf/(?P<date>\d{8})/(\d{6})/pfsCalibratedLsf_PFS_(?P<visit>\d{6})_(?P<run>[^.]+)\.pickle$'),
                 re.compile(r'pfsCalibratedLsf_PFS_(?P<visit>\d{6})_(?P<run>[^.]+)\.pickle$')
             ],
-            dir_format = '${datadir}/${rundir}/pfsCalibratedLsf/{date}/{visit}/',
+            dir_format = '$datadir/$rundir/pfsCalibratedLsf/{date}/{visit}/',
             filename_format = 'pfsCalibratedLsf_PFS_{visit}_{run_}.pickle',
             identity = lambda data:
                 SimpleNamespace(visit=data.identity.visit),
@@ -148,13 +152,32 @@ PfsGen3FileSystemConfig = SimpleNamespace(
                 re.compile(r'pfsCalibrated/(?P<date>\d{8})/(\d{6})/pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<run>[^.]+)\.(fits|fits\.gz)$'),
                 re.compile(r'pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<run>[^.]+)\.(fits|fits\.gz)$')
             ],
-            dir_format = '${datadir}/${rundir}/pfsCalibrated/{date}/{visit}/',
+            dir_format = '$datadir/$rundir/pfsCalibrated/{date}/{visit}/',
             filename_format = 'pfsCalibrated_PFS_{visit}_{run_}.fits',
             identity = lambda data:
                 SimpleNamespace(visit=data.identity.visit),
             load = load_PfsCalibrated_PfsSingle,
         ),
+        PfsSingle: SimpleNamespace(
+            name = 'pfsSingle',
+            params = SimpleNamespace(
+                run = StringFilter(name='run'),
+                catId = IntFilter(name='catId', format='{:05d}'),
+                objId = HexFilter(name='objId', format='{:016x}'),
+                visit = IntFilter(name='visit', format='{:06d}'),
+            ),
+            params_regex = [
+                re.compile(r'pfsSingle_PFS_(?P<catId>\d{5})-(?P<objId>[0-9a-f]{16})-(?P<visit>\d{6})_(?P<run>[^.]+)\.(fits|fits\.gz)$'),
+            ],
+            dir_format = '$datadir/$rundir/pfsSingle/{catId}/{objId}',
+            filename_format = 'pfsSingle_PFS_{catId}-{objId}-{visit}_{run_}.fits',
+            identity = lambda data:
+                SimpleNamespace(catId=data.target.catId, tract=data.target.tract, patch=data.target.patch, objId=data.target.objId, visit=data.observations.visit[0]),
+            load = load_PfsSingle,
+            save = save_PfsSingle,
+        ),
 
+        # TODO: update everything below
 
 
         # PfsArm: SimpleNamespace(
@@ -169,8 +192,8 @@ PfsGen3FileSystemConfig = SimpleNamespace(
         #         re.compile(r'(\d{8}T\d{6}Z)/pfsArm/(?P<date>\d{4}\d{2}\d{2})/(\d{6})/pfsArm_PFS_(?P<visit>\d{6})_(?P<arm>[brnm])(?P<spectrograph>\d)_(?P<run>[^.]+)_(?P<proctime>\d{8}T\d{6}Z)\.(fits|fits\.gz)$'),
         #         re.compile(r'pfsArm-(?P<visit>\d{6})-(?P<arm>[brnm])(?P<spectrograph>\d)\.(fits|fits\.gz)$')
         #     ],
-        #     dir_format = '${datadir}/{proctime}/pfsArm/{date}/{visit}/',
-        #     filename_format = 'pfsArm_PFS_{visit}_{arm}{spectrograph}_${run}_{proctime}.fits',
+        #     dir_format = '$datadir/{proctime}/pfsArm/{date}/{visit}/',
+        #     filename_format = 'pfsArm_PFS_{visit}_{arm}{spectrograph}_{run_}.fits',
         #     identity = lambda data:
         #         SimpleNamespace(visit=data.identity.visit, arm=data.identity.arm, spectrograph=data.identity.spectrograph),
         #     load = load_PfsArm,
@@ -185,31 +208,12 @@ PfsGen3FileSystemConfig = SimpleNamespace(
         #         re.compile(r'(\d{8}T\d{6}Z)/pfsMerged/(?P<date>\d{4}\d{2}\d{2})/(\d{6})/pfsMerged_PFS_(?P<visit>\d{6})_(?P<run>[^.]+)_(?P<proctime>\d{8}T\d{6}Z)\.(fits|fits\.gz)$'),
         #         re.compile(r'pfsMerged_PFS_(?P<visit>\d{6})_(?P<run>[^.]+)_(?P<proctime>\d{8}T\d{6}Z)\.(fits|fits\.gz)$')
         #     ],
-        #     dir_format = '${datadir}/{proctime}/pfsMerged/{date}/{visit}/',
-        #     filename_format = 'pfsMerged_PFS_{visit}_${run}_{proctime}.fits',
+        #     dir_format = '$datadir/{proctime}/pfsMerged/{date}/{visit}/',
+        #     filename_format = 'pfsMerged_PFS_{visit}_{run_}.fits',
         #     identity = lambda data:
         #         # TODO: add date and proctime but from where?
         #         SimpleNamespace(visit=data[list(data.keys())[0]].observations.visit[0]),     
         #     load = load_PfsMerged,
-        # ),
-        # PfsSingle: SimpleNamespace(
-        #     name = 'pfsSingle',
-        #     params = SimpleNamespace(
-        #         catId = IntFilter(name='catId', format='{:05d}'),
-        #         tract = IntFilter(name='tract', format='{:05d}'),
-        #         patch = StringFilter(name='patch'),
-        #         objId = HexFilter(name='objId', format='{:016x}'),
-        #         visit = IntFilter(name='visit', format='{:06d}'),
-        #     ),
-        #     params_regex = [
-        #         re.compile(r'pfsSingle-(?P<catId>\d{5})-(?P<tract>\d{5})-(?P<patch>.*)-(?P<objId>[0-9a-f]{16})-(?P<visit>\d{6})\.(fits|fits\.gz)$'),
-        #     ],
-        #     dir_format = '$datadir/pfsSingle/{catId}/{tract}/{patch}',
-        #     filename_format = 'pfsSingle-{catId}-{tract}-{patch}-{objId}-{visit}.fits',
-        #     identity = lambda data:
-        #         SimpleNamespace(catId=data.target.catId, tract=data.target.tract, patch=data.target.patch, objId=data.target.objId, visit=data.observations.visit[0]),
-        #     load = load_PfsSingle,
-        #     save = save_PfsSingle,
         # ),
         # PfsObject: SimpleNamespace(
         #     name = 'pfsObject',

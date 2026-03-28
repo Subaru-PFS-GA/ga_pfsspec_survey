@@ -262,7 +262,13 @@ class FileSystemRepo(Repo):
         params = self.config.products[product].params.__dict__
         if not isinstance(identity, dict):
             identity = identity.__dict__
-        values = { k: p.format.format(identity[k]) for k, p in params.items() if k in identity }
+        
+        values = {}
+        for k, p in params.items():
+            if k in identity:
+                values[k] = p.format.format(identity[k])
+                values[f'{k}_'] = p.format.format(identity[k]).replace('/', '_')
+
         path = format_string.format(**values)
         path = self.expand_variables(path, variables)
         path = self.expand_variables(path, self.variables)
