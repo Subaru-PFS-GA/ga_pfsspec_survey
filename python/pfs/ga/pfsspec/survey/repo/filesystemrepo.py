@@ -117,7 +117,10 @@ class FileSystemRepo(Repo):
             patts.append(p)
 
         # Evaluate the glob pattern for each filter parameter
-        glob_pattern_parts = { k: p.get_glob_pattern() for k, p in params.items() }
+        glob_pattern_parts = {}
+        for k, p in params.items():
+            glob_pattern_parts[k] = p.get_glob_pattern()
+            glob_pattern_parts[f'{k}_'] = p.get_glob_pattern().replace('/', '_')
 
         # Compose the full glob pattern
         glob_pattern = os.path.join(*[ p.format(**glob_pattern_parts) for p in patts ])

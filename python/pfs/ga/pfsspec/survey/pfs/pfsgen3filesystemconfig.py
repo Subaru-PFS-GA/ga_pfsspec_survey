@@ -64,153 +64,134 @@ def save_PfsSingle(data, identity, filename, dir):
 def load_PfsObject(identity, filename, dir):
     return PfsObject.read(identity.__dict__, dirName=dir)
 
-def load_PfsStar(identity, filename, dir):
-    return PfsStar.readFits(os.path.join(dir, filename))
-
-def save_PfsStar(data, identity, filename, dir):
-    PfsStar.writeFits(data, os.path.join(dir, filename))
-
-def load_PfsStarCatalog(identity, filename, dir):
-    pass
-
-def save_PfsStarCatalog(data, identity, filename, dir):
-    data.writeFits(filename)
-
 PfsGen3FileSystemConfig = SimpleNamespace(
-    root = '$datadir',
     variables = {
         'datadir': '$PFSSPEC_PFS_DATADIR',
-        'rerundir': '$PFSSPEC_PFS_RERUNDIR',
-        'rerun': '$PFSSPEC_PFS_RERUN',
-        'pfsdesigndir': '$PFSSPEC_PFS_DESIGNDIR',
+        'rundir': '$PFSSPEC_PFS_RUNDIR',
         'pfsconfigdir': '$PFSSPEC_PFS_CONFIGDIR',
     },
+    root = '$datadir',
     products = {
-        PfsDesign: SimpleNamespace(
-            name = 'pfsDesign',
-            params = SimpleNamespace(
-                pfsDesignId = HexFilter(name='pfsDesignId', format='{:016x}')
-            ),
-            params_regex = [
-                re.compile(r'pfsDesign-0x(?P<pfsDesignId>[0-9a-fA-F]{16})\.(?:fits|fits\.gz)$'),
-            ],
-            dir_format = '$pfsdesigndir/pfsDesign',
-            filename_format = 'pfsDesign-0x{pfsDesignId}.fits',
-            identity = lambda data:
-                SimpleNamespace(pfsDesignId=data.pfsDesignId),
-            load = load_PfsDesign,
-        ),
+        # PfsDesign: SimpleNamespace(
+        #     name = 'pfsDesign',
+        #     params = SimpleNamespace(
+        #         pfsDesignId = HexFilter(name='pfsDesignId', format='{:016x}')
+        #     ),
+        #     params_regex = [
+        #         re.compile(r'pfsDesign-0x(?P<pfsDesignId>[0-9a-fA-F]{16})\.(?:fits|fits\.gz)$'),
+        #     ],
+        #     dir_format = '$pfsdesigndir/pfsDesign',
+        #     filename_format = 'pfsDesign-0x{pfsDesignId}.fits',
+        #     identity = lambda data:
+        #         SimpleNamespace(pfsDesignId=data.pfsDesignId),
+        #     load = load_PfsDesign,
+        # ),
         PfsConfig: SimpleNamespace(
             name = 'pfsConfig',
             params = SimpleNamespace(
+                run = StringFilter(name='run'),
                 visit = IntFilter(name='visit', format='{:06d}'),
                 date = DateFilter(name='date', format='{:%Y%m%d}'),
             ),
             params_regex = [
-                # re.compile(r'(?P<date>\d{4}\d{2}\d{2})/(?P<visit>\d{6})/pfsConfig_PFS_\d{6}_PFS_raw_pfsConfig\.(fits|fits\.gz)$'),
-                # re.compile(r'pfsConfig-PFS-(?P<visit>\d{6})_PFS_raw_pfsConfig\.(fits|fits\.gz)$'),
-                re.compile(r'pfsConfig_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)\.(fits|fits\.gz)$'),
+                re.compile(r'pfsConfig/(?P<date>\d{8})/(\d{6})/pfsConfig_PFS_(?P<visit>\d{6})_(?P<run>[^.]+)\.(fits|fits\.gz)$'),
+                re.compile(r'pfsConfig_PFS_(?P<visit>\d{6})_(?P<run>[^.]+)\.(fits|fits\.gz)$'),
             ],
-            # dir_format = '$pfsconfigdir/pfsConfig/{date}/{visit}',
-            # filename_format = 'pfsConfig_PFS_{visit}_PFS_raw_pfsConfig.fits',
-            dir_format = '${datadir}/${rerundir}/pfsConfig/{date}/{visit}',
-            filename_format = 'pfsConfig_PFS_{visit}_{rerun}.fits',
+            dir_format = '${pfsconfigdir}/pfsConfig/{date}/{visit}',
+            filename_format = 'pfsConfig_PFS_{visit}_{run_}.fits',
             identity = lambda data:
                 SimpleNamespace(visit=data.visit),
             load = load_PfsConfig,
         ),
-        PfsArm: SimpleNamespace(
-            name = 'pfsArm',
-            params = SimpleNamespace(
-                visit = IntFilter(name='visit', format='{:06d}'),
-                arm = StringFilter(name='arm'),
-                spectrograph = IntFilter(name='spectrograph', format='{:1d}'),
-                date = DateFilter(name='date', format='{:%Y%m%d}'),
-                proctime = TimeFilter(name='proctime', format='{:%Y%m%dT%H%M%SZ}'),
-            ),
-            params_regex = [
-                re.compile(r'(\d{8}T\d{6}Z)/pfsArm/(?P<date>\d{4}\d{2}\d{2})/(\d{6})/pfsArm_PFS_(?P<visit>\d{6})_(?P<arm>[brnm])(?P<spectrograph>\d)_(?P<rerun>[^.]+)_(?P<proctime>\d{8}T\d{6}Z)\.(fits|fits\.gz)$'),
-                re.compile(r'pfsArm-(?P<visit>\d{6})-(?P<arm>[brnm])(?P<spectrograph>\d)\.(fits|fits\.gz)$')
-            ],
-            dir_format = '${datadir}/${rerundir}/{proctime}/pfsArm/{date}/{visit}/',
-            filename_format = 'pfsArm_PFS_{visit}_{arm}{spectrograph}_${rerun}_{proctime}.fits',
-            identity = lambda data:
-                SimpleNamespace(visit=data.identity.visit, arm=data.identity.arm, spectrograph=data.identity.spectrograph),
-            load = load_PfsArm,
-        ),
-        PfsMerged: SimpleNamespace(
-            name = 'pfsMerged',
-            params = SimpleNamespace(
-                visit = IntFilter(name='visit', format='{:06d}'),
-                date = DateFilter(name='date', format='{:%Y%m%d}'),
-                proctime = TimeFilter(name='proctime', format='{:%Y%m%dT%H%M%SZ}'),
-            ),
-            params_regex = [
-                re.compile(r'(\d{8}T\d{6}Z)/pfsMerged/(?P<date>\d{4}\d{2}\d{2})/(\d{6})/pfsMerged_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)_(?P<proctime>\d{8}T\d{6}Z)\.(fits|fits\.gz)$'),
-                re.compile(r'pfsMerged_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)_(?P<proctime>\d{8}T\d{6}Z)\.(fits|fits\.gz)$')
-            ],
-            dir_format = '${datadir}/${rerundir}/{proctime}/pfsMerged/{date}/{visit}/',
-            filename_format = 'pfsMerged_PFS_{visit}_${rerun}_{proctime}.fits',
-            identity = lambda data:
-                # TODO: add date and proctime but from where?
-                SimpleNamespace(visit=data[list(data.keys())[0]].observations.visit[0]),     
-            load = load_PfsMerged,
-        ),
         PfsCalibrated: SimpleNamespace(
             name = 'pfsCalibrated',
             params = SimpleNamespace(
+                run = StringFilter(name='run'),
                 visit = IntFilter(name='visit', format='{:06d}'),
                 date = DateFilter(name='date', format='{:%Y%m%d}'),
-                # proctime = TimeFilter(name='proctime', format='{:%Y%m%dT%H%M%SZ}'),
             ),
             params_regex = [
-                # re.compile(r'(\d{8}T\d{6}Z)/pfsCalibrated/(?P<date>\d{4}\d{2}\d{2})/(\d{6})/pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)_(?P<proctime>\d{8}T\d{6}Z)\.(fits|fits\.gz)$'),
-                # re.compile(r'pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)_(?P<proctime>\d{8}T\d{6}Z)\.(fits|fits\.gz)$')
-                re.compile(r'pfsCalibrated/(?P<date>\d{4}\d{2}\d{2})/(\d{6})/pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)\.(fits|fits\.gz)$'),
-                re.compile(r'pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)\.(fits|fits\.gz)$')
+                re.compile(r'pfsCalibrated/(?P<date>\d{8})/(\d{6})/pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<run>[^.]+)\.(fits|fits\.gz)$'),
+                re.compile(r'pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<run>[^.]+)\.(fits|fits\.gz)$')
             ],
-            dir_format = '${datadir}/${rerundir}/pfsCalibrated/{date}/{visit}/',
-            filename_format = 'pfsCalibrated_PFS_{visit}_${rerun}.fits',
+            dir_format = '${datadir}/${rundir}/pfsCalibrated/{date}/{visit}/',
+            filename_format = 'pfsCalibrated_PFS_{visit}_{run_}.fits',
             identity = lambda data:
-                SimpleNamespace(visit=data[list(data.keys())[0]].observations.visit[0]),     # TODO: add date
+                SimpleNamespace(visit=data[list(data.keys())[0]].observations.visit[0]),
             load = load_PfsCalibrated,
         ),
         PfsCalibratedLsf: SimpleNamespace(
             name = 'pfsCalibratedLsf',
             params = SimpleNamespace(
+                run = StringFilter(name='run'),
                 visit = IntFilter(name='visit', format='{:06d}'),
                 date = DateFilter(name='date', format='{:%Y%m%d}'),
-                proctime = TimeFilter(name='proctime', format='{:%Y%m%dT%H%M%SZ}'),
             ),
             params_regex = [
-                re.compile(r'(\d{8}T\d{6}Z)/pfsCalibratedLsf/(?P<date>\d{4}\d{2}\d{2})/(\d{6})/pfsCalibratedLsf_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)_(?P<proctime>\d{8}T\d{6}Z)\.pickle$'),
-                re.compile(r'pfsCalibratedLsf_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)_(?P<proctime>\d{8}T\d{6}Z)\.pickle$')
+                re.compile(r'pfsCalibratedLsf/(?P<date>\d{8})/(\d{6})/pfsCalibratedLsf_PFS_(?P<visit>\d{6})_(?P<run>[^.]+)\.pickle$'),
+                re.compile(r'pfsCalibratedLsf_PFS_(?P<visit>\d{6})_(?P<run>[^.]+)\.pickle$')
             ],
-            dir_format = '${datadir}/${rerundir}/{proctime}/pfsCalibratedLsf/{date}/{visit}/',
-            filename_format = 'pfsCalibratedLsf_PFS_{visit}_${rerun}_{proctime}.pickle',
+            dir_format = '${datadir}/${rundir}/pfsCalibratedLsf/{date}/{visit}/',
+            filename_format = 'pfsCalibratedLsf_PFS_{visit}_{run_}.pickle',
             identity = lambda data:
-                SimpleNamespace(visit=data.identity.visit),     # TODO: add date
+                SimpleNamespace(visit=data.identity.visit),
             load = load_PfsCalibratedLsf,
         ),
         (PfsCalibrated, PfsSingle): SimpleNamespace(
             name = 'pfsCalibrated',
             params = SimpleNamespace(
+                run = StringFilter(name='run'),
                 visit = IntFilter(name='visit', format='{:06d}'),
                 date = DateFilter(name='date', format='{:%Y%m%d}'),
-                # proctime = TimeFilter(name='proctime', format='{:%Y%m%dT%H%M%SZ}'),
             ),
             params_regex = [
-                # re.compile(r'(\d{8}T\d{6}Z)/pfsCalibrated/(?P<date>\d{4}\d{2}\d{2})/(\d{6})/pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)_(?P<proctime>\d{8}T\d{6}Z)\.(fits|fits\.gz)$'),
-                # re.compile(r'pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)_(?P<proctime>\d{8}T\d{6}Z)\.(fits|fits\.gz)$')
-                re.compile(r'pfsCalibrated/(?P<date>\d{4}\d{2}\d{2})/(\d{6})/pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)\.(fits|fits\.gz)$'),
-                re.compile(r'pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<rerun>[^.]+)\.(fits|fits\.gz)$')
+                re.compile(r'pfsCalibrated/(?P<date>\d{8})/(\d{6})/pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<run>[^.]+)\.(fits|fits\.gz)$'),
+                re.compile(r'pfsCalibrated_PFS_(?P<visit>\d{6})_(?P<run>[^.]+)\.(fits|fits\.gz)$')
             ],
-            dir_format = '${datadir}/${rerundir}/pfsCalibrated/{date}/{visit}/',
-            filename_format = 'pfsCalibrated_PFS_{visit}_${rerun}.fits',
+            dir_format = '${datadir}/${rundir}/pfsCalibrated/{date}/{visit}/',
+            filename_format = 'pfsCalibrated_PFS_{visit}_{run_}.fits',
             identity = lambda data:
-                SimpleNamespace(visit=data.identity.visit),     # TODO: add date
+                SimpleNamespace(visit=data.identity.visit),
             load = load_PfsCalibrated_PfsSingle,
         ),
+
+
+
+        # PfsArm: SimpleNamespace(
+        #     name = 'pfsArm',
+        #     params = SimpleNamespace(
+        #         visit = IntFilter(name='visit', format='{:06d}'),
+        #         arm = StringFilter(name='arm'),
+        #         spectrograph = IntFilter(name='spectrograph', format='{:1d}'),
+        #         date = DateFilter(name='date', format='{:%Y%m%d}'),
+        #     ),
+        #     params_regex = [
+        #         re.compile(r'(\d{8}T\d{6}Z)/pfsArm/(?P<date>\d{4}\d{2}\d{2})/(\d{6})/pfsArm_PFS_(?P<visit>\d{6})_(?P<arm>[brnm])(?P<spectrograph>\d)_(?P<run>[^.]+)_(?P<proctime>\d{8}T\d{6}Z)\.(fits|fits\.gz)$'),
+        #         re.compile(r'pfsArm-(?P<visit>\d{6})-(?P<arm>[brnm])(?P<spectrograph>\d)\.(fits|fits\.gz)$')
+        #     ],
+        #     dir_format = '${datadir}/{proctime}/pfsArm/{date}/{visit}/',
+        #     filename_format = 'pfsArm_PFS_{visit}_{arm}{spectrograph}_${run}_{proctime}.fits',
+        #     identity = lambda data:
+        #         SimpleNamespace(visit=data.identity.visit, arm=data.identity.arm, spectrograph=data.identity.spectrograph),
+        #     load = load_PfsArm,
+        # ),
+        # PfsMerged: SimpleNamespace(
+        #     name = 'pfsMerged',
+        #     params = SimpleNamespace(
+        #         visit = IntFilter(name='visit', format='{:06d}'),
+        #         date = DateFilter(name='date', format='{:%Y%m%d}'),
+        #     ),
+        #     params_regex = [
+        #         re.compile(r'(\d{8}T\d{6}Z)/pfsMerged/(?P<date>\d{4}\d{2}\d{2})/(\d{6})/pfsMerged_PFS_(?P<visit>\d{6})_(?P<run>[^.]+)_(?P<proctime>\d{8}T\d{6}Z)\.(fits|fits\.gz)$'),
+        #         re.compile(r'pfsMerged_PFS_(?P<visit>\d{6})_(?P<run>[^.]+)_(?P<proctime>\d{8}T\d{6}Z)\.(fits|fits\.gz)$')
+        #     ],
+        #     dir_format = '${datadir}/{proctime}/pfsMerged/{date}/{visit}/',
+        #     filename_format = 'pfsMerged_PFS_{visit}_${run}_{proctime}.fits',
+        #     identity = lambda data:
+        #         # TODO: add date and proctime but from where?
+        #         SimpleNamespace(visit=data[list(data.keys())[0]].observations.visit[0]),     
+        #     load = load_PfsMerged,
+        # ),
         # PfsSingle: SimpleNamespace(
         #     name = 'pfsSingle',
         #     params = SimpleNamespace(
@@ -223,79 +204,31 @@ PfsGen3FileSystemConfig = SimpleNamespace(
         #     params_regex = [
         #         re.compile(r'pfsSingle-(?P<catId>\d{5})-(?P<tract>\d{5})-(?P<patch>.*)-(?P<objId>[0-9a-f]{16})-(?P<visit>\d{6})\.(fits|fits\.gz)$'),
         #     ],
-        #     dir_format = '$datadir/$rerundir/pfsSingle/{catId}/{tract}/{patch}',
+        #     dir_format = '$datadir/pfsSingle/{catId}/{tract}/{patch}',
         #     filename_format = 'pfsSingle-{catId}-{tract}-{patch}-{objId}-{visit}.fits',
         #     identity = lambda data:
         #         SimpleNamespace(catId=data.target.catId, tract=data.target.tract, patch=data.target.patch, objId=data.target.objId, visit=data.observations.visit[0]),
         #     load = load_PfsSingle,
         #     save = save_PfsSingle,
         # ),
-        PfsObject: SimpleNamespace(
-            name = 'pfsObject',
-            params = SimpleNamespace(
-                catId = IntFilter(name='catId', format='{:05d}'),
-                tract = IntFilter(name='tract', format='{:05d}'),
-                patch = StringFilter(name='patch'),
-                objId = HexFilter(name='objId', format='{:016x}'),
-                nVisit = IntFilter(name='nVisit', format='{:03d}'),
-                pfsVisitHash = HexFilter(name='pfsVisitHash', format='{:016x}'),
-            ),
-            params_regex = [
-                re.compile(r'pfsObject-(?P<catId>\d{5})-(?P<tract>\d{5})-(?P<patch>.*)-(?P<objId>[0-9a-f]{16})-(?P<nVisit>\d{3})-0x(?P<pfsVisitHash>[0-9a-f]{16})\.(fits|fits\.gz)$'),
-            ],
-            dir_format = '$datadir/$rerundir/pfsObject/{catId}/{tract}/{patch}',
-            filename_format = 'pfsObject-{catId}-{tract}-{patch}-{objId}-{nVisit}-0x{pfsVisitHash}.fits',
-            identity = lambda data:
-                SimpleNamespace(catId=data.target.catId, tract=data.target.tract, patch=data.target.patch, objId=data.target.objId, nVisit=data.nVisit, pfsVisitHash=data.pfsVisitHash),
-            load = load_PfsObject,
-        ),
-        PfsStar: SimpleNamespace(
-            name = 'pfsStar',
-            params = SimpleNamespace(
-                catId = IntFilter(name='catId', format='{:05d}'),
-                tract = IntFilter(name='tract', format='{:05d}'),
-                patch = StringFilter(name='patch'),
-                objId = HexFilter(name='objId', format='{:016x}'),
-                nVisit = IntFilter(name='nVisit', format='{:03d}'),
-                pfsVisitHash = HexFilter(name='pfsVisitHash', format='{:016x}'),
-            ),
-            params_regex = [
-                re.compile(r'pfsStar-(?P<catId>\d{5})-(?P<objId>[0-9a-f]{16})-(?P<nVisit>\d{3})-0x(?P<pfsVisitHash>[0-9a-f]{16})\.(fits|fits\.gz)$'),
-            ],
-            dir_format = '$datadir/$rerundir/pfsStar/{catId}/{tract}/{patch}',
-            filename_format = 'pfsStar-{catId}-{objId}-{nVisit}-0x{pfsVisitHash}.fits',
-            identity = lambda data:
-                SimpleNamespace(
-                    catId = data.target.catId,
-                    tract = data.target.tract,
-                    patch = data.target.patch,
-                    objId = data.target.objId,
-                    nVisit = data.nVisit,
-                    pfsVisitHash = calculatePfsVisitHash(data.observations.visit)
-                ),
-            load = load_PfsStar,
-            save = save_PfsStar
-        ),
-        PfsStarCatalog: SimpleNamespace(
-            name = 'pfsStarCatalog',
-            params = SimpleNamespace(
-                catId = IntFilter(name='catId', format='{:05d}'),
-                nVisit = IntFilter(name='nVisit', format='{:03d}'),
-                pfsVisitHash = HexFilter(name='pfsVisitHash', format='{:016x}'),
-            ),
-            params_regex = [
-                re.compile(r'pfsStarCatalog-(?P<catId>\d{5})-(?P<nVisit>\d{3})-0x(?P<pfsVisitHash>[0-9a-f]{16})\.(fits|fits\.gz)$'),
-            ],
-            dir_format = '$datadir/$rerundir/pfsStarCatalog/{catId}',
-            filename_format = 'pfsStarCatalog-{catId}-{nVisit}-0x{pfsVisitHash}.fits',
-            identity = lambda data:
-                SimpleNamespace(
-                    catId = data.catId,
-                    nVisit = data.nVisit,
-                    pfsVisitHash = calculatePfsVisitHash(data.observations.visit)
-                ),
-            load = load_PfsStarCatalog,
-            save = save_PfsStarCatalog
-        )
+        # PfsObject: SimpleNamespace(
+        #     name = 'pfsObject',
+        #     params = SimpleNamespace(
+        #         catId = IntFilter(name='catId', format='{:05d}'),
+        #         tract = IntFilter(name='tract', format='{:05d}'),
+        #         patch = StringFilter(name='patch'),
+        #         objId = HexFilter(name='objId', format='{:016x}'),
+        #         nVisit = IntFilter(name='nVisit', format='{:03d}'),
+        #         pfsVisitHash = HexFilter(name='pfsVisitHash', format='{:016x}'),
+        #     ),
+        #     params_regex = [
+        #         re.compile(r'pfsObject-(?P<catId>\d{5})-(?P<tract>\d{5})-(?P<patch>.*)-(?P<objId>[0-9a-f]{16})-(?P<nVisit>\d{3})-0x(?P<pfsVisitHash>[0-9a-f]{16})\.(fits|fits\.gz)$'),
+        #     ],
+        #     dir_format = '$datadir/pfsObject/{catId}/{tract}/{patch}',
+        #     filename_format = 'pfsObject-{catId}-{tract}-{patch}-{objId}-{nVisit}-0x{pfsVisitHash}.fits',
+        #     identity = lambda data:
+        #         SimpleNamespace(catId=data.target.catId, tract=data.target.tract, patch=data.target.patch, objId=data.target.objId, nVisit=data.nVisit, pfsVisitHash=data.pfsVisitHash),
+        #     load = load_PfsObject,
+        # ),
     }
 )
