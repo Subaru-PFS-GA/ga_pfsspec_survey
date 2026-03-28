@@ -189,8 +189,8 @@ class PfsGen3Repo():
                 mask = np.full(psf_config.fiberId.shape, True)
 
                 mask &= object_filters.fiberId.mask(psf_config.fiberId)
-                mask &= repo_filters.catId.mask(psf_config.catId)
-                mask &= repo_filters.objId.mask(psf_config.objId)
+                mask &= object_filters.catId.mask(psf_config.catId)
+                mask &= object_filters.objId.mask(psf_config.objId)
                 mask &= object_filters.targetType.mask(psf_config.targetType)
                 mask &= object_filters.proposalId.mask(psf_config.proposalId)
                 mask &= object_filters.obCode.mask(psf_config.obCode)
