@@ -507,7 +507,7 @@ class Repo():
         # The file name might not contain all information necessary to load the
         # product, so given the parsed identity, we need to locate the file.
         if skip_locate:
-            identity = None
+            pass
         else:
             filename, identity = self.locate_product(product, variables=variables, **params)
             
