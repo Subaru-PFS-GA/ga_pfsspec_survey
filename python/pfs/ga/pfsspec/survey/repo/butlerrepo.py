@@ -23,14 +23,18 @@ class ButlerRepo(Repo):
     
         super().__init__(config=config, orig=orig)
 
-        self.__butler = Butler(
-            config = self.get_resolved_variable('butlerconfigdir'),
-            collections = self.get_resolved_variable('butlercollections').split(':'),
-            writeable = False)
+        self.__butler = None
         
     #region Properties
 
     def __get_butler(self):
+        # Lazily initialize the Butler instance when it is first accessed.
+        if self.__butler is None:
+            self.__butler = Butler(
+                config = self.get_resolved_variable('butlerconfigdir'),
+                collections = self.get_resolved_variable('butlercollections').split(':'),
+                writeable = False)
+            
         return self.__butler
     
     butler = property(__get_butler)
