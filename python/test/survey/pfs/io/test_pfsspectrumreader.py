@@ -3,10 +3,11 @@ from types import SimpleNamespace
 from astropy.io import fits
 import numpy as np
 
-from test.pfs.ga.pfsspec.core import TestBase
 from pfs.ga.pfsspec.survey.pfs.io import PfsSpectrumReader
 from pfs.ga.pfsspec.survey.pfs.datamodel import *
 from pfs.ga.pfsspec.survey.pfs import PfsStellarSpectrum
+
+from ....core.test_base import TestBase
 
 class TestPfsSpectrumReader(TestBase):
     def test_read_pfsFiberArray(self):
