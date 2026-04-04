@@ -62,7 +62,8 @@ class ButlerRepo(Repo):
         # Generate the where clause from the parameters
         where = []
         for k, p in params.items():
-            if not p.is_none:
+            # the parameter 'run' is handled separately in the ButlerRepo class, so we skip it here
+            if k != 'run' and not p.is_none:
                 ww = []
                 for v in p.values:
                     if isinstance(v, tuple):
@@ -76,7 +77,7 @@ class ButlerRepo(Repo):
         where = ' AND '.join(where)
 
         try:
-            datasetRefs = self.__butler.query_datasets(
+            datasetRefs = self.butler.query_datasets(
                 product_name,
                 where = where
             )
@@ -89,7 +90,7 @@ class ButlerRepo(Repo):
         identities = { p: [] for p in params }
         for dsref in datasetRefs:
             # Get the file path
-            uri = self.__butler.getURI(dsref)
+            uri = self.butler.getURI(dsref)
             if uri.scheme == 'file':
                 filenames.append(uri.ospath)
             else:
@@ -126,7 +127,7 @@ class ButlerRepo(Repo):
             name = product.__name__
             name = name[0].lower() + name[1:]  # Convert first letter to lowercase
 
-            self.__butler.get_dataset_type(name)
+            self.butler.get_dataset_type(name)
             return True
         except Exception:
             return False

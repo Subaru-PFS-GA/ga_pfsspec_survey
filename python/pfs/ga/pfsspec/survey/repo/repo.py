@@ -18,16 +18,27 @@ class Repo():
             self.__ignore_missing_files = False
 
             self.__config = config
+            self.__defaults = self._init_defaults()
             self.__variables = self._init_variables()
             self.__filters = self._init_filters()
         else:
             self.__ignore_missing_files = orig.__ignore_missing_files
 
             self.__config = config if config is not None else orig.__config
+            self.__defaults = orig.__defaults
             self.__variables = orig.__variables
             self.__filters = self._init_filters()
 
         self.__location_cache = {}
+
+    def _init_defaults(self):
+        # Enumerate all product parameters in the config and make a
+        # unique dictionary of them with default values of None
+        all_defaults = {}
+        for product in self.__config.products.values():
+            for k, p in product.params.__dict__.items():
+                all_defaults[k] = None
+        return SimpleNamespace(**all_defaults)
             
     def _init_variables(self):
         # Enumerate all variables that appear in the config and make a 
@@ -61,6 +72,11 @@ class Repo():
         return self.__config
     
     config = property(__get_config)
+
+    def __get_defaults(self):
+        return self.__defaults
+    
+    defaults = property(__get_defaults)
 
     def __get_filters(self):
         return self.__filters

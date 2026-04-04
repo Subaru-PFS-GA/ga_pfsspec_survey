@@ -12,6 +12,11 @@ class StringFilter(SearchFilter):
     
     def _parse_value(self, value):
         return value
+
+    def _parse(self, arg: list):
+        # Override the _parse method to handle string values only which
+        # cannot have ranges split with a hyphen.
+        self._values = [ self._parse_value(v) for v in arg ]
     
     def match(self, arg):
         """

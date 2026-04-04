@@ -21,24 +21,24 @@ def save_PfsStarCatalog(data, identity, filename, dir):
 PfsGAFileSystemConfig = SimpleNamespace(
     variables = {
         'datadir': '$PFSSPEC_PFS_DATADIR',
-        'rundir': '$PFSSPEC_PFS_RUNDIR',
+        'garundir': '$PFSSPEC_PFS_GARUNDIR',
     },
     root = '$datadir',
     products = {
         PfsStar: SimpleNamespace(
             name = 'pfsStar',
             params = SimpleNamespace(
-                run = StringFilter(name='run'),
+                garun = StringFilter(name='garun'),
                 catId = IntFilter(name='catId', format='{:05d}'),
                 objId = HexFilter(name='objId', format='{:016x}'),
                 nVisit = IntFilter(name='nVisit', format='{:03d}'),
                 pfsVisitHash = HexFilter(name='pfsVisitHash', format='{:016x}'),
             ),
             params_regex = [
-                re.compile(r'pfsStar_PFS_(?P<catId>\d{5})-(?P<objId>[0-9a-f]{16})-(?P<nVisit>\d{3})-0x(?P<pfsVisitHash>[0-9a-f]{16})_(?P<run>[^.]+)\.(fits|fits\.gz)$'),
+                re.compile(r'pfsStar_PFS_(?P<catId>\d{5})-(?P<objId>[0-9a-f]{16})-(?P<nVisit>\d{3})-0x(?P<pfsVisitHash>[0-9a-f]{16})_(?P<garun>.+)\.(fits|fits\.gz)$'),
             ],
-            dir_format = '$datadir/$rundir/pfsStar/{catId}/{objId}',
-            filename_format = 'pfsStar_PFS_{catId}-{objId}-{nVisit}-0x{pfsVisitHash}_{run_}.fits',
+            dir_format = '$datadir/$garundir/pfsStar/{catId}/{objId}',
+            filename_format = 'pfsStar_PFS_{catId}-{objId}-{nVisit}-0x{pfsVisitHash}_{garun_}.fits',
             identity = lambda data:
                 SimpleNamespace(
                     catId = data.target.catId,
@@ -54,16 +54,16 @@ PfsGAFileSystemConfig = SimpleNamespace(
         PfsStarCatalog: SimpleNamespace(
             name = 'pfsStarCatalog',
             params = SimpleNamespace(
-                run = StringFilter(name='run'),
+                garun = StringFilter(name='garun'),
                 catId = IntFilter(name='catId', format='{:05d}'),
                 nVisit = IntFilter(name='nVisit', format='{:03d}'),
                 pfsVisitHash = HexFilter(name='pfsVisitHash', format='{:016x}'),
             ),
             params_regex = [
-                re.compile(r'pfsStarCatalog_PFS_(?P<catId>\d{5})-(?P<nVisit>\d{3})-0x(?P<pfsVisitHash>[0-9a-f]{16})_(?P<run>[^.]+)\.(fits|fits\.gz)$'),
+                re.compile(r'pfsStarCatalog_PFS_(?P<catId>\d{5})-(?P<nVisit>\d{3})-0x(?P<pfsVisitHash>[0-9a-f]{16})_(?P<garun>.+)\.(fits|fits\.gz)$'),
             ],
-            dir_format = '$datadir/$rundir/pfsStarCatalog/{catId}',
-            filename_format = 'pfsStarCatalog_PFS_{catId}-{nVisit}-0x{pfsVisitHash}_{run_}.fits',
+            dir_format = '$datadir/$garundir/pfsStarCatalog/{catId}',
+            filename_format = 'pfsStarCatalog_PFS_{catId}-{nVisit}-0x{pfsVisitHash}_{garun_}.fits',
             identity = lambda data:
                 SimpleNamespace(
                     catId = data.catId,

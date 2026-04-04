@@ -126,7 +126,7 @@ class FileSystemRepo(Repo):
         glob_pattern = os.path.join(*[ p.format(**glob_pattern_parts) for p in patts ])
 
         # Find the files that match the glob pattern.
-        # Set breakpoint here to debug issues regarding files not found
+        # DEBUG: Set breakpoint here to debug issues regarding files not found
         logger.debug(f'Finding files with glob using pattern: `{glob_pattern}`.')
         paths = glob(glob_pattern)
         
@@ -265,9 +265,15 @@ class FileSystemRepo(Repo):
         
         values = {}
         for k, p in params.items():
+            # Substitute the parameters in the format string with the values from the identity or defaults
             if k in identity:
                 values[k] = p.format.format(identity[k])
                 values[f'{k}_'] = p.format.format(identity[k]).replace('/', '_')
+            elif hasattr(self.defaults, k):
+                v = getattr(self.defaults, k)
+                if v is not None:
+                    values[k] = p.format.format(v)
+                    values[f'{k}_'] = p.format.format(v).replace('/', '_')
 
         path = format_string.format(**values)
         path = self.expand_variables(path, variables)
