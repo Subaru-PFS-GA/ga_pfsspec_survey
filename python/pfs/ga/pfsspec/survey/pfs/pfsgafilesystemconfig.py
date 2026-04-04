@@ -37,7 +37,7 @@ PfsGAFileSystemConfig = SimpleNamespace(
             params_regex = [
                 re.compile(r'pfsStar_PFS_(?P<catId>\d{5})-(?P<objId>[0-9a-f]{16})-(?P<nVisit>\d{3})-0x(?P<pfsVisitHash>[0-9a-f]{16})_(?P<garun>.+)\.(fits|fits\.gz)$'),
             ],
-            dir_format = '$datadir/$garundir/pfsStar/{catId}/{objId}',
+            dir_format = [ '$datadir', '$garundir', 'pfsStar/{catId}/{objId}' ],
             filename_format = 'pfsStar_PFS_{catId}-{objId}-{nVisit}-0x{pfsVisitHash}_{garun_}.fits',
             identity = lambda data:
                 SimpleNamespace(
@@ -62,7 +62,7 @@ PfsGAFileSystemConfig = SimpleNamespace(
             params_regex = [
                 re.compile(r'pfsStarCatalog_PFS_(?P<catId>\d{5})-(?P<nVisit>\d{3})-0x(?P<pfsVisitHash>[0-9a-f]{16})_(?P<garun>.+)\.(fits|fits\.gz)$'),
             ],
-            dir_format = '$datadir/$garundir/pfsStarCatalog/{catId}',
+            dir_format = [ '$datadir', '$garundir', 'pfsStarCatalog/{catId}' ],
             filename_format = 'pfsStarCatalog_PFS_{catId}-{nVisit}-0x{pfsVisitHash}_{garun_}.fits',
             identity = lambda data:
                 SimpleNamespace(

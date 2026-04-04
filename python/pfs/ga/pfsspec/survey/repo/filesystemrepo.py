@@ -2,6 +2,7 @@ import os
 import re
 from glob import glob
 from types import SimpleNamespace
+from collections.abc import Iterable
 
 from ..setup_logger import logger
 
@@ -199,7 +200,7 @@ class FileSystemRepo(Repo):
 
         return self.__find_files_and_match_params(
             patterns = [
-                self.config.products[product].dir_format,
+                *self.config.products[product].dir_format,
                 self.config.products[product].filename_format,
             ],
             params_regex = self.config.products[product].params_regex,
@@ -275,10 +276,24 @@ class FileSystemRepo(Repo):
                     values[k] = p.format.format(v)
                     values[f'{k}_'] = p.format.format(v).replace('/', '_')
 
-        path = format_string.format(**values)
-        path = self.expand_variables(path, variables)
-        path = self.expand_variables(path, self.variables)
-        path = self.expand_variables(path, os.environ)
+        if isinstance(format_string, str):
+            path = format_string.format(**values)
+            path = self.expand_variables(path, variables)
+            path = self.expand_variables(path, self.variables)
+            path = self.expand_variables(path, os.environ)
+        elif isinstance(format_string, Iterable):
+            path_parts = []
+            for part in format_string:
+                path_part = part.format(**values)
+                path_part = self.expand_variables(path_part, variables)
+                path_part = self.expand_variables(path_part, self.variables)
+                path_part = self.expand_variables(path_part, os.environ)
+                path_parts.append(path_part)
+                
+            path = os.path.join(*path_parts)
+        else:
+            raise NotImplementedError
+
         return path
     
     def format_dir(self, product, identity, variables=None):
