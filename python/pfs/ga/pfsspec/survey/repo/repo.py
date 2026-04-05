@@ -210,7 +210,7 @@ class Repo():
         are left unchanged. Stolen from os.path.expandvars.
         """
 
-        if variables is None:
+        if path is None or variables is None:
             return path
 
         path = os.fspath(path)
@@ -219,8 +219,6 @@ class Repo():
             return path
         
         search = Repo.__expandvars_regex.search
-        start = '{'
-        end = '}'
 
         i = 0
         while True:
@@ -229,11 +227,17 @@ class Repo():
                 break
             i, j = m.span(0)
             name = m.group(1)
-            if name.startswith(start) and name.endswith(end):
+            
+            if name.startswith('{') and name.endswith('}'):
                 name = name[1:-1]
+
             try:
                 value = variables[name]
             except KeyError:
+                value = None
+            
+            if value is None:
+                # Variable is not defined or value is None, leave it unchanged
                 i = j
             else:
                 tail = path[j:]
