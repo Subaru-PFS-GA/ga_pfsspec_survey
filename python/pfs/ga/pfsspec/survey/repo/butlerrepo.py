@@ -4,7 +4,7 @@ from numbers import Number
 from ..setup_logger import logger
 
 try:
-    from lsst.daf.butler import Butler, EmptyQueryResultError
+    from lsst.daf.butler import Butler, EmptyQueryResultError, MissingDatasetTypeError
 except ImportError:
     logger.warning("Butler is not available. Ensure that the lsst.daf.butler package is installed.")
     Butler = None
@@ -34,6 +34,9 @@ class ButlerRepo(Repo):
                 config = self.get_resolved_variable('butlerconfigdir'),
                 collections = self.get_resolved_variable('butlercollections').split(':'),
                 writeable = False)
+            
+            # Try to get the registry which will raise an Exception if the Butler is not properly configured
+            registry = self.__butler.registry
             
         return self.__butler
     
@@ -122,6 +125,11 @@ class ButlerRepo(Repo):
             True if the product is available in the repository, False otherwise.
         """
 
+        # Check if the product is a composite product, i.e. a container of multiple sub-products.
+        # If so, only check if the main product type is available, not the sub-products
+        if isinstance(product, tuple):
+            product = product[0]
+
         try:
             # Butler is case-sensitive, ensure product names match exactly
             name = product.__name__
@@ -129,7 +137,7 @@ class ButlerRepo(Repo):
 
             self.butler.get_dataset_type(name)
             return True
-        except Exception:
+        except MissingDatasetTypeError:
             return False
 
     def find_product(self, product, variables=None, **kwargs):
