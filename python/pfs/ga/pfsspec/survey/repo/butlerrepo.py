@@ -4,7 +4,7 @@ from numbers import Number
 from ..setup_logger import logger
 
 try:
-    from lsst.daf.butler import Butler, EmptyQueryResultError
+    from lsst.daf.butler import Butler, EmptyQueryResultError, MissingDatasetTypeError
 except ImportError:
     logger.warning("Butler is not available. Ensure that the lsst.daf.butler package is installed.")
     Butler = None
@@ -23,14 +23,21 @@ class ButlerRepo(Repo):
     
         super().__init__(config=config, orig=orig)
 
-        self.__butler = Butler(
-            config = self.get_resolved_variable('butlerconfigdir'),
-            collections = self.get_resolved_variable('butlercollections').split(':'),
-            writeable = False)
+        self.__butler = None
         
     #region Properties
 
     def __get_butler(self):
+        # Lazily initialize the Butler instance when it is first accessed.
+        if self.__butler is None:
+            self.__butler = Butler(
+                config = self.get_resolved_variable('butlerconfigdir'),
+                collections = self.get_resolved_variable('butlercollections').split(':'),
+                writeable = False)
+            
+            # Try to get the registry which will raise an Exception if the Butler is not properly configured
+            registry = self.__butler.registry
+            
         return self.__butler
     
     butler = property(__get_butler)
@@ -58,7 +65,8 @@ class ButlerRepo(Repo):
         # Generate the where clause from the parameters
         where = []
         for k, p in params.items():
-            if not p.is_none:
+            # the parameter 'run' is handled separately in the ButlerRepo class, so we skip it here
+            if k != 'run' and not p.is_none:
                 ww = []
                 for v in p.values:
                     if isinstance(v, tuple):
@@ -72,7 +80,7 @@ class ButlerRepo(Repo):
         where = ' AND '.join(where)
 
         try:
-            datasetRefs = self.__butler.query_datasets(
+            datasetRefs = self.butler.query_datasets(
                 product_name,
                 where = where
             )
@@ -85,7 +93,7 @@ class ButlerRepo(Repo):
         identities = { p: [] for p in params }
         for dsref in datasetRefs:
             # Get the file path
-            uri = self.__butler.getURI(dsref)
+            uri = self.butler.getURI(dsref)
             if uri.scheme == 'file':
                 filenames.append(uri.ospath)
             else:
@@ -117,14 +125,19 @@ class ButlerRepo(Repo):
             True if the product is available in the repository, False otherwise.
         """
 
+        # Check if the product is a composite product, i.e. a container of multiple sub-products.
+        # If so, only check if the main product type is available, not the sub-products
+        if isinstance(product, tuple):
+            product = product[0]
+
         try:
             # Butler is case-sensitive, ensure product names match exactly
             name = product.__name__
             name = name[0].lower() + name[1:]  # Convert first letter to lowercase
 
-            self.__butler.get_dataset_type(name)
+            self.butler.get_dataset_type(name)
             return True
-        except Exception:
+        except MissingDatasetTypeError:
             return False
 
     def find_product(self, product, variables=None, **kwargs):

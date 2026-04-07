@@ -2,6 +2,7 @@ import os
 import re
 from glob import glob
 from types import SimpleNamespace
+from collections.abc import Iterable
 
 from ..setup_logger import logger
 
@@ -117,13 +118,16 @@ class FileSystemRepo(Repo):
             patts.append(p)
 
         # Evaluate the glob pattern for each filter parameter
-        glob_pattern_parts = { k: p.get_glob_pattern() for k, p in params.items() }
+        glob_pattern_parts = {}
+        for k, p in params.items():
+            glob_pattern_parts[k] = p.get_glob_pattern()
+            glob_pattern_parts[f'{k}_'] = p.get_glob_pattern().replace('/', '_')
 
         # Compose the full glob pattern
         glob_pattern = os.path.join(*[ p.format(**glob_pattern_parts) for p in patts ])
 
         # Find the files that match the glob pattern.
-        # Set breakpoint here to debug issues regarding files not found
+        # DEBUG: Set breakpoint here to debug issues regarding files not found
         logger.debug(f'Finding files with glob using pattern: `{glob_pattern}`.')
         paths = glob(glob_pattern)
         
@@ -196,7 +200,7 @@ class FileSystemRepo(Repo):
 
         return self.__find_files_and_match_params(
             patterns = [
-                self.config.products[product].dir_format,
+                *self.config.products[product].dir_format,
                 self.config.products[product].filename_format,
             ],
             params_regex = self.config.products[product].params_regex,
@@ -259,11 +263,37 @@ class FileSystemRepo(Repo):
         params = self.config.products[product].params.__dict__
         if not isinstance(identity, dict):
             identity = identity.__dict__
-        values = { k: p.format.format(identity[k]) for k, p in params.items() if k in identity }
-        path = format_string.format(**values)
-        path = self.expand_variables(path, variables)
-        path = self.expand_variables(path, self.variables)
-        path = self.expand_variables(path, os.environ)
+        
+        values = {}
+        for k, p in params.items():
+            # Substitute the parameters in the format string with the values from the identity or defaults
+            if k in identity:
+                values[k] = p.format.format(identity[k])
+                values[f'{k}_'] = p.format.format(identity[k]).replace('/', '_')
+            elif hasattr(self.defaults, k):
+                v = getattr(self.defaults, k)
+                if v is not None:
+                    values[k] = p.format.format(v)
+                    values[f'{k}_'] = p.format.format(v).replace('/', '_')
+
+        if isinstance(format_string, str):
+            path = format_string.format(**values)
+            path = self.expand_variables(path, variables)
+            path = self.expand_variables(path, self.variables)
+            path = self.expand_variables(path, os.environ)
+        elif isinstance(format_string, Iterable):
+            path_parts = []
+            for part in format_string:
+                path_part = part.format(**values)
+                path_part = self.expand_variables(path_part, variables)
+                path_part = self.expand_variables(path_part, self.variables)
+                path_part = self.expand_variables(path_part, os.environ)
+                path_parts.append(path_part)
+                
+            path = os.path.join(*path_parts)
+        else:
+            raise NotImplementedError
+
         return path
     
     def format_dir(self, product, identity, variables=None):

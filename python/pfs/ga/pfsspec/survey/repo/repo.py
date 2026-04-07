@@ -18,16 +18,27 @@ class Repo():
             self.__ignore_missing_files = False
 
             self.__config = config
+            self.__defaults = self._init_defaults()
             self.__variables = self._init_variables()
             self.__filters = self._init_filters()
         else:
             self.__ignore_missing_files = orig.__ignore_missing_files
 
             self.__config = config if config is not None else orig.__config
+            self.__defaults = orig.__defaults
             self.__variables = orig.__variables
             self.__filters = self._init_filters()
 
         self.__location_cache = {}
+
+    def _init_defaults(self):
+        # Enumerate all product parameters in the config and make a
+        # unique dictionary of them with default values of None
+        all_defaults = {}
+        for product in self.__config.products.values():
+            for k, p in product.params.__dict__.items():
+                all_defaults[k] = None
+        return SimpleNamespace(**all_defaults)
             
     def _init_variables(self):
         # Enumerate all variables that appear in the config and make a 
@@ -61,6 +72,11 @@ class Repo():
         return self.__config
     
     config = property(__get_config)
+
+    def __get_defaults(self):
+        return self.__defaults
+    
+    defaults = property(__get_defaults)
 
     def __get_filters(self):
         return self.__filters
@@ -194,7 +210,7 @@ class Repo():
         are left unchanged. Stolen from os.path.expandvars.
         """
 
-        if variables is None:
+        if path is None or variables is None:
             return path
 
         path = os.fspath(path)
@@ -203,8 +219,6 @@ class Repo():
             return path
         
         search = Repo.__expandvars_regex.search
-        start = '{'
-        end = '}'
 
         i = 0
         while True:
@@ -213,11 +227,17 @@ class Repo():
                 break
             i, j = m.span(0)
             name = m.group(1)
-            if name.startswith(start) and name.endswith(end):
+            
+            if name.startswith('{') and name.endswith('}'):
                 name = name[1:-1]
+
             try:
                 value = variables[name]
             except KeyError:
+                value = None
+            
+            if value is None:
+                # Variable is not defined or value is None, leave it unchanged
                 i = j
             else:
                 tail = path[j:]
@@ -507,7 +527,7 @@ class Repo():
         # The file name might not contain all information necessary to load the
         # product, so given the parsed identity, we need to locate the file.
         if skip_locate:
-            identity = None
+            pass
         else:
             filename, identity = self.locate_product(product, variables=variables, **params)
             

@@ -1,8 +1,8 @@
 import os
 from pfs.ga.pfsspec.survey.xsl.io.xslsurveyreader import XslSurveyReader
-
-from test.pfs.ga.pfsspec.core import TestBase
 from pfs.ga.pfsspec.survey.xsl.io import XslSpectrumReader
+
+from ....core.test_base import TestBase
 
 class XslSurveyReaderTest(TestBase):
     def test_read(self):

@@ -26,7 +26,7 @@ PfsFileSystemConfig = SimpleNamespace(
             params_regex = [
                 re.compile(r'pfsDesign-(?P<pfsDesignId>0x[0-9a-fA-F]{16})\.(?:fits|fits\.gz)$'),
             ],
-            dir_format = '$datadir/pfsDesign',
+            dir_format = [ '$datadir', 'pfsDesign' ],
             filename_format = 'pfsDesign-0x{pfsDesignId}.fits',
             identity = lambda data:
                 SimpleNamespace(pfsDesignId=data.pfsDesignId),
@@ -44,7 +44,7 @@ PfsFileSystemConfig = SimpleNamespace(
                 re.compile(r'(?P<date>\d{4}-\d{2}-\d{2})/pfsConfig-(?P<pfsDesignId>0x[0-9a-fA-F]{16})-(?P<visit>\d{6})\.(fits|fits\.gz)$'),
                 re.compile(r'pfsConfig-(?P<pfsDesignId>0x[0-9a-fA-F]{16})-(?P<visit>\d{6})\.(fits|fits\.gz)$')
             ],
-            dir_format = '$datadir/pfsConfig/{date}/',
+            dir_format = [ '$datadir', 'pfsConfig/{date}' ],
             filename_format = 'pfsConfig-0x{pfsDesignId}-{visit}.fits',
             identity = lambda data:
                 SimpleNamespace(pfsDesignId=data.pfsDesignId, visit=data.visit),
@@ -63,7 +63,7 @@ PfsFileSystemConfig = SimpleNamespace(
                 re.compile(r'(?P<date>\d{4}-\d{2}-\d{2})/v(\d{6})/pfsArm-(?P<visit>\d{6})-(?P<arm>[brnm])(?P<spectrograph>\d)\.(fits|fits\.gz)$'),
                 re.compile(r'pfsArm-(?P<visit>\d{6})-(?P<arm>[brnm])(?P<spectrograph>\d)\.(fits|fits\.gz)$')
             ],
-            dir_format = '$datadir/$rerundir/pfsArm/{date}/v{visit}/',
+            dir_format = [ '$datadir', '$rerundir', 'pfsArm/{date}/v{visit}' ],
             filename_format = 'pfsArm-{visit}-{arm}{spectrograph}.fits',
             identity = lambda data:
                 SimpleNamespace(visit=data.identity.visit, arm=data.identity.arm, spectrograph=data.identity.spectrograph),
@@ -80,7 +80,7 @@ PfsFileSystemConfig = SimpleNamespace(
                 re.compile(r'(?P<date>\d{4}-\d{2}-\d{2})/v(\d{6})/pfsMerged-(?P<visit>\d{6})\.(fits|fits\.gz)$'),
                 re.compile(r'pfsMerged-(?P<visit>\d{6})\.(fits|fits\.gz)$'),
             ],
-            dir_format = '$datadir/$rerundir/pfsMerged/{date}/v{visit}/',
+            dir_format = [ '$datadir', '$rerundir', 'pfsMerged/{date}/v{visit}' ],
             filename_format = 'pfsMerged-{visit}.fits',
             identity = lambda data:
                 SimpleNamespace(visit=data.identity.visit),     # TODO: add date
@@ -99,7 +99,7 @@ PfsFileSystemConfig = SimpleNamespace(
             params_regex = [
                 re.compile(r'pfsSingle-(?P<catId>\d{5})-(?P<tract>\d{5})-(?P<patch>.*)-(?P<objId>[0-9a-f]{16})-(?P<visit>\d{6})\.(fits|fits\.gz)$'),
             ],
-            dir_format = '$datadir/$rerundir/pfsSingle/{catId}/{tract}/{patch}',
+            dir_format = [ '$datadir', '$rerundir', 'pfsSingle/{catId}/{tract}/{patch}' ],
             filename_format = 'pfsSingle-{catId}-{tract}-{patch}-{objId}-{visit}.fits',
             identity = lambda data:
                 SimpleNamespace(catId=data.target.catId, tract=data.target.tract, patch=data.target.patch, objId=data.target.objId, visit=data.observations.visit[0]),
@@ -119,7 +119,7 @@ PfsFileSystemConfig = SimpleNamespace(
             params_regex = [
                 re.compile(r'pfsObject-(?P<catId>\d{5})-(?P<tract>\d{5})-(?P<patch>.*)-(?P<objId>[0-9a-f]{16})-(?P<nVisit>\d{3})-(?P<pfsVisitHash>0x[0-9a-f]{16})\.(fits|fits\.gz)$'),
             ],
-            dir_format = '$datadir/$rerundir/pfsObject/{catId}/{tract}/{patch}',
+            dir_format = [ '$datadir', '$rerundir', 'pfsObject/{catId}/{tract}/{patch}' ],
             filename_format = 'pfsObject-{catId}-{tract}-{patch}-{objId}-{nVisit}-0x{pfsVisitHash}.fits',
             identity = lambda data:
                 SimpleNamespace(catId=data.target.catId, tract=data.target.tract, patch=data.target.patch, objId=data.target.objId, nVisit=data.nVisit, pfsVisitHash=data.pfsVisitHash),
@@ -139,7 +139,7 @@ PfsFileSystemConfig = SimpleNamespace(
             params_regex = [
                 re.compile(r'pfsStar-(?P<catId>\d{5})-(?P<objId>[0-9a-f]{16})-(?P<nVisit>\d{3})-0x(?P<pfsVisitHash>[0-9a-f]{16})\.(fits|fits\.gz)$'),
             ],
-            dir_format = '$datadir/$rerundir/pfsStar/{catId}/{tract}/{patch}',
+            dir_format = [ '$datadir', '$rerundir', 'pfsStar/{catId}/{tract}/{patch}' ],
             filename_format = 'pfsStar-{catId}-{tract}-{patch}-{objId}-{nVisit}-0x{pfsVisitHash}.fits',
             identity = lambda data:
                 SimpleNamespace(

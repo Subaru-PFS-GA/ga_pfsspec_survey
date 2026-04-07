@@ -2,8 +2,9 @@
 import os
 from astropy.io import fits
 
-from test.pfs.ga.pfsspec.core import TestBase
 from pfs.ga.pfsspec.survey.sdss.io import Sdss4SpectrumReader
+
+from ....core.test_base import TestBase
 
 class TestSdss4SpectrumReader(TestBase):
     def test_read(self):

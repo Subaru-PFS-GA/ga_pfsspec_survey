@@ -159,7 +159,7 @@ class PfsGen3Repo():
     #endregion
     #region Object search
 
-    def find_objects(self, product=PfsConfig, pfs_configs=None, groupby='visit', **kwargs):
+    def find_objects(self, product=PfsConfig, pfs_configs=None, groupby='visit', configrun=None, **kwargs):
         
         """
         Find individual objects by looking them up in the config files.
@@ -181,7 +181,11 @@ class PfsGen3Repo():
         if product is PfsConfig:
             # If not provided, load the config files for each visit
             if pfs_configs is None:
-                pfs_configs = self.load_pfsConfigs(visit=repo_filters.visit, date=repo_filters.date)
+                pfs_configs = self.load_pfsConfigs(
+                    visit=repo_filters.visit,
+                    date=repo_filters.date,
+                    run=configrun
+                )
 
             identities = {}
             for visit, psf_config in pfs_configs.items():
@@ -189,8 +193,8 @@ class PfsGen3Repo():
                 mask = np.full(psf_config.fiberId.shape, True)
 
                 mask &= object_filters.fiberId.mask(psf_config.fiberId)
-                mask &= repo_filters.catId.mask(psf_config.catId)
-                mask &= repo_filters.objId.mask(psf_config.objId)
+                mask &= object_filters.catId.mask(psf_config.catId)
+                mask &= object_filters.objId.mask(psf_config.objId)
                 mask &= object_filters.targetType.mask(psf_config.targetType)
                 mask &= object_filters.proposalId.mask(psf_config.proposalId)
                 mask &= object_filters.obCode.mask(psf_config.obCode)
@@ -228,15 +232,16 @@ class PfsGen3Repo():
         else:
             raise NotImplementedError()
 
-    def load_pfsConfigs(self, visit=None, date=None):
+    def load_pfsConfigs(self, visit=None, date=None, run=None):
         """
         Load all PfsConfig files matching the visit and date filters.
         """
 
         visit = visit if visit is not None else self.__repo.filters.visit
         date = date if date is not None else self.__repo.filters.date
+        run = run if run is not None else self.__repo.filters.run
 
-        files, ids = self.find_product(PfsConfig, visit=visit, date=date)
+        files, ids = self.find_product(PfsConfig, visit=visit, date=date, run=run)
         configs = {}
         for file in files:
             config, id, fn = self.load_product(PfsConfig, filename=file)
