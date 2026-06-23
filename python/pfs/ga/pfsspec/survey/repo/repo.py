@@ -371,9 +371,9 @@ class Repo():
             Path to the file.
         params : SimpleNamespace
             Parameters to parse from the filename.
-        regex : str
-            Regular expression pattern to match the filename. The regex should contain named groups
-            that correspond to the parameters in the SimpleNamespace.
+        required : bool
+            If True, an exception is raised if the filename does not match the expected format.
+            Otherwise, a warning is logged and None is returned.
 
         Returns
         -------
@@ -522,7 +522,7 @@ class Repo():
         elif isinstance(identity, SimpleNamespace):
             params = identity.__dict__
         else:
-            params = { k: p.copy() for k, p in self.filters.__dict__.items() if not p.is_none }
+            params.update({ kwargs[k] for k, p in self.filters.__dict__.items() if p.is_constant })
            
         # The file name might not contain all information necessary to load the
         # product, so given the parsed identity, we need to locate the file.

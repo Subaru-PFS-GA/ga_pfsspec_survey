@@ -16,7 +16,7 @@ def load_PfsConfig(identity, filename, dir):
         return PfsConfig.read(pfsDesignId=identity.pfs_design_id, visit=identity.visit, dirName=dir)
 
 def load_PfsArm(identity, filename, dir):
-    return PfsArm.read(Identity(identity.visit, arm=identity.arm, spectrograph=identity.spectrograph), dirName=dir)
+    return PfsArm.readFits(filename)
 
 def load_PfsMerged(identity, filename, dir):
     if filename is not None:
@@ -31,7 +31,10 @@ def load_PfsCalibrated(identity, filename, dir):
         return PfsCalibrated.read(Identity(identity.visit), dirName=dir)
 
 def load_PfsCalibratedLsf(identity, filename, dir):
-    raise NotImplementedError()
+    if filename is not None:
+        return PfsCalibratedLsf.readPickle(filename)
+    else:
+        raise NotImplementedError()
 
 def load_PfsCalibrated_PfsSingle(identity, filename, dir, **kwargs):
     if filename is not None and identity is not None:
@@ -177,27 +180,28 @@ PfsGen3FileSystemConfig = SimpleNamespace(
             save = save_PfsSingle,
         ),
 
+        PfsArm: SimpleNamespace(
+            name = 'pfsArm',
+            params = SimpleNamespace(
+                run = StringFilter(name='run'),
+                visit = IntFilter(name='visit', format='{:06d}'),
+                date = DateFilter(name='date', format='{:%Y%m%d}'),
+                arm = StringFilter(name='arm'),
+                spectrograph = IntFilter(name='spectrograph', format='{:1d}'),
+            ),
+            params_regex = [
+                re.compile(r'pfsArm/(?P<date>\d{8})/(\d{6})/pfsArm_PFS_(?P<visit>\d{6})_(?P<arm>[brnm])(?P<spectrograph>\d)_(?P<run>.+).(fits|fits\.gz)$'),
+                re.compile(r'pfsArm_PFS_(?P<visit>\d{6})_(?P<arm>[brnm])(?P<spectrograph>\d)_(?P<run>.+).(fits|fits\.gz)$')
+            ],
+            dir_format = [ '$datadir', '$rundir', 'pfsArm/{date}/{visit}' ],
+            filename_format = 'pfsArm_PFS_{visit}_{arm}{spectrograph}_{run_}.fits',
+            identity = lambda data:
+                SimpleNamespace(visit=data.identity.visit, arm=data.identity.arm, spectrograph=data.identity.spectrograph),
+            load = load_PfsArm,
+        ),
+
         # TODO: update everything below
 
-
-        # PfsArm: SimpleNamespace(
-        #     name = 'pfsArm',
-        #     params = SimpleNamespace(
-        #         visit = IntFilter(name='visit', format='{:06d}'),
-        #         arm = StringFilter(name='arm'),
-        #         spectrograph = IntFilter(name='spectrograph', format='{:1d}'),
-        #         date = DateFilter(name='date', format='{:%Y%m%d}'),
-        #     ),
-        #     params_regex = [
-        #         re.compile(r'(\d{8}T\d{6}Z)/pfsArm/(?P<date>\d{4}\d{2}\d{2})/(\d{6})/pfsArm_PFS_(?P<visit>\d{6})_(?P<arm>[brnm])(?P<spectrograph>\d)_(?P<run>.+)_(?P<proctime>\d{8}T\d{6}Z)\.(fits|fits\.gz)$'),
-        #         re.compile(r'pfsArm-(?P<visit>\d{6})-(?P<arm>[brnm])(?P<spectrograph>\d)\.(fits|fits\.gz)$')
-        #     ],
-        #     dir_format = [ '$datadir', '{proctime}', 'pfsArm', '{date}', '{visit}' ],
-        #     filename_format = 'pfsArm_PFS_{visit}_{arm}{spectrograph}_{run_}.fits',
-        #     identity = lambda data:
-        #         SimpleNamespace(visit=data.identity.visit, arm=data.identity.arm, spectrograph=data.identity.spectrograph),
-        #     load = load_PfsArm,
-        # ),
         # PfsMerged: SimpleNamespace(
         #     name = 'pfsMerged',
         #     params = SimpleNamespace(

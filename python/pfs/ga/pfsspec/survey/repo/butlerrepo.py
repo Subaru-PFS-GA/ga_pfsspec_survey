@@ -49,7 +49,9 @@ class ButlerRepo(Repo):
 
     #endregion
 
-    def __find_datasets(self, product_name, params_regex, params, param_values, variables):
+    def __find_datasets(self, product, params_regex, params, param_values, variables):
+
+        product_name = self.config.products[product].name
 
         # Unwrap the parameters
         params = { k: p.copy() for k, p in params.__dict__.items() }
@@ -74,7 +76,7 @@ class ButlerRepo(Repo):
                     elif isinstance(v, Number):
                         ww.append(f'{k} = {v}')
                     elif isinstance(v, str):
-                        ww.append(f'{k} = "{v}"')
+                        ww.append(f'{k} = \'{v}\'')
                 if len(ww) > 0:
                     where.append('(' + ' OR '.join(ww) + ')')
         where = ' AND '.join(where)
@@ -95,16 +97,22 @@ class ButlerRepo(Repo):
             # Get the file path
             uri = self.butler.getURI(dsref)
             if uri.scheme == 'file':
-                filenames.append(uri.ospath)
+                filename = uri.ospath
             else:
-                filenames.append(str(uri))
+                filename = str(uri)
 
-            # Get the identity
+            filenames.append(filename)
+
+            # Parse the identity from the file name
+            identity = self.parse_product_identity(product, filename, required=False)
+
             for p in params:
                 if p in dsref.dataId:
                     identities[p].append(dsref.dataId[p])
+                elif hasattr(identity, p):
+                    identities[p].append(getattr(identity, p))
                 else:
-                    identities[p].append(None)
+                    identities[p].append(None)                    
 
         identities = SimpleNamespace(**identities)
 
@@ -171,7 +179,7 @@ class ButlerRepo(Repo):
         # TODO: implement finding sub-products in container products
 
         return self.__find_datasets(
-            self.config.products[product].name,
+            product,
             params_regex = self.config.products[product].params_regex,
             params = self.config.products[product].params,
             param_values = params,

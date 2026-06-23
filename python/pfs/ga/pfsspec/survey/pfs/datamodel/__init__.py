@@ -6,7 +6,7 @@ try:
     from pfs.datamodel import PfsConfig, PfsDesign
     from pfs.datamodel import PfsStar, PfsStarCatalog
     from pfs.datamodel import Target, Identity, Observations
-    from pfs.datamodel import TargetType, MaskHelper
+    from pfs.datamodel import TargetType, FiberStatus, MaskHelper
     from pfs.datamodel.utils import calculatePfsVisitHash, calculate_pfsDesignId
     from .pfscalibrated import PfsCalibrated
     from .pfscalibratedlsf import PfsCalibratedLsf
@@ -32,6 +32,7 @@ except ImportError as ex:
     Identity = object()
     Observations = object()
     TargetType = object()
+    FiberStatus = object()
     MaskHelper = object()
     calculatePfsVisitHash = object()
     calculate_pfsDesignId = object()

@@ -74,7 +74,7 @@ class PfsSpectrumReader(SpectrumReader):
             if index is not None:
                 logger.warning(f'The {get_type_string()} object does not support accessign spectra by index, yet the index value of {index} is specified.')
                 return False
-        elif isinstance(data, PfsFiberArraySet):                    # PfsMerged
+        elif isinstance(data, PfsFiberArraySet):                    # PfsMerged, PfsArm, PfsCalibrated
             if arm is not None and arm not in data.identity.arm:
                 logger.warning(f'Arm {arm} not available in {get_type_string()} object.')
                 return False
@@ -409,8 +409,8 @@ class PfsSpectrumReader(SpectrumReader):
             else:
                 wave_mask = ()
 
-        if wave_mask.sum() == 0:
-            # TODO write warning
+        if isinstance(wave_mask, np.ndarray) and wave_mask.sum() == 0:
+            logger.warning(f'No data points found in the specified wavelength range for spectrum {spec.get_name()}.')
             return None
 
         spec.wave = wave[wave_mask]
