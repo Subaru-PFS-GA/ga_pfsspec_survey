@@ -199,26 +199,26 @@ PfsGen3FileSystemConfig = SimpleNamespace(
                 SimpleNamespace(visit=data.identity.visit, arm=data.identity.arm, spectrograph=data.identity.spectrograph),
             load = load_PfsArm,
         ),
+        PfsMerged: SimpleNamespace(
+            name = 'pfsMerged',
+            params = SimpleNamespace(
+                run = StringFilter(name='run'),
+                visit = IntFilter(name='visit', format='{:06d}'),
+                date = DateFilter(name='date', format='{:%Y%m%d}'),
+            ),
+            params_regex = [
+                re.compile(r'pfsMerged/(?P<date>\d{8})/(\d{6})/pfsMerged_PFS_(?P<visit>\d{6})_(?P<run>.+)\.(fits|fits\.gz)$'),
+                re.compile(r'pfsMerged_PFS_(?P<visit>\d{6})_(?P<run>.+)\.(fits|fits\.gz)$')
+            ],
+            dir_format = [ '$datadir', '$rundir', 'pfsMerged/{date}/{visit}' ],
+            filename_format = 'pfsMerged_PFS_{visit}_{run_}.fits',
+            identity = lambda data:
+                SimpleNamespace(visit=data[list(data.keys())[0]].observations.visit[0]),
+            load = load_PfsMerged,
+        ),
 
         # TODO: update everything below
 
-        # PfsMerged: SimpleNamespace(
-        #     name = 'pfsMerged',
-        #     params = SimpleNamespace(
-        #         visit = IntFilter(name='visit', format='{:06d}'),
-        #         date = DateFilter(name='date', format='{:%Y%m%d}'),
-        #     ),
-        #     params_regex = [
-        #         re.compile(r'(\d{8}T\d{6}Z)/pfsMerged/(?P<date>\d{4}\d{2}\d{2})/(\d{6})/pfsMerged_PFS_(?P<visit>\d{6})_(?P<run>.+)_(?P<proctime>\d{8}T\d{6}Z)\.(fits|fits\.gz)$'),
-        #         re.compile(r'pfsMerged_PFS_(?P<visit>\d{6})_(?P<run>.+)_(?P<proctime>\d{8}T\d{6}Z)\.(fits|fits\.gz)$')
-        #     ],
-        #     dir_format = [ '$datadir', '{proctime}', 'pfsMerged', '{date}', '{visit}' ],
-        #     filename_format = 'pfsMerged_PFS_{visit}_{run_}.fits',
-        #     identity = lambda data:
-        #         # TODO: add date and proctime but from where?
-        #         SimpleNamespace(visit=data[list(data.keys())[0]].observations.visit[0]),     
-        #     load = load_PfsMerged,
-        # ),
         # PfsObject: SimpleNamespace(
         #     name = 'pfsObject',
         #     params = SimpleNamespace(
