@@ -1,5 +1,7 @@
 from ..setup_logger import logger
 
+# Imports from pfs.datamodel
+
 try:
     from pfs.datamodel import PfsFiberArray, PfsFiberArraySet, PfsSingle, PfsObject, PfsArm, PfsMerged, PfsCoadd
     from pfs.datamodel.pfsTargetSpectra import PfsTargetSpectra
@@ -36,3 +38,15 @@ except ImportError as ex:
     MaskHelper = object()
     calculatePfsVisitHash = object()
     calculate_pfsDesignId = object()
+
+# Optional imports from pfs.drp.stella
+
+try:
+    from pfs.drp.stella import DetectorMap
+except ImportError as ex:
+    logger.warning('Cannot import DetectorMap from pfs.drp.stella. Is package `pfs.drp.stella` available?')
+    logger.exception(ex)
+
+    class DetectorMap:
+        def __init__(self, *args, **kwargs):
+            raise NotImplementedError('DetectorMap is not available because pfs.drp.stella is not installed.')

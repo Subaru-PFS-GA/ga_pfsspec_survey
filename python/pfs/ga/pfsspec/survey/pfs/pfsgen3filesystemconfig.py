@@ -71,6 +71,12 @@ def save_PfsSingle(data, identity, filename, dir):
 def load_PfsObject(identity, filename, dir):
     return PfsObject.read(identity.__dict__, dirName=dir)
 
+def load_DetectorMap(identity, filename, dir):
+    if filename is not None:
+        return DetectorMap.readFits(filename)
+    else:
+        raise NotImplementedError()
+
 PfsGen3FileSystemConfig = SimpleNamespace(
     variables = {
         'datadir': '$PFSSPEC_PFS_DATADIR',              # Data root
@@ -215,6 +221,26 @@ PfsGen3FileSystemConfig = SimpleNamespace(
             identity = lambda data:
                 SimpleNamespace(visit=data[list(data.keys())[0]].observations.visit[0]),
             load = load_PfsMerged,
+        ),
+        
+        DetectorMap: SimpleNamespace(
+            name = 'detectorMap',
+            params = SimpleNamespace(
+                run = StringFilter(name='run'),
+                visit = IntFilter(name='visit', format='{:06d}'),
+                date = DateFilter(name='date', format='{:%Y%m%d}'),
+                arm = StringFilter(name='arm'),
+                spectrograph = IntFilter(name='spectrograph', format='{:1d}'),
+            ),
+            params_regex = [
+                re.compile(r'detectorMap/(?P<date>\d{8})/(\d{6})/detectorMap_PFS_(?P<visit>\d{6})_(?P<arm>[brnm])(?P<spectrograph>\d)_(?P<run>.+).(fits|fits\.gz)$'),
+                re.compile(r'detectorMap_PFS_(?P<visit>\d{6})_(?P<arm>[brnm])(?P<spectrograph>\d)_(?P<run>.+).(fits|fits\.gz)$')
+            ],
+            dir_format = [ '$datadir', '$rundir', 'detectorMap/{date}/{visit}' ],
+            filename_format = 'detectorMap_PFS_{visit}_{arm}{spectrograph}_{run_}.fits',
+            identity = lambda data:
+                SimpleNamespace(visit=data.identity.visit, arm=data.identity.arm, spectrograph=data.identity.spectrograph),
+            load = load_DetectorMap,
         ),
 
         # TODO: update everything below
